@@ -21,3 +21,9 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# remove all mac ds store files in git
+**/.DS_Store
+
+# remove package lock
+package-lock.json
