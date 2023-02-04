@@ -1,7 +1,13 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/about">About</router-link> |
+    <router-link to="/profile">Profile</router-link> |
+    <router-link to="/create-place">Create Place</router-link> |
+    <router-link to="/view-place">View Place</router-link> |
+    <router-link to="/my-places">My Places</router-link> |
+    <router-link to="/list-places">List Places</router-link> |
+    <router-link to="/my-bookings">My Bookings</router-link>
   </nav>
   <router-view/>
 </template>
