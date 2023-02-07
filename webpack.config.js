@@ -4,7 +4,8 @@ module.exports = {
   entry: "./script.js",
   output: {
     path: __dirname + "/dist",
-    filename: "bundle.js"
+    filename: "bundle.js",
+    publicPath: "/"
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -12,7 +13,7 @@ module.exports = {
     })
   ],
   devServer: {
-    contentBase: "./dist",
-    port: 8080
-  }
+    port: 3000
+  },
+  devtool: "source-map"
 };
