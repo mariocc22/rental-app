@@ -6,8 +6,6 @@ module.exports = {
   entry: {
     index: "./scripts/index.js",
     aboutUs: './scripts/about-us.js',
-    payment: './scripts/payment.js',
-    alex: './scripts/alex.js'
   },
   output: {
     path: __dirname + "/dist",
