@@ -1,0 +1,10 @@
+body {
+    background-color: purple;
+}
+
+.langara-hallmark {
+    width: 100px;
+    height: 100px;
+    border: 1px red solid;
+    background-image: url("/assets/img/One.jpg");
+}

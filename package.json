@@ -1,0 +1,35 @@
+{
+  "name": "stage",
+  "version": "1.0.0",
+  "description": "Team Astra WMDD Term2 Project ",
+  "main": "index.html",
+  "scripts": {
+    "start": "NODE_ENV=development webpack-dev-server --open --mode development",
+    "build": "NODE_ENV=production webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Astra-Stage/stage.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Astra-Stage/stage/issues"
+  },
+  "homepage": "https://github.com/Astra-Stage/stage#readme",
+  "devDependencies": {
+    "css-loader": "^6.7.3",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.7.2",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "@firebase/firestore": "^3.8.3",
+    "firebase": "^9.17.1"
+  }
+}
