@@ -1,7 +1,27 @@
 // initialise firebase
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+import {
+  getFirestore,
+  getDocs,
+  collection,
+  doc,
+  setDoc,
+  getDoc,
+  query,
+  where,
+  orderBy,
+} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signOut,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
+  FacebookAuthProvider,
+} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -14,12 +34,32 @@ const firebaseConfig = {
   storageBucket: "stage-409cd.appspot.com",
   messagingSenderId: "353769465240",
   appId: "1:353769465240:web:cf1b387bf2e09ffe79f7ed",
-  measurementId: "G-526YGCVVN2"
+  measurementId: "G-526YGCVVN2",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
+export {
+  app,
+  db,
+  auth,
+  getDocs,
+  collection,
+  doc,
+  setDoc,
+  getDoc,
+  query,
+  where,
+  orderBy,
+  createUserWithEmailAndPassword,
+  signOut,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
+  FacebookAuthProvider,
+};
 
-export { db, app }
