@@ -33,11 +33,16 @@ const modal_logSignIn = document.querySelector(".modal-signup-login");
 const loginForm = document.getElementById("login-form");
 const user_name = document.getElementById("user-name");
 
+// Phone Verification
+const btn_space = document.querySelector("#btn-space");
+const modal_phone_ver = document.querySelector(".modal-phone-verify");
+const close_phone_modal = document.querySelector(".phone-close");
 // ===== Event Listeners =====
 // These event handlers are specifically to open or close the modals or screens on the app
 menu_btn.addEventListener("click", () => {
   menu_btn.classList.toggle("is-active");
   modal_profile.classList.toggle("is-active");
+
   menu_btn.disabled = true;
 });
 
@@ -56,6 +61,14 @@ menu_btn_auth.addEventListener("click", () => {
   modal_profile.classList.toggle("is-active");
   modal_logSignIn.classList.toggle("is-active");
   menu_btn.disabled = false;
+});
+
+// ============ PHONE LISTENERS ========
+close_phone_modal.addEventListener("click", () => {
+  modal_phone_ver.classList.toggle("is-active");
+});
+btn_space.addEventListener("click", () => {
+  modal_phone_ver.classList.toggle("is-active");
 });
 
 //  ================= SIGN IN USER (email/password) ================
@@ -96,25 +109,25 @@ loginForm.addEventListener("submit", (e) => {
 });
 
 //  ================= GET USER STATUS CHANGES ================
-onAuthStateChanged(auth, (user) => {
-  // Any changes to the user status if there's a user logged in
-  if (user) {
-    // Show the current user
-    const user = auth.currentUser;
-    // This is just for testing, but you can set the Display name or change any of the user's value by taking the "user" const
-    const username = !user.displayName ? "User" : user.displayName;
-    console.log("Welcome, ", user.displayName + "!");
+// onAuthStateChanged(auth, (user) => {
+//   // Any changes to the user status if there's a user logged in
+//   if (user) {
+//     // Show the current user
+//     const user = auth.currentUser;
+//     // This is just for testing, but you can set the Display name or change any of the user's value by taking the "user" const
+//     const username = !user.displayName ? "User" : user.displayName;
+//     console.log("Welcome, ", user.displayName + "!");
 
-    // Modify the Username on the screen to user's logged
-    user_name.innerHTML = username;
+//     // Modify the Username on the screen to user's logged
+//     user_name.innerHTML = username;
 
-    // Keep the button Log out active and remove the Login button
-    btn_logout.classList.remove("hidden");
-    btn_login.classList.add("hidden");
-  } else {
-    console.log("No users");
-  }
-});
+//     // Keep the button Log out active and remove the Login button
+//     btn_logout.classList.remove("hidden");
+//     btn_login.classList.add("hidden");
+//   } else {
+//     console.log("No users");
+//   }
+// });
 
 // ================ SIGN OUT ===============
 // if the user clicks the Log out button:
