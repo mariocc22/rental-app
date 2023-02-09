@@ -444,6 +444,87 @@ body {
   background-color: black;
 }
 
+/* ## Verified User with Phone */
+
+.modal-phone-verify {
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  gap: 1.5rem;
+  transition: all 0.4s ease;
+}
+
+.modal-phone-verify.is-active {
+  right: 0;
+}
+
+.modal-phone-verify .hamburger {
+  align-self: flex-end;
+  margin-bottom: auto;
+}
+
+.verified-title-wrp {
+  margin-bottom: auto;
+}
+
+#verification-form {
+  font-family: "Poppins", sans-serif;
+}
+
+#verification-form label {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+#verification-form .input-field-2 {
+  text-align: left;
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+
+#user-phone-succesful {
+  color: crimson;
+}
+
+.modal-phone-verify input {
+  font-family: "Poppins", sans-serif;
+  display: block;
+  border: 1px solid black;
+  border-radius: 7px;
+  padding: 1.25rem 0.5rem;
+  width: 100%;
+}
+
+.modal-phone-verify .btn-submit,
+.modal-phone-verify .btn-verify {
+  color: white;
+  background-color: black;
+
+  border: none;
+  outline: none;
+  appearance: none;
+  padding: 0.85rem;
+  width: 80%;
+  border-radius: 100vh;
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.btns-phone-wrp {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  align-items: center;
+}
+
+#recaptcha-container {
+  width: fit-content;
+  height: fit-content;
+}
+
 /* Hover effects */
 .google:hover,
 .fb:hover,

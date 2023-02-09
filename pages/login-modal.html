@@ -10,6 +10,7 @@
       crossorigin="anonymous"
     ></script>
     <script type="module" src="../query/auth.js" defer></script>
+    <script type="module" src="../query/phone-verification.js" defer></script>
     <link rel="stylesheet" href="/styles/login.css" />
     <title>Login & Sign Up Modal</title>
   </head>
@@ -112,6 +113,47 @@
           </div>
         </div>
 
+        <div class="modal-phone-verify modal">
+          <button class="modal-btn hamburger phone-close">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <div class="verified-title-wrp">
+            <h3>LIST YOUR SPACE ON STAGE!</h3>
+            <p>
+              Great Way To Increase Your Visibility And Attract More Business
+            </p>
+            <br />
+            <p id="user-phone-succesful"></p>
+          </div>
+
+          <form id="verification-form">
+            <div class="input-field-2">
+              <label for="phone-input"
+                >ENTER YOUR MOBILE NUMBER TO CONTINUE
+              </label>
+              <input type="text" id="phone-input" />
+            </div>
+
+            <div class="input-field-2">
+              <label for="verified-code">ENTER CODE SENT</label>
+              <input type="text" id="verified-code" />
+            </div>
+            <div id="recaptcha-container"></div>
+
+            <div class="btns-phone-wrp">
+              <button type="button" id="btn-phone" class="btn-submit">
+                Verify
+              </button>
+              <button type="button" id="btn-code" class="btn-verify">
+                Get Code
+              </button>
+            </div>
+          </form>
+        </div>
+
         <section class="main-hero">
           <div class="main-hero-title">
             <h1>EXPLORE SPACES</h1>
@@ -132,7 +174,7 @@
             <p>Lorem ipsum dolor sit amet.</p>
           </div>
           <div class="main-ls-btns">
-            <button class="btn-ls btn-start">BUTTON</button>
+            <button id="btn-space" class="btn-ls btn-start">BUTTON</button>
           </div>
         </section>
       </main>

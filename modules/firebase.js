@@ -25,6 +25,8 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   FacebookAuthProvider,
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
 } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -65,9 +67,9 @@ export {
   GoogleAuthProvider,
   signInWithPopup,
   FacebookAuthProvider,
-  getDocs,
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
   updateDoc, 
   deleteField, 
   deleteDoc,
 };
-
