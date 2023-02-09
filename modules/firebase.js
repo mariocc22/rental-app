@@ -14,7 +14,7 @@ import {
   getDocs,
   updateDoc, 
   deleteField, 
-  deleteDoc,
+  deleteDoc, //new function
 } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 import {
   getAuth,
