@@ -11,6 +11,10 @@ import {
   query,
   where,
   orderBy,
+  getDocs,
+  updateDoc, 
+  deleteField, 
+  deleteDoc,
 } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 import {
   getAuth,
@@ -61,5 +65,9 @@ export {
   GoogleAuthProvider,
   signInWithPopup,
   FacebookAuthProvider,
+  getDocs,
+  updateDoc, 
+  deleteField, 
+  deleteDoc,
 };
 
