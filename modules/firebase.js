@@ -1,6 +1,7 @@
 // initialise firebase
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+import { initializeApp } from "firebase/app";
+
 import {
   getFirestore,
   getDocs,
@@ -11,11 +12,11 @@ import {
   query,
   where,
   orderBy,
-  getDocs,
   updateDoc, 
   deleteField, 
   deleteDoc, //new function
-} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+} from "firebase/firestore";
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -27,7 +28,7 @@ import {
   FacebookAuthProvider,
   RecaptchaVerifier,
   signInWithPhoneNumber,
-} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+} from "firebase/auth";
 
 // https://firebase.google.com/docs/web/setup#available-libraries
 
