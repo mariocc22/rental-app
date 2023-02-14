@@ -22,7 +22,8 @@
         </nav>
     </header>
     <main>
-        <div class="main-menu-activity">
+        <!-- Main Menu -->
+        <div class="main-menu-activity" id="main-menu-activity">
             <ul>
                 <li>
                     <a href="./explore.html?activity=musician">
@@ -41,6 +42,94 @@
                 </li>
             </ul>
         </div>
+
+        <!-- Explore List -->
+        <section class="explore-section hide" id="explore-section">
+            <h1>
+                Explore spaces for your next creative project
+            </h1>
+            <!-- partial match content and display -->
+            <div class="search-field">
+                <label for="search-places">Search</label>
+                <input type="search" name="search-places" id="search-places">
+            </div>
+            <!-- additional filters -->
+            <div class="filters">
+                <!-- type of spaces -->
+                <div class="filter-space">
+                    <p>Filter Spaces</p>
+                    <ul>
+                        <li>
+                            <div class="space-icon"></div>
+                            <div class="space-icon-name">Indoor</div>
+                        </li>
+                        <li>
+                            <div class="space-icon"></div>
+                            <div class="space-icon-name">Outdoor</div>
+                        </li>
+                        <li>
+                            <div class="space-icon"></div>
+                            <div class="space-icon-name">Studio</div>
+                        </li>
+                        <li>
+                            <div class="space-icon"></div>
+                            <div class="space-icon-name">House</div>
+                        </li>
+                        <li>
+                            <div class="space-icon"></div>
+                            <div class="space-icon-name">Farmhouse</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- More filters button -->
+                <div class="filter-more-btn">
+                    <input type="button" value="More Filters">
+                </div>
+
+                <!-- Suggested Spaces -->
+                <div class="filter-suggested-spaces">
+                    <ul class="suggested-spaces-list">
+                        <li> 
+                            <img src="https://picsum.photos/1200/500?random=1" alt="">
+                            <div class="space-details">
+                                <h2 class="space-name">Space Title 1</h2>
+                                <p class="space-rating">3.5</p>
+                            </div>
+                        </li>
+                        <li> 
+                            <img src="https://picsum.photos/1200/500?random=2" alt="">
+                            <div class="space-details">
+                                <h2 class="space-name">Space Title 2</h2>
+                                <p class="space-rating">3.5</p>
+                            </div>
+                        </li>
+                        <li> 
+                            <img src="https://picsum.photos/1200/500?random=3" alt="">
+                            <div class="space-details">
+                                <h2 class="space-name">Space Title 3</h2>
+                                <p class="space-rating">3.5</p>
+                            </div>
+                        </li>
+                        <li> 
+                            <img src="https://picsum.photos/1200/500?random=4" alt="">
+                            <div class="space-details">
+                                <h2 class="space-name">Space Title 4</h2>
+                                <p class="space-rating">3.5</p>
+                            </div>
+                        </li>
+                        <li> 
+                            <img src="https://picsum.photos/1200/500?random=5" alt="">
+                            <div class="space-details">
+                                <h2 class="space-name">Space Title 5</h2>
+                                <p class="space-rating">3.5</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
     </main>
 </body>
 
