@@ -20,7 +20,7 @@ nav ul {
 
 img {
     max-width: 100%;
-    height: auto;   
+    height: auto;
 }
 
 header {
@@ -154,4 +154,39 @@ main .main-menu-activity li {
     display: grid;
     grid-template-rows: 1fr;
     grid-gap: 2rem;
+}
+
+
+/* more filters */
+.filter-location-prices {
+    padding: 1rem 0;
+}
+
+.filter-location-prices input {
+    margin-bottom: 2rem;
+}
+
+.filter-equipment, .filter-amenities {
+    padding: 1rem 0;
+}
+
+.chip {
+    display: inline-block;
+    padding: 0 1.5rem;
+    font-size: 1rem;
+    line-height: 2.5rem;
+    border-radius: 20px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    text-align: center;
+}
+.selected-chip {
+    background-color: black;
+    color: white;
+}
+
+.chip-set {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 8em);
+    grid-gap: 1rem;
 }

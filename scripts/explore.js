@@ -10,7 +10,10 @@ if(activity) {
 
     const listSection = document.getElementById("explore-section");
     listSection.classList.remove('hide');
-
-    
-
 }
+
+const moreFilterElem = document.getElementById("more-filter");
+
+moreFilterElem.addEventListener("click", () => {
+    alert('clicked')
+})

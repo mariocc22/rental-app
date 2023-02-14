@@ -84,44 +84,75 @@
 
                 <!-- More filters button -->
                 <div class="filter-more-btn">
-                    <input type="button" value="More Filters">
+                    <input type="button" value="More Filters" id="more-filter">
                 </div>
+
+                <!-- More Filters -->
+                <div class="">
+                    <h2>More Filters</h2>
+                    <div class="filter-location-prices">
+                        <h3>Price 500 CAD</h3>
+                        <input type="range" step="50" value="500" min="50" max="2000" oninput="this.previousElementSibling.innerText = `Price ${this.value} CAD`">
+                        <h3>Search by distance: 1 kilometre</h3>
+                        <input type="range" step="1" value="1" min="1" max="20" oninput="this.previousElementSibling.innerText = `Search by distance: ${this.value} kilometre`">
+                    </div>
+                    <div>
+                        <h3>Equipment with props</h3>
+                        <div class="filter-equipment chip-set">
+                            <div class="chip">Tripod</div>
+                            <div class="chip">Light Box</div>
+                            <div class="chip">Lens</div>
+                            <div class="chip">Wifi</div>
+                        </div>
+                        <!-- Amenities and Specification -->
+                        <h3>Amenities and Specification</h3>
+                        <div class="filter-amenities chip-set">
+                            <div class="chip">Washroom</div>
+                            <div class="chip">Kitchen</div>
+                            <div class="chip">Fireplace</div>
+                            <div class="chip">Elevator</div>
+                        </div>
+
+                    </div>
+                </div>
+
 
                 <!-- Suggested Spaces -->
                 <div class="filter-suggested-spaces">
+                    <h2>Suggested Spaces</h2>
                     <ul class="suggested-spaces-list">
                         <li> 
                             <img src="https://picsum.photos/1200/500?random=1" alt="">
                             <div class="space-details">
-                                <h2 class="space-name">Space Title 1</h2>
+                                <h3 class="space-name">Space Title 1</h3>
                                 <p class="space-rating">3.5</p>
                             </div>
                         </li>
                         <li> 
                             <img src="https://picsum.photos/1200/500?random=2" alt="">
                             <div class="space-details">
-                                <h2 class="space-name">Space Title 2</h2>
+                                <h3 class="space-name">Space Title 2</h3>
                                 <p class="space-rating">3.5</p>
                             </div>
                         </li>
                         <li> 
                             <img src="https://picsum.photos/1200/500?random=3" alt="">
                             <div class="space-details">
-                                <h2 class="space-name">Space Title 3</h2>
+                                <h3 class="space-name">Space Title 3</h3>
                                 <p class="space-rating">3.5</p>
                             </div>
                         </li>
                         <li> 
                             <img src="https://picsum.photos/1200/500?random=4" alt="">
                             <div class="space-details">
-                                <h2 class="space-name">Space Title 4</h2>
+                                <h3 class="space-name">Space Title 4</h3>
                                 <p class="space-rating">3.5</p>
                             </div>
                         </li>
                         <li> 
                             <img src="https://picsum.photos/1200/500?random=5" alt="">
                             <div class="space-details">
-                                <h2 class="space-name">Space Title 5</h2>
+                                <h3 class="space-name">Space Title 5</h3>
                                 <p class="space-rating">3.5</p>
                             </div>
                         </li>
