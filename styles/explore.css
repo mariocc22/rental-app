@@ -1,5 +1,55 @@
+/* Import fontawesome styles */
 @import url('../node_modules/font-awesome/css/font-awesome.min.css');
 
 * {
     box-sizing: border-box;
+}
+
+h1, h2, h3 {
+    margin: 0;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+header {
+    min-height: 50px;
+}
+
+main {
+    height: calc(100vh - 70px);
+    padding: 1rem;
+}
+
+main .main-menu-activity {
+    height: 100%;
+}
+
+main ul {
+    height: 100%;
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+main a {
+    display: block;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    padding: 3rem;
+    border-radius: 20px;
+    min-width: 12rem;
+    text-align: center;
+}
+
+main li {
+    padding: 0;
 }
