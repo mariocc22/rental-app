@@ -86,5 +86,181 @@
                 "tagname": "amenities-changing-room"
             }
         ]
+    },
+    "performance": {
+        "type": [
+            {
+                "name": "indoor",
+                "svg": "indoor.svg",
+                "tagname": "type-indoor"
+            },
+            {
+                "name": "outdoor",
+                "svg": "outdoor.svg",
+                "tagname": "type-outdoor"
+            },
+            {
+                "name": "studio",
+                "svg": "outdoor.svg",
+                "tagname": "type-studio"
+            },
+            {
+                "name": "house",
+                "svg": "house.svg",
+                "tagname": "type-house"
+            },
+            {
+                "name": "beach house",
+                "svg": "beach-house.svg",
+                "tagname": "type-beach-house"
+            }
+        ],
+        "equipments": [
+            {
+                "name": "Lights",
+                "svg": "light.svg",
+                "tagname": "equipments-light"
+            },
+            {
+                "name": "Light Stand",
+                "svg": "light-stand.svg",
+                "tagname": "equipments-light-stand"
+            },
+            {
+                "name": "Camera Stand",
+                "svg": "camera-stand.svg",
+                "tagname": "equipments-camera-stand"
+            },
+            {
+                "name": "Light Shaper - Umbrella",
+                "svg": "light-shaper-umbrella.svg",
+                "tagname": "equipments-light-shaper-umbrella"
+            },
+            {
+                "name": "Lens",
+                "svg": "lens.svg",
+                "tagname": "equipments-lens"
+            },
+            {
+                "name": "Backdrop",
+                "svg": "Backdrop .svg",
+                "tagname": "equipments-Backdrop"
+            }
+        ],
+        "amenities": [
+            {
+                "name": "WiFi",
+                "svg": "wifi.svg",
+                "tagname": "amenities-wifi"
+            },
+            {
+                "name": "Elevator",
+                "svg": "elevator.svg",
+                "tagname": "amenities-elevator"
+            },
+            {
+                "name": "Washroom",
+                "svg": "washroom.svg",
+                "tagname": "amenities-washroom"
+            },
+            {
+                "name": "Kitchen ",
+                "svg": "kitchen.svg",
+                "tagname": "amenities-kitchen "
+            },
+            {
+                "name": "Changing Room",
+                "svg": "changing-room.svg",
+                "tagname": "amenities-changing-room"
+            }
+        ]
+    },
+    "musician": {
+        "type": [
+            {
+                "name": "indoor",
+                "svg": "indoor.svg",
+                "tagname": "type-indoor"
+            },
+            {
+                "name": "outdoor",
+                "svg": "outdoor.svg",
+                "tagname": "type-outdoor"
+            },
+            {
+                "name": "studio",
+                "svg": "outdoor.svg",
+                "tagname": "type-studio"
+            },
+            {
+                "name": "house",
+                "svg": "house.svg",
+                "tagname": "type-house"
+            },
+            {
+                "name": "beach house",
+                "svg": "beach-house.svg",
+                "tagname": "type-beach-house"
+            }
+        ],
+        "equipments": [
+            {
+                "name": "Lights",
+                "svg": "light.svg",
+                "tagname": "equipments-light"
+            },
+            {
+                "name": "Light Stand",
+                "svg": "light-stand.svg",
+                "tagname": "equipments-light-stand"
+            },
+            {
+                "name": "Camera Stand",
+                "svg": "camera-stand.svg",
+                "tagname": "equipments-camera-stand"
+            },
+            {
+                "name": "Light Shaper - Umbrella",
+                "svg": "light-shaper-umbrella.svg",
+                "tagname": "equipments-light-shaper-umbrella"
+            },
+            {
+                "name": "Lens",
+                "svg": "lens.svg",
+                "tagname": "equipments-lens"
+            },
+            {
+                "name": "Backdrop",
+                "svg": "Backdrop .svg",
+                "tagname": "equipments-Backdrop"
+            }
+        ],
+        "amenities": [
+            {
+                "name": "WiFi",
+                "svg": "wifi.svg",
+                "tagname": "amenities-wifi"
+            },
+            {
+                "name": "Elevator",
+                "svg": "elevator.svg",
+                "tagname": "amenities-elevator"
+            },
+            {
+                "name": "Washroom",
+                "svg": "washroom.svg",
+                "tagname": "amenities-washroom"
+            },
+            {
+                "name": "Kitchen ",
+                "svg": "kitchen.svg",
+                "tagname": "amenities-kitchen "
+            },
+            {
+                "name": "Changing Room",
+                "svg": "changing-room.svg",
+                "tagname": "amenities-changing-room"
+            }
+        ]
     }
 }
