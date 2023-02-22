@@ -15,32 +15,6 @@ import {
     updateDoc,
     deleteField,
     deleteDoc, //new function
-} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
-import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signOut,
-    signInWithEmailAndPassword,
-    onAuthStateChanged,
-    GoogleAuthProvider,
-    signInWithPopup,
-    FacebookAuthProvider,
-    RecaptchaVerifier,
-    signInWithPhoneNumber,
-} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
-=======
-  getFirestore,
-  getDocs,
-  collection,
-  doc,
-  setDoc,
-  getDoc,
-  query,
-  where,
-  orderBy,
-  updateDoc, 
-  deleteField, 
-  deleteDoc, //new function
 } from "firebase/firestore";
 
 import {
@@ -61,7 +35,7 @@ import {
     ref as sRef,
     uploadBytesResumable,
     getDownloadURL,
-} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js";
+} from "firebase/storage";
 
 // https://firebase.google.com/docs/web/setup#available-libraries
 
