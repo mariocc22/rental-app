@@ -6,6 +6,40 @@ import { driver } from '../modules/neo4j.js'
 // import utility
 import { validateTagNames } from '../utility/validateTagNames.js';
 
+
+/**
+ * Add User Function
+ * adds a new user in Neo4j Database
+ * @param {userId}
+ * userId: firebase uid of the user 
+ * @returns userId
+ */
+
+function addUser(userId) {
+    const session = driver.session({database: neo4j})
+    try {
+        const writeQuery = "CREATE(u:User{id: $userId}) RETURN u.id as userId";
+        const writeResponse = await session.executeWrite(tx => {
+            tx.run(
+                writeQuery,
+                {
+                    userId
+                }
+            )
+        });
+
+        const userId = writeResponse.records.map(record => record.get('userId'));
+        console.log(userId[0]);
+        return userId[0];
+        
+    } catch (error) {
+        console.error(error)
+        console.log('Error in addBooking Neo4j Query')
+    } finally {
+        await session.close();
+    }
+}
+
 function filterPlacesPrepQuery(params) {
     let query = ''
     if (params.coords) {
@@ -146,6 +180,37 @@ async function addPlace(placeId, placeName, userId, tagNames, activityName) {
 }
 
 
+/**
+ * Connect with Booking
+ * params: userId, bookingId, placeId
+ */
+
+function addBooking(userId, bookingId, placeId) {
+    try {
+        
+    } catch (error) {
+        console.error(error)
+        console.log('Error in addBooking Neo4j Query')
+    } finally {
+        await session.close();
+    }
+}
+
+/**
+ * Connect Showcase
+ * params: userId, showcaseId, placeId
+ */
+
+function addShowCase(userId, showcaseId, placeId) {
+    try {
+        
+    } catch (error) {
+        console.error(error)
+        console.log('Error in addBooking Neo4j Query')
+    } finally {
+        await session.close();
+    }
+}
 
 export {
     filterPlaces,
