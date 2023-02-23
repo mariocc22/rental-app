@@ -1,6 +1,5 @@
 // File contains all neo4j queries used in Stage Application
 
-import { session } from 'neo4j-driver';
 import { driver } from '../modules/neo4j.js'
 
 // import utility
