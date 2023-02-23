@@ -6,7 +6,8 @@ module.exports = {
   entry: {
     index: "./scripts/index.js",
     aboutUs: './scripts/about-us.js',
-    explore: './scripts/explore.js'
+    explore: './scripts/explore.js',
+    property: './scripts/property.js'
   },
   output: {
     path: __dirname + "/dist",
@@ -65,6 +66,11 @@ module.exports = {
       filename: "explore.html",
       chunks: ["explore"]
     }),
+    new HtmlWebpackPlugin({
+      template: "./pages/property.html",
+      filename: "property.html",
+      chunks: ["property"]
+    })
   ],
   devServer: {
     port: 3000,
