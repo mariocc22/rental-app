@@ -15,7 +15,7 @@ import { validateTagNames } from '../utility/validateTagNames.js';
  * @returns userId
  */
 
-function addUser(userId) {
+async function addUser(userId) {
     const session = driver.session({database: neo4j})
     try {
         const writeQuery = "CREATE(u:User{id: $userId}) RETURN u.id as userId";
@@ -31,7 +31,7 @@ function addUser(userId) {
         const userId = writeResponse.records.map(record => record.get('userId'));
         console.log(userId[0]);
         return userId[0];
-        
+
     } catch (error) {
         console.error(error)
         console.log('Error in addBooking Neo4j Query')
@@ -120,7 +120,7 @@ async function filterPlaces(params) {
 
 */
 
-// todo validate actiivitname with the top level key in tags.json
+// todo validate activityName with the top level key in tags.json
 
 async function addPlace(placeId, placeName, userId, tagNames, activityName) {
 
@@ -181,12 +181,48 @@ async function addPlace(placeId, placeName, userId, tagNames, activityName) {
 
 
 /**
- * Connect with Booking
- * params: userId, bookingId, placeId
+ * Connect Place with Booking and User
+ * @param {userId, bookingId, placeId, bookingTo, bookingFrom}
+ *  userId: firebase uid of the user 
+ * bookingId: random uuid4 generated from front-end
+ * placeId: uuid4 of the place
+ * bookingTo: timestamp of 10 digits
+ * bookingFrom: timestamp of 10 digits
+ * @returns placeId
  */
 
-function addBooking(userId, bookingId, placeId) {
+async function addBooking(userId, bookingId, placeId, bookingTo, bookingFrom) {
+    const session = driver.session({database: neo4j})
     try {
+        const writeQuery = `
+        MATCH(u:User{id: $userId})
+        WITH u
+        MATCH (p:Property{id: $placeId })
+        WITH u, p
+        CREATE (b:Booking{id: $bookingId, to:$bookingTo, from:$bookingFrom })
+        WITH u, p, b
+        MERGE (u)-[:MY_BOOKING]->(b)<-[:BOOKING_INFO]-(p)
+        WITH p
+        RETURN p.id as propertyId;`
+
+        const writeResponse = await session.executeWrite(tx => {
+            tx.run(writeQuery), {
+                userId,
+                bookingId,
+                placeId,
+                bookingTo,
+                bookingFrom
+            }
+        })
+
+        const propertyId = writeResponse.records.map(record => {
+            const propertyId = record.get('propertyId');
+            return propertyId
+        });
+
+        console.log(propertyId[0]);
+        return propertyId[0];
+
         
     } catch (error) {
         console.error(error)
@@ -197,22 +233,100 @@ function addBooking(userId, bookingId, placeId) {
 }
 
 /**
- * Connect Showcase
- * params: userId, showcaseId, placeId
+ * Connect Showcase with Place and User
+ * @param {userId, showcaseId, placeId}
+ *  userId: firebase uid of the user 
+ * showcaseId: random uuid4 generated from front-end
+ * placeId: uuid4 of the place
+ * @returns showcaseId
  */
 
-function addShowCase(userId, showcaseId, placeId) {
+async function addShowcase(userId, showcaseId, placeId) {
+    const session = driver.session({database: neo4j})
     try {
+
+        const writeQuery = `
+        MATCH(u:User{id: $userId})
+        WITH u
+        MATCH (p:Property{id: $placeId })
+        WITH u, p
+        CREATE (s:Showcase{id: $showcaseId })
+        WITH u, p, b
+        MERGE (u)-[:MY_Showcase]->(s)<-[:Showcase_info]-(p)
+        WITH s
+        RETURN s.id as showcaseId;`
+
+        const writeResponse = await session.executeWrite(tx => {
+            tx.run(
+                writeQuery,
+                {
+                    placeId,
+                    userId,
+                    showcaseId
+                }
+            )
+        })
+
+        const showcaseId = writeResponse.records.map(record => record.get('showcaseId'));
+
+        console.log(showcaseId[0]);
+
+        return showcaseId[0];
         
     } catch (error) {
         console.error(error)
-        console.log('Error in addBooking Neo4j Query')
+        console.log('Error in addShowcase Neo4j Query')
+    } finally {
+        await session.close();
+    }
+}
+
+
+// todo improve query by showing latest 50
+// => would need to index the timestamp prop
+
+/**
+ * Get Showcases List for Get Inspired Section
+ * Returns a list of 50 showcases to the user
+ * @param {}
+ * @returns {[showcaseId]}
+ */
+
+async function getShowcasesList() {
+    const session = driver.session({database: neo4j})
+    try {
+
+        const readQuery = `
+        MATCH(s:Showcase)
+        WITH s
+        LIMIT 50
+        RETURN COLLECT(s.id) as showcaseIds;`
+
+        const readResponse = await session.executeRead(tx => {
+            tx.run(
+                readQuery
+            )
+        })
+
+        const showcaseIds = readResponse.records.map(record => record.get('showcaseIds'));
+
+        console.log(showcaseIds[0]);
+
+        return showcaseIds[0];
+        
+    } catch (error) {
+        console.error(error)
+        console.log('Error in getShowcasesList Neo4j Query')
     } finally {
         await session.close();
     }
 }
 
 export {
+    addUser,
     filterPlaces,
-    addPlace
+    addPlace,
+    addBooking,
+    addShowcase,
+    getShowcasesList
 }
