@@ -1,5 +1,3 @@
-"use strict";
-
 // Container
 const usersLoc = document.querySelector(".users-loc");
 
@@ -40,7 +38,7 @@ const whereAmI = async function () {
 
         return `You are in ${dataGeo.city}, ${dataGeo.country}`;
     } catch (err) {
-        console.log(err);
+        console.log(err.message);
         // Reject Promise returned from async function, otherwise it will fulfilled the promise even if it fails in one pointe of the function
         throw err;
     }

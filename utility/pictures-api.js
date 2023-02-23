@@ -1,4 +1,4 @@
-"use strict";
+import "/styles/images-api.css";
 
 import {
     app,
