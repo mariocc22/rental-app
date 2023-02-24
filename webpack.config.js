@@ -75,7 +75,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./pages/list-my-space.html",
       filename: "list-my-space.html",
-      chunks: ["List my space"]
+      chunks: ["listmyspace"]
     }),
   ],
   devServer: {

@@ -1,4 +1,6 @@
 // console.log('works')
+import '/styles/list-my-space.css';
+
 const allPages = document.querySelectorAll('div.page');
 allPages[0].style.display = 'block';
 
