@@ -45,6 +45,7 @@ module.exports = {
     // ADD CSS FILES AS SUCH
     new MiniCssExtractPlugin(
 ),
+        loginModal: "./query/auth.js",
 
     // Add All HTML PAGES AS SUCH
     new HtmlWebpackPlugin({
@@ -82,4 +83,9 @@ module.exports = {
     port: 3000,
   },
   devtool: "source-map"
-};
+};        new HtmlWebpackPlugin({
+            template: "./pages/login-modal.html",
+            filename: "login-modal.html",
+            chunks: ["loginModal"],
+        }),
+    ],
