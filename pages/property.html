@@ -76,17 +76,19 @@
                 </div>
             </div>
             <!-- Customize Tab -->
-            <div class="customize-tab">
+            <div class="customize-tab hide">
                 <!-- Suggested Bundles -->
-                <div class="suggested-bundles-list">
+                <div class="property-bundles">
                     <h2>Suggested Bundles</h2>
                     <div class="bundle">
                         <h3>$300 / Per Day</h3>
                         <p>Get these items and save $30</p>
                         <div class="bundle-equipments">
-                            <li>2 Cameras</li>
-                            <li>1 Light Umbrella</li>
-                            <li>2 Strobes on floor</li>
+                            <ul>
+                                <li>2 Cameras</li>
+                                <li>1 Light Umbrella</li>
+                                <li>2 Strobes on floor</li>
+                            </ul>
                         </div>
                         <input type="button" value="Choose Bundle">
                     </div>
@@ -94,15 +96,17 @@
                         <h3>$250 / Per Day</h3>
                         <p>Get these items and save $30</p>
                         <div class="bundle-equipments">
-                            <li>2 Cameras</li>
-                            <li>1 Light Umbrella</li>
-                            <li>2 Strobes on floor</li>
+                            <ul>
+                                <li>2 Cameras</li>
+                                <li>1 Light Umbrella</li>
+                                <li>2 Strobes on floor</li>
+                            </ul>
                         </div>
                         <input type="button" value="Choose Bundle">
                     </div>
                 </div>
                 <!-- Equipment and Props -->
-                <div>
+                <div class="property-equipments">
                     <h2>Equipment and Props</h2>
                     <ul>
                         <li>Camera</li>
@@ -113,12 +117,13 @@
                     </ul>
                 </div>
                 <!-- Pick Dates -->
-                <h2>Pick Dates</h2>
-
-                <div id="foo">
-                    <input type="text" name="start" id="start">
-                    <span>to</span>
-                    <input type="text" name="end" id="end">
+                <div class="property-pick-dates">
+                    <h2>Pick Dates</h2>
+                    <div id="foo">
+                        <input type="text" name="start" id="start">
+                        <span>to</span>
+                        <input type="text" name="end" id="end">
+                    </div>
                 </div>
             </div>
             <!-- Property Details Tab -->
@@ -128,6 +133,7 @@
                     <p>A long Description about the property</p>
                 </div>
                 <div class="property-amenities">
+                    <h2>Property Amenities</h2>
                     <ul>
                         <li>One</li>
                         <li>Two</li>
@@ -137,51 +143,48 @@
 
             </div>
             <!-- Showcases tab -->
-            <div class="showcases-tab hide">
-                <div class="showcase-title">
-                    <h2>Expore Past showcases</h2>
-                </div>
+            <div class="showcases-tab">
                 <div class="showcase-list">
-                    <div class="property-showcase">
-                        <img src="https://picsum.photos/1200/500?random=2">
-                        <h3 class="showcase-title">
-                            Showcase
-                        </h3>
-                        <p class="showcase-description">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. A delectus aperiam eos non
-                            dolorem. Odit corrupti voluptatem iste quae perspiciatis?
-                        </p>
-                    </div>
-                    <div class="property-showcase">
-                        <img src="https://picsum.photos/1200/500?random=2">
-                        <h3 class="showcase-title">
-                            Showcase
-                        </h3>
-                        <p class="showcase-description">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. A delectus aperiam eos non
-                            dolorem. Odit corrupti voluptatem iste quae perspiciatis?
-                        </p>
-                    </div>
+                    <h2>Expore Past showcases</h2>
+                    <ul class="showcase-list">
+                        <li class="property-showcase">
+                            <img src="https://picsum.photos/1200/500?random=2">
+                            <h3 class="showcase-title">
+                                Showcase
+                            </h3>
+                            <p class="showcase-description">
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. A delectus aperiam eos non
+                                dolorem. Odit corrupti voluptatem iste quae perspiciatis?
+                            </p>
+                        </li>
+                        <li class="property-showcase">
+                            <img src="https://picsum.photos/1200/500?random=2">
+                            <h3 class="showcase-title">
+                                Showcase
+                            </h3>
+                            <p class="showcase-description">
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. A delectus aperiam eos non
+                                dolorem. Odit corrupti voluptatem iste quae perspiciatis?
+                            </p>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="property-booking-details">
                 <!-- Price Details -->
                 <div>
                     <h2>Price Details</h2>
-                    <div>
+                    <div id="property-price-breakdown">
                         <ul>
                             <li>Space Price: $800</li>
                             <li>Equipment Price $24</li>
                             <li>Tax $20</li>
+                            <li>Total Price: $844</li>
                         </ul>
                     </div>
-                    <div>
-                        <p>Total Price: $844</p>
+                    <div id="property-booking-btn">
+                        <input type="button" value="Book">
                     </div>
-                </div>
-                <!-- Action btn -->
-                <div>
-
                 </div>
             </div>
         </section>

@@ -21,6 +21,8 @@ endElem.addEventListener('changeDate', function(e) {
 
 // Slider Code ===================
 
+// https://codepen.io/davehert/pen/MWrYjZy
+
 // Select all slides
 const slides = document.querySelectorAll(".slide");
 

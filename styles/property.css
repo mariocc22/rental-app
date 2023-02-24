@@ -33,15 +33,13 @@ main {
 }
 
 .hide {
-    display: none;
+  display: none !important;
 }
 
 
 /* Close the above styles for every css file */
 
 /* Slider Styles start ==================*/
-
-
 
 .slider {
     width: 100%;
@@ -92,6 +90,9 @@ main {
   }
 
 /* Slider Styles End =================== */
+section {
+  padding: 2rem 0;
+}
 .property-name {
     margin-bottom: 1rem;
 }
@@ -105,4 +106,43 @@ main {
 .property-info a {
     text-decoration: none;
     color: black;
+}
+
+/* Styles for info */
+.customize-tab, .property-details-tab, .showcases-tab {
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  text-align: center;
+  justify-content: center;
+}
+
+.customize-tab h2, .property-details-tab h2, .showcases-tab h2 {
+  margin: 1rem 0;
+}
+
+.customize-tab > div, .property-details-tab div, .showcases-tab div {
+  padding: 1rem;
+  border: 1px black solid;
+}
+
+.customize-tab ul, .property-details-tab ul, .showcases-tab ul{
+  list-style-type: none;
+  padding: 0;
+}
+
+.customize-tab .bundle {
+  border: 1px black solid;
+  margin: 1rem 0;
+  padding: 1rem;
+}
+
+.property-booking-details {
+  text-align: center;
+}
+
+.property-booking-details ul {
+  list-style-type: none;
+  padding: 0;
 }
