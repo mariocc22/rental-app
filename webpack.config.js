@@ -59,6 +59,11 @@ module.exports = {
       filename: "all-places.html",
       chunks: []
     }),
+    new HtmlWebpackPlugin({
+      template: "./pages/list-my-space.html",
+      filename: "list-my-space.html",
+      chunks: ["List my space"]
+    }),
   ],
   devServer: {
     port: 3000,
