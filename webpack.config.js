@@ -7,7 +7,8 @@ module.exports = {
     index: "./scripts/index.js",
     aboutUs: './scripts/about-us.js',
     explore: './scripts/explore.js',
-    property: './scripts/property.js'
+    property: './scripts/property.js',
+    listmyspace: './scripts/list-my-space.js',
   },
   output: {
     path: __dirname + "/dist",
