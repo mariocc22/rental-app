@@ -9,78 +9,20 @@
             src="https://kit.fontawesome.com/1e15723684.js"
             crossorigin="anonymous"
         ></script>
-        <script type="module" src="../query/auth.js" defer></script>
+        <!-- <script type="module" src="../query/auth.js" defer></script> -->
         <title>Login & Sign Up Modal</title>
     </head>
     <body>
         <!-- ===== MOBILE VERSION ONLY ====== AUTHENTICATION IN FIREBASE -->
         <div class="wrp">
-            <header>
-                <div class="nav-container">
-                    <button class="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-            </header>
             <main>
-                <div class="modal-profile modal">
-                    <button class="arrow-btn">
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </button>
-                    <div class="user-info-wrp modal-wrp">
-                        <span class="user-img"
-                            ><i class="fa-solid fa-user"></i
-                        ></span>
-                        <div class="user-text">
-                            <h2>
-                                Hi, <span id="user-name">dear visitor!</span>
-                            </h2>
-                            <a class="edit-profile-link hidden" href="#"
-                                >Edit profile</a
-                            >
-                        </div>
-                    </div>
-                    <div class="get-inspired-wrp modal-wrp">
-                        <h3>Plan your creative work</h3>
-                        <ul class="inspired-list">
-                            <li>Get Inspired</li>
-                            <li>Find a space</li>
-                        </ul>
-                    </div>
-                    <div class="host-wrp modal-wrp">
-                        <h3>Become a host</h3>
-                        <ul class="inspired-list">
-                            <li>List My place</li>
-                        </ul>
-                    </div>
-                    <div class="footer-wrp">
-                        <h3>About Us</h3>
-                        <h3>Help</h3>
-
-                        <div class="auth-btn-wrp">
-                            <div class="logout-wrp hidden">
-                                <button id="btn-auth-logout" class="arrow-btn">
-                                    <i class="fa-solid fa-arrow-left"></i>
-                                </button>
-                                <span>Logout</span>
-                            </div>
-                            <div class="login-wrp">
-                                <span>Log in/Sign Up</span>
-                                <button id="btn-auth" class="arrow-btn">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="modal-signup-login modal">
                     <button class="modal-btn hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                        <a href="./index.html">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </a>
                     </button>
                     <h3>log in</h3>
                     <form id="login-form">
@@ -103,6 +45,7 @@
                         </div>
                         <button class="btn-login">Log in</button>
                     </form>
+
                     <div class="social-auth">
                         <div class="social-text">
                             <p>You haven't signed up yet?</p>
@@ -116,14 +59,9 @@
                             <span class="icon-wrp"></span>
                             <span class="txt-wrp">Sign in with Google</span>
                         </button>
-                        <button class="fb btn-social">
-                            <span class="icon-wrp"></span>
-                            <span class="txt-wrp">Sign in with Facebook</span>
-                        </button>
                     </div>
                 </div>
-
-                <div class="modal-phone-verify modal">
+                <!-- <div class="modal-phone-verify modal">
                     <button class="modal-btn hamburger phone-close">
                         <span></span>
                         <span></span>
@@ -197,9 +135,8 @@
                             BUTTON
                         </button>
                     </div>
-                </section>
+                </section> -->
             </main>
-            <footer></footer>
         </div>
     </body>
 </html>
