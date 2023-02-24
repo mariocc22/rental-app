@@ -59,115 +59,117 @@
 
             <!-- Property info -->
             <div id="property-info" class="property-info">
-                <div class="menu-tabs">
+                <div class="menu-tabs" data-value="customize">
                     <a href="#customize">
                         Customize
                     </a>
                 </div>
-                <div class="menu-tabs">
+                <div class="menu-tabs" data-value="details">
                     <a href="#details">
                         Details
                     </a>
                 </div>
-                <div class="menu-tabs">
+                <div class="menu-tabs" data-value="showcases">
                     <a href="#showcases">
                         Showcases
                     </a>
                 </div>
             </div>
-            <!-- Customize Tab -->
-            <div class="customize-tab hide">
-                <!-- Suggested Bundles -->
-                <div class="property-bundles">
-                    <h2>Suggested Bundles</h2>
-                    <div class="bundle">
-                        <h3>$300 / Per Day</h3>
-                        <p>Get these items and save $30</p>
-                        <div class="bundle-equipments">
-                            <ul>
-                                <li>2 Cameras</li>
-                                <li>1 Light Umbrella</li>
-                                <li>2 Strobes on floor</li>
-                            </ul>
+            <div class="property-menu-info-wrapper">
+                <!-- Customize Tab -->
+                <div class="property-customize-tab hide">
+                    <!-- Suggested Bundles -->
+                    <div class="property-bundles">
+                        <h2>Suggested Bundles</h2>
+                        <div class="bundle">
+                            <h3>$300 / Per Day</h3>
+                            <p>Get these items and save $30</p>
+                            <div class="bundle-equipments">
+                                <ul>
+                                    <li>2 Cameras</li>
+                                    <li>1 Light Umbrella</li>
+                                    <li>2 Strobes on floor</li>
+                                </ul>
+                            </div>
+                            <input type="button" value="Choose Bundle">
                         </div>
-                        <input type="button" value="Choose Bundle">
-                    </div>
-                    <div class="bundle">
-                        <h3>$250 / Per Day</h3>
-                        <p>Get these items and save $30</p>
-                        <div class="bundle-equipments">
-                            <ul>
-                                <li>2 Cameras</li>
-                                <li>1 Light Umbrella</li>
-                                <li>2 Strobes on floor</li>
-                            </ul>
+                        <div class="bundle">
+                            <h3>$250 / Per Day</h3>
+                            <p>Get these items and save $30</p>
+                            <div class="bundle-equipments">
+                                <ul>
+                                    <li>2 Cameras</li>
+                                    <li>1 Light Umbrella</li>
+                                    <li>2 Strobes on floor</li>
+                                </ul>
+                            </div>
+                            <input type="button" value="Choose Bundle">
                         </div>
-                        <input type="button" value="Choose Bundle">
+                    </div>
+                    <!-- Equipment and Props -->
+                    <div class="property-equipments">
+                        <h2>Equipment and Props</h2>
+                        <ul>
+                            <li>Camera</li>
+                            <li>Lens</li>
+                            <li>Camera Mount</li>
+                            <li>Light Shaper</li>
+                            <li>Light Mount</li>
+                        </ul>
+                    </div>
+                    <!-- Pick Dates -->
+                    <div class="property-pick-dates">
+                        <h2>Pick Dates</h2>
+                        <div id="foo">
+                            <input type="text" name="start" id="start">
+                            <span>to</span>
+                            <input type="text" name="end" id="end">
+                        </div>
                     </div>
                 </div>
-                <!-- Equipment and Props -->
-                <div class="property-equipments">
-                    <h2>Equipment and Props</h2>
-                    <ul>
-                        <li>Camera</li>
-                        <li>Lens</li>
-                        <li>Camera Mount</li>
-                        <li>Light Shaper</li>
-                        <li>Light Mount</li>
-                    </ul>
-                </div>
-                <!-- Pick Dates -->
-                <div class="property-pick-dates">
-                    <h2>Pick Dates</h2>
-                    <div id="foo">
-                        <input type="text" name="start" id="start">
-                        <span>to</span>
-                        <input type="text" name="end" id="end">
+                <!-- Property Details Tab -->
+                <div class="property-details-tab hide">
+                    <div class="property-description">
+                        <h2>Property Description</h2>
+                        <p>A long Description about the property</p>
                     </div>
-                </div>
-            </div>
-            <!-- Property Details Tab -->
-            <div class="property-details-tab hide">
-                <div class="property-description">
-                    <h2>Property Description</h2>
-                    <p>A long Description about the property</p>
-                </div>
-                <div class="property-amenities">
-                    <h2>Property Amenities</h2>
-                    <ul>
-                        <li>One</li>
-                        <li>Two</li>
-                        <li>Three</li>
-                    </ul>
-                </div>
+                    <div class="property-amenities">
+                        <h2>Property Amenities</h2>
+                        <ul>
+                            <li>One</li>
+                            <li>Two</li>
+                            <li>Three</li>
+                        </ul>
+                    </div>
 
-            </div>
-            <!-- Showcases tab -->
-            <div class="showcases-tab">
-                <div class="showcase-list">
-                    <h2>Expore Past showcases</h2>
-                    <ul class="showcase-list">
-                        <li class="property-showcase">
-                            <img src="https://picsum.photos/1200/500?random=2">
-                            <h3 class="showcase-title">
-                                Showcase
-                            </h3>
-                            <p class="showcase-description">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. A delectus aperiam eos non
-                                dolorem. Odit corrupti voluptatem iste quae perspiciatis?
-                            </p>
-                        </li>
-                        <li class="property-showcase">
-                            <img src="https://picsum.photos/1200/500?random=2">
-                            <h3 class="showcase-title">
-                                Showcase
-                            </h3>
-                            <p class="showcase-description">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. A delectus aperiam eos non
-                                dolorem. Odit corrupti voluptatem iste quae perspiciatis?
-                            </p>
-                        </li>
-                    </ul>
+                </div>
+                <!-- Showcases tab -->
+                <div class="property-showcases-tab hide">
+                    <div class="showcase-list">
+                        <h2>Expore Past showcases</h2>
+                        <ul class="showcase-list">
+                            <li class="property-showcase">
+                                <img src="https://picsum.photos/1200/500?random=2">
+                                <h3 class="showcase-title">
+                                    Showcase
+                                </h3>
+                                <p class="showcase-description">
+                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. A delectus aperiam eos non
+                                    dolorem. Odit corrupti voluptatem iste quae perspiciatis?
+                                </p>
+                            </li>
+                            <li class="property-showcase">
+                                <img src="https://picsum.photos/1200/500?random=2">
+                                <h3 class="showcase-title">
+                                    Showcase
+                                </h3>
+                                <p class="showcase-description">
+                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. A delectus aperiam eos non
+                                    dolorem. Odit corrupti voluptatem iste quae perspiciatis?
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="property-booking-details">

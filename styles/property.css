@@ -109,7 +109,7 @@ section {
 }
 
 /* Styles for info */
-.customize-tab, .property-details-tab, .showcases-tab {
+.property-customize-tab, .property-details-tab, .property-showcases-tab {
   margin: 2rem 0;
   display: grid;
   grid-template-columns: 1fr;
@@ -118,21 +118,21 @@ section {
   justify-content: center;
 }
 
-.customize-tab h2, .property-details-tab h2, .showcases-tab h2 {
+.property-customize-tab h2, .property-details-tab h2, .property-showcases-tab h2 {
   margin: 1rem 0;
 }
 
-.customize-tab > div, .property-details-tab div, .showcases-tab div {
+.property-customize-tab > div, .property-details-tab div, .property-showcases-tab div {
   padding: 1rem;
   border: 1px black solid;
 }
 
-.customize-tab ul, .property-details-tab ul, .showcases-tab ul{
+.property-customize-tab ul, .property-details-tab ul, .property-showcases-tab ul{
   list-style-type: none;
   padding: 0;
 }
 
-.customize-tab .bundle {
+.property-customize-tab .bundle {
   border: 1px black solid;
   margin: 1rem 0;
   padding: 1rem;
@@ -140,6 +140,7 @@ section {
 
 .property-booking-details {
   text-align: center;
+  padding: 1rem;
 }
 
 .property-booking-details ul {

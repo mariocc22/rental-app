@@ -73,3 +73,40 @@ prevSlide.addEventListener("click", function () {
 });
 
 // Slider Code ends ===============
+
+// display menu section based on URL
+const URLhash = window.location.hash;
+if(URLhash) {
+  // get split value
+  const splitHash = URLhash.split("#")
+  if(splitHash[1]) {
+    const elemValue = splitHash[1];
+    displaySelectedMenuInfo(elemValue);
+
+  } 
+}
+
+// Code to toggle tabs
+const menuTabs = document.getElementsByClassName('menu-tabs');
+const menuTabsArray = Array.from(menuTabs);
+
+menuTabsArray.forEach(elem => {
+  elem.addEventListener('click', function(event) {
+    const elemValue = this.dataset.value;
+    displaySelectedMenuInfo(elemValue);
+  })
+})
+
+
+// displays the selected menu info based on user selection and url
+function displaySelectedMenuInfo(elemValue) {
+  // hide all elements inside the wrapper
+    // .property-menu-info-wrapper
+    const allElementsToHide = document.querySelectorAll('.property-menu-info-wrapper > div')
+    allElementsToHide.forEach(elem => elem.classList.add("hide"));
+
+    // remove hide class
+    const elemToShowClass = `property-${elemValue}-tab`;
+    const elemToShow = document.getElementsByClassName(elemToShowClass);
+    elemToShow[0].classList.remove("hide");
+}
