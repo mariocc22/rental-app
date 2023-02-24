@@ -1,0 +1,1 @@
+import '/styles/property.css';

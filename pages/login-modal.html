@@ -1,142 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Personal Kit Font Awesome -->
-    <script
-      src="https://kit.fontawesome.com/1e15723684.js"
-      crossorigin="anonymous"
-    ></script>
-    <script type="module" src="../query/auth.js" defer></script>
-    <link rel="stylesheet" href="/styles/login.css" />
-    <title>Login & Sign Up Modal</title>
-  </head>
-  <body>
-    <!-- ===== MOBILE VERSION ONLY ====== AUTHENTICATION IN FIREBASE -->
-    <div class="wrp">
-      <header>
-        <div class="nav-container">
-          <button class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Personal Kit Font Awesome -->
+        <script
+            src="https://kit.fontawesome.com/1e15723684.js"
+            crossorigin="anonymous"
+        ></script>
+        <script type="module" src="../query/auth.js" defer></script>
+        <title>Login & Sign Up Modal</title>
+    </head>
+    <body>
+        <!-- ===== MOBILE VERSION ONLY ====== AUTHENTICATION IN FIREBASE -->
+        <div class="wrp">
+            <header>
+                <div class="nav-container">
+                    <button class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </header>
+            <main>
+                <div class="modal-profile modal">
+                    <button class="arrow-btn">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <div class="user-info-wrp modal-wrp">
+                        <span class="user-img"
+                            ><i class="fa-solid fa-user"></i
+                        ></span>
+                        <div class="user-text">
+                            <h2>
+                                Hi, <span id="user-name">dear visitor!</span>
+                            </h2>
+                            <a class="edit-profile-link hidden" href="#"
+                                >Edit profile</a
+                            >
+                        </div>
+                    </div>
+                    <div class="get-inspired-wrp modal-wrp">
+                        <h3>Plan your creative work</h3>
+                        <ul class="inspired-list">
+                            <li>Get Inspired</li>
+                            <li>Find a space</li>
+                        </ul>
+                    </div>
+                    <div class="host-wrp modal-wrp">
+                        <h3>Become a host</h3>
+                        <ul class="inspired-list">
+                            <li>List My place</li>
+                        </ul>
+                    </div>
+                    <div class="footer-wrp">
+                        <h3>About Us</h3>
+                        <h3>Help</h3>
+
+                        <div class="auth-btn-wrp">
+                            <div class="logout-wrp hidden">
+                                <button id="btn-auth-logout" class="arrow-btn">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                </button>
+                                <span>Logout</span>
+                            </div>
+                            <div class="login-wrp">
+                                <span>Log in/Sign Up</span>
+                                <button id="btn-auth" class="arrow-btn">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-signup-login modal">
+                    <button class="modal-btn hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <h3>log in</h3>
+                    <form id="login-form">
+                        <div class="input-field">
+                            <label class="input-label" for="login-email"
+                                >E-Mail Address</label
+                            >
+                            <input type="email" id="login-email" required />
+                        </div>
+
+                        <div class="input-field">
+                            <label class="input-label" for="login-password"
+                                >Password</label
+                            >
+                            <input
+                                type="password"
+                                id="login-password"
+                                required
+                            />
+                        </div>
+                        <button class="btn-login">Log in</button>
+                    </form>
+                    <div class="social-auth">
+                        <div class="social-text">
+                            <p>You haven't signed up yet?</p>
+                            <p>Sign up with Gmail or Facebook</p>
+                        </div>
+                        <button class="email btn-social">
+                            <span class="icon-wrp"></span>
+                            <span class="txt-wrp">Email and Password</span>
+                        </button>
+                        <button class="google btn-social">
+                            <span class="icon-wrp"></span>
+                            <span class="txt-wrp">Sign in with Google</span>
+                        </button>
+                        <button class="fb btn-social">
+                            <span class="icon-wrp"></span>
+                            <span class="txt-wrp">Sign in with Facebook</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="modal-phone-verify modal">
+                    <button class="modal-btn hamburger phone-close">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                    <div class="verified-title-wrp">
+                        <h3>LIST YOUR SPACE ON STAGE!</h3>
+                        <p>
+                            Great Way To Increase Your Visibility And Attract
+                            More Business
+                        </p>
+                        <br />
+                        <p id="user-phone-succesful"></p>
+                    </div>
+
+                    <form id="verification-form">
+                        <div class="input-field-2">
+                            <label for="phone-input"
+                                >ENTER YOUR MOBILE NUMBER TO CONTINUE
+                            </label>
+                            <input type="text" id="phone-input" />
+                        </div>
+
+                        <div class="input-field-2">
+                            <label for="verified-code">ENTER CODE SENT</label>
+                            <input type="text" id="verified-code" />
+                        </div>
+                        <div id="recaptcha-container"></div>
+
+                        <div class="btns-phone-wrp">
+                            <button
+                                type="button"
+                                id="btn-phone"
+                                class="btn-submit"
+                            >
+                                Verify
+                            </button>
+                            <button
+                                type="button"
+                                id="btn-code"
+                                class="btn-verify"
+                            >
+                                Get Code
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <section class="main-hero">
+                    <div class="main-hero-title">
+                        <h1>EXPLORE SPACES</h1>
+                        <p>for your next creative project</p>
+                    </div>
+                    <div class="main-hero-btns">
+                        <button class="btn-start">BUTTON</button>
+                        <div class="dot-container">
+                            <button class="dot dot_active"></button>
+                            <button class="dot"></button>
+                            <button class="dot"></button>
+                        </div>
+                    </div>
+                </section>
+                <section class="main-ls">
+                    <div class="main-ls-title">
+                        <h1>LIST MY SPACE</h1>
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="main-ls-btns">
+                        <button id="btn-space" class="btn-ls btn-start">
+                            BUTTON
+                        </button>
+                    </div>
+                </section>
+            </main>
+            <footer></footer>
         </div>
-      </header>
-      <main>
-        <div class="modal-profile modal">
-          <button class="arrow-btn">
-            <i class="fa-solid fa-arrow-left"></i>
-          </button>
-          <div class="user-info-wrp modal-wrp">
-            <span class="user-img"><i class="fa-solid fa-user"></i></span>
-            <div class="user-text">
-              <h2>Hi, <span id="user-name">dear visitor!</span></h2>
-              <a class="edit-profile-link hidden" href="#">Edit profile</a>
-            </div>
-          </div>
-          <div class="get-inspired-wrp modal-wrp">
-            <h3>Plan your creative work</h3>
-            <ul class="inspired-list">
-              <li>Get Inspired</li>
-              <li>Find a space</li>
-            </ul>
-          </div>
-          <div class="host-wrp modal-wrp">
-            <h3>Become a host</h3>
-            <ul class="inspired-list">
-              <li>List My place</li>
-            </ul>
-          </div>
-          <div class="footer-wrp">
-            <h3>About Us</h3>
-            <h3>Help</h3>
-
-            <div class="auth-btn-wrp">
-              <div class="logout-wrp hidden">
-                <button id="btn-auth-logout" class="arrow-btn">
-                  <i class="fa-solid fa-arrow-left"></i>
-                </button>
-                <span>Logout</span>
-              </div>
-              <div class="login-wrp">
-                <span>Log in/Sign Up</span>
-                <button id="btn-auth" class="arrow-btn">
-                  <i class="fa-solid fa-arrow-right"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="modal-signup-login modal">
-          <button class="modal-btn hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-          <h3>log in</h3>
-          <form id="login-form">
-            <div class="input-field">
-              <label class="input-label" for="login-email"
-                >E-Mail Address</label
-              >
-              <input type="email" id="login-email" required />
-            </div>
-
-            <div class="input-field">
-              <label class="input-label" for="login-password">Password</label>
-              <input type="password" id="login-password" required />
-            </div>
-            <button class="btn-login">Log in</button>
-          </form>
-          <div class="social-auth">
-            <div class="social-text">
-              <p>You haven't signed up yet?</p>
-              <p>Sign up with Gmail or Facebook</p>
-            </div>
-            <button class="email btn-social">
-              <span class="icon-wrp"></span>
-              <span class="txt-wrp">Email and Password</span>
-            </button>
-            <button class="google btn-social">
-              <span class="icon-wrp"></span>
-              <span class="txt-wrp">Sign in with Google</span>
-            </button>
-            <button class="fb btn-social">
-              <span class="icon-wrp"></span>
-              <span class="txt-wrp">Sign in with Facebook</span>
-            </button>
-          </div>
-        </div>
-
-        <section class="main-hero">
-          <div class="main-hero-title">
-            <h1>EXPLORE SPACES</h1>
-            <p>for your next creative project</p>
-          </div>
-          <div class="main-hero-btns">
-            <button class="btn-start">BUTTON</button>
-            <div class="dot-container">
-              <button class="dot dot_active"></button>
-              <button class="dot"></button>
-              <button class="dot"></button>
-            </div>
-          </div>
-        </section>
-        <section class="main-ls">
-          <div class="main-ls-title">
-            <h1>LIST MY SPACE</h1>
-            <p>Lorem ipsum dolor sit amet.</p>
-          </div>
-          <div class="main-ls-btns">
-            <button class="btn-ls btn-start">BUTTON</button>
-          </div>
-        </section>
-      </main>
-      <footer></footer>
-    </div>
-  </body>
+    </body>
 </html>

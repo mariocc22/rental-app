@@ -1,0 +1,192 @@
+/* Import fontawesome styles */
+@import url('../node_modules/font-awesome/css/font-awesome.min.css');
+
+* {
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+header {
+    min-height: 50px;
+}
+
+main {
+    height: calc(100vh - 70px);
+    padding: 1rem;
+}
+
+main .main-menu-activity {
+    height: 100%;
+}
+
+main .main-menu-activity ul {
+    height: 100%;
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+main .main-menu-activity a {
+    display: block;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    padding: 3rem;
+    border-radius: 20px;
+    min-width: 12rem;
+    text-align: center;
+}
+
+main .main-menu-activity li {
+    padding: 0;
+}
+
+.hide {
+    display: none;
+}
+
+.explore-section h1 {
+    text-align: center;
+}
+
+.explore-section .search-field {
+    margin: 2rem 0;
+}
+
+.search-field {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+}
+
+.filter-space ul {
+    padding: 0;
+    list-style-type: none;
+    text-align: center;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.filter-space ul li {
+    padding: 1rem;
+    color: black;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.filter-space .space-icon {
+    min-width: 5rem;
+    min-height: 5rem;
+}
+
+.filter-space .space-icon-name {
+    font-size: .8rem;
+}
+
+.filter-space .space-icon {
+    border: 1px black solid;
+    padding: 1rem;
+}
+
+.filter-space ul li:hover {
+    background-color: hotpink;
+}
+
+.filter-more-btn {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.filter-more-btn input {
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    border: none;
+}
+
+.filter-more-btn input:hover {
+    background-color: hotpink;
+    cursor: pointer;
+}
+
+/* Suggested Spaces */
+.filter-suggested-spaces ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.filter-suggested-spaces h2 {
+    font-size: 1.3rem;
+}
+
+.filter-suggested-spaces .space-details p {
+    margin: 0;
+}
+
+.filter-suggested-spaces .space-details {
+    display: flex;
+    flex: row wrap;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.suggested-spaces-list {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-gap: 2rem;
+}
+
+
+/* more filters */
+.filter-location-prices {
+    padding: 1rem 0;
+}
+
+.filter-location-prices input {
+    margin-bottom: 2rem;
+}
+
+.filter-equipment, .filter-amenities {
+    padding: 1rem 0;
+}
+
+.chip {
+    display: inline-block;
+    padding: 0 1.5rem;
+    font-size: 1rem;
+    line-height: 2.5rem;
+    border-radius: 20px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    text-align: center;
+}
+.selected-chip {
+    background-color: black;
+    color: white;
+}
+
+.chip-set {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 8em);
+    grid-gap: 1rem;
+}

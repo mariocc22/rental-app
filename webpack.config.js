@@ -6,6 +6,8 @@ module.exports = {
   entry: {
     index: "./scripts/index.js",
     aboutUs: './scripts/about-us.js',
+    explore: './scripts/explore.js',
+    property: './scripts/property.js'
   },
   output: {
     path: __dirname + "/dist",
@@ -58,6 +60,16 @@ module.exports = {
       template: "./pages/all-places.html",
       filename: "all-places.html",
       chunks: []
+    }),
+    new HtmlWebpackPlugin({
+      template: "./pages/explore.html",
+      filename: "explore.html",
+      chunks: ["explore"]
+    }),
+    new HtmlWebpackPlugin({
+      template: "./pages/property.html",
+      filename: "property.html",
+      chunks: ["property"]
     }),
     new HtmlWebpackPlugin({
       template: "./pages/list-my-space.html",
