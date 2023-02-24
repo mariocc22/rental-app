@@ -1,0 +1,153 @@
+/* Import fontawesome styles */
+@import url('../node_modules/font-awesome/css/font-awesome.min.css');
+
+* {
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+header {
+    min-height: 50px;
+}
+
+main {
+    height: calc(100vh - 70px);
+    padding: 1rem;
+}
+
+.hide {
+  display: none !important;
+}
+
+
+/* Close the above styles for every css file */
+
+/* Slider Styles start ==================*/
+
+.slider {
+    width: 100%;
+    max-width: 800px;
+    height: 350px;
+    position: relative;
+    overflow: hidden; /* <===  */
+    border-radius: 15px;
+  }
+  
+  .slide {
+    width: 100%;
+    max-width: 800px;
+    height: 350px;
+    position: absolute;
+    transition: all 0.5s;
+  }
+  
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .btn {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    border: none;
+    border-radius: 50%;
+    z-index: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    font-size: 18px;
+  }
+  .btn:active {
+    transform: scale(1.1);
+  }
+  .btn-prev {
+    top: 45%;
+    left: 2%;
+  }
+  
+  .btn-next {
+    top: 45%;
+    right: 2%;
+  }
+
+/* Slider Styles End =================== */
+section {
+  padding: 2rem 0;
+}
+.property-name {
+    margin-bottom: 1rem;
+}
+
+.property-info {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.property-info a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Styles for info */
+.property-customize-tab, .property-details-tab, .property-showcases-tab {
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  text-align: center;
+  justify-content: center;
+}
+
+.property-customize-tab h2, .property-details-tab h2, .property-showcases-tab h2 {
+  margin: 1rem 0;
+}
+
+.property-customize-tab > div, .property-details-tab div, .property-showcases-tab div {
+  padding: 1rem;
+  border: 1px black solid;
+}
+
+.property-customize-tab ul, .property-details-tab ul, .property-showcases-tab ul{
+  list-style-type: none;
+  padding: 0;
+}
+
+.property-customize-tab .bundle {
+  border: 1px black solid;
+  margin: 1rem 0;
+  padding: 1rem;
+}
+
+.property-booking-details {
+  text-align: center;
+  padding: 1rem;
+}
+
+.property-booking-details ul {
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  column-gap: 1rem;
+}

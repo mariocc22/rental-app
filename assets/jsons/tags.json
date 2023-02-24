@@ -41,22 +41,22 @@
             {
                 "name": "Light Stand",
                 "svg": "light-stand.svg",
-                "tagname": "equipments-light-stand"
+                "tagname": "photography-equipments-light-stand"
             },
             {
                 "name": "Camera Stand",
                 "svg": "camera-stand.svg",
-                "tagname": "equipments-camera-stand"
+                "tagname": "photography-equipments-camera-stand"
             },
             {
                 "name": "Light Shaper - Umbrella",
                 "svg": "light-shaper-umbrella.svg",
-                "tagname": "equipments-light-shaper-umbrella"
+                "tagname": "photography-equipments-light-shaper-umbrella"
             },
             {
                 "name": "Lens",
                 "svg": "lens.svg",
-                "tagname": "equipments-lens"
+                "tagname": "photography-equipments-lens"
             },
             {
                 "name": "Backdrop",
