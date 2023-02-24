@@ -29,7 +29,7 @@
             </h1>
             <div id="property-images-carousel">
                 <!-- Slider container -->
-                <div class="slider">
+                <div class="slider hide" id="slider">
                     <!-- slide 1 -->
                     <div class="slide">
                         <img src="https://source.unsplash.com/random?landscape,mountain" alt="" />
@@ -79,7 +79,7 @@
                 <!-- Customize Tab -->
                 <div class="property-customize-tab hide">
                     <!-- Suggested Bundles -->
-                    <div class="property-bundles">
+                    <div class="property-bundles" id="property-bundles">
                         <h2>Suggested Bundles</h2>
                         <div class="bundle">
                             <h3>$300 / Per Day</h3>
@@ -91,7 +91,7 @@
                                     <li>2 Strobes on floor</li>
                                 </ul>
                             </div>
-                            <input type="button" value="Choose Bundle">
+                            <input type="button" value="Choose Bundle" data-price="300">
                         </div>
                         <div class="bundle">
                             <h3>$250 / Per Day</h3>
@@ -103,18 +103,18 @@
                                     <li>2 Strobes on floor</li>
                                 </ul>
                             </div>
-                            <input type="button" value="Choose Bundle">
+                            <input type="button" value="Choose Bundle" data-price="250">
                         </div>
                     </div>
                     <!-- Equipment and Props -->
-                    <div class="property-equipments">
+                    <div class="property-equipments" id="property-equipments">
                         <h2>Equipment and Props</h2>
                         <ul>
-                            <li>Camera</li>
-                            <li>Lens</li>
-                            <li>Camera Mount</li>
-                            <li>Light Shaper</li>
-                            <li>Light Mount</li>
+                            <li data-price="30">Camera $30</li>
+                            <li data-price="20">Lens $20</li>
+                            <li data-price="10">Camera Mount $10</li>
+                            <li data-price="15">Light Shaper $15</li>
+                            <li data-price="10">Light Mount $10</li>
                         </ul>
                     </div>
                     <!-- Pick Dates -->
@@ -129,11 +129,11 @@
                 </div>
                 <!-- Property Details Tab -->
                 <div class="property-details-tab hide">
-                    <div class="property-description">
+                    <div class="property-description" id="property-description">
                         <h2>Property Description</h2>
                         <p>A long Description about the property</p>
                     </div>
-                    <div class="property-amenities">
+                    <div class="property-amenities" id="property-amenities">
                         <h2>Property Amenities</h2>
                         <ul>
                             <li>One</li>
@@ -147,7 +147,7 @@
                 <div class="property-showcases-tab hide">
                     <div class="showcase-list">
                         <h2>Expore Past showcases</h2>
-                        <ul class="showcase-list">
+                        <ul class="showcase-list" id="showcase-list">
                             <li class="property-showcase">
                                 <img src="https://picsum.photos/1200/500?random=2">
                                 <h3 class="showcase-title">
@@ -178,10 +178,18 @@
                     <h2>Price Details</h2>
                     <div id="property-price-breakdown">
                         <ul>
-                            <li>Space Price: $800</li>
-                            <li>Equipment Price $24</li>
-                            <li>Tax $20</li>
-                            <li>Total Price: $844</li>
+                            <!-- base price -->
+                            <li class="property-price-info">Space Price: $100 x 8 days</li>
+                            <li class="property-price-value">$800</li>
+                            <!-- equipment price -->
+                            <li class="property-equipment-info">Equipment Price</li>
+                            <li class="property-equipment-price">$24</li>
+                            <!-- tax info -->
+                            <li class="property-tax-info">Tax</li>
+                            <li class="property-tax-value">$20</li>
+                            <!-- total price info -->
+                            <li class="property-total-info">Total Price:</li>
+                            <li class="property-total-price">$844</li>
                         </ul>
                     </div>
                     <div id="property-booking-btn">
