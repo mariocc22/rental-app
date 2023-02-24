@@ -1,0 +1,97 @@
+img{
+max-width: 100%;
+height: auto;
+}
+
+.button{
+    border: 2px solid #000;
+    background-color: #fff;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+h1,
+h2,
+h3{
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.navigation a{
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    padding: 1rem;
+    border-radius: 10%;
+}
+
+/* PAGE 1 LAYOUT=============================== */
+#page1{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+#page1 h1{
+    padding-bottom: 2rem;
+}
+
+.div-buttons{
+    display: flex;
+    flex-flow: row wrap;
+    gap:1rem;
+    padding-bottom: 2rem;
+}
+
+.div-buttons .button{
+    flex: 1 0 40%;
+    padding: 1rem;
+}
+
+.apartmentButton::before,
+.musicbutton::before,
+.officeButton::before,
+.danceButton::before,
+.bpubButton::before,
+.otherButton::before{
+    font-family: FontAwesome;
+    /* font-weight: 3rem; */
+    font-size: 2rem;
+    font-style: normal;
+    text-decoration:none;
+    padding-left: 1rem;
+    color: #aaa;
+    display: block;
+    padding-bottom: 1rem;
+    margin: 0;
+}
+
+.apartmentButton::before{
+    content: '\f1ad';
+}
+
+.musicbutton::before{
+    content: '\f001';
+}
+
+.officeButton::before{
+    content: '\e065';
+}
+
+.danceButton::before{
+    content: '\f1ad';
+}
+
+.bpubButton::before{
+    content: '\f1ad';
+}
+
+.otherButton::before{
+    content: '\f0f4';
+}

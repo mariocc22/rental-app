@@ -70,7 +70,12 @@ module.exports = {
       template: "./pages/property.html",
       filename: "property.html",
       chunks: ["property"]
-    })
+    }),
+    new HtmlWebpackPlugin({
+      template: "./pages/list-my-space.html",
+      filename: "list-my-space.html",
+      chunks: ["List my space"]
+    }),
   ],
   devServer: {
     port: 3000,
