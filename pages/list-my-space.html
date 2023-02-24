@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="../styles/list-my-space.css" />
-    <script src="../scripts/list-my-space.js"></script>
+    <!-- <script type="module" src="../scripts/list-my-space.js" defer></script> -->
+    <script type="module" src="../scripts/list-my-space.js" defer></script>
+    <!-- <script type="module" src="/query/all-places.js" defer></script> -->
+
     <title>User Profile Modal</title>
     <title>List my Space</title>
 </head>
@@ -32,7 +35,7 @@
             this</a> -->
         <div class="navigation">
             <a href="#page2">Next</a>
-            <a href="#">Cancel</a>
+            <a href="../pages/index.html">Cancel</a>            
         </div>
     </div>
     <div class="page" id="page2" class="page">
@@ -65,8 +68,8 @@
                 
             </form>
             <div class="navigation">
+                <a href="#page3">Next</a>
                 <a href="#page1">Back</a>
-                <a href="#page2">Next</a>
             </div>
         </div>
     <!-- <p>this is only seen when user click on Page Two button</p> -->
@@ -83,8 +86,8 @@
             <button class="button" id="downbtn">Retrieve Image</button>
         </div>
         <div class="navigation">
-            <a href="#page2">Back</a>
             <a href="#page4">Next</a>
+            <a href="#page2">Back</a>
         </div>
     <!-- <p>this is only seen when user click on Page Three button</p> -->
     </div>
@@ -103,8 +106,8 @@
             </form>
         </div>
         <div class="navigation">
-            <a href="#page3">Back</a>
             <a href="#page5">Next</a>
+            <a href="#page3">Back</a>
         </div>
     <!-- <p>this is only seen when user click on Page Three button</p> -->
     </div>
@@ -129,8 +132,8 @@
             <button class="button" id="fireplacebtn">Fireplace</button>
         </div>
         <div class="navigation">
-            <a href="#page4">Back</a>
             <a href="#page6">Next</a>
+            <a href="#page4">Back</a>
         </div>
     </div>
     <div class="page" id="page6" class="page">
@@ -173,8 +176,8 @@
             </form>
         </div>
         <div class="navigation">
+            <a href="#page6">Next</a>
             <a href="#page5">Back</a>
-            <a href="#page7">Next</a>
         </div>
     </div>
     <!-- <p>this is only seen when user click on Page Three button</p> -->

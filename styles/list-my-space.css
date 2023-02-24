@@ -1,3 +1,6 @@
+/* @import url('../node_modules/font-awesome/css/font-awesome.min.css'); */
+
+
 img{
 max-width: 100%;
 height: auto;
@@ -26,7 +29,9 @@ h3{
     color: #fff;
     text-decoration: none;
     padding: 1rem;
-    border-radius: 10%;
+    border-radius: 3rem;
+    margin-top: 1rem;
+    text-align: center;
 }
 
 /* PAGE 1 LAYOUT=============================== */
@@ -46,12 +51,18 @@ h3{
     display: flex;
     flex-flow: row wrap;
     gap:1rem;
-    padding-bottom: 2rem;
+    /* padding-bottom: 2rem; */
 }
 
 .div-buttons .button{
     flex: 1 0 40%;
     padding: 1rem;
+}
+
+.navigation{
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 2rem;
 }
 
 .apartmentButton::before,
