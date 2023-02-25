@@ -1,146 +1,149 @@
-@import url('../node_modules/font-awesome/css/font-awesome.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url("../node_modules/font-awesome/css/font-awesome.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
-img{
-max-width: 100%;
-height: auto;
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-.button{
-    border: 2px solid #fff;
-    background-color: #000;
-    color: #fff;
-    border-radius: .5rem;
+.button {
+  border: 2px solid #fff;
+  background-color: #000;
+  color: #fff;
+  border-radius: 0.5rem;
 }
 
-body{
-    margin: 0;
-    padding: 0;
-    text-transform: uppercase;
-    font-family: 'Fira Sans', sans-serif;
-    background-color: #000;
-    color: #fff;
+body {
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  font-family: "Fira Sans", sans-serif;
+  background-color: #000;
+  color: #fff;
 }
 
 h1,
 h2,
-h3{
-    margin: 0;
-    text-transform: uppercase;
-    font-family: 'Anton', sans-serif;
+h3 {
+  margin: 0;
+  text-transform: uppercase;
+  font-family: "Anton", sans-serif;
 }
 
-.navigation a{
-    text-decoration: none;
-    padding: 1rem;
-    border-radius: .5rem;
-    margin-top: 1rem;
-    text-align: center;
-    font-weight: bold;
+.navigation a {
+  text-decoration: none;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: bold;
 }
 
 .yellowbutton,
-#capture-btn{
-    background-color: #ffe45a;
-    color: #000;
-    border: 2px solid #000;
+#capture-btn {
+  background-color: #ffe45a;
+  color: #000;
+  border: 2px solid #000;
 }
 
-.blackbutton{
-    background-color: #000;
-    color: #fff;
-    border: 2px solid #fff;
+.blackbutton {
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #fff;
 }
 
 /* PAGE 1 LAYOUT=============================== */
 #page1,
-#page2{
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    text-align: center;
-    padding: 2rem;
+#page2 {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
 }
 
-#page1 h1{
-    padding-bottom: 2rem;
+#page1 h1 {
+  padding-bottom: 2rem;
 }
 
-.div-buttons{
-    display: flex;
-    flex-flow: row wrap;
-    gap:1rem;
-    /* padding-bottom: 2rem; */
+.div-buttons {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  /* padding-bottom: 2rem; */
 }
 
-.div-buttons .button{
-    flex: 1 0 40%;
-    padding: 1rem;
+.div-buttons .button {
+  flex: 1 0 40%;
+  padding: 1rem;
 }
 
-.navigation{
-    display: flex;
-    flex-flow: column nowrap;
-    padding: 2rem;
+.navigation {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 2rem;
 }
 
 .indoorButton::before,
 .outdoorButton::before,
 .houseButton::before,
 .studioButton::before,
-.otherButton::before{
-    font-family: FontAwesome;
-    /* font-weight: 3rem; */
-    font-size: 2rem;
-    font-style: normal;
-    text-decoration:none;
-    padding-left: 1rem;
-    color: #fff;
-    display: block;
-    padding-bottom: 1rem;
-    margin: 0;
+.otherButton::before {
+  font-family: FontAwesome;
+  /* font-weight: 3rem; */
+  font-size: 2rem;
+  font-style: normal;
+  text-decoration: none;
+  padding-left: 1rem;
+  color: #fff;
+  display: block;
+  padding-bottom: 1rem;
+  margin: 0;
 }
 
-.indoorButton::before{
-    content: '\f1ad';
+.indoorButton::before {
+  content: "\f1ad";
 }
 
-.outdoorButton::before{
-    content: '\f001';
+.outdoorButton::before {
+  content: "\f001";
 }
 
-.houseButton::before{
-    content: '\e065';
+.houseButton::before {
+  content: "\e065";
 }
 
-.studioButton::before{
-    content: '\f1ad';
+.studioButton::before {
+  content: "\f1ad";
 }
 
-.otherButton::before{
-    content: '\f0f4';
+.otherButton::before {
+  content: "\f0f4";
 }
 
 /* PAGE 2 LAYOUT============================== */
 input,
 label,
-textarea{
-    display: block;
-    /* flex-flow: column nowrap; */
-    margin: 0;
-    padding: 0;
+textarea {
+  display: block;
+  /* flex-flow: column nowrap; */
+  margin: 0;
+  padding: 0;
 }
 
 input,
-textarea{
-    margin: 0.5rem 0 1rem 0;
-    padding: 0;
-    width: 100%;
-    height: 3rem;
-    border-radius: .5rem;
-    border: 2px solid #fff;
-    background-color: #000;
+textarea {
+  margin: 0.5rem 0 1rem 0;
+  padding: 0;
+  width: 100%;
+  height: 3rem;
+  border-radius: 0.5rem;
+  border: 2px solid #fff;
+  background-color: #000;
 }
 
+input#namebox {
+  color: white;
+  padding: 0 0.5rem;
+}
 /* PAGE 3 LAYOUT ==================== */
-
