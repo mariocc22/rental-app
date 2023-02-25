@@ -1,20 +1,20 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-
 module.exports = {
   entry: {
     index: "./scripts/index.js",
-    aboutUs: './scripts/about-us.js',
-    explore: './scripts/explore.js',
-    property: './scripts/property.js',
-    listmyspace: './scripts/list-my-space.js',
+    aboutUs: "./scripts/about-us.js",
+    explore: "./scripts/explore.js",
+    property: "./scripts/property.js",
+    listmyspace: "./scripts/list-my-space.js",
+    loginModal: "./query/auth.js",
   },
   output: {
     path: __dirname + "/dist",
     filename: "[name].bundle.js",
     publicPath: "/",
-    assetModuleFilename: 'assets/img/[name][ext]'
+    assetModuleFilename: "assets/img/[name][ext]",
   },
   module: {
     rules: [
@@ -31,61 +31,58 @@ module.exports = {
         test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader, // instead of style-loader
-          'css-loader'
-        ]
+          "css-loader",
+        ],
       },
       {
         test: /\.(png|jpeg|jpg|gif|svg|eot|ttf|woff)$/,
-        type: 'asset/resource',
-      }
-      
-    ]
+        type: "asset/resource",
+      },
+    ],
   },
   plugins: [
     // ADD CSS FILES AS SUCH
-    new MiniCssExtractPlugin(
-),
-        loginModal: "./query/auth.js",
+    new MiniCssExtractPlugin(),
 
     // Add All HTML PAGES AS SUCH
     new HtmlWebpackPlugin({
       template: "./pages/index.html",
       filename: "index.html",
-      chunks: ["index"]
+      chunks: ["index"],
     }),
     new HtmlWebpackPlugin({
       template: "./pages/about-us.html",
       filename: "about-us.html",
-      chunks: ["aboutUs"]
+      chunks: ["aboutUs"],
     }),
     new HtmlWebpackPlugin({
       template: "./pages/all-places.html",
       filename: "all-places.html",
-      chunks: []
+      chunks: [],
     }),
     new HtmlWebpackPlugin({
       template: "./pages/explore.html",
       filename: "explore.html",
-      chunks: ["explore"]
+      chunks: ["explore"],
     }),
     new HtmlWebpackPlugin({
       template: "./pages/property.html",
       filename: "property.html",
-      chunks: ["property"]
+      chunks: ["property"],
     }),
     new HtmlWebpackPlugin({
       template: "./pages/list-my-space.html",
       filename: "list-my-space.html",
-      chunks: ["listmyspace"]
+      chunks: ["listmyspace"],
+    }),
+    new HtmlWebpackPlugin({
+      template: "./pages/login-modal.html",
+      filename: "login-modal.html",
+      chunks: ["loginModal"],
     }),
   ],
   devServer: {
     port: 3000,
   },
-  devtool: "source-map"
-};        new HtmlWebpackPlugin({
-            template: "./pages/login-modal.html",
-            filename: "login-modal.html",
-            chunks: ["loginModal"],
-        }),
-    ],
+  devtool: "source-map",
+};
