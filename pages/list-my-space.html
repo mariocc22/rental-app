@@ -22,11 +22,10 @@
     <div class="page" id="page1" class="page">
         <h1>What kind of space do you offer?</h1>
         <div class="div-buttons">
-            <button class="button apartmentButton">Apartment</button>
-            <button class="button musicbutton">Music Studio</button>
-            <button class="button officeButton">Office Space</button>
-            <button class="button danceButton">Dance Studio</button>
-            <button class="button bpubButton">PUB</button>
+            <button class="button indoorButton">Indoor</button>
+            <button class="button outdoorButton">Outdoor</button>
+            <button class="button houseButton">House</button>
+            <button class="button studioButton">Studio</button>
             <button class="button otherButton">Other Spaces</button>
         </div>
         <!-- <p>see the navigateToPage function in script.js for detail.</p>
@@ -34,47 +33,70 @@
         <a href="https://stackblitz.com/edit/web-platform-fvzrjm" target="top">
             this</a> -->
         <div class="navigation">
-            <a href="#page2">Next</a>
-            <a href="./index.html">Cancel</a>                   
+            <a href="#page2" class="yellowbutton">Next</a>
+            <a href="./index.html" class="blackbutton">Cancel</a>                   
         </div>
     </div>
     <div class="page" id="page2" class="page">
         <h1>Enter the place address</h1>
         <div class="divform">
-            <form id="formfood">
+            <form id="formAddress">
                 <label>
-                    Street:
+                    <!-- Street: -->
                     <input type="text" id="street" placeholder="Street" required>
                 </label>                
                 <label>
                     <input type="number" id="flatroom" placeholder="Flat/Room Number ETC" required>
                 </label>
                 <label>
-                    City:
+                    <!-- City: -->
                     <input type="text" id="city" placeholder="City" required>
                 </label> 
                 <label>
-                    State:
+                    <!-- State: -->
                     <input type="text" id="state" placeholder="State" required>
                 </label> 
                 <label>
-                    Postal Code:
+                    <!-- Postal Code: -->
                     <input type="text" id="postalcode" placeholder="Postal Code" required>
                 </label> 
                 <label>
-                    Country:
+                    <!-- Country: -->
                     <input type="text" id="country" placeholder="Country" required>
                 </label> 
                 
             </form>
             <div class="navigation">
-                <a href="#page3">Next</a>
-                <a href="#page1">Back</a>
+                <a href="#page3" class="yellowbutton">Next</a>
+                <a href="#page1" class="blackbutton">Back</a>
             </div>
         </div>
     <!-- <p>this is only seen when user click on Page Two button</p> -->
     </div>
     <div class="page" id="page3" class="page">
+        <div class="div-buttons">
+            <button class="button addPhotoButton"><a href="#page5" class="yellowbutton">Add Photo</a></button>
+            <button class="button takePhotoButton"><a href="#page4" class="blackbutton">Take a Photo</a></button>
+        </div>
+    </div>
+    <div class="page" id="page4" class="page">
+        <div class="gridcamera">
+            <div class="videogrid">
+                <video id="video" autoplay></video>
+            </div>
+            <div class="imggrid">
+                <img id="picture-preview" src="" alt="Picture Preview">
+            </div>
+        </div>
+        <div>
+            <button id="capture-btn">Capture</button>
+        </div>
+        <div class="navigation">
+            <a href="#page6" class="yellowbutton">Next</a>
+            <a href="#page2" class="blackbutton">Back</a>
+        </div>
+    </div>
+    <div class="page" id="page5" class="page">
         <h2>Upload photos</h2>
         <div class="div-image">
             <label>Image Name</label>
@@ -83,35 +105,35 @@
             <img id="myimg"><label id="upprogess"></label><br><br>
             <button class="button" id="selbtn">Select Image</button>
             <button class="button" id="upbtn">Upload Image</button>
-            <button class="button" id="downbtn">Retrieve Image</button>
+            <!-- <button class="button" id="downbtn">Retrieve Image</button> -->
         </div>
         <div class="navigation">
-            <a href="#page4">Next</a>
-            <a href="#page2">Back</a>
+            <a href="#page6" class="yellowbutton">Next</a>
+            <a href="#page2" class="blackbutton">Back</a>
         </div>
     <!-- <p>this is only seen when user click on Page Three button</p> -->
     </div>
-    <div class="page" id="page4" class="page">
+    <div class="page" id="page6" class="page">
         <h2>Add description about your space</h2>
         <div class="divform">
             <form id="descriptionform">
                 <label>
-                    Title:
+                    <!-- Title: -->
                     <input type="text" id="street" placeholder="Street" required>
                 </label>                
                 <label>
-                    Description:
-                    <textarea name="description"></textarea>
+                    <!-- Description: -->
+                    <textarea type="text" id="description" placeholder="Description"></textarea>
                 </label>
             </form>
         </div>
         <div class="navigation">
-            <a href="#page5">Next</a>
-            <a href="#page3">Back</a>
+            <a href="#page7" class="yellowbutton">Next</a>
+            <a href="#page2" class="blackbutton">Back</a>
         </div>
     <!-- <p>this is only seen when user click on Page Three button</p> -->
     </div>
-    <div class="page" id="page5" class="page">
+    <div class="page" id="page7" class="page">
         <h2>Select tags that best suite your space and its amenities</h2>
         <div class="div-buttons">
             <button class="button" id="musicbtn">Music Recording</button>
@@ -132,11 +154,11 @@
             <button class="button" id="fireplacebtn">Fireplace</button>
         </div>
         <div class="navigation">
-            <a href="#page6">Next</a>
-            <a href="#page4">Back</a>
+            <a href="#page8" class="yellowbutton">Next</a>
+            <a href="#page6" class="blackbutton">Back</a>
         </div>
     </div>
-    <div class="page" id="page6" class="page">
+    <div class="page" id="page8" class="page">
         <h2>What kind of equipment & props do you offer with your space?</h2>
         <div class="divform">
             <form id="equipmentform">
@@ -176,8 +198,8 @@
             </form>
         </div>
         <div class="navigation">
-            <a href="#page6">Next</a>
-            <a href="#page5">Back</a>
+            <a href="#page8" class="yellowbutton">Next</a>
+            <a href="#page7" class="blackbutton">Back</a>
         </div>
     </div>
     <!-- <p>this is only seen when user click on Page Three button</p> -->
