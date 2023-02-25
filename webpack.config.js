@@ -9,6 +9,7 @@ module.exports = {
     property: "./scripts/property.js",
     listmyspace: "./scripts/list-my-space.js",
     loginModal: "./query/auth.js",
+    phoneVer: "./query/phone-verification.js",
   },
   output: {
     path: __dirname + "/dist",
@@ -79,6 +80,11 @@ module.exports = {
       template: "./pages/login-modal.html",
       filename: "login-modal.html",
       chunks: ["loginModal"],
+    }),
+    new HtmlWebpackPlugin({
+      template: "./pages/phone-auth.html",
+      filename: "phone-auth.html",
+      chunks: ["phoneVer"],
     }),
   ],
   devServer: {
