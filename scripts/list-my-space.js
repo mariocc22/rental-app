@@ -1,17 +1,22 @@
 // console.log('works')
 import '/styles/list-my-space.css';
 import { createProperty } from '/query/propertycreate.js'
+import {
+  input,
+  UploadProcess,
+  GetImagefromFirestore,
+} from "../utility/pictures-api";
 
-const allPages = document.querySelectorAll('div.page');
-allPages[0].style.display = 'block';
+const allPages = document.querySelectorAll("div.page");
+allPages[0].style.display = "block";
 
 function navigateToPage(event) {
-  const pageId = location.hash ? location.hash : '#page1';
+  const pageId = location.hash ? location.hash : "#page1";
   for (let page of allPages) {
-    if (pageId === '#' + page.id) {
-      page.style.display = 'block';
+    if (pageId === "#" + page.id) {
+      page.style.display = "block";
     } else {
-      page.style.display = 'none';
+      page.style.display = "none";
     }
   }
   return;
@@ -313,3 +318,15 @@ createPropertybtn.addEventListener('click', async function (event) {
 //   // do something with selected option
 //   console.log(option + " selected");
 // }
+
+// Uploading Pictures
+const SelBtn = document.getElementById("selbtn");
+const UpBtn = document.getElementById("upbtn");
+const DownBtn = document.getElementById("downbtn");
+
+SelBtn.onclick = function () {
+  input.click();
+};
+
+UpBtn.onclick = UploadProcess;
+DownBtn.onclick = GetImagefromFirestore;
