@@ -15,6 +15,7 @@ import {
     updateDoc,
     deleteField,
     deleteDoc, //new function
+    addDoc,
 } from "firebase/firestore";
 
 import {
@@ -84,4 +85,5 @@ export {
     sRef,
     uploadBytesResumable,
     getDownloadURL,
+    addDoc,
 };

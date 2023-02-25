@@ -22,11 +22,11 @@
     <div class="page" id="page1" class="page">
         <h1>What kind of space do you offer?</h1>
         <div class="div-buttons">
-            <button class="button indoorButton">Indoor</button>
-            <button class="button outdoorButton">Outdoor</button>
-            <button class="button houseButton">House</button>
-            <button class="button studioButton">Studio</button>
-            <button class="button otherButton">Other Spaces</button>
+            <button id="indoorButton" class="button indoorButton">Indoor</button>
+            <button id="outdoorButton" class="button">Outdoor</button>
+            <button id="houseButton" class="button">House</button>
+            <button id="studioButton" class="button">Studio</button>
+            <button id="otherButton" class="button">Other Spaces</button>
         </div>
         <!-- <p>see the navigateToPage function in script.js for detail.</p>
         for SPA with router see :
@@ -119,17 +119,18 @@
             <form id="descriptionform">
                 <label>
                     <!-- Title: -->
-                    <input type="text" id="street" placeholder="Street" required>
+                    <input type="text" id="propertytitle" placeholder="Title" required>
                 </label>                
                 <label>
                     <!-- Description: -->
-                    <textarea type="text" id="description" placeholder="Description"></textarea>
+                    <textarea type="text" id="propertydescription" placeholder="Description"></textarea>
                 </label>
             </form>
         </div>
         <div class="navigation">
             <a href="#page7" class="yellowbutton">Next</a>
             <a href="#page2" class="blackbutton">Back</a>
+            <button class="button" id="createPropertybtn">Create Property Test</button>
         </div>
     <!-- <p>this is only seen when user click on Page Three button</p> -->
     </div>

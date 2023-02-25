@@ -1,15 +1,22 @@
 // Create a new Property
-import { doc, setDoc } from '../modules/firebase.js'
+import { doc, setDoc, db, collection, addDoc } from '../modules/firebase.js'
 
 async function createProperty(  _uid, //string
-                                _description, //string
-                                _media, //aray
+                                _street,
+                                _flatroom,
+                                _city,
+                                _state,
+                                _postalcode,
+                                _country,
+                                _propertytitle,
+                                _propertydescription,
+                                // _media, //aray
                                 _ocupancy, //number
                                 _price, //number
                                 _rooms, //number
                                 _sf, //number
                                 _washrooms, //number
-                                _tags, // object
+                                //_tags, // object
                                 _photography_type_indoor,
                                 _photography_type_outdoor,
                                 _photography_type_studio,
@@ -62,18 +69,26 @@ async function createProperty(  _uid, //string
     let q;
     let properties;
 
-    if(uid)
+    if(_uid)
     {
-        properties = await setDoc(doc(db, "PROPERTIES"), {
+        properties = await addDoc(collection(db, "PROPERTIES"), {
+        // properties = await setDoc(doc(db, "PROPERTIES"), {
             uid: _uid,
-            description: _description,
-            media: _media,
+            street: _street,
+            flatroom: _flatroom,
+            city: _city,
+            state: _state,
+            postalcode: _postalcode,
+            country: _country,
+            propertytitle: _propertytitle,
+            propertydescription: _propertydescription,
+            //media: _media,
             ocupancy: _ocupancy,
             price: _price,
             rooms: _rooms,
             sf: _sf,
             washrooms: _washrooms,
-            tags: _tags,
+            //tags: _tags,
             photography_type_indoor: _photography_type_indoor,
             photography_type_outdoor: _photography_type_outdoor,
             photography_type_studio: _photography_type_studio,
@@ -129,7 +144,8 @@ async function createProperty(  _uid, //string
     }
 
     // return properties data
-    return properties.data();
+    // return properties.data();
+    return properties.id;
 }
 
 export { createProperty }
