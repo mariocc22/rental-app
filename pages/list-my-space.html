@@ -20,85 +20,118 @@
         <a href="#page3">Page Three</a>
     </div> -->
     <div class="page" id="page1" class="page">
-      <h1>What kind of space do you offer?</h1>
-      <div class="div-buttons">
-        <button class="button indoorButton">Indoor</button>
-        <button class="button outdoorButton">Outdoor</button>
-        <button class="button houseButton">House</button>
-        <button class="button studioButton">Studio</button>
-        <button class="button otherButton">Other Spaces</button>
-      </div>
-      <!-- <p>see the navigateToPage function in script.js for detail.</p>
+        <h1>What kind of space do you offer?</h1>
+        <div class="div-buttons">
+            <button id="indoorButton" class="button indoorButton">Indoor</button>
+            <button id="outdoorButton" class="button">Outdoor</button>
+            <button id="houseButton" class="button">House</button>
+            <button id="studioButton" class="button">Studio</button>
+            <button id="otherButton" class="button">Other Spaces</button>
+        </div>
+        <!-- <p>see the navigateToPage function in script.js for detail.</p>
         for SPA with router see :
         <a href="https://stackblitz.com/edit/web-platform-fvzrjm" target="top">
             this</a> -->
-      <div class="navigation">
-        <a href="#page2" class="yellowbutton">Next</a>
-        <a href="./index.html" class="blackbutton">Cancel</a>
-      </div>
+        <div class="navigation">
+            <a href="#page2" class="yellowbutton">Next</a>
+            <a href="./index.html" class="blackbutton">Cancel</a>                   
+        </div>
     </div>
     <div class="page" id="page2" class="page">
-      <h1>Enter the place address</h1>
-      <div class="divform">
-        <form id="formAddress">
-          <label>
-            <!-- Street: -->
-            <input type="text" id="street" placeholder="Street" required />
-          </label>
-          <label>
-            <input
-              type="number"
-              id="flatroom"
-              placeholder="Flat/Room Number ETC"
-              required
-            />
-          </label>
-          <label>
-            <!-- City: -->
-            <input type="text" id="city" placeholder="City" required />
-          </label>
-          <label>
-            <!-- State: -->
-            <input type="text" id="state" placeholder="State" required />
-          </label>
-          <label>
-            <!-- Postal Code: -->
-            <input
-              type="text"
-              id="postalcode"
-              placeholder="Postal Code"
-              required
-            />
-          </label>
-          <label>
-            <!-- Country: -->
-            <input type="text" id="country" placeholder="Country" required />
-          </label>
-        </form>
-        <div class="navigation">
-          <a href="#page3" class="yellowbutton">Next</a>
-          <a href="#page1" class="blackbutton">Back</a>
+        <h1>Enter the place address</h1>
+        <div class="divform">
+            <form id="formAddress">
+                <label>
+                    <!-- Street: -->
+                    <input type="text" id="street" placeholder="Street" required>
+                </label>                
+                <label>
+                    <input type="number" id="flatroom" placeholder="Flat/Room Number ETC" required>
+                </label>
+                <label>
+                    <!-- City: -->
+                    <input type="text" id="city" placeholder="City" required>
+                </label> 
+                <label>
+                    <!-- State: -->
+                    <input type="text" id="state" placeholder="State" required>
+                </label> 
+                <label>
+                    <!-- Postal Code: -->
+                    <input type="text" id="postalcode" placeholder="Postal Code" required>
+                </label> 
+                <label>
+                    <!-- Country: -->
+                    <input type="text" id="country" placeholder="Country" required>
+                </label> 
+                
+            </form>
+            <div class="navigation">
+                <a href="#page3" class="yellowbutton">Next</a>
+                <a href="#page1" class="blackbutton">Back</a>
+            </div>
         </div>
       </div>
       <!-- <p>this is only seen when user click on Page Two button</p> -->
     </div>
     <div class="page" id="page3" class="page">
-      <div class="div-buttons">
-        <button class="button addPhotoButton">
-          <a href="#page5" class="yellowbutton">Add Photo</a>
-        </button>
-        <button class="button takePhotoButton">
-          <a href="#page4" class="blackbutton">Take a Photo</a>
-        </button>
-      </div>
+        <div class="div-buttons">
+            <button class="button addPhotoButton"><a href="#page5" class="yellowbutton">Add Photo</a></button>
+            <button class="button takePhotoButton"><a href="#page4" class="blackbutton">Take a Photo</a></button>
+        </div>
     </div>
     <div class="page" id="page4" class="page">
-      <div class="gridcamera">
-        <div class="videogrid">
-          <video id="video" autoplay></video>
+        <div class="gridcamera">
+            <div class="videogrid">
+                <video id="video" autoplay></video>
+            </div>
+            <div class="imggrid">
+                <img id="picture-preview" src="" alt="Picture Preview">
+            </div>
         </div>
-        <div class="imggrid">
-          <img id="picture-preview" src="" alt="Picture Preview" />
+        <div>
+            <button id="capture-btn">Capture</button>
+        </div>
+        <div class="navigation">
+            <a href="#page6" class="yellowbutton">Next</a>
+            <a href="#page2" class="blackbutton">Back</a>
+        </div>
+    </div>
+    <div class="page" id="page5" class="page">
+        <h2>Upload photos</h2>
+        <div class="div-image">
+            <label>Image Name</label>
+            <input type="text" id="namebox">
+            <label id="extlab"></label><br><br>
+            <img id="myimg"><label id="upprogess"></label><br><br>
+            <button class="button" id="selbtn">Select Image</button>
+            <button class="button" id="upbtn">Upload Image</button>
+            <!-- <button class="button" id="downbtn">Retrieve Image</button> -->
+        </div>
+        <div class="navigation">
+            <a href="#page6" class="yellowbutton">Next</a>
+            <a href="#page2" class="blackbutton">Back</a>
+        </div>
+    <!-- <p>this is only seen when user click on Page Three button</p> -->
+    </div>
+    <div class="page" id="page6" class="page">
+        <h2>Add description about your space</h2>
+        <div class="divform">
+            <form id="descriptionform">
+                <label>
+                    <!-- Title: -->
+                    <input type="text" id="propertytitle" placeholder="Title" required>
+                </label>                
+                <label>
+                    <!-- Description: -->
+                    <textarea type="text" id="propertydescription" placeholder="Description"></textarea>
+                </label>
+            </form>
+        </div>
+        <div class="navigation">
+            <a href="#page7" class="yellowbutton">Next</a>
+            <a href="#page2" class="blackbutton">Back</a>
+            <button class="button" id="createPropertybtn">Create Property Test</button>
         </div>
       </div>
       <div>
@@ -109,116 +142,74 @@
         <a href="#page2" class="blackbutton">Back</a>
       </div>
     </div>
-    <div class="page" id="page5" class="page">
-      <h2>Upload photos</h2>
-      <div class="div-image">
-        <label>Image Name</label>
-        <input type="text" id="namebox" />
-        <label id="extlab"></label><br /><br />
-        <img id="myimg" /><label id="upprogess"></label><br /><br />
-        <button class="button" id="selbtn">Select Image</button>
-        <button class="button" id="upbtn">Upload Image</button>
-        <button class="button" id="downbtn">Retrieve Image</button>
-        <!-- <button class="button" id="downbtn">Retrieve Image</button> -->
-      </div>
-      <div class="navigation">
-        <a href="#page6" class="yellowbutton">Next</a>
-        <a href="#page2" class="blackbutton">Back</a>
-      </div>
-      <!-- <p>this is only seen when user click on Page Three button</p> -->
-    </div>
-    <div class="page" id="page6" class="page">
-      <h2>Add description about your space</h2>
-      <div class="divform">
-        <form id="descriptionform">
-          <label>
-            <!-- Title: -->
-            <input type="text" id="street" placeholder="Street" required />
-          </label>
-          <label>
-            <!-- Description: -->
-            <textarea
-              type="text"
-              id="description"
-              placeholder="Description"
-            ></textarea>
-          </label>
-        </form>
-      </div>
-      <div class="navigation">
-        <a href="#page7" class="yellowbutton">Next</a>
-        <a href="#page2" class="blackbutton">Back</a>
-      </div>
-      <!-- <p>this is only seen when user click on Page Three button</p> -->
-    </div>
     <div class="page" id="page7" class="page">
-      <h2>Select tags that best suite your space and its amenities</h2>
-      <div class="div-buttons">
-        <button class="button" id="musicbtn">Music Recording</button>
-        <button class="button" id="photoshootbtn">Photoshoots</button>
-        <button class="button" id="dancebtn">Dance/Performance Arts</button>
-        <button class="button" id="standupbtn">Stand-up set</button>
-        <button class="button" id="filmingbtn">Filming</button>
-      </div>
-      <!-- <p>this is only seen when user click on Page Three button</p> -->
-      <h3>Amenities & Specifications:</h3>
-      <div class="div-amenities-buttons">
-        <button class="button" id="washroombtn">Washroom</button>
-        <button class="button" id="kitchenbtn">Kitchen</button>
-        <button class="button" id="naturalbtn">Natural Light</button>
-        <button class="button" id="wifibtn">WiFi</button>
-        <button class="button" id="elevatorbtn">Elevator</button>
-        <button class="button" id="parkingbtn">Parking</button>
-        <button class="button" id="fireplacebtn">Fireplace</button>
-      </div>
-      <div class="navigation">
-        <a href="#page8" class="yellowbutton">Next</a>
-        <a href="#page6" class="blackbutton">Back</a>
-      </div>
+        <h2>Select tags that best suite your space and its amenities</h2>
+        <div class="div-buttons">
+            <button class="button" id="musicbtn">Music Recording</button>
+            <button class="button" id="photoshootbtn">Photoshoots</button>
+            <button class="button" id="dancebtn">Dance/Performance Arts</button>
+            <button class="button" id="standupbtn">Stand-up set</button>
+            <button class="button" id="filmingbtn">Filming</button>
+        </div>
+        <!-- <p>this is only seen when user click on Page Three button</p> -->
+        <h3>Amenities & Specifications:</h3>
+        <div class="div-amenities-buttons">
+            <button class="button" id="washroombtn">Washroom</button>
+            <button class="button" id="kitchenbtn">Kitchen</button>
+            <button class="button" id="naturalbtn">Natural Light</button>
+            <button class="button" id="wifibtn">WiFi</button>
+            <button class="button" id="elevatorbtn">Elevator</button>
+            <button class="button" id="parkingbtn">Parking</button>
+            <button class="button" id="fireplacebtn">Fireplace</button>
+        </div>
+        <div class="navigation">
+            <a href="#page8" class="yellowbutton">Next</a>
+            <a href="#page6" class="blackbutton">Back</a>
+        </div>
     </div>
     <div class="page" id="page8" class="page">
-      <h2>What kind of equipment & props do you offer with your space?</h2>
-      <div class="divform">
-        <form id="equipmentform">
-          <fieldset>
-            <legend>Light Stand:</legend>
-            <label>
-              Celling Mount
-              <input type="checkbox" />
-            </label>
-            <label>
-              Floor stand
-              <input type="checkbox" />
-            </label>
-          </fieldset>
-          <fieldset>
-            <legend>Light Shapers:</legend>
-            <label>
-              Softbox
-              <input type="checkbox" />
-            </label>
-            <label>
-              Beauty dish
-              <input type="checkbox" />
-            </label>
-          </fieldset>
-          <fieldset>
-            <legend>Light:</legend>
-            <label>
-              Studio light/Strobe
-              <input type="checkbox" />
-            </label>
-            <label>
-              Continous light
-              <input type="checkbox" />
-            </label>
-          </fieldset>
-        </form>
-      </div>
-      <div class="navigation">
-        <a href="#page8" class="yellowbutton">Next</a>
-        <a href="#page7" class="blackbutton">Back</a>
-      </div>
+        <h2>What kind of equipment & props do you offer with your space?</h2>
+        <div class="divform">
+            <form id="equipmentform">
+                <fieldset>
+                    <legend>Light Stand:</legend>
+                    <label>
+                        Celling Mount
+                        <input type="checkbox">
+                    </label>
+                    <label>
+                        Floor stand
+                        <input type="checkbox">
+                    </label>
+                </fieldset>
+                <fieldset>
+                    <legend>Light Shapers:</legend>
+                    <label>
+                        Softbox
+                        <input type="checkbox">
+                    </label>
+                    <label>
+                        Beauty dish
+                        <input type="checkbox">
+                    </label>
+                </fieldset>
+                <fieldset>
+                    <legend>Light:</legend>
+                    <label>
+                        Studio light/Strobe
+                        <input type="checkbox">
+                    </label>
+                    <label>
+                        Continous light
+                        <input type="checkbox">
+                    </label>
+                </fieldset>
+            </form>
+        </div>
+        <div class="navigation">
+            <a href="#page8" class="yellowbutton">Next</a>
+            <a href="#page7" class="blackbutton">Back</a>
+        </div>
     </div>
     <!-- <p>this is only seen when user click on Page Three button</p> -->
 
