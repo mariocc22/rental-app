@@ -5,7 +5,9 @@ import {
   input,
   UploadProcess,
   GetImagefromFirestore,
+  downloadURL,
 } from "../utility/pictures-api";
+import { SaveURLtoFirestore } from '/query/imagecreate.js';
 
 const allPages = document.querySelectorAll("div.page");
 allPages[0].style.display = "block";
@@ -219,12 +221,13 @@ const propertydescription = document.getElementById("propertydescription");
 
 
 // Test create a property
+let propertyInfo;
 const createPropertybtn = document.getElementById("createPropertybtn");
 createPropertybtn.addEventListener('click', async function (event) {
   console.log('button');
   event.preventDefault();
   let _media = [];
-  let propertyInfo = await createProperty('4BTWTvRfqDEQ7vXdrIxA', //uid
+  propertyInfo = await createProperty('4BTWTvRfqDEQ7vXdrIxA', //uid
                                     street.value,
                                     flatroom.value,
                                     city.value,
@@ -291,6 +294,9 @@ createPropertybtn.addEventListener('click', async function (event) {
                                     );
 
     console.log(propertyInfo);
+
+    // Post Image Collection with propertyId
+    await SaveURLtoFirestore(downloadURL,propertyInfo);
 })
 
 // const submitbutton = document.getElementById("save");
@@ -329,4 +335,5 @@ SelBtn.onclick = function () {
 };
 
 UpBtn.onclick = UploadProcess;
-DownBtn.onclick = GetImagefromFirestore;
+// DownBtn.onclick = GetImagefromFirestore;
+
