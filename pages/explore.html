@@ -12,34 +12,51 @@
     <header>
         <nav class="index-nav">
             <ul>
-                <li>
-                    <i class="fa fa-caret-left"></i>
-                </li>
-                <li>
-                    <i class="fa fa-bars"></i>
-                </li>
+                <li><i class="fa fa-caret-left"></i></li>
+                <li><i class="fa fa-bars"></i></li>
             </ul>
         </nav>
     </header>
     <main>
+        <!-- page title -->
+        <div class="page-title">
+            <h1>
+                <span class="page-title-activity-menu">
+                    Choose your activity
+                </span>
+                <span class="page-title-explore-spaces hide">
+                    Explore Spaces
+                </span>
+            </h1>
+            <div class="taglines">
+                <span class="explore-spaces-tagline hide">
+                    for your next creative project
+                </span>
+            </div>
+        </div>
         <!-- Main Menu -->
         <div class="main-menu-activity" id="main-menu-activity">
             <ul>
-                <li>
-                    <a href="./explore.html?activity=musician">
-                        Musician
+                <li><a href="./explore.html?activity=musician">
+                        <h2>
+                            Musician
+                        </h2>
+                        <img src="https://images.unsplash.com/photo-1471478331149-c72f17e33c73" alt="">
+                    </a></li>
+                <li><a href="./explore.html?activity=photography">
+                        <h2>
+                            Photographer
+                        </h2>
+                        <img src="https://images.unsplash.com/photo-1495745966610-2a67f2297e5e" alt="">
                     </a>
                 </li>
-                <li>
-                    <a href="./explore.html?activity=photography">
-                        Photography
-                    </a>
-                </li>
-                <li>
-                    <a href="./explore.html?activity=artist">
-                        Performing Artist
-                    </a>
-                </li>
+                <li><a href="./explore.html?activity=artist">
+                    <h2>
+                        Performance
+                    </h2>
+                    <img src="https://images.unsplash.com/photo-1523895834873-529ef3a565a0" alt="">
+
+                </a></li>
             </ul>
         </div>
 
@@ -92,9 +109,11 @@
                     <h2>More Filters</h2>
                     <div class="filter-location-prices">
                         <h3>Price 500 CAD</h3>
-                        <input type="range" step="50" value="500" min="50" max="2000" oninput="this.previousElementSibling.innerText = `Price ${this.value} CAD`">
+                        <input type="range" step="50" value="500" min="50" max="2000"
+                            oninput="this.previousElementSibling.innerText = `Price ${this.value} CAD`">
                         <h3>Search by distance: 1 kilometre</h3>
-                        <input type="range" step="1" value="1" min="1" max="20" oninput="this.previousElementSibling.innerText = `Search by distance: ${this.value} kilometre`">
+                        <input type="range" step="1" value="1" min="1" max="20"
+                            oninput="this.previousElementSibling.innerText = `Search by distance: ${this.value} kilometre`">
                     </div>
                     <div>
                         <h3>Equipment with props</h3>
@@ -143,7 +162,7 @@
                                 <p class="space-rating">3.5</p>
                             </div>
                         </li>
-                        <li> 
+                        <li>
                             <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
                                 <img src="https://picsum.photos/1200/500?random=3" alt="">
                             </a>
@@ -154,7 +173,7 @@
                                 <p class="space-rating">3.5</p>
                             </div>
                         </li>
-                        <li> 
+                        <li>
                             <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
                                 <img src="https://picsum.photos/1200/500?random=4" alt="">
                             </a>
@@ -165,7 +184,7 @@
                                 <p class="space-rating">3.5</p>
                             </div>
                         </li>
-                        <li> 
+                        <li>
                             <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
                                 <img src="https://picsum.photos/1200/500?random=5" alt="">
                             </a>

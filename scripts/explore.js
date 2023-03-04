@@ -1,4 +1,6 @@
+import '/styles/common-styles.css';
 import '/styles/explore.css';
+
 import { filterPlaces } from '../query/neo4jQueries.js'
 
 let params = new URLSearchParams(document.location.search);
