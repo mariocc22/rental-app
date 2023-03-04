@@ -2,11 +2,7 @@
 import "/styles/list-my-space.css";
 import { createProperty } from "/query/propertycreate.js";
 import {
-  input,
-  UploadProcess,
-  urlString,
-  GetImagefromFirestore,
-  downloadURL,
+  input, UploadProcess, urlString
 } from "../utility/pictures-api";
 
 import { SaveURLtoFirestore } from '/query/imagecreate.js';
@@ -739,7 +735,7 @@ createPropertybtn.addEventListener("click", async function (event) {
     console.log(propertyInfo);
 
     // Post Image Collection with propertyId
-    await SaveURLtoFirestore(downloadURL,propertyInfo);
+    await SaveURLtoFirestore(urlString,propertyInfo);
 })
 
 // const submitbutton = document.getElementById("save");
