@@ -26,6 +26,7 @@ const proglab = document.getElementById("upprogress");
 const SelBtn = document.getElementById("selbtn");
 const UpBtn = document.getElementById("upbtn");
 const DownBtn = document.getElementById("downbtn");
+let urlString = "";
 
 let input = document.createElement("input");
 input.type = "file";
@@ -72,16 +73,12 @@ async function UploadProcess() {
     contentType: ImgToUpload.type,
   };
   const storage = getStorage();
-  const storageRef = sRef(storage, "Images/");
+  const storageRef = sRef(storage, `IMAGES/${ImgName}`);
   const uploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
 
   uploadTask.on(
     "state_changed",
-    (snapshot) => {
-      // **********vThis is to see the upload progress
-      // let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      // proglab.innerHTML = "Upload " + progress + "%";
-    },
+    (snapshot) => {},
     (error) => {
       console.log(error.message);
       alert("error: image not uploaded! ");
@@ -90,7 +87,8 @@ async function UploadProcess() {
       getDownloadURL(uploadTask.snapshot.ref).then((_downloadURL) => {
         // SaveURLtoFirestore(_downloadURL);
         console.log("Image uploaded successfully!");
-        downloadURL = _downloadURL;
+        console.log(_downloadURL);
+        urlString = "" + _downloadURL;
       });
     }
   );
@@ -125,4 +123,4 @@ async function UploadProcess() {
 // DownBtn.onclick = GetImagefromFirestore;
 
 // export { input, UploadProcess, GetImagefromFirestore, downloadURL};
-export { input, UploadProcess, downloadURL};
+export { input, UploadProcess, urlString };
