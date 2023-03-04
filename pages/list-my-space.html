@@ -14,11 +14,7 @@
     <title>List my Space</title>
   </head>
   <body>
-    <!-- <div class="toolbar">
-        <a href="#page1">Page One</a>
-        <a href="#page2">Page Two</a>
-        <a href="#page3">Page Three</a>
-    </div> -->
+
     <div class="page" id="page1" class="page">
         <h1>What kind of space do you offer?</h1>
         <div class="div-buttons">
@@ -26,17 +22,16 @@
             <button id="outdoorButton" class="button">Outdoor</button>
             <button id="houseButton" class="button">House</button>
             <button id="studioButton" class="button">Studio</button>
-            <button id="otherButton" class="button">Other Spaces</button>
+            <button id="beachButton" class="button">Beach House</button>
+            <button id="otherButton" class="button">Other</button>
         </div>
-        <!-- <p>see the navigateToPage function in script.js for detail.</p>
-        for SPA with router see :
-        <a href="https://stackblitz.com/edit/web-platform-fvzrjm" target="top">
-            this</a> -->
         <div class="navigation">
             <a href="#page2" class="yellowbutton">Next</a>
             <a href="./index.html" class="blackbutton">Cancel</a>                   
         </div>
     </div>
+
+
     <div class="page" id="page2" class="page">
         <h1>Enter the place address</h1>
         <div class="divform">
@@ -46,7 +41,7 @@
                     <input type="text" id="street" placeholder="Street" required>
                 </label>                
                 <label>
-                    <input type="number" id="flatroom" placeholder="Flat/Room Number ETC" required>
+                    <input type="number" pattern="[0-9]*" id="flatroom" placeholder="Flat/Room Number ETC" required>
                 </label>
                 <label>
                     <!-- City: -->
@@ -72,14 +67,17 @@
             </div>
         </div>
       </div>
-      <!-- <p>this is only seen when user click on Page Two button</p> -->
     </div>
+
+
     <div class="page" id="page3" class="page">
         <div class="div-buttons">
             <button class="button addPhotoButton"><a href="#page5" class="yellowbutton">Add Photo</a></button>
             <button class="button takePhotoButton"><a href="#page4" class="blackbutton">Take a Photo</a></button>
         </div>
     </div>
+
+
     <div class="page" id="page4" class="page">
         <div class="gridcamera">
             <div class="videogrid">
@@ -97,6 +95,8 @@
             <a href="#page2" class="blackbutton">Back</a>
         </div>
     </div>
+
+
     <div class="page" id="page5" class="page">
         <h2>Upload photos</h2>
         <div class="div-image">
@@ -106,14 +106,14 @@
             <img id="myimg"><label id="upprogess"></label><br><br>
             <button class="button" id="selbtn">Select Image</button>
             <button class="button" id="upbtn">Upload Image</button>
-            <!-- <button class="button" id="downbtn">Retrieve Image</button> -->
         </div>
         <div class="navigation">
             <a href="#page6" class="yellowbutton">Next</a>
             <a href="#page2" class="blackbutton">Back</a>
         </div>
-    <!-- <p>this is only seen when user click on Page Three button</p> -->
     </div>
+
+
     <div class="page" id="page6" class="page">
         <h2>Add description about your space</h2>
         <div class="divform">
@@ -131,20 +131,23 @@
         <div class="navigation">
             <a href="#page7" class="yellowbutton">Next</a>
             <a href="#page2" class="blackbutton">Back</a>
-            <button class="button" id="createPropertybtn">Create Property Test</button>
         </div>
     </div>
+
+
     <div class="page" id="page7" class="page">
-        <h2>Select tags that best suite your space and its amenities</h2>
-        <div class="div-buttons">
-            <button class="button" id="musicbtn">Music Recording</button>
-            <button class="button" id="photoshootbtn">Photoshoots</button>
-            <button class="button" id="dancebtn">Dance/Performance Arts</button>
-            <button class="button" id="standupbtn">Stand-up set</button>
-            <button class="button" id="filmingbtn">Filming</button>
+        <h2>Select TAGS and Amenities that best suite your space</h2>
+        <h3>Tags</h3>
+        <div class="div-tags-buttons">
+            <button class="button" id="foodPhotographybtn">Food Photography</button>
+            <button class="button" id="commercialbtn">Commercial</button>
+            <button class="button" id="fashionbtn">Fashion</button>
+            <button class="button" id="portraitbtn">Portrait</button>
+            <button class="button" id="lifestylebtn">Lifestyle</button>
+            <button class="button" id="newbornbtn">Newborn</button>
+            <button class="button" id="weddingbtn">Wedding</button>
         </div>
-        <!-- <p>this is only seen when user click on Page Three button</p> -->
-        <h3>Amenities & Specifications:</h3>
+        <h3>Amenities & Specifications</h3>
         <div class="div-amenities-buttons">
             <button class="button" id="washroombtn">Washroom</button>
             <button class="button" id="kitchenbtn">Kitchen</button>
@@ -152,62 +155,348 @@
             <button class="button" id="wifibtn">WiFi</button>
             <button class="button" id="elevatorbtn">Elevator</button>
             <button class="button" id="parkingbtn">Parking</button>
-            <button class="button" id="fireplacebtn">Fireplace</button>
+            <button class="button" id="airconditionerbtn">Airconditioner</button>
         </div>
         <div class="navigation">
             <a href="#page8" class="yellowbutton">Next</a>
             <a href="#page6" class="blackbutton">Back</a>
         </div>
     </div>
+
+
     <div class="page" id="page8" class="page">
-        <h2>What kind of equipment & props do you offer with your space?</h2>
-        <div class="divform">
-            <form id="equipmentform">
-                <fieldset>
-                    <legend>Light Stand:</legend>
-                    <label>
-                        Celling Mount
-                        <input type="checkbox">
-                    </label>
-                    <label>
-                        Floor stand
-                        <input type="checkbox">
-                    </label>
-                </fieldset>
-                <fieldset>
-                    <legend>Light Shapers:</legend>
-                    <label>
-                        Softbox
-                        <input type="checkbox">
-                    </label>
-                    <label>
-                        Beauty dish
-                        <input type="checkbox">
-                    </label>
-                </fieldset>
-                <fieldset>
-                    <legend>Light:</legend>
-                    <label>
-                        Studio light/Strobe
-                        <input type="checkbox">
-                    </label>
-                    <label>
-                        Continous light
-                        <input type="checkbox">
-                    </label>
-                </fieldset>
+        <h2>What kind of equipment can you offer with your space?</h2>
+
+        <button class="button" id="lightbtn">Light</button>
+        <div class="divform active" id="lightdiv">            
+            <form id="lightform">
+                <label>
+                    Ceiling Flash:
+                    <input type="number" pattern="[0-9]*" id="ceilingflash" min="0" value="0">
+                </label>                
+                <label>
+                    Floor Flash:
+                    <input type="number" pattern="[0-9]*" id="floorflash" min="0" value="0">
+                </label>
             </form>
         </div>
+
+        <button class="button" id="lightshapersbtn">Light Shapers</button>
+        <div class="divform active" id="lightshapersdiv">            
+            <form id="lightshapersform">
+                <label>
+                    Umbrella:
+                    <input type="number" pattern="[0-9]*" id="umbrella" min="0" value="0">
+                </label>                
+                <label>
+                    Beauty Dish:
+                    <input type="number" pattern="[0-9]*" id="beautydish" min="0" value="0">
+                </label>
+                <label>
+                    Soft Box:
+                    <input type="number" pattern="[0-9]*" id="softbox" min="0" value="0">
+                </label>
+                <label>
+                    Light Box:
+                    <input type="number" pattern="[0-9]*" id="lightbox" min="0" value="0">
+                </label>
+            </form>
+        </div>
+
+        <button class="button" id="camerastandbtn">Camera Stand</button>
+        <div class="divform active" id="camerastanddiv">            
+            <form id="camerastandform">
+                <label>
+                    Tripod:
+                    <input type="number" pattern="[0-9]*" id="tripod" min="0" value="0">
+                </label>                
+            </form>
+        </div>
+
+        <button class="button" id="camerabtn">Camera</button>
+        <div class="divform active" id="cameradiv">            
+            <form id="cameraform">
+                <label>
+                    Full Frame:
+                    <input type="number" pattern="[0-9]*" id="fullframe" min="0" value="0">
+                </label>
+                <label>
+                    Crop DSLR:
+                    <input type="number" pattern="[0-9]*" id="cropdslr" min="0" value="0">
+                </label>             
+            </form>
+        </div>
+
+        <button class="button" id="lensbtn">Lens</button>
+        <div class="divform active" id="lensdiv">            
+            <form id="lensform">
+                <label>
+                    Wide Angle:
+                    <input type="number" pattern="[0-9]*" id="wideangle" min="0" value="0">
+                </label>
+                <label>
+                    Normal:
+                    <input type="number" pattern="[0-9]*" id="normal" min="0" value="0">
+                </label>             
+            </form>
+        </div>
+
+        <button class="button" id="othersbtn">Other</button>
+        <div class="divform active" id="othersdiv">            
+            <form id="othersform">
+                <label>
+                    Other:
+                    <input type="number" pattern="[0-9]*" id="others" min="0" value="0">
+                </label>                
+            </form>
+        </div>
+
         <div class="navigation">
-            <a href="#page8" class="yellowbutton">Next</a>
+            <a id="validateinputs" href="#page9" class="yellowbutton">Next</a>
             <a href="#page7" class="blackbutton">Back</a>
         </div>
     </div>
-    <!-- <p>this is only seen when user click on Page Three button</p> -->
 
-    <!-- <div class="page" id="page4" class="page">
-        <h3>Here is contents of page 4</h3>
-        <p>this is only seen when user click on Page Three button</p>
-       -->
+    <div class="page" id="page9" class="page">
+        <h2>Edit the price and details for the equipment</h2>
+
+        <form id="cellingflashform">
+            <caption>Ceiling Flash</caption>
+            <label>
+                Set the price per session
+                <fieldset data-quantity >
+                    <input type="number" name="quantity" pattern="[0-9]+" id="cellingflashvalue" min="0">
+                </fieldset>
+            </label>
+            <label>Description
+                <textarea name="coment" id="cellingflashdesc"></textarea>
+            </label>
+        </form>
+
+        <form id="floorflashform">
+            <caption>Floor Flash</caption>
+            <label>
+                Set the price per session
+                <fieldset data-quantity >
+                    <input type="number" name="quantity" pattern="[0-9]+" id="floorflashvalue" min="0">
+                </fieldset>
+            </label>
+            <label>Description
+                <textarea name="coment" id="floorflashdesc"></textarea>
+            </label>
+        </form>
+
+        <form id="umbrellaform">
+            <caption>Umbrella</caption>
+            <label>
+                Set the price per session
+                <fieldset data-quantity>
+                    <input type="number" name="quantity" pattern="[0-9]+" id="umbrellavalue" min="0">
+                </fieldset>
+            </label>
+            <label>Description
+                <textarea name="coment" id="umbrelladesc"></textarea>
+            </label>
+        </form>
+
+        <form id="breautydishform">
+            <caption>Beauty Dish</caption>
+            <label>
+                Set the price per session
+                <fieldset data-quantity>
+                    <input type="number" name="quantity" pattern="[0-9]+" id="breautydishvalue" min="0">
+                </fieldset>
+            </label>
+            <label>Description
+                <textarea name="coment" id="breautydishdesc"></textarea>
+            </label>
+        </form>
+
+        <form id="softboxform">
+            <caption>Soft Box</caption>
+            <label>
+                Set the price per session
+                <fieldset data-quantity>
+                    <input type="number" name="quantity" pattern="[0-9]+" id="softboxvalue" min="0">
+                </fieldset>
+            </label>
+            <label>Description
+                <textarea name="coment" id="softboxdesc"></textarea>
+            </label>
+        </form>
+
+        <form id="lightboxform">
+            <caption>Light Box</caption>
+            <label>
+                Set the price per session
+                <fieldset data-quantity>
+                    <input type="number" name="quantity" pattern="[0-9]+" id="lightboxvalue" min="0">
+                </fieldset>
+            </label>
+            <label>Description
+                <textarea name="coment" id="lightboxdesc"></textarea>
+            </label>
+        </form>
+
+        <form id="tripodform">
+            <caption>Tripod</caption>
+            <label>
+                Set the price per session
+                <fieldset data-quantity>
+                    <input type="number" name="quantity" pattern="[0-9]+" id="tripodvalue" min="0">
+                </fieldset>
+            </label>
+            <label>Description
+                <textarea name="coment" id="tripoddesc"></textarea>
+            </label>
+        </form>
+
+        <form id="fullframeform">
+            <caption>Full Frame</caption>
+            <label>
+                Set the price per session
+                <fieldset data-quantity>
+                    <input type="number" name="quantity" pattern="[0-9]+" id="fullframevalue" min="0">
+                </fieldset>
+            </label>
+            <label>Description
+                <textarea name="coment" id="fullframedesc"></textarea>
+            </label>
+        </form>
+
+        <form id="cropdslrform">
+            <caption>Crop DSLR</caption>
+            <label>
+                Set the price per session
+                <fieldset data-quantity>
+                    <input type="number" name="quantity" pattern="[0-9]+" id="cropdslrvalue" min="0">
+                </fieldset>
+            </label>
+            <label>Description
+                <textarea name="coment" id="cropdslrdesc"></textarea>
+            </label>
+        </form>
+
+        <form id="wideangleform">
+            <caption>Wide Angle</caption>
+            <label>
+                Set the price per session
+                <fieldset data-quantity>
+                    <input type="number" name="quantity" pattern="[0-9]+" id="wideanglevalue" min="0">
+                </fieldset>
+            </label>
+            <label>Description
+                <textarea name="coment" id="wideangledesc"></textarea>
+            </label>
+        </form>
+
+        <form id="normalform">
+            <caption>Normal</caption>
+            <label>
+                Set the price per session
+                <fieldset data-quantity>
+                    <input type="number" name="quantity" pattern="[0-9]+" id="normalvalue" min="0">
+                </fieldset>
+            </label>
+            <label>Description
+                <textarea name="coment" id="normaldesc"></textarea>
+            </label>
+        </form>
+
+        <form id="othersformprice">
+            <caption>Other</caption>
+            <label>
+                Set the price per session
+                <fieldset data-quantity>
+                    <input type="number" name="quantity" pattern="[0-9]+" id="othersvalue" min="0">
+                </fieldset>
+            </label>
+            <label>Description
+                <textarea name="coment" id="othersdesc"></textarea>
+            </label>
+        </form>
+
+        <div class="navigation">
+            <a href="#page10" class="yellowbutton">Next</a>
+            <a href="#page8" class="blackbutton">Back</a>
+        </div>
+    </div>
+
+    <div class="page" id="page10" class="page">
+        <h2>Set the price for your space</h2>
+        <form id="priceform">
+            <label>
+                Set the price per day
+                <fieldset data-quantity>
+                    <input type="number" name="quantity" pattern="[0-9]+" id="pricevalue" min="0"  value="0">
+                </fieldset>
+            </label>
+            <label>Start, end Dates:
+                <input id="datepicker"/>
+            </label>
+            <label>
+                Set time available for the deal
+                <fieldset data-quantity>
+                    <input type="number" name="quantity" pattern="[0-9]+" id="dealdaysvalue" min="0"  value="0">
+                </fieldset>
+            </label>
+            <label>
+                Set the price for the deal
+                <fieldset data-quantity>
+                    <input type="number" name="quantity" pattern="[0-9]+" id="dealpricevalue" min="0"  value="0">
+                </fieldset>
+            </label>
+        </form>
+        <div class="navigation">
+            <a href="#page11" id="reviewfields" class="yellowbutton">Next</a>
+            <a href="#page9" class="blackbutton">Back</a>
+        </div>
+    </div>
+
+
+    <div class="page" id="page11" class="page">
+        <h2>Review your listing</h2>
+        <img src="https://picsum.photos/500/600?grayscale&random=$$$" alt="Space" width="500" height="600"> 
+        <form id="reviewform">
+            <label>
+                Title
+                <input type="text" id="titlereview">
+            </label>
+            <label>
+                Description
+                <textarea type="text" id="descriptionreview" disabled></textarea>
+            </label>
+            <label>
+                Address
+                <textarea type="text" id="addressreview" disabled></textarea>
+            </label>
+            <label>
+                Tags
+                <textarea type="text" id="tagsreview" disabled></textarea>
+            </label>
+            <label>
+                Equipment
+                <textarea type="text" id="equipmentreview" disabled></textarea>
+            </label>
+            <label>
+                Deals
+                <textarea type="text" id="dealsreview" disabled></textarea>
+            </label>
+            <label>
+                Availability
+                <input type="text" id="availabilityreview" disabled>
+            </label>
+            <label>
+                Pricing
+                <input type="text" id="pricereview" disabled>
+            </label>
+        </form>
+        <div class="navigation">
+            <button class="button" id="createPropertybtn">Publish Listing</button>
+            <!-- <a href="#page11" class="yellowbutton">Publish Listing</a> -->
+            <a href="#page10" class="blackbutton">Back</a>
+        </div>
+    </div>
+
   </body>
 </html>

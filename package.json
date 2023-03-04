@@ -29,9 +29,11 @@
     "webpack-cli": "^5.0.1"
   },
   "dependencies": {
+    "@easepick/bundle": "^1.2.1",
     "@firebase/firestore": "^3.8.3",
     "firebase": "^9.17.1",
     "font-awesome": "^4.7.0",
+    "litepicker": "^2.0.12",
     "neo4j-driver": "^5.5.0",
     "webpack-dev-server": "^4.11.1"
   }

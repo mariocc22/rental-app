@@ -17,6 +17,7 @@ import {
 
 // Initialize variables
 let files = [];
+let downloadURL;
 const reader = new FileReader();
 const namebox = document.getElementById("namebox");
 const extlab = document.getElementById("extlab");
