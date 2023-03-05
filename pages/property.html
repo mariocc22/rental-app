@@ -5,31 +5,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stage | Explore Spaces</title>
+    <title>Stage | Space Details</title>
 </head>
 
 <body>
     <header>
         <nav class="index-nav">
             <ul>
-                <li>
-                    <i class="fa fa-caret-left"></i>
-                </li>
-                <li>
-                    <i class="fa fa-bars"></i>
-                </li>
+                <li><i class="fa fa-caret-left"></i></li>
+                <li><i class="fa fa-bars"></i></li>
             </ul>
         </nav>
     </header>
+
+    <!-- Space Details -->
     <main>
         <!-- Property Details -->
         <section class="property-details" id="property-details">
             <h1 id="propery-name" class="property-name">
-                Name of the property
+                {{ Name of the property }}
             </h1>
             <div id="property-images-carousel">
                 <!-- Slider container -->
-                <div class="slider hide" id="slider">
+                <div class="slider" id="slider">
                     <!-- slide 1 -->
                     <div class="slide">
                         <img src="https://source.unsplash.com/random?landscape,mountain" alt="" />
@@ -77,23 +75,58 @@
             </div>
             <div class="property-menu-info-wrapper">
                 <!-- Customize Tab -->
-                <div class="property-customize-tab hide">
+                <div class="property-customize-tab">
+                    <!-- Pick Dates -->
+                    <div class="property-pick-dates">
+                        <h2>Pick Dates</h2>
+                        <div id="foo">
+                            <input type="text" name="start" id="start">
+                            <span>to</span>
+                            <input type="text" name="end" id="end">
+                        </div>
+                    </div>
                     <!-- Suggested Bundles -->
                     <div class="property-bundles" id="property-bundles">
                         <h2>Suggested Bundles</h2>
-                        <div class="bundle">
-                            <h3>$300 / Per Day</h3>
-                            <p>Get these items and save $30</p>
-                            <div class="bundle-equipments">
-                                <ul>
-                                    <li>2 Cameras</li>
-                                    <li>1 Light Umbrella</li>
-                                    <li>2 Strobes on floor</li>
-                                </ul>
+                        <div class="bundle-details">
+                                <img src="../assets/svg-icons/bundleA2dm.svg">
+                            <div class="bundle-details-props">
+                                <p class="bundle-title">Reduced Base Price $300</p>
+                                <div class="bundle-equipments">
+                                    <ul>
+                                        <li>
+                                            <span class="bundle-prop">
+                                                <i class="fa fa-camera"></i>
+                                                Camera
+                                            </span>
+                                            <span class="bundle-prop-price">
+                                                10
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="bundle-prop">
+                                                <i class="fa fa-camera"></i>
+                                                Light Mount
+                                            </span>
+                                            <span class="bundle-prop-price">
+                                                10
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="bundle-prop">
+                                                <i class="fa fa-camera"></i>
+                                                Shaper
+                                            </span>
+                                            <span class="bundle-prop-price">
+                                                10
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <input type="button" value="Choose Bundle" data-price="300">
                             </div>
-                            <input type="button" value="Choose Bundle" data-price="300">
                         </div>
-                        <div class="bundle">
+                        <!-- <div class="bundle">
                             <h3>$250 / Per Day</h3>
                             <p>Get these items and save $30</p>
                             <div class="bundle-equipments">
@@ -104,31 +137,77 @@
                                 </ul>
                             </div>
                             <input type="button" value="Choose Bundle" data-price="250">
-                        </div>
+                        </div> -->
                     </div>
                     <!-- Equipment and Props -->
                     <div class="property-equipments" id="property-equipments">
                         <h2>Equipment and Props</h2>
                         <ul>
-                            <li data-price="30">Camera $30</li>
-                            <li data-price="20">Lens $20</li>
-                            <li data-price="10">Camera Mount $10</li>
-                            <li data-price="15">Light Shaper $15</li>
-                            <li data-price="10">Light Mount $10</li>
+                            <li>
+                                <input type="checkbox" id="camera" name="props" value="camera">
+                                <label for="camera">
+                                    <span>
+                                        <i class="fa fa-camera"></i>
+                                        Camera
+                                    </span>
+                                    <span class="prop-price">
+                                        $10
+                                    </span>
+                                </label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="camera" name="props" value="camera">
+                                <label for="camera">
+                                    <span>
+                                        <i class="fa fa-camera"></i>
+                                        Camera
+                                    </span>
+                                    <span class="prop-price">
+                                        $10
+                                    </span>
+                                </label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="camera" name="props" value="camera">
+                                <label for="camera">
+                                    <span>
+                                        <i class="fa fa-camera"></i>
+                                        Camera
+                                    </span>
+                                    <span class="prop-price">
+                                        $10
+                                    </span>
+                                </label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="camera" name="props" value="camera">
+                                <label for="camera">
+                                    <span>
+                                        <i class="fa fa-camera"></i>
+                                        Camera
+                                    </span>
+                                    <span class="prop-price">
+                                        $10
+                                    </span>
+                                </label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="camera" name="props" value="camera">
+                                <label for="camera">
+                                    <span>
+                                        <i class="fa fa-camera"></i>
+                                        Camera
+                                    </span>
+                                    <span class="prop-price">
+                                        $10
+                                    </span>
+                                </label>
+                            </li>
                         </ul>
-                    </div>
-                    <!-- Pick Dates -->
-                    <div class="property-pick-dates">
-                        <h2>Pick Dates</h2>
-                        <div id="foo">
-                            <input type="text" name="start" id="start">
-                            <span>to</span>
-                            <input type="text" name="end" id="end">
-                        </div>
                     </div>
                 </div>
                 <!-- Property Details Tab -->
-                <div class="property-details-tab hide">
+                <div class="property-details-tab">
                     <div class="property-description" id="property-description">
                         <h2>Property Description</h2>
                         <p>A long Description about the property</p>
@@ -144,29 +223,37 @@
 
                 </div>
                 <!-- Showcases tab -->
-                <div class="property-showcases-tab hide">
+                <div class="property-showcases-tab ">
                     <div class="showcase-list">
-                        <h2>Expore Past showcases</h2>
+                        <h2>Explore Past showcases</h2>
                         <ul class="showcase-list" id="showcase-list">
                             <li class="property-showcase">
                                 <img src="https://picsum.photos/1200/500?random=2">
-                                <h3 class="showcase-title">
+                                <div class="showcase-title">
                                     Showcase
-                                </h3>
-                                <p class="showcase-description">
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. A delectus aperiam eos non
-                                    dolorem. Odit corrupti voluptatem iste quae perspiciatis?
-                                </p>
+                                </div>
+                                <div class="showcase-meta">
+                                    <span>
+                                        by Pablo
+                                    </span>
+                                    <span>
+                                        20 Jan 2023
+                                    </span>
+                                </div>
                             </li>
                             <li class="property-showcase">
                                 <img src="https://picsum.photos/1200/500?random=2">
-                                <h3 class="showcase-title">
+                                <div class="showcase-title">
                                     Showcase
-                                </h3>
-                                <p class="showcase-description">
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. A delectus aperiam eos non
-                                    dolorem. Odit corrupti voluptatem iste quae perspiciatis?
-                                </p>
+                                </div>
+                                <div class="showcase-meta">
+                                    <span>
+                                        by Pablo
+                                    </span>
+                                    <span>
+                                        20 Jan 2023
+                                    </span>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -176,23 +263,61 @@
                 <!-- Price Details -->
                 <div>
                     <h2>Price Details</h2>
-                    <div id="property-price-breakdown">
-                        <ul>
-                            <!-- base price -->
-                            <li class="property-price-info">Space Price: $100 x 8 days</li>
-                            <li class="property-price-value">$800</li>
-                            <!-- equipment price -->
-                            <li class="property-equipment-info">Equipment Price</li>
-                            <li class="property-equipment-price">$24</li>
-                            <!-- tax info -->
-                            <li class="property-tax-info">Tax</li>
-                            <li class="property-tax-value">$20</li>
-                            <!-- total price info -->
-                            <li class="property-total-info">Total Price:</li>
-                            <li class="property-total-price">$844</li>
-                        </ul>
+                    <div id="property-price-breakdown" class="property-price-breakdown">
+
+                        <!-- Base price -->
+                        <div class="price-detail-wrapper">
+                            <div class="price-detail-title">Base Price</div>
+                            <ul>
+                                <li>
+                                    <span>
+                                        Price before props
+                                    </span>
+                                    <span>
+                                        CAD 100
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Props -->
+                        <div class="price-detail-wrapper">
+                            <div class="price-detail-title">Props</div>
+                            <ul>
+                                <li>
+                                    <span>
+                                        Camera
+                                    </span>
+                                    <span>
+                                        CAD 15
+                                    </span>
+                                </li>
+                                <li>
+                                    <span>
+                                        Tripod
+                                    </span>
+                                    <span>
+                                        CAD 15
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Total Price  -->
+                        <div class="price-detail-wrapper">
+                            <div class="price-detail-title">Total Price</div>
+                            <ul>
+                                <li>
+                                    <span>
+                                        Price for 3 days
+                                    </span>
+                                    <span>
+                                        130 x 3 = CAD 390
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div id="property-booking-btn">
+                    <div id="property-booking-btn" class="book-space">
                         <input type="button" value="Book">
                     </div>
                 </div>
