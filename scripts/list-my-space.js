@@ -32,12 +32,12 @@ window.addEventListener('hashchange', navigateToPage);
 
 
 // What kind of space do you offer
-let _indoor;
-let _outdoor;
-let _house;
-let _studio;
-let _others;
-let _beach;
+let _indoor = false;
+let _outdoor = false;
+let _house = false;
+let _studio = false;
+let _others = false;
+let _beach = false;
 
 const indoorButtonPressed = document.getElementById('indoorButton');
 const outdoorButton = document.getElementById('outdoorButton');
@@ -165,13 +165,13 @@ const propertytitle = document.getElementById("propertytitle");
 const propertydescription = document.getElementById("propertydescription");
 
 // Tags
-let _foodphotography;
-let _commercial;
-let _fashion;
-let _portrait;
-let _lifestyle;
-let _newborn;
-let _wedding;
+let _foodphotography = false;
+let _commercial = false;
+let _fashion = false;
+let _portrait = false;
+let _lifestyle = false;
+let _newborn = false;
+let _wedding = false;
 
 const foodPhotoButton = document.getElementById('foodPhotographybtn');
 const commercialButton = document.getElementById('commercialbtn');
@@ -259,13 +259,13 @@ weddingButton.addEventListener('click', () => {
 })
 
 // Amenities
-let _washroom;
-let _kitchen;
-let _natural;
-let _wifi;
-let _elevator;
-let _parking;
-let _airconditioner;
+let _washroom = false;
+let _kitchen = false;
+let _natural = false;
+let _wifi = false;
+let _elevator = false;
+let _parking = false;
+let _airconditioner = false;
 
 const washroombtn = document.getElementById('washroombtn');
 const kitchenbtn = document.getElementById('kitchenbtn');
@@ -458,12 +458,57 @@ othersbtn.addEventListener('click', () => {
 
 // Equipment inputs
 const validateinputs = document.getElementById('validateinputs');
+// Celling values
+const ceilingflashinput = document.getElementById('ceilingflash');
+const cellingflashform = document.getElementById('cellingflashform');
+const cellingflashvalue = document.getElementById('cellingflashvalue');
+// Floor Flass values
+const floorflashform = document.getElementById('floorflashform');
+const floorflashinput = document.getElementById('floorflash');  
+const floorflashvalue = document.getElementById('floorflashvalue');
+// Ubmrella values
+const umbrellaform = document.getElementById('umbrellaform');
+const umbrellainput = document.getElementById('umbrella');  
+const umbrellavalue = document.getElementById('umbrellavalue');
+// Beauty Dish values
+const breautydishform = document.getElementById('breautydishform');
+const beautydishinput = document.getElementById('beautydish');  
+const breautydishvalue = document.getElementById('breautydishvalue');
+// Soft Box values
+const softboxform = document.getElementById('softboxform');
+const softboxinput = document.getElementById('softbox');  
+const softboxvalue = document.getElementById('softboxvalue');
+// Light Box values
+const lightboxform = document.getElementById('lightboxform');
+const lightboxinput = document.getElementById('lightbox');  
+const lightboxvalue = document.getElementById('lightboxvalue');
+// Tripod values
+const tripodform = document.getElementById('tripodform');
+const tripodinput = document.getElementById('tripod');  
+const tripodvalue = document.getElementById('tripodvalue');
+// Full Frame values
+const fullframeform = document.getElementById('fullframeform');
+const fullframeinput = document.getElementById('fullframe');  
+const fullframevalue = document.getElementById('fullframevalue');
+// Crop DSLR values
+const cropdslrform = document.getElementById('cropdslrform');
+const cropdslrinput = document.getElementById('cropdslr');  
+const cropdslrvalue = document.getElementById('cropdslrvalue');
+// Wide Angle values
+const wideangleform = document.getElementById('wideangleform');
+const wideangleinput = document.getElementById('wideangle');  
+const wideanglevalue = document.getElementById('wideanglevalue');
+// Normal values
+const normalform = document.getElementById('normalform');
+const normalinput = document.getElementById('normal');  
+const normalvalue = document.getElementById('normalvalue');
+// Other values
+const othersformprice = document.getElementById('othersformprice');
+const othersinput = document.getElementById('others');  
+const othersvalue = document.getElementById('othersvalue');
+
 validateinputs.addEventListener('click', () => {
   // console.log('a');
-  const ceilingflashinput = document.getElementById('ceilingflash');
-  const cellingflashform = document.getElementById('cellingflashform');
-  const cellingflashvalue = document.getElementById('cellingflashvalue');
-
   cellingflashvalue.value = ceilingflashinput.value;
   // console.log(cellingflashvalue.value)
   if(cellingflashvalue.value > 0 ){
@@ -473,10 +518,6 @@ validateinputs.addEventListener('click', () => {
     cellingflashform.classList.add('active');
   }
 
-  const floorflashform = document.getElementById('floorflashform');
-  const floorflashinput = document.getElementById('floorflash');  
-  const floorflashvalue = document.getElementById('floorflashvalue');
-
   floorflashvalue.value = floorflashinput.value;
   if(floorflashvalue.value > 0 ){
     floorflashform.classList.remove('active');
@@ -485,10 +526,6 @@ validateinputs.addEventListener('click', () => {
     floorflashform.classList.add('active');
   }
   
-  const umbrellaform = document.getElementById('umbrellaform');
-  const umbrellainput = document.getElementById('umbrella');  
-  const umbrellavalue = document.getElementById('umbrellavalue');
-
   umbrellavalue.value = umbrellainput.value;
   if(umbrellavalue.value > 0 ){
     umbrellaform.classList.remove('active');
@@ -496,10 +533,6 @@ validateinputs.addEventListener('click', () => {
   else{
     umbrellaform.classList.add('active');
   }
-
-  const breautydishform = document.getElementById('breautydishform');
-  const beautydishinput = document.getElementById('beautydish');  
-  const breautydishvalue = document.getElementById('breautydishvalue');
 
   breautydishvalue.value = beautydishinput.value;
   if(breautydishvalue.value > 0 ){
@@ -509,10 +542,6 @@ validateinputs.addEventListener('click', () => {
     breautydishform.classList.add('active');
   }
 
-  const softboxform = document.getElementById('softboxform');
-  const softboxinput = document.getElementById('softbox');  
-  const softboxvalue = document.getElementById('softboxvalue');
-
   softboxvalue.value = softboxinput.value;
   if(softboxvalue.value > 0 ){
     softboxform.classList.remove('active');
@@ -520,10 +549,6 @@ validateinputs.addEventListener('click', () => {
   else{
     softboxform.classList.add('active');
   }
-
-  const lightboxform = document.getElementById('lightboxform');
-  const lightboxinput = document.getElementById('lightbox');  
-  const lightboxvalue = document.getElementById('lightboxvalue');
 
   lightboxvalue.value = lightboxinput.value;
   if(lightboxvalue.value > 0 ){
@@ -533,10 +558,6 @@ validateinputs.addEventListener('click', () => {
     lightboxform.classList.add('active');
   }
 
-  const tripodform = document.getElementById('tripodform');
-  const tripodinput = document.getElementById('tripod');  
-  const tripodvalue = document.getElementById('tripodvalue');
-
   tripodvalue.value = tripodinput.value;
   if(tripodvalue.value > 0 ){
     tripodform.classList.remove('active');
@@ -544,10 +565,6 @@ validateinputs.addEventListener('click', () => {
   else{
     tripodform.classList.add('active');
   }
-
-  const fullframeform = document.getElementById('fullframeform');
-  const fullframeinput = document.getElementById('fullframe');  
-  const fullframevalue = document.getElementById('fullframevalue');
 
   fullframevalue.value = fullframeinput.value;
   if(fullframevalue.value > 0 ){
@@ -557,10 +574,6 @@ validateinputs.addEventListener('click', () => {
     fullframeform.classList.add('active');
   }
 
-  const cropdslrform = document.getElementById('cropdslrform');
-  const cropdslrinput = document.getElementById('cropdslr');  
-  const cropdslrvalue = document.getElementById('cropdslrvalue');
-
   cropdslrvalue.value = cropdslrinput.value;
   if(cropdslrvalue.value > 0 ){
     cropdslrform.classList.remove('active');
@@ -568,10 +581,6 @@ validateinputs.addEventListener('click', () => {
   else{
     cropdslrform.classList.add('active');
   }
-
-  const wideangleform = document.getElementById('wideangleform');
-  const wideangleinput = document.getElementById('wideangle');  
-  const wideanglevalue = document.getElementById('wideanglevalue');
 
   wideanglevalue.value = wideangleinput.value;
   if(wideanglevalue.value > 0 ){
@@ -581,10 +590,6 @@ validateinputs.addEventListener('click', () => {
     wideangleform.classList.add('active');
   }
 
-  const normalform = document.getElementById('normalform');
-  const normalinput = document.getElementById('normal');  
-  const normalvalue = document.getElementById('normalvalue');
-
   normalvalue.value = normalinput.value;
   if(normalvalue.value > 0 ){
     normalform.classList.remove('active');
@@ -592,10 +597,6 @@ validateinputs.addEventListener('click', () => {
   else{
     normalform.classList.add('active');
   }
-
-  const othersformprice = document.getElementById('othersformprice');
-  const othersinput = document.getElementById('others');  
-  const othersvalue = document.getElementById('othersvalue');
 
   othersvalue.value = othersinput.value;
   if(othersvalue.value > 0 ){
@@ -628,22 +629,40 @@ const picker = new easepick.create({
   },
 });
 
+// Values to create property
+let _mediaArray = [];
+let _lightObj ={};
+let _lightshapersObj = {};
+let _camerastandObj = {};
+let _cameraObj = {};
+let _lensObj = {};
+let _othersObj = {};
+let _price;
+let _from;
+let _to;
+
 // Review your listing
 const reviewfieldsbtn = document.getElementById('reviewfields');
-reviewfieldsbtn.addEventListener('click', () => {
-  const titlereview = document.getElementById('titlereview');
-  const descriptionreview = document.getElementById('descriptionreview');
-  const addressreview = document.getElementById('addressreview');
-  const tagsreview = document.getElementById('tagsreview');
-  const equipmentreview = document.getElementById('equipmentreview');
-  const dealsreview = document.getElementById('dealsreview');
-  const dealdaysvalue = document.getElementById('dealdaysvalue');
-  const dealpricevalue = document.getElementById('dealpricevalue');
-  const availabilityreview = document.getElementById('availabilityreview');
-  const pricereview = document.getElementById('pricereview');
-  const pricevalue = document.getElementById('pricevalue');
-  const datepicker = document.getElementById('datepicker');
+const titlereview = document.getElementById('titlereview');
+const descriptionreview = document.getElementById('descriptionreview');
+const addressreview = document.getElementById('addressreview');
+const tagsreview = document.getElementById('tagsreview');
+const equipmentreview = document.getElementById('equipmentreview');
+const dealsreview = document.getElementById('dealsreview');
+const dealdaysvalue = document.getElementById('dealdaysvalue');
+const dealpricevalue = document.getElementById('dealpricevalue');
+const availabilityreview = document.getElementById('availabilityreview');
+const pricereview = document.getElementById('pricereview');
+const pricevalue = document.getElementById('pricevalue');
+const datepicker = document.getElementById('datepicker');
 
+// Equipment Description
+const cellingflashdesc = document.getElementById('cellingflashdesc');
+const floorflashdesc = document.getElementById('floorflashdesc');
+
+// Review info and setting values to create a property
+reviewfieldsbtn.addEventListener('click', () => {
+ 
   titlereview.value = propertytitle.value;
   descriptionreview.value = propertydescription.value;
   addressreview.value = street.value+' '+
@@ -668,26 +687,70 @@ reviewfieldsbtn.addEventListener('click', () => {
   dealsreview.value = `$ ${dealpricevalue.value} for ${dealdaysvalue.value} days`;
   availabilityreview.value = datepicker.value;
   pricereview.value = `$ ${pricevalue.value} per day`;
+
+  _from = datepicker.value;
+  _price = pricevalue.value;
+  _to = datepicker.value;
+
+  _lightObj = {
+    enablecellingflash: cellingflashvalue.value>0?true:false,
+    cellingflash:       cellingflashvalue.value,
+    cellingflashdesc:   cellingflashdesc.value,
+    enablefloorflash:   floorflashvalue.value>0?true:false,
+    floorflash:         floorflashvalue.value,
+    floorflashdesc:     floorflashdesc.value
+  };
 });
 
-// Test create a property
-let _mediaArray = [];
-let _lightObj = {};
-let _lightshapersObj = {};
-let _camerastandObj = {};
-let _cameraObj = {};
-let _lensObj = {};
-let _othersObj = {};
-let _price;
-let _from;
-let _to;
-
+// Create a property function
 let propertyInfo;
 const createPropertybtn = document.getElementById("createPropertybtn");
 createPropertybtn.addEventListener("click", async function (event) {
   console.log("button");
   event.preventDefault();
-  //let _media = [];
+  // Validate values
+  console.log(_indoor)
+  console.log(_outdoor)
+  console.log(_studio)
+  console.log(_house)
+  console.log(_beach)
+  console.log(_others)
+  console.log(street.value)
+  console.log(flatroom.value)
+  console.log(city.value)
+  console.log(state.value)
+  console.log(postalcode.value)
+  console.log(country.value)
+  console.log(propertytitle.value)
+  console.log(propertydescription.value)
+  console.log(_foodphotography)
+  console.log(_commercial)
+  console.log(_fashion)
+  console.log(_portrait)
+  console.log(_lifestyle)
+  console.log(_newborn)
+  console.log(_wedding)
+  console.log(_mediaArray)
+  console.log(_lightObj)
+  console.log(_lightshapersObj)
+  console.log(_camerastandObj)
+  console.log(_cameraObj)
+  console.log(_lensObj)
+  console.log(_othersObj)
+  console.log(_wifi)
+  console.log(_elevator)
+  console.log(_washroom)
+  console.log(_kitchen)
+  console.log(_airconditioner)
+  console.log(_parking)
+  console.log(_natural)
+  console.log(_price)
+  console.log(_from)
+  console.log(_to)
+  console.log(dealdaysvalue.value)
+  console.log(dealpricevalue.value)
+  console.log(dealpricevalue.value>0?true:false)
+
   propertyInfo = await createProperty('4BTWTvRfqDEQ7vXdrIxA', //uid
                                     _indoor, // indoor
                                     _outdoor, // outdoor
@@ -703,39 +766,39 @@ createPropertybtn.addEventListener("click", async function (event) {
                                     country.value,
                                     propertytitle.value,
                                     propertydescription.value,
-                                    true, // foodphotography
-                                    true, // commercial
-                                    true, // fashion
-                                    true, // portrait
-                                    true, // lifestyle
-                                    true, // newborn
-                                    true, // wedding
+                                    _foodphotography, // foodphotography
+                                    _commercial, // commercial
+                                    _fashion, // fashion
+                                    _portrait, // portrait
+                                    _lifestyle, // lifestyle
+                                    _newborn, // newborn
+                                    _wedding, // wedding
                                     _mediaArray, // Media Array 5 images
                                     _lightObj, // Light Object: ceilingflash, floorflash
-                                    _lightshapersObj, 
+                                    _lightshapersObj, // Light Shapers Obj
                                     _camerastandObj, // Camera Stand Object: tripod
                                     _cameraObj, // Camera Object: fullframe, cropdslr
                                     _lensObj, // Lens Object: wideangle, normal
                                     _othersObj, // Other Object: 
-                                    true, // wifi Amenities
-                                    true, // elevator Amenities
-                                    true, // washroom Amenities
-                                    true, // kitchen Amenities
-                                    true, // airconditioner Amenities
-                                    true, // parking Amenities
-                                    true, // naturallight Amenities
+                                    _wifi, // wifi Amenities
+                                    _elevator, // elevator Amenities
+                                    _washroom, // washroom Amenities
+                                    _kitchen, // kitchen Amenities
+                                    _airconditioner, // airconditioner Amenities
+                                    _parking, // parking Amenities
+                                    _natural, // naturallight Amenities
                                     _price, // price property price
                                     _from, // availability from 
                                     _to, // availability to
-                                    3, // dealdays Deals
-                                    150, // dealprice Deals
-                                    true // enabledeal Deals
+                                    dealdaysvalue.value, // dealdays Deals
+                                    dealpricevalue.value, // dealprice Deals
+                                    dealpricevalue.value>0?true:false // enabledeal Deals
                                     );
 
     console.log(propertyInfo);
 
     // Post Image Collection with propertyId
-    await SaveURLtoFirestore(urlString,propertyInfo);
+    //await SaveURLtoFirestore(urlString,propertyInfo);
 })
 
 // const submitbutton = document.getElementById("save");
