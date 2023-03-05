@@ -10,6 +10,7 @@ module.exports = {
     listmyspace: "./scripts/list-my-space.js",
     loginModal: "./query/auth.js",
     phoneVer: "./query/phone-verification.js",
+    showcase: "./scripts/showcase.js",
   },
   output: {
     path: __dirname + "/dist",
@@ -86,9 +87,14 @@ module.exports = {
       filename: "phone-auth.html",
       chunks: ["phoneVer"],
     }),
+    new HtmlWebpackPlugin({
+      template: "./pages/showcase.html",
+      filename: "showcase.html",
+      chunks: ["showcase"],
+    }),
   ],
   devServer: {
-    port: 3000,
+    port: 5000,
   },
   devtool: "source-map",
 };
