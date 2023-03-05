@@ -1,5 +1,9 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+
 
 module.exports = {
   entry: {
@@ -13,10 +17,10 @@ module.exports = {
     showcase: "./scripts/showcase.js",
   },
   output: {
-    path: __dirname + "/dist",
+    path: path.resolve(__dirname, 'dist'),
     filename: "[name].bundle.js",
     publicPath: "/",
-    assetModuleFilename: "assets/img/[name][ext]",
+    // assetModuleFilename: "assets/img/[name][ext]",
   },
   module: {
     rules: [
@@ -36,13 +40,18 @@ module.exports = {
           "css-loader",
         ],
       },
-      {
-        test: /\.(png|jpeg|jpg|gif|svg|eot|ttf|woff)$/,
-        type: "asset/resource",
-      },
+      // {
+      //   test: /\.(png|jpeg|jpg|gif|svg|eot|ttf|woff)$/,
+      //   type: "asset/resource",
+      // },
     ],
   },
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'assets', to: 'assets' }
+      ]
+    }),
     // ADD CSS FILES AS SUCH
     new MiniCssExtractPlugin(),
 
