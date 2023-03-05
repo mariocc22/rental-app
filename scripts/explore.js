@@ -25,6 +25,15 @@ if (activity) {
     const listSection = document.getElementById("explore-section");
     listSection.classList.remove('hide');
 
+
+    // show headings of the list places page
+    const listHeadings = document.getElementsByClassName("page-title-explore-spaces");
+    listHeadings[0].classList.remove('hide');
+    const listTagLine = document.getElementsByClassName("explore-spaces-tagline");
+    listTagLine[0].classList.remove('hide');
+    const menuHeadings = document.getElementsByClassName("page-title-activity-menu");
+    menuHeadings[0].classList.add('hide');
+
     // filter list based on musician activity
     updatePlaces().then(list => {
         // update it now
@@ -54,3 +63,20 @@ moreFilterElem.addEventListener("click", () => {
 })
 
 console.log(filterPlaces)
+
+
+
+// Search and filter options
+
+const typeOfPlaces = document.querySelectorAll('.types-of-spaces input')
+
+
+typeOfPlaces.forEach(element => {
+
+    element.addEventListener("click", (e) => {
+        e.preventDefault()
+        console.log(e)
+
+    })
+
+})

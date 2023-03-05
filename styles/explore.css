@@ -76,6 +76,91 @@ main .main-menu-activity li {
     display: none;
 }
 
+/* Explore Page Styles */
+
+/* Headings */
+.page-title-explore-spaces {
+    font-size: var(--h1-font-size);
+    color: var(--explore-text-color);
+}
+
+.explore-spaces-tagline {
+    font-size: var(--tagline-font-size);
+}
+
+/* Filter Styles */
+
+/* search field */
+
+
+/* types of spaces */
+
+.types-of-spaces input {
+   display: none;
+}
+
+.types-of-spaces {
+    margin-right: 1.5rem;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.types-of-spaces label {
+    display: inline-block;
+    text-align: center;
+    padding: 1rem;
+    text-decoration: none;
+}
+.types-of-spaces label span {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: .5rem;
+}
+
+.types-of-spaces i {
+    font-size: var(--icon-size);
+}
+
+.types-of-spaces-title {
+    font-weight: 700;
+    font-size:  var(--tagline-font-size);
+    margin-top: 1rem;
+}
+
+ .explore-search-field {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--text-color);
+    border-radius: var(--img-border-radius);
+    padding: 1rem;
+    height: var(--search-input-field-height);
+}
+
+.explore-search-field input {
+    background-color: var(--body-background-color);
+    border: none;
+    flex-grow: 1;
+    font-size: 1rem;
+    color: var(--text-color)
+}
+
+.explore-search-field input::-webkit-search-cancel-button {
+    display: none;
+  }
+
+.explore-search-field input:focus {
+    outline: unset;
+    border: unset;
+}
+
+.explore-search-field i {
+    font-size: var(--tagline-font-size);
+}
+
+
 .explore-section h1 {
     text-align: center;
 }

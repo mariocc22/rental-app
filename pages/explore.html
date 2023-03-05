@@ -51,24 +51,83 @@
                     </a>
                 </li>
                 <li><a href="./explore.html?activity=artist">
-                    <h2>
-                        Performance
-                    </h2>
-                    <img src="https://images.unsplash.com/photo-1523895834873-529ef3a565a0" alt="">
+                        <h2>
+                            Performance
+                        </h2>
+                        <img src="https://images.unsplash.com/photo-1523895834873-529ef3a565a0" alt="">
 
-                </a></li>
+                    </a></li>
             </ul>
         </div>
 
         <!-- Explore List -->
         <section class="explore-section hide" id="explore-section">
-            <h1>
-                Explore spaces for your next creative project
-            </h1>
             <!-- partial match content and display -->
-            <div class="search-field">
-                <label for="search-places">Search</label>
-                <input type="search" name="search-places" id="search-places">
+            <div>
+                <!-- search box -->
+                <div class="explore-search-field">
+                    <label for="search-places" class="visually-hidden">Search</label>
+                    <input type="search" placeholder="Photoshoot" name="search-places" id="search-places">
+                    <i class="fa-solid fa-filter"></i>
+                </div>
+
+                <!-- Types of spaces filter -->
+                <!-- Radio Options -->
+
+                
+                <div class="types-of-spaces-title">
+                    Types of Spaces
+                </div>
+                <div class="types-of-spaces">
+                    <input type="radio" name="spaceType" id="indoor" value="indoor" />
+                    <label for="indoor">
+                        <span>
+                            <i class="fa-solid fa-person-shelter"></i>
+                            Indoor
+                        </span>
+                    </label>
+
+                    <input type="radio" name="spaceType" id="outdoor" value="outdoor" />
+                    <label for="outdoor">
+                        <span>
+                            <i class="fa-solid fa-cloud-sun"></i>
+                            Outdoor
+                        </span>
+                    </label>
+
+                    <input type="radio" name="spaceType" id="studio" value="studio" />
+                    <label for="studio">
+                        <span>
+                            <i class="fa-solid fa-microphone-lines"></i>
+                            Studio
+                        </span>
+                    </label>
+
+                    <input type="radio" name="spaceType" id="house" value="house" />
+                    <label for="house">
+                        <span>
+                            <i class="fa-solid fa-house"></i>
+                            House
+                        </span>
+                    </label>
+
+                    <input type="radio" name="spaceType" id="beachHouse" value="beachHouse" />
+                    <label for="beachHouse">
+                        <span>
+                            <i class="fa-solid fa-umbrella-beach"></i>
+                            Beach House
+                        </span>
+                    </label>
+
+                    <input type="radio" name="spaceType" id="cottage" value="cottage" />
+                    <label for="cottage">
+                        <span>
+                            <i class="fa-solid fa-tower-observation"></i>
+                            Cottage
+                        </span>
+                    </label>
+                </div>
+
             </div>
             <!-- additional filters -->
             <div class="filters">

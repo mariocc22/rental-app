@@ -2,7 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Fira+Sans:wght@400;700&display=swap');
 
 /* Import fontawesome styles */
-@import url('../node_modules/font-awesome/css/font-awesome.min.css');
+
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css");
 
 /* Variables */
 :root {
@@ -14,6 +16,10 @@
     --h2-font-size: 2.125rem;
     --img-border-radius: .5rem;
     --explore-text-color: #a98aff;
+    --tagline-font-size: 1.25rem;
+    --icon-size: 3rem;
+    --icon-text-size: 1rem;
+    --search-input-field-height: 4rem;
 }
 
 
@@ -87,3 +93,13 @@ main {
     padding: var(--top-elements-padding);
     min-height: calc(100vh - var(--header-height));
 }
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
