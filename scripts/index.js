@@ -1,13 +1,8 @@
 // include your styles like this
 
-import '/styles/index.css'
+import "/styles/index.css";
+console.log("hello from index.js");
 
-console.log('mario')
+import { db } from "../modules/firebase.js";
 
-console.log('Stage Initialised');
-
-console.log('hello from index.js')
-
-import { db } from '../modules/firebase.js'
-
-console.log(db)
+console.log(db);

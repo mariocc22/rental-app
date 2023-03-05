@@ -14,6 +14,7 @@ module.exports = {
     listmyspace: "./scripts/list-my-space.js",
     loginModal: "./query/auth.js",
     phoneVer: "./query/phone-verification.js",
+    showcase: "./scripts/showcase.js",
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -46,6 +47,11 @@ module.exports = {
     ],
   },
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'assets', to: 'assets' }
+      ]
+    }),
     // ADD CSS FILES AS SUCH
     new MiniCssExtractPlugin(),
 
@@ -90,14 +96,14 @@ module.exports = {
       filename: "phone-auth.html",
       chunks: ["phoneVer"],
     }),
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: 'assets', to: 'assets' }
-      ]
-    })
+    new HtmlWebpackPlugin({
+      template: "./pages/showcase.html",
+      filename: "showcase.html",
+      chunks: ["showcase"],
+    }),
   ],
   devServer: {
-    port: 3000,
+    port: 5000,
   },
   devtool: "source-map",
 };
