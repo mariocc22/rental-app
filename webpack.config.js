@@ -15,6 +15,7 @@ module.exports = {
     loginModal: "./query/auth.js",
     phoneVer: "./query/phone-verification.js",
     showcase: "./scripts/showcase.js",
+    exploreSpaces: './scripts/explore-spaces.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -75,6 +76,11 @@ module.exports = {
       template: "./pages/explore.html",
       filename: "explore.html",
       chunks: ["explore"],
+    }),
+    new HtmlWebpackPlugin({
+      template: "./pages/explore-spaces.html",
+      filename: "explore-spaces.html",
+      chunks: ["exploreSpaces"],
     }),
     new HtmlWebpackPlugin({
       template: "./pages/property.html",

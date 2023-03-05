@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage | Explore Spaces</title>
+</head>
+
+<body>
+    <header>
+        <nav class="index-nav">
+            <ul>
+                <li><i class="fa fa-caret-left"></i></li>
+                <li><i class="fa fa-bars"></i></li>
+            </ul>
+        </nav>
+        <nav class="index-nav additional-filters-off hide">
+            <ul>
+                <li><i class="fa fa-xmark"></i></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- additional ilters -->
+    <div class="additional-filters hide">
+
+        <div class="additional-title">
+            More Filters
+        </div>
+
+        <div class="ad-fi-input-wrapper">
+            <div class="price-range-title">
+                Price Range
+            </div>
+            <div class="price-range-input">
+                <p>CAD 50</p>
+                <input type="range" id="price" step="50" value="50" min="50" max="2000"
+                    oninput="this.previousElementSibling.innerText = `CAD ${this.value}`">
+            </div>
+        </div>
+
+        <div class="ad-fi-input-wrapper">
+            <div class="distance-range-title">
+                Distance
+            </div>
+            <div class="distance-range-input">
+                <p>1 mi</p>
+                <input type="range" id="distance" step="1" value="1" min="1" max="200"
+                    oninput="this.previousElementSibling.innerText = `${this.value} mi`">
+            </div>
+        </div>
+
+
+        <div class="ad-fi-input-wrapper props-wrapper">
+            <div class="props-title">
+                Equipment and Props
+            </div>
+            <div class="props-input">
+                <ul>
+                    <li>
+                        <input type="checkbox" id="camera" name="props" value="camera">
+                        <label for="camera">
+                            <span>
+                                <i class="fa fa-camera"></i>
+                                Camera
+                            </span>
+                        </label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" id="lens" name="props" value="lens">
+                        <label for="lens">
+                            <span>
+                                <i class="fa fa-camera"></i>
+                                Lens
+                            </span>
+                        </label>
+                    </li>
+
+
+                    <li>
+                        <input type="checkbox" id="flashlight" name="props" value="flashlight">
+                        <label for="flashlight">
+                            <span>
+                                <i class="fa fa-camera"></i>
+                                Flashlight
+                            </span>
+                        </label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" id="tripods" name="props" value="tripods">
+                        <label for="tripods">
+                            <span>
+                                <i class="fa fa-camera"></i>
+                                Tripods
+                            </span>
+                        </label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" id="backdrop" name="props" value="backdrop">
+                        <label for="backdrop">
+                            <span>
+                                <i class="fa fa-camera"></i>
+                                Backdrop
+                            </span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="ad-fi-input-wrapper amenities-wrapper">
+            <div class="amenities-title">
+                Amenities & Specification
+            </div>
+            <div class="amenities-input">
+                <ul>
+                    <li>
+                        <input type="checkbox" id="elevator" name="props" value="elevator">
+                        <label for="elevator">
+                            <span>
+                                <i class="fa fa-camera"></i>
+                                Elevator
+                            </span>
+                        </label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" id="Parking" name="props" value="Parking">
+                        <label for="Parking">
+                            <span>
+                                <i class="fa fa-camera"></i>
+                                Parking
+                            </span>
+                        </label>
+                    </li>
+
+
+                    <li>
+                        <input type="checkbox" id="WiFi" name="props" value="WiFi">
+                        <label for="WiFi">
+                            <span>
+                                <i class="fa fa-camera"></i>
+                                WiFi
+                            </span>
+                        </label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" id="AirConditioner" name="props" value="AirConditioner">
+                        <label for="AirConditioner">
+                            <span>
+                                <i class="fa fa-camera"></i>
+                                Air Conditioner
+                            </span>
+                        </label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" id="heater" name="props" value="heater">
+                        <label for="heater">
+                            <span>
+                                <i class="fa fa-camera"></i>
+                                Heater
+                            </span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="ad-fi-input-btns">
+            <div class="btn-wrapper">
+                <input type="button" value="Apply Filters">
+                <input type="button" value="Clear All Filters">
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- main content of the page -->
+    <main class="explore-space-main">
+        <!-- page title -->
+        <div class="page-title">
+            <h1>
+                <span class="page-title-explore-spaces">
+                    Explore Spaces
+                </span>
+            </h1>
+            <div class="taglines">
+                <span class="explore-spaces-tagline">
+                    for your next creative project
+                </span>
+            </div>
+        </div>
+
+        <!-- Explore List -->
+        <section class="explore-section" id="explore-section">
+            <!-- partial match content and display -->
+            <div>
+                <!-- search box -->
+                <div class="explore-search-field">
+                    <label for="search-places" class="visually-hidden">Search</label>
+                    <input type="search" placeholder="Photoshoot" name="search-places" id="search-places">
+                    <i id="additional-filters-on" class="fa-solid fa-filter"></i>
+                </div>
+
+                <!-- Types of spaces filter -->
+                <!-- Radio Options -->
+
+
+                <div class="types-of-spaces-title">
+                    Types of Spaces
+                </div>
+                <div class="types-of-spaces">
+                    <input type="radio" name="spaceType" id="indoor" value="indoor" />
+                    <label for="indoor">
+                        <span>
+                            <i class="fa-solid fa-person-shelter"></i>
+                            Indoor
+                        </span>
+                    </label>
+
+                    <input type="radio" name="spaceType" id="outdoor" value="outdoor" />
+                    <label for="outdoor">
+                        <span>
+                            <i class="fa-solid fa-cloud-sun"></i>
+                            Outdoor
+                        </span>
+                    </label>
+
+                    <input type="radio" name="spaceType" id="studio" value="studio" />
+                    <label for="studio">
+                        <span>
+                            <i class="fa-solid fa-microphone-lines"></i>
+                            Studio
+                        </span>
+                    </label>
+
+                    <input type="radio" name="spaceType" id="house" value="house" />
+                    <label for="house">
+                        <span>
+                            <i class="fa-solid fa-house"></i>
+                            House
+                        </span>
+                    </label>
+
+                    <input type="radio" name="spaceType" id="beachHouse" value="beachHouse" />
+                    <label for="beachHouse">
+                        <span>
+                            <i class="fa-solid fa-umbrella-beach"></i>
+                            Beach House
+                        </span>
+                    </label>
+
+                    <input type="radio" name="spaceType" id="cottage" value="cottage" />
+                    <label for="cottage">
+                        <span>
+                            <i class="fa-solid fa-tower-observation"></i>
+                            Cottage
+                        </span>
+                    </label>
+                </div>
+
+            </div>
+            <!-- Cards for Places -->
+            <div class="places-cards-wrapper">
+                <h2>Suggested Spaces</h2>
+                <ul class="suggested-spaces-list">
+                    <li>
+                        <section>
+                            <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
+                                <img src="https://picsum.photos/1200/500?random=1" alt="">
+                            </a>
+                            <div class="space-details">
+                                <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
+                                    <div class="space-name">Space Title 1</div>
+                                </a>
+                                <p class="space-rating">3.5</p>
+                            </div>
+                            <div class="space-location">
+                                Metrotown, Burnaby
+                            </div>
+                        </section>
+                    </li>
+                    <li>
+                        <section>
+                            <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
+                                <img src="https://picsum.photos/1200/500?random=2" alt="">
+                            </a>
+                            <div class="space-details">
+                                <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
+                                    <div class="space-name">Space Title 1</div>
+                                </a>
+                                <p class="space-rating">3.5</p>
+                            </div>
+                            <div class="space-location">
+                                Metrotown, Burnaby
+                            </div>
+                        </section>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

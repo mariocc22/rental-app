@@ -44,6 +44,7 @@ h5 {
 h1 {
     font-size: var(--h1-font-size);
 }
+
 h2 {
     font-size: var(--h2-font-size);
 }
@@ -102,4 +103,8 @@ main {
     position: absolute;
     white-space: nowrap;
     width: 1px;
-  }
+}
+
+.hide {
+    display: none !important;
+}
