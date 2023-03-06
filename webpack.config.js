@@ -1,9 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-
-
+const path = require("path");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -15,10 +13,11 @@ module.exports = {
     loginModal: "./query/auth.js",
     phoneVer: "./query/phone-verification.js",
     showcase: "./scripts/showcase.js",
-    exploreSpaces: './scripts/explore-spaces.js'
+    exploreSpaces: "./scripts/explore-spaces.js",
+    profile: "./scripts/profile.js",
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, "dist"),
     filename: "[name].bundle.js",
     publicPath: "/",
     // assetModuleFilename: "assets/img/[name][ext]",
@@ -49,9 +48,7 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin({
-      patterns: [
-        { from: 'assets', to: 'assets' }
-      ]
+      patterns: [{ from: "assets", to: "assets" }],
     }),
     // ADD CSS FILES AS SUCH
     new MiniCssExtractPlugin(),
@@ -106,6 +103,11 @@ module.exports = {
       template: "./pages/showcase.html",
       filename: "showcase.html",
       chunks: ["showcase"],
+    }),
+    new HtmlWebpackPlugin({
+      template: "./pages/profile.html",
+      filename: "profile.html",
+      chunks: ["profile"],
     }),
   ],
   devServer: {
