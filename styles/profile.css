@@ -1,0 +1,173 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Fira+Sans:wght@400;700&display=swap");
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  font-family: "Fira Sans", sans-serif;
+}
+
+/* Profile title */
+.profile-wrapper {
+  background-color: black;
+  padding: 1rem 3%;
+  min-height: 100vh;
+  display: grid;
+  gap: 1rem;
+}
+.profile-wrapper h1 {
+  font-size: 1.5rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* User Card */
+.user-card {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+}
+
+.user-picture {
+  height: 7rem;
+  width: 7rem;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.user-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-card-info {
+  color: white;
+}
+.user-card-info :nth-child(2) {
+  color: #ea618c;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* User Links */
+.user-links {
+  display: flex;
+  align-items: flex-start;
+  flex-flow: column nowrap;
+  gap: 2.5rem;
+  padding: 2rem 1.25rem;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.links-list {
+  color: white;
+  font-size: 1.25rem;
+}
+
+.links-list ul {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.5rem;
+}
+
+.links-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.links-list i {
+  font-size: 2rem;
+}
+
+.logout {
+  font-family: "Anton", sans-serif;
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+
+/* Personal Information page */
+.page2-wrapper {
+  color: white;
+  background-color: black;
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 2rem;
+  padding: 1rem 5%;
+}
+
+.page2-wrapper h1 {
+  font-size: 1.5rem;
+}
+
+.fields-wrapper {
+  display: grid;
+  gap: 1.5rem;
+}
+.field-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.field-text {
+  line-height: 1.5;
+}
+
+.field-text :nth-child(1) {
+  font-size: 1.25rem;
+}
+.field-text :nth-child(2) {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.field-edit a {
+  display: block;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid white;
+  font-size: 0.8rem;
+}
+
+button.update {
+  font-family: "Fira Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #845cf5;
+  color: white;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  margin-top: auto;
+}
+
+button.update a {
+  display: block;
+  padding: 0.75rem;
+}
