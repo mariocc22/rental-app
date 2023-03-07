@@ -1,67 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- Personal Kit Font Awesome -->
-        <script
-            src="https://kit.fontawesome.com/1e15723684.js"
-            crossorigin="anonymous"
-        ></script>
-        <!-- <script type="module" src="../query/auth.js" defer></script> -->
-        <title>Login & Sign Up Modal</title>
-    </head>
-    <body>
-        <!-- ===== MOBILE VERSION ONLY ====== AUTHENTICATION IN FIREBASE -->
-        <div class="wrp">
-            <main>
-                <div class="modal-signup-login modal">
-                    <button class="modal-btn hamburger">
-                        <a href="./index.html">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </a>
-                    </button>
-                    <h3>log in</h3>
-                    <form id="login-form">
-                        <div class="input-field">
-                            <label class="input-label" for="login-email"
-                                >E-Mail Address</label
-                            >
-                            <input type="email" id="login-email" required />
-                        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    '
+    <title>Login & Sign Up Modal</title>
+  </head>
+  <body>
+    <!-- ===== MOBILE VERSION ONLY ====== AUTHENTICATION IN FIREBASE -->
+    <div class="wrp">
+      <main>
+        <div class="modal-signup-login modal">
+          <button class="modal-btn hamburger">
+            <a href="./index.html">
+              <span></span>
+              <span></span>
+              <span></span>
+            </a>
+          </button>
+          <h3>log in</h3>
+          <form id="login-form">
+            <div class="input-field">
+              <label class="input-label" for="login-email"
+                >E-Mail Address</label
+              >
+              <input type="email" id="login-email" required />
+            </div>
 
-                        <div class="input-field">
-                            <label class="input-label" for="login-password"
-                                >Password</label
-                            >
-                            <input
-                                type="password"
-                                id="login-password"
-                                required
-                            />
-                        </div>
-                        <button class="btn-login">Log in</button>
-                    </form>
+            <div class="input-field">
+              <label class="input-label" for="login-password">Password</label>
+              <input type="password" id="login-password" required />
+            </div>
+            <button class="btn-login">Log in</button>
+            <button class="btn-logout hidden">Log Out</button>
+          </form>
 
-                    <div class="social-auth">
-                        <div class="social-text">
-                            <p>You haven't signed up yet?</p>
-                            <p>Sign up with Gmail or Facebook</p>
-                        </div>
-                        <button class="email btn-social">
-                            <span class="icon-wrp"></span>
-                            <span class="txt-wrp">Email and Password</span>
-                        </button>
-                        <button class="google btn-social">
-                            <span class="icon-wrp"></span>
-                            <span class="txt-wrp">Sign in with Google</span>
-                        </button>
-                    </div>
-                </div>
-                <!-- <div class="modal-phone-verify modal">
+          <div class="social-auth">
+            <div class="social-text">
+              <p>You haven't signed up yet?</p>
+              <p>Sign up with Gmail or Facebook</p>
+            </div>
+            <button class="email btn-social">
+              <span class="icon-wrp"></span>
+              <span class="txt-wrp">Email and Password</span>
+            </button>
+            <button class="google btn-social">
+              <span class="icon-wrp"></span>
+              <span class="txt-wrp">Sign in with Google</span>
+            </button>
+          </div>
+        </div>
+        <!-- <div class="modal-phone-verify modal">
                     <button class="modal-btn hamburger phone-close">
                         <span></span>
                         <span></span>
@@ -136,7 +133,7 @@
                         </button>
                     </div>
                 </section> -->
-            </main>
-        </div>
-    </body>
+      </main>
+    </div>
+  </body>
 </html>
