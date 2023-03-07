@@ -19,17 +19,11 @@ import { addUser } from "../query/neo4jQueries.js";
 // DOM HTML elements
 
 // ===== BUTTONS =====
-const menu_btn = document.querySelector(".hamburger");
-const menu_btn_auth = document.querySelector(".modal-btn");
-const modal_profile_btn = document.querySelector(".arrow-btn");
 const logSignIn_btn = document.querySelector("#btn-auth");
-const btn_logout = document.querySelector(".logout-wrp");
-const btn_login = document.querySelector(".login-wrp");
+const btn_login = document.querySelector(".btn-login");
+const btn_logout = document.querySelector(".btn-logout");
 const btn_google = document.querySelector(".google");
-const btnLogOut = document.getElementById("btn-auth-logout");
-const btn_fb = document.querySelector(".fb");
 const btn_email = document.querySelector(".email");
-const edit_profile_btn = document.querySelector(".edit-profile-link");
 
 // ==== SCREENS & VARIABLES ====
 const modal_profile = document.querySelector(".modal-profile");
@@ -76,6 +70,20 @@ loginForm.addEventListener("submit", (e) => {
 });
 
 //  ================= GET USER STATUS CHANGES ================
+const userState = onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const uid = user.uid;
+    console.log("active user: ", uid);
+    btn_logout.classList.toggle("hidden");
+    btn_login.classList.toggle("hidden");
+    // ...
+  } else {
+    // User is signed out
+    console.log("No user logged!!");
+    // ...
+  }
+});
+
 // onAuthStateChanged(auth, (user) => {
 //   // Any changes to the user status if there's a user logged in
 //   if (user) {
@@ -97,28 +105,20 @@ loginForm.addEventListener("submit", (e) => {
 // });
 
 // ================ SIGN OUT ===============
-// if the user clicks the Log out button:
-// btnLogOut.addEventListener("click", (e) => {
-//     signOut(auth)
-//         .then(() => {
-//             // Sign-out successful.
-//             console.log("User Logged out!");
-
-//             // Changes in the pages (buttons, names, etc.)
-//             btn_login.classList.remove("hidden");
-//             btn_logout.classList.add("hidden");
-//             modal_profile.classList.toggle("is-active");
-//             menu_btn.classList.toggle("is-active");
-//             menu_btn.disabled = false;
-//             user_name.innerHTML = "dear visitor";
-
-//             // Hide Edit Profile link
-//             edit_profile_btn.classList.add("hidden");
-//         })
-//         .catch((error) => {
-//             console.log(error.message);
-//         });
-// });
+// IF THE USER CLICKS THE LOG OUT BUTTON
+btn_logout.addEventListener("click", (e) => {
+  e.preventDefault();
+  signOut(auth)
+    .then(() => {
+      // Sign-out successful.
+      console.log("User Logged out!");
+      loginForm.reset();
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+});
 
 //  ============ Sign In / Sign UP EMAIL ==============
 btn_email.addEventListener("click", () => {
@@ -131,13 +131,6 @@ btn_email.addEventListener("click", () => {
       // Signed in
       const user = userCredential.user;
       console.log("User Created! ", user.email);
-
-      // Hide the modal of Sign In
-      // modal_logSignIn.classList.remove("is-active");
-
-      // Show Edit Profile link
-      // edit_profile_btn.classList.remove("hidden");
-
       // Reset Login Form Values
       loginForm.reset();
     })
@@ -164,19 +157,13 @@ btn_google.addEventListener("click", () => {
       console.log("User logged in with Gmail!");
       console.log(user);
 
-      // Hide the modal of Sign In
-      // modal_logSignIn.classList.remove("is-active");
-
-      // Show Edit Profile link
-      // edit_profile_btn.classList.remove("hidden");
-      // Get the parameter from the previous page
-      const urlParams = new URLSearchParams(window.location.search);
-      const name = urlParams.get("name");
-      console.log(name);
-      // Reset Login Form Values
-      loginForm.reset();
+      // const urlParams = new URLSearchParams(window.location.search);
+      // const name = urlParams.get("name");
+      // console.log(name);
+      // // Reset Login Form Values
+      // loginForm.reset();
       // If the user is approved, it takes you to the previous screen to follow the process
-      window.location.href = `${name}.html`;
+      window.location.href = window.location.origin;
     })
     .catch((error) => {
       // Handle Errors here.
@@ -196,91 +183,4 @@ async function createUser(userId) {
   return "saved";
 }
 
-//  ============ Sign In / Sign UP FACEBOOK ==============
-// const providerFb = new FacebookAuthProvider();
-// btn_fb.addEventListener("click", () => {
-//     signInWithPopup(auth, providerFb)
-//         .then((result) => {
-//             // The signed-in user info.
-//             const user = result.user;
-
-//             // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-//             const credential =
-//                 FacebookAuthProvider.credentialFromResult(result);
-//             const accessToken = credential.accessToken;
-
-//             // IdP data available using getAdditionalUserInfo(result)
-//             // ...
-//             console.log("Hello: ", user);
-//         })
-//         .catch((error) => {
-//             // Handle Errors here.
-//             const errorCode = error.code;
-//             const errorMessage = error.message;
-//             // The email of the user's account used.
-//             const email = error.customData.email;
-//             // The AuthCredential type that was used.
-//             const credential = FacebookAuthProvider.credentialFromError(error);
-//             console.log(errorMessage);
-//             // ...
-//         });
-// });
-
-/////////////// PHONE VERIFICATION /////////////////////
-// ==== Verification Phone ====
-// Create the recaptcha code container
-// window.recaptchaVerifier = new RecaptchaVerifier(
-//     "recaptcha-container",
-//     {},
-//     auth
-// );
-// recaptchaVerifier.render().then((widgetId) => {
-//     window.recaptchaWidgetId = widgetId;
-// });
-
-// const phoneForm = document.getElementById("verification-form");
-
-// const btn_phone_login = document.getElementById("btn-phone");
-// const btn_send_code = document.getElementById("btn-code");
-
-// const phoneInput = phoneForm["phone-input"].value;
-// const user_phone = document.getElementById("user-phone-succesful");
-
-// ============= Phone verification functionality ==============
-// Here we send the SMS to the phone number specified
-// const sendVerificationCode = () => {
-//     const appVerifier = window.recaptchaVerifier;
-//     // If the message was successfully sent then print a message and proceed to log in with Phone with "btn_phone_login"
-//     signInWithPhoneNumber(auth, phoneInput, appVerifier).then(
-//         (confirmationResult) => {
-//             const sentCodeId = confirmationResult;
-//             console.log("Message sent!");
-//             phoneForm.reset();
-//             btn_phone_login.addEventListener("click", () =>
-//                 signInWithPhone(sentCodeId)
-//             );
-//         }
-//     );
-// };
-
-// Callback function from clicking the Log In button
-// const signInWithPhone = (sentCodeId) => {
-//     // The user type the code sent to his phone
-//     const codeInput = phoneForm["verified-code"].value;
-//     const code = codeInput;
-//     sentCodeId
-//         .confirm(code)
-//         .then((result) => {
-//             // if the code is correct then print something and display the user's phone
-//             const user = result.user;
-//             console.log(user);
-//             phoneForm.reset();
-//             user_phone.innerHTML = `${user.phoneNumber}`;
-//         })
-//         .catch((err) => {
-//             console.log(err.message);
-//         });
-// };
-
-// Event listener of requesting the number to send the SMS
-// btn_send_code.addEventListener("click", (e) => sendVerificationCode());
+export { userState };
