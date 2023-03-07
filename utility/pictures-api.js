@@ -17,6 +17,7 @@ import {
 
 // Initialize variables
 let files = [];
+let downloadURL;
 const reader = new FileReader();
 const namebox = document.getElementById("namebox");
 const extlab = document.getElementById("extlab");
@@ -25,6 +26,7 @@ const proglab = document.getElementById("upprogress");
 const SelBtn = document.getElementById("selbtn");
 const UpBtn = document.getElementById("upbtn");
 const DownBtn = document.getElementById("downbtn");
+let urlString = "";
 
 let input = document.createElement("input");
 input.type = "file";
@@ -71,55 +73,54 @@ async function UploadProcess() {
     contentType: ImgToUpload.type,
   };
   const storage = getStorage();
-  const storageRef = sRef(storage, "Images/");
+  const storageRef = sRef(storage, `IMAGES/${ImgName}`);
   const uploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
 
   uploadTask.on(
     "state_changed",
-    (snapshot) => {
-      // **********vThis is to see the upload progress
-      // let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      // proglab.innerHTML = "Upload " + progress + "%";
-    },
+    (snapshot) => {},
     (error) => {
       console.log(error.message);
       alert("error: image not uploaded! ");
     },
     () => {
-      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        SaveURLtoFirestore(downloadURL);
+      getDownloadURL(uploadTask.snapshot.ref).then((_downloadURL) => {
+        // SaveURLtoFirestore(_downloadURL);
         console.log("Image uploaded successfully!");
+        console.log(_downloadURL);
+        urlString = "" + _downloadURL;
       });
     }
   );
 }
 
 // ... Post to DB //
-async function SaveURLtoFirestore(url) {
-  // Here we can add the property ID, retrieving it from another module
-  let name = namebox.value;
-  // let ext = extlab.innerHTML;
-  // let ref = doc(db, "IMAGES");
+// async function SaveURLtoFirestore(url) {
+//   // Here we can add the property ID, retrieving it from another module
+//   let name = namebox.value;
+//   // let ext = extlab.innerHTML;
+//   // let ref = doc(db, "IMAGES");
 
-  await addDoc(collection(db, "IMAGES"), {
-    propertyid: "property ID",
-    imageurl: url,
-  });
-}
+//   await addDoc(collection(db, "IMAGES"), {
+//     propertyid: "property ID",
+//     imageurl: url,
+//   });
+// }
 
 // ... Get from DB //
-async function GetImagefromFirestore() {
-  let name = namebox.value;
-  let ref = doc(db, "ImageLinks/" + name);
+// async function GetImagefromFirestore() {
+//   let name = namebox.value;
+//   let ref = doc(db, "ImageLinks/" + name);
 
-  const docSnap = await getDoc(ref);
-  // myimg.src = docSnap.data().ImageURL;
-  if (docSnap.exists()) {
-    myimg.src = docSnap.data().imageurl;
-  }
-}
+//   const docSnap = await getDoc(ref);
+//   // myimg.src = docSnap.data().ImageURL;
+//   if (docSnap.exists()) {
+//     myimg.src = docSnap.data().imageurl;
+//   }
+// }
 
 // UpBtn.onclick = UploadProcess;
 // DownBtn.onclick = GetImagefromFirestore;
 
-export { input, UploadProcess, GetImagefromFirestore };
+// export { input, UploadProcess, GetImagefromFirestore, downloadURL};
+export { input, UploadProcess, urlString };

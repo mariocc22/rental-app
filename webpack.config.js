@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require("path");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -10,12 +12,15 @@ module.exports = {
     listmyspace: "./scripts/list-my-space.js",
     loginModal: "./query/auth.js",
     phoneVer: "./query/phone-verification.js",
+    showcase: "./scripts/showcase.js",
+    exploreSpaces: "./scripts/explore-spaces.js",
+    profile: "./scripts/profile.js",
   },
   output: {
-    path: __dirname + "/dist",
+    path: path.resolve(__dirname, "dist"),
     filename: "[name].bundle.js",
     publicPath: "/",
-    assetModuleFilename: "assets/img/[name][ext]",
+    // assetModuleFilename: "assets/img/[name][ext]",
   },
   module: {
     rules: [
@@ -35,13 +40,16 @@ module.exports = {
           "css-loader",
         ],
       },
-      {
-        test: /\.(png|jpeg|jpg|gif|svg|eot|ttf|woff)$/,
-        type: "asset/resource",
-      },
+      // {
+      //   test: /\.(png|jpeg|jpg|gif|svg|eot|ttf|woff)$/,
+      //   type: "asset/resource",
+      // },
     ],
   },
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [{ from: "assets", to: "assets" }],
+    }),
     // ADD CSS FILES AS SUCH
     new MiniCssExtractPlugin(),
 
@@ -67,6 +75,11 @@ module.exports = {
       chunks: ["explore"],
     }),
     new HtmlWebpackPlugin({
+      template: "./pages/explore-spaces.html",
+      filename: "explore-spaces.html",
+      chunks: ["exploreSpaces"],
+    }),
+    new HtmlWebpackPlugin({
       template: "./pages/property.html",
       filename: "property.html",
       chunks: ["property"],
@@ -86,9 +99,19 @@ module.exports = {
       filename: "phone-auth.html",
       chunks: ["phoneVer"],
     }),
+    new HtmlWebpackPlugin({
+      template: "./pages/showcase.html",
+      filename: "showcase.html",
+      chunks: ["showcase"],
+    }),
+    new HtmlWebpackPlugin({
+      template: "./pages/profile.html",
+      filename: "profile.html",
+      chunks: ["profile"],
+    }),
   ],
   devServer: {
-    port: 3000,
+    port: 5000,
   },
   devtool: "source-map",
 };

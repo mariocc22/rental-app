@@ -1,0 +1,216 @@
+
+/* Explore Page Styles */
+
+/* Headings */
+.page-title-explore-spaces {
+    font-size: var(--h1-font-size);
+    color: var(--explore-text-color);
+}
+
+.explore-spaces-tagline {
+    font-size: var(--tagline-font-size);
+}
+
+/* Filter Styles */
+
+/* search field */
+
+
+/* types of spaces */
+
+.types-of-spaces input {
+   display: none;
+}
+
+.types-of-spaces {
+    margin-right: 1.5rem;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.types-of-spaces label {
+    display: inline-block;
+    text-align: center;
+    padding: 1rem;
+    text-decoration: none;
+}
+.types-of-spaces label span {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: .5rem;
+}
+
+.types-of-spaces i {
+    font-size: var(--icon-size);
+}
+
+.types-of-spaces-title {
+    font-weight: 700;
+    font-size:  var(--tagline-font-size);
+    margin-top: 1rem;
+}
+
+ .explore-search-field {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--text-color);
+    border-radius: var(--img-border-radius);
+    padding: 1rem;
+    height: var(--search-input-field-height);
+}
+
+.explore-search-field input {
+    background-color: var(--body-background-color);
+    border: none;
+    flex-grow: 1;
+    font-size: 1rem;
+    color: var(--text-color)
+}
+
+.explore-search-field input::-webkit-search-cancel-button {
+    display: none;
+  }
+
+.explore-search-field input:focus {
+    outline: unset;
+    border: unset;
+}
+
+.explore-search-field i {
+    font-size: var(--tagline-font-size);
+}
+
+/* additional filter */
+.additional-filters {
+    padding: var(--top-elements-padding);
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    flex-flow: column nowrap;
+    row-gap: 3rem;
+    transition: all 2s ease-in-out;
+}
+
+.additional-filters ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+/* Heading styles */
+
+.additional-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.ad-fi-input-wrapper > div:first-of-type {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.ad-fi-input-wrapper > div:nth-child(2) {
+    margin-top: 1rem;
+}
+
+.additional-filters input[type="checkbox"]  {
+    display: none;
+}
+
+.additional-filters input[type="checkbox"] + label {
+    border: 1px solid var(--text-color);
+    padding: .5rem;
+    border-radius: var(--img-border-radius);
+}
+
+.props-wrapper  ul, .amenities-wrapper  ul {
+    display: flex;
+    flex-flow: row wrap;
+    gap: .5rem;
+}
+
+.additional-filters input[type="checkbox"]:checked + label{
+    color: var(--explore-text-color);
+}
+
+/* TODO fix this */
+.ad-fi-input-btns {
+    /* display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem; */
+    flex-grow: 1;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 1rem;
+}
+
+.btn-wrapper {
+    display: grid;
+    row-gap: 1rem;
+    grid-template-columns: 1fr;
+}
+
+
+.ad-fi-input-btns input {
+    padding: 1rem;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    border-radius: var(--img-border-radius);
+    background-color: var(--body-background-color);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.ad-fi-input-btns input:first-of-type {
+    border: var(--explore-text-color);
+    background-color: var(--explore-text-color);
+}
+
+/* Places Cards */
+
+.places-cards-wrapper {
+    margin-top: 2rem;
+}
+
+.places-cards-wrapper h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.places-cards-wrapper ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    list-style-type: none;
+    padding: 0;
+}
+
+.places-cards-wrapper a {
+    font-size: var(--tagline-font-size);
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.places-cards-wrapper .space-details {
+    display: flex;
+    flex-wrap: row wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.space-rating::before {
+    content: '\2605';
+    margin-right: .2rem;
+}
+
+.places-cards-wrapper .space-location {
+    font-size: 0.875rem;
+}
+
+
+.places-cards-wrapper img {
+    border-radius: var(--img-border-radius);
+}

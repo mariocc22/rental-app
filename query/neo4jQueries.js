@@ -15,25 +15,24 @@ import { validateTagNames } from '../utility/validateTagNames.js';
  */
 
 async function addUser(userId) {
-    const session = driver.session({database: neo4j})
+    const session = driver.session({database: 'neo4j'})
     try {
-        const writeQuery = "CREATE(u:User{id: $userId}) RETURN u.id as userId";
-        const writeResponse = await session.executeWrite(tx => {
-            tx.run(
-                writeQuery,
-                {
-                    userId
-                }
-            )
-        });
+        const writeQuery = `MERGE (u:User { id: $userId }) RETURN u.id as userId`;
 
-        const userId = writeResponse.records.map(record => record.get('userId'));
-        console.log(userId[0]);
-        return userId[0];
+        const writeResponse = await session.executeWrite(tx =>
+            tx.run(writeQuery, { userId })
+        );
+
+        const rsp_userId = writeResponse.records.map(record => record.get('userId'));
+        console.log(rsp_userId[0]);
+
+        console.log(rsp_userId);
+
+        return rsp_userId[0];
 
     } catch (error) {
         console.error(error)
-        console.log('Error in addBooking Neo4j Query')
+        console.log('Error in add User Neo4j Query')
     } finally {
         await session.close();
     }
@@ -133,7 +132,7 @@ async function addPlace(placeId, placeName, userId, tagNames, activityName) {
     givenTagNames.push(`activity-${activityName}`);
 
 
-    const session = driver.session({database: neo4j})
+    const session = driver.session({database: 'neo4j'})
 
     try {
 
@@ -191,7 +190,7 @@ async function addPlace(placeId, placeName, userId, tagNames, activityName) {
  */
 
 async function addBooking(userId, bookingId, placeId, bookingTo, bookingFrom) {
-    const session = driver.session({database: neo4j})
+    const session = driver.session({database: 'neo4j'})
     try {
         const writeQuery = `
         MATCH(u:User{id: $userId})
@@ -241,7 +240,7 @@ async function addBooking(userId, bookingId, placeId, bookingTo, bookingFrom) {
  */
 
 async function addShowcase(userId, showcaseId, placeId) {
-    const session = driver.session({database: neo4j})
+    const session = driver.session({database: 'neo4j'})
     try {
 
         const writeQuery = `
@@ -292,7 +291,7 @@ async function addShowcase(userId, showcaseId, placeId) {
  */
 
 async function getShowcasesList() {
-    const session = driver.session({database: neo4j})
+    const session = driver.session({database: 'neo4j'})
     try {
 
         const readQuery = `
