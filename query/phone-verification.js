@@ -22,8 +22,6 @@ const phoneForm = document.getElementById("verification-form");
 
 const btn_phone_login = document.getElementById("btn-phone");
 const btn_send_code = document.getElementById("btn-code");
-
-const phoneInput = phoneForm["phone-input"].value;
 const user_phone = document.getElementById("user-phone-succesful");
 
 // ============= Phone verification functionality ==============
@@ -31,16 +29,19 @@ const user_phone = document.getElementById("user-phone-succesful");
 const sendVerificationCode = () => {
   const appVerifier = window.recaptchaVerifier;
   // If the message was successfully sent then print a message and proceed to log in with Phone with "btn_phone_login"
-  signInWithPhoneNumber(auth, phoneInput, appVerifier).then(
-    (confirmationResult) => {
+  const phoneInput = document.querySelector(".phone-input").value;
+  signInWithPhoneNumber(auth, phoneInput, appVerifier)
+    .then((confirmationResult) => {
       const sentCodeId = confirmationResult;
       console.log("Message sent!");
-      phoneForm.reset();
       btn_phone_login.addEventListener("click", () =>
         signInWithPhone(sentCodeId)
       );
-    }
-  );
+    })
+    .catch((err) => {
+      console.log(err);
+      console.log(phoneInput);
+    });
 };
 
 // Callback function from clicking the Log In button
@@ -53,6 +54,7 @@ const signInWithPhone = (sentCodeId) => {
     .then((result) => {
       // if the code is correct then print something and display the user's phone
       const user = result.user;
+      user.displayName = "Mario's Phone!";
       console.log(user);
       phoneForm.reset();
       user_phone.innerHTML = `${user.phoneNumber}`;
