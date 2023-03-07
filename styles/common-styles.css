@@ -76,6 +76,13 @@ header .index-nav i {
     font-size: 2rem;
 }
 
+.index-nav button {
+    color: unset;
+    background-color: unset;
+    border: unset;
+    cursor: pointer;
+}
+
 header nav {
     width: 100%;
 }
