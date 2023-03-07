@@ -14,6 +14,8 @@ import {
     signInWithPhoneNumber,
 } from "../modules/firebase.js";
 
+import { addUser } from '../query/neo4jQueries.js';
+
 // DOM HTML elements
 
 // ===== BUTTONS =====
@@ -219,20 +221,44 @@ btn_google.addEventListener("click", () => {
             // Reset Login Form Values
             loginForm.reset();
             // If the user is approved, it takes you to the previous screen to follow the process
-            window.location.href = `${name}.html`;
+            
+            // await delay(5000);
+
+            // window.location.href = window.location.origin;
+
+            // addNewUser.then(() => {
+            //     console.log('soemthing went wrong')
+            // })
+            
+            const userId = user.uid;
+            // Adds user to Neo4j Database
+            createUser(userId).then((r) => {
+                window.location.href = window.location.origin;
+              }).catch((error) => {
+                console.log(error)
+                throw new Error("Could not create user in Neo4j")
+              });
+
         })
         .catch((error) => {
             // Handle Errors here.
             const errorCode = error.code;
             const errorMessage = error.message;
             // The email of the user's account used.
-            const email = error.customData.email;
+            const email = error?.customData?.email;
             // The AuthCredential type that was used.
             const credential = GoogleAuthProvider.credentialFromError(error);
             console.log(errorMessage);
             // ...
         });
 });
+
+
+async function createUser(userId) {
+    await addUser(userId);
+    return 'saved';
+}
+
 
 //  ============ Sign In / Sign UP FACEBOOK ==============
 // const providerFb = new FacebookAuthProvider();
