@@ -6,7 +6,7 @@ function tagnameToInfo(tagname) {
     // console.log(tagNames)
     const split = tagname.split('-');
     const activity = split[0];
-    const tagType = split[1];
+    const subCat = split[1];
     let name = undefined;
     // console.log(split.length)
     if(split.length == 4) {
@@ -18,7 +18,7 @@ function tagnameToInfo(tagname) {
     } else if (split.length == 3) {
         name = capitalise(split[2])
     }
-    const tagList = allTagsInfo[activity][tagType];
+    const tagList = allTagsInfo[activity][subCat];
 
     const tagInfo = tagList.filter(tagObj => tagObj.name == name);
     return tagInfo[0] || {};
@@ -29,4 +29,8 @@ function capitalise(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export { tagnameToInfo }
+function activitysubCatList(activity, subCat) {
+    return allTagsInfo[activity][subCat] || [];
+}
+
+export { tagnameToInfo, activitysubCatList }

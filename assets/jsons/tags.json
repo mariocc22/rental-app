@@ -3,22 +3,22 @@
         "type": [
             {
                 "name": "Indoor",
-                "svg": "indoor.svg",
+                "svg": "Indoor.svg",
                 "tagname": "photography-type-indoor"
             },
             {
                 "name": "Outdoor",
-                "svg": "outdoor.svg",
+                "svg": "Outdoor.svg",
                 "tagname": "photography-type-outdoor"
             },
             {
                 "name": "Studio",
-                "svg": "studio.svg",
+                "svg": "Studio.svg",
                 "tagname": "photography-type-studio"
             },
             {
                 "name": "House",
-                "svg": "house.svg",
+                "svg": "House.svg",
                 "tagname": "photography-type-house"
             },
             {
@@ -28,7 +28,7 @@
             },
             {
                 "name": "Cottage",
-                "svg": "cottage.svg",
+                "svg": "Cottage.svg",
                 "tagname": "photography-type-cottage"
             }
         ],
