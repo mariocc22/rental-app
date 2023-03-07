@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stage | Explore Spaces</title>
+    <title>Stage | Acitivities</title>
 </head>
 
 <body>
@@ -13,174 +13,53 @@
         <nav class="index-nav">
             <ul>
                 <li>
-                    <i class="fa fa-caret-left"></i>
+                    <button onclick="history.back()">
+                        <i class="fa fa-caret-left"></i>
+                    </button>
                 </li>
                 <li>
-                    <i class="fa fa-bars"></i>
+                    <button>
+                        <i class="fa fa-bars"></i>
+                    </button>
                 </li>
             </ul>
         </nav>
     </header>
-    <main>
+
+    <!-- main content of the page -->
+    <main class="explore-space-main">
+        <!-- page title -->
+        <div class="page-title">
+            <h1>
+                <span class="page-title-activity-menu">
+                    Choose your activity
+                </span>
+            </h1>
+        </div>
         <!-- Main Menu -->
         <div class="main-menu-activity" id="main-menu-activity">
             <ul>
-                <li>
-                    <a href="./explore.html?activity=musician">
-                        Musician
+                <li><a href="./explore-spaces.html?activity=musician">
+                        <h2>
+                            Musician
+                        </h2>
+                        <img src="../assets/img/musician.jpg" alt="">
+                    </a></li>
+                <li><a href="./explore-spaces.html?activity=photography">
+                        <h2>
+                            Photographer
+                        </h2>
+                        <img src="../assets/img/photographer.jpg" alt="">
                     </a>
                 </li>
-                <li>
-                    <a href="./explore.html?activity=photography">
-                        Photography
-                    </a>
-                </li>
-                <li>
-                    <a href="./explore.html?activity=artist">
-                        Performing Artist
-                    </a>
-                </li>
+                <li><a href="./explore-spaces.html?activity=artist">
+                        <h2>
+                            Performance
+                        </h2>
+                        <img src="../assets/img/performance.jpg" alt="">
+                    </a></li>
             </ul>
         </div>
-
-        <!-- Explore List -->
-        <section class="explore-section hide" id="explore-section">
-            <h1>
-                Explore spaces for your next creative project
-            </h1>
-            <!-- partial match content and display -->
-            <div class="search-field">
-                <label for="search-places">Search</label>
-                <input type="search" name="search-places" id="search-places">
-            </div>
-            <!-- additional filters -->
-            <div class="filters">
-                <!-- type of spaces -->
-                <div class="filter-space">
-                    <p>Filter Spaces</p>
-                    <ul>
-                        <li>
-                            <div class="space-icon"></div>
-                            <div class="space-icon-name">Indoor</div>
-                        </li>
-                        <li>
-                            <div class="space-icon"></div>
-                            <div class="space-icon-name">Outdoor</div>
-                        </li>
-                        <li>
-                            <div class="space-icon"></div>
-                            <div class="space-icon-name">Studio</div>
-                        </li>
-                        <li>
-                            <div class="space-icon"></div>
-                            <div class="space-icon-name">House</div>
-                        </li>
-                        <li>
-                            <div class="space-icon"></div>
-                            <div class="space-icon-name">Farmhouse</div>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- More filters button -->
-                <div class="filter-more-btn">
-                    <input type="button" value="More Filters" id="more-filter">
-                </div>
-
-                <!-- More Filters -->
-                <div class="">
-                    <h2>More Filters</h2>
-                    <div class="filter-location-prices">
-                        <h3>Price 500 CAD</h3>
-                        <input type="range" step="50" value="500" min="50" max="2000" oninput="this.previousElementSibling.innerText = `Price ${this.value} CAD`">
-                        <h3>Search by distance: 1 kilometre</h3>
-                        <input type="range" step="1" value="1" min="1" max="20" oninput="this.previousElementSibling.innerText = `Search by distance: ${this.value} kilometre`">
-                    </div>
-                    <div>
-                        <h3>Equipment with props</h3>
-                        <div class="filter-equipment chip-set">
-                            <div class="chip">Tripod</div>
-                            <div class="chip">Light Box</div>
-                            <div class="chip">Lens</div>
-                            <div class="chip">Wifi</div>
-                        </div>
-                        <!-- Amenities and Specification -->
-                        <h3>Amenities and Specification</h3>
-                        <div class="filter-amenities chip-set">
-                            <div class="chip">Washroom</div>
-                            <div class="chip">Kitchen</div>
-                            <div class="chip">Fireplace</div>
-                            <div class="chip">Elevator</div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <!-- Suggested Spaces -->
-                <div class="filter-suggested-spaces">
-                    <h2>Suggested Spaces</h2>
-                    <ul class="suggested-spaces-list">
-                        <li>
-                            <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
-                                <img src="https://picsum.photos/1200/500?random=1" alt="">
-                            </a>
-                            <div class="space-details">
-                                <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
-                                    <h3 class="space-name">Space Title 1</h3>
-                                </a>
-                                <p class="space-rating">3.5</p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
-                                <img src="https://picsum.photos/1200/500?random=2" alt="">
-                            </a>
-                            <div class="space-details">
-                                <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
-                                    <h3 class="space-name">Space Title 2</h3>
-                                </a>
-                                <p class="space-rating">3.5</p>
-                            </div>
-                        </li>
-                        <li> 
-                            <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
-                                <img src="https://picsum.photos/1200/500?random=3" alt="">
-                            </a>
-                            <div class="space-details">
-                                <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
-                                    <h3 class="space-name">Space Title 3</h3>
-                                </a>
-                                <p class="space-rating">3.5</p>
-                            </div>
-                        </li>
-                        <li> 
-                            <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
-                                <img src="https://picsum.photos/1200/500?random=4" alt="">
-                            </a>
-                            <div class="space-details">
-                                <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
-                                    <h3 class="space-name">Space Title 4</h3>
-                                </a>
-                                <p class="space-rating">3.5</p>
-                            </div>
-                        </li>
-                        <li> 
-                            <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
-                                <img src="https://picsum.photos/1200/500?random=5" alt="">
-                            </a>
-                            <div class="space-details">
-                                <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
-                                    <h3 class="space-name">Space Title 5</h3>
-                                </a>
-                                <p class="space-rating">3.5</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-        </section>
     </main>
 </body>
 

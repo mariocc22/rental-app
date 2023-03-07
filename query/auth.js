@@ -1,18 +1,20 @@
 import "/styles/login.css";
 
 import {
-    app,
-    auth,
-    createUserWithEmailAndPassword,
-    signOut,
-    signInWithEmailAndPassword,
-    onAuthStateChanged,
-    GoogleAuthProvider,
-    signInWithPopup,
-    FacebookAuthProvider,
-    RecaptchaVerifier,
-    signInWithPhoneNumber,
+  app,
+  auth,
+  createUserWithEmailAndPassword,
+  signOut,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
+  FacebookAuthProvider,
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
 } from "../modules/firebase.js";
+
+import { addUser } from "../query/neo4jQueries.js";
 
 // DOM HTML elements
 
@@ -39,82 +41,38 @@ const user_name = document.getElementById("user-name");
 const btn_space = document.querySelector("#btn-space");
 const modal_phone_ver = document.querySelector(".modal-phone-verify");
 const close_phone_modal = document.querySelector(".phone-close");
-// ===== Event Listeners =====
-// These event handlers are specifically to open or close the modals or screens on the app
-// menu_btn.addEventListener("click", () => {
-//     menu_btn.classList.toggle("is-active");
-//     modal_profile.classList.toggle("is-active");
-
-//     menu_btn.disabled = true;
-// });
-
-// modal_profile_btn.addEventListener("click", () => {
-//     menu_btn.classList.toggle("is-active");
-//     modal_profile.classList.toggle("is-active");
-//     menu_btn.disabled = false;
-// });
-
-// logSignIn_btn.addEventListener("click", () => {
-//     modal_logSignIn.classList.toggle("is-active");
-// });
-
-// menu_btn_auth.addEventListener("click", () => {
-//     menu_btn.classList.toggle("is-active");
-//     modal_profile.classList.toggle("is-active");
-//     modal_logSignIn.classList.toggle("is-active");
-//     menu_btn.disabled = false;
-// });
-
-// ============ PHONE LISTENERS ========
-// close_phone_modal.addEventListener("click", () => {
-//     modal_phone_ver.classList.toggle("is-active");
-// });
-// btn_space.addEventListener("click", () => {
-//     modal_phone_ver.classList.toggle("is-active");
-// });
 
 //  ================= SIGN IN USER (email/password) ================
 loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    // Get User Info
-    const email = loginForm["login-email"].value;
-    const password = loginForm["login-password"].value;
+  // Get User Info
+  const email = loginForm["login-email"].value;
+  const password = loginForm["login-password"].value;
 
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Successfully signed in!
-            const user = userCredential.user;
-            // Adding a Display Name since it doesn't have if sign up with email & password
-            console.log(user);
-            user.displayName = "Michael Smith";
-            console.log("Welcome, ", user.displayName, user.email + "!");
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Successfully signed in!
+      const user = userCredential.user;
+      // Adding a Display Name since it doesn't have if sign up with email & password
+      console.log(user);
+      user.displayName = "Michael Smith";
+      console.log("Welcome, ", user.displayName, user.email + "!");
 
-            // Get the parameter from the previous page
-            const urlParams = new URLSearchParams(window.location.search);
-            const name = urlParams.get("name");
-            console.log(name);
-
-            // Hide the Log in/Sign up screen
-            // modal_logSignIn.classList.toggle("is-active");
-
-            // Hide button of log in and show the log out button
-            // btn_login.classList.add("hidden");
-            // btn_logout.classList.remove("hidden");
-
-            // Show Edit Profile link below the Username
-            // edit_profile_btn.classList.remove("hidden");
-
-            // Empty Form values
-            loginForm.reset();
-            // If the user is approved, it takes you to the previous screen to follow the process
-            window.location.href = `${name}.html`;
-        })
-        .catch((error) => {
-            // If failed show the error
-            alert(error.message);
-            loginForm.reset();
-        });
+      // Get the parameter from the previous page
+      const urlParams = new URLSearchParams(window.location.search);
+      const name = urlParams.get("name");
+      console.log(name);
+      // Empty Form values
+      loginForm.reset();
+      // If the user is approved, it takes you to the previous screen to follow the process
+      window.location.href = `${name}.html`;
+    })
+    .catch((error) => {
+      // If failed show the error
+      alert(error.message);
+      loginForm.reset();
+    });
 });
 
 //  ================= GET USER STATUS CHANGES ================
@@ -164,75 +122,79 @@ loginForm.addEventListener("submit", (e) => {
 
 //  ============ Sign In / Sign UP EMAIL ==============
 btn_email.addEventListener("click", () => {
-    // Get User Info
-    const email = loginForm["login-email"].value;
-    const password = loginForm["login-password"].value;
+  // Get User Info
+  const email = loginForm["login-email"].value;
+  const password = loginForm["login-password"].value;
 
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            console.log("User Created! ", user.email);
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      console.log("User Created! ", user.email);
 
-            // Hide the modal of Sign In
-            // modal_logSignIn.classList.remove("is-active");
+      // Hide the modal of Sign In
+      // modal_logSignIn.classList.remove("is-active");
 
-            // Show Edit Profile link
-            // edit_profile_btn.classList.remove("hidden");
+      // Show Edit Profile link
+      // edit_profile_btn.classList.remove("hidden");
 
-            // Reset Login Form Values
-            loginForm.reset();
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorMessage);
-            // ..
-        });
+      // Reset Login Form Values
+      loginForm.reset();
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage);
+      // ..
+    });
 });
 
 // ============ Sign In / Sign UP Google Provider ===========
 const provider = new GoogleAuthProvider();
 btn_google.addEventListener("click", () => {
-    signInWithPopup(auth, provider)
-        .then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
-            // The signed-in user info.
-            const user = result.user;
-            // IdP data available using getAdditionalUserInfo(result)
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // IdP data available using getAdditionalUserInfo(result)
 
-            console.log("User logged in with Gmail!");
-            console.log(user);
+      console.log("User logged in with Gmail!");
+      console.log(user);
 
-            // Hide the modal of Sign In
-            // modal_logSignIn.classList.remove("is-active");
+      // Hide the modal of Sign In
+      // modal_logSignIn.classList.remove("is-active");
 
-            // Show Edit Profile link
-            // edit_profile_btn.classList.remove("hidden");
-
-            // Get the parameter from the previous page
-            const urlParams = new URLSearchParams(window.location.search);
-            const name = urlParams.get("name");
-            console.log(name);
-            // Reset Login Form Values
-            loginForm.reset();
-            // If the user is approved, it takes you to the previous screen to follow the process
-            window.location.href = `${name}.html`;
-        })
-        .catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.customData.email;
-            // The AuthCredential type that was used.
-            const credential = GoogleAuthProvider.credentialFromError(error);
-            console.log(errorMessage);
-            // ...
-        });
+      // Show Edit Profile link
+      // edit_profile_btn.classList.remove("hidden");
+      // Get the parameter from the previous page
+      const urlParams = new URLSearchParams(window.location.search);
+      const name = urlParams.get("name");
+      console.log(name);
+      // Reset Login Form Values
+      loginForm.reset();
+      // If the user is approved, it takes you to the previous screen to follow the process
+      window.location.href = `${name}.html`;
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      console.log(errorMessage);
+      // ...
+    });
 });
+
+async function createUser(userId) {
+  await addUser(userId);
+  return "saved";
+}
 
 //  ============ Sign In / Sign UP FACEBOOK ==============
 // const providerFb = new FacebookAuthProvider();
