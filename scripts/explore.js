@@ -36,7 +36,7 @@ if (activity) {
 
 
     // Register Event listerners of next page
-    // const filterOn = document.getElementById("additional-filters-on");
+    const filterOn = document.getElementById("additional-filters-on");
     // filterOn.addEventListener("click", toggleAdditionalFilter("on"));
 
 
@@ -93,25 +93,3 @@ typeOfPlaces.forEach(element => {
 
 })
 
-// toggle additional filters
-
-function toggleAdditionalFilter(state) {
-    if(state === "off") {
-        const crossAdFilters = document.getElementsByClassName('additional-filter-cross')[0];
-        crossAdFilters.classList.toggle("hide");
-    }
-
-    const mainNav = document.getElementsByClassName("index-nav")[0]
-    mainNav.classList.toggle("hide");
-
-    const additionalFilters = document.getElementsByClassName("additional-filters")[0];
-    additionalFilters.classList.toggle("hide");
-
-    const exploreMain = document.getElementsByClassName("explore-space-main")[0];
-    exploreMain.classList.toggle("hide");
-
-    if(state === "on") {
-        const filterOff = document.getElementById("additional-filters-off");
-        filterOff.addEventListener("click", toggleAdditionalFilter);
-    }
-}
