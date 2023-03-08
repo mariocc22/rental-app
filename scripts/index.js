@@ -14,6 +14,10 @@ const btn_explore = document.querySelector(".btn-explore"),
 const userState = onAuthStateChanged(auth, (user) => {
   if (user) {
     const uid = user.uid;
+
+    // todo fix this later
+    localStorage.setItem("uid", uid);
+
     console.log("active user: ", uid);
   } else {
     // User is signed out
