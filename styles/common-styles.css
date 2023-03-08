@@ -115,3 +115,7 @@ main {
 .hide {
     display: none !important;
 }
+
+input[type="button"] {
+    cursor: pointer;
+}

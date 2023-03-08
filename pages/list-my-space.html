@@ -136,8 +136,8 @@
 
 
     <div class="page" id="page7" class="page">
-        <h2>Select TAGS and Amenities that best suite your space</h2>
-        <h3>Tags</h3>
+        <h2>Select Amenities that best suite your space</h2>
+        <!-- <h3>Tags</h3>
         <div class="div-tags-buttons">
             <button class="button" id="foodPhotographybtn">Food Photography</button>
             <button class="button" id="commercialbtn">Commercial</button>
@@ -146,28 +146,78 @@
             <button class="button" id="lifestylebtn">Lifestyle</button>
             <button class="button" id="newbornbtn">Newborn</button>
             <button class="button" id="weddingbtn">Wedding</button>
-        </div>
+        </div> -->
         <h3>Amenities & Specifications</h3>
+
         <div class="div-amenities-buttons">
-            <button class="button" id="washroombtn">Washroom</button>
-            <button class="button" id="kitchenbtn">Kitchen</button>
-            <button class="button" id="naturalbtn">Natural Light</button>
-            <button class="button" id="wifibtn">WiFi</button>
-            <button class="button" id="elevatorbtn">Elevator</button>
-            <button class="button" id="parkingbtn">Parking</button>
-            <button class="button" id="airconditionerbtn">Airconditioner</button>
+            <button class="button" data-tagname="photography-amenities-washroom" id="washroombtn">Washroom</button>
+            <button class="button" data-tagname="photography-amenities-wifi" id="wifibtn">WiFi</button>
+            <button class="button" data-tagname="photography-amenities-elevator" id="elevatorbtn">Elevator</button>
+            <button class="button" data-tagname="photography-amenities-parking" id="parkingbtn">Parking</button>
+            <button class="button" data-tagname="photography-amenities-air-conditoner" id="airconditionerbtn">Airconditioner</button>
         </div>
         <div class="navigation">
-            <a href="#page8" class="yellowbutton">Next</a>
+            <a href="#page9" class="yellowbutton">Next</a>
             <a href="#page6" class="blackbutton">Back</a>
         </div>
     </div>
 
 
-    <div class="page" id="page8" class="page">
-        <h2>What kind of equipment can you offer with your space?</h2>
-
-        <button class="button" id="lightbtn">Light</button>
+    <!-- <div class="page" id="page8" class="page"> -->
+        <!-- <h2>What kind of equipment can you offer with your space?</h2>
+        <div class="equipment" id="equipmentdiv"> 
+            <form id="equipmentform">
+                <label>
+                    Ceiling Flash:
+                    <input type="number" pattern="[0-9]*" id="ceilingflash" min="0" value="0">
+                </label>                
+                <label>
+                    Floor Flash:
+                    <input type="number" pattern="[0-9]*" id="floorflash" min="0" value="0">
+                </label>
+                <label>
+                    Umbrella:
+                    <input type="number" pattern="[0-9]*" id="umbrella" min="0" value="0">
+                </label>                
+                <label>
+                    Beauty Dish:
+                    <input type="number" pattern="[0-9]*" id="beautydish" min="0" value="0">
+                </label>
+                <label>
+                    Soft Box:
+                    <input type="number" pattern="[0-9]*" id="softbox" min="0" value="0">
+                </label>
+                <label>
+                    Light Box:
+                    <input type="number" pattern="[0-9]*" id="lightbox" min="0" value="0">
+                </label>
+                <label>
+                    Tripod:
+                    <input type="number" pattern="[0-9]*" id="tripod" min="0" value="0">
+                </label>
+                <label>
+                    Full Frame:
+                    <input type="number" pattern="[0-9]*" id="fullframe" min="0" value="0">
+                </label>
+                <label>
+                    Crop DSLR:
+                    <input type="number" pattern="[0-9]*" id="cropdslr" min="0" value="0">
+                </label> 
+                <label>
+                    Wide Angle:
+                    <input type="number" pattern="[0-9]*" id="wideangle" min="0" value="0">
+                </label>
+                <label>
+                    Normal:
+                    <input type="number" pattern="[0-9]*" id="normal" min="0" value="0">
+                </label>  
+                <label>
+                    Other:
+                    <input type="number" pattern="[0-9]*" id="others" min="0" value="0">
+                </label>  
+            </form>
+        </div> -->
+        <!-- <button class="button" id="lightbtn">Light</button>
         <div class="divform active" id="lightdiv">            
             <form id="lightform">
                 <label>
@@ -249,23 +299,88 @@
                     <input type="number" pattern="[0-9]*" id="others" min="0" value="0">
                 </label>                
             </form>
-        </div>
+        </div> -->
 
-        <div class="navigation">
+        <!-- <div class="navigation">
             <a id="validateinputs" href="#page9" class="yellowbutton">Next</a>
             <a href="#page7" class="blackbutton">Back</a>
         </div>
-    </div>
+    </div> -->
 
     <div class="page" id="page9" class="page">
         <h2>Edit the price and details for the equipment</h2>
+        <form class="equipment" id="equipmentform">
+        <!-- <form id="cameraform"> -->
+            <caption>Camera</caption>
+            <label>
+                Set the price per day
+                <fieldset data-quantity >
+                    <input type="number" data-tagname="photography-equipments-camera" name="photography-equipments-camera" pattern="[0-9]+" id="cameravalue" min="0" value="1">
+                </fieldset>
+            </label>
+            <label>Description
+                <textarea name="photography-equipments-camera-desc" id="cameradesc"></textarea>
+            </label>
+        <!-- </form> -->
 
-        <form id="cellingflashform">
+        <!-- <form id="lensform"> -->
+            <caption>Lens</caption>
+            <label>
+                Set the price per day
+                <fieldset data-quantity >
+                    <input type="number" data-tagname="photography-equipments-lens" name="photography-equipments-lens" pattern="[0-9]+" id="lensvalue" min="0" value="1">
+                </fieldset>
+            </label>
+            <label>Description
+                <textarea name="photography-equipments-lens-desc" id="lensdesc"></textarea>
+            </label>
+        <!-- </form> -->
+
+        <!-- <form id="backdropform"> -->
+            <caption>Backdrop</caption>
+            <label>
+                Set the price per day
+                <fieldset data-quantity >
+                    <input type="number" data-tagname="photography-equipments-backdrop" name="photography-equipments-backdrop" pattern="[0-9]+" id="backdropvalue" min="0" value="1">
+                </fieldset>
+            </label>
+            <label>Description
+                <textarea name="photography-equipments-backdrop-desc" id="backdropdesc"></textarea>
+            </label>
+        <!-- </form> -->
+
+        <!-- <form id="flashlightform"> -->
+            <caption>Flash Light</caption>
+            <label>
+                Set the price per day
+                <fieldset data-quantity >
+                    <input type="number" data-tagname="photography-equipments-flashlight" name="photography-equipments-flashlight" pattern="[0-9]+" id="flashlightvalue" min="0" value="1">
+                </fieldset>
+            </label>
+            <label>Description
+                <textarea name="photography-equipments-flashlight-desc" id="flashlightdesc"></textarea>
+            </label>
+        <!-- </form> -->
+
+        <!-- <form id="tripodsform"> -->
+            <caption>Tripods</caption>
+            <label>
+                Set the price per day
+                <fieldset data-quantity >
+                    <input type="number" data-tagname="photography-equipments-tripods" name="photography-equipments-tripods" pattern="[0-9]+" id="tripodsvalue" min="0" value="1">
+                </fieldset>
+            </label>
+            <label>Description
+                <textarea name="photography-equipments-tripods-desc" id="tripodsdesc"></textarea>
+            </label>
+        </form>
+
+        <!-- <form id="cellingflashform">
             <caption>Ceiling Flash</caption>
             <label>
                 Set the price per session
                 <fieldset data-quantity >
-                    <input type="number" name="quantity" pattern="[0-9]+" id="cellingflashvalue" min="0">
+                    <input type="number" name="quantity" pattern="[0-9]+" id="cellingflashvalue" min="0" value="0">
                 </fieldset>
             </label>
             <label>Description
@@ -278,7 +393,7 @@
             <label>
                 Set the price per session
                 <fieldset data-quantity >
-                    <input type="number" name="quantity" pattern="[0-9]+" id="floorflashvalue" min="0">
+                    <input type="number" name="quantity" pattern="[0-9]+" id="floorflashvalue" min="0" value="0">
                 </fieldset>
             </label>
             <label>Description
@@ -291,7 +406,7 @@
             <label>
                 Set the price per session
                 <fieldset data-quantity>
-                    <input type="number" name="quantity" pattern="[0-9]+" id="umbrellavalue" min="0">
+                    <input type="number" name="quantity" pattern="[0-9]+" id="umbrellavalue" min="0" value="0">
                 </fieldset>
             </label>
             <label>Description
@@ -304,7 +419,7 @@
             <label>
                 Set the price per session
                 <fieldset data-quantity>
-                    <input type="number" name="quantity" pattern="[0-9]+" id="breautydishvalue" min="0">
+                    <input type="number" name="quantity" pattern="[0-9]+" id="breautydishvalue" min="0" value="0">
                 </fieldset>
             </label>
             <label>Description
@@ -317,7 +432,7 @@
             <label>
                 Set the price per session
                 <fieldset data-quantity>
-                    <input type="number" name="quantity" pattern="[0-9]+" id="softboxvalue" min="0">
+                    <input type="number" name="quantity" pattern="[0-9]+" id="softboxvalue" min="0" value="0">
                 </fieldset>
             </label>
             <label>Description
@@ -330,7 +445,7 @@
             <label>
                 Set the price per session
                 <fieldset data-quantity>
-                    <input type="number" name="quantity" pattern="[0-9]+" id="lightboxvalue" min="0">
+                    <input type="number" name="quantity" pattern="[0-9]+" id="lightboxvalue" min="0" value="0">
                 </fieldset>
             </label>
             <label>Description
@@ -343,7 +458,7 @@
             <label>
                 Set the price per session
                 <fieldset data-quantity>
-                    <input type="number" name="quantity" pattern="[0-9]+" id="tripodvalue" min="0">
+                    <input type="number" name="quantity" pattern="[0-9]+" id="tripodvalue" min="0" value="0">
                 </fieldset>
             </label>
             <label>Description
@@ -356,7 +471,7 @@
             <label>
                 Set the price per session
                 <fieldset data-quantity>
-                    <input type="number" name="quantity" pattern="[0-9]+" id="fullframevalue" min="0">
+                    <input type="number" name="quantity" pattern="[0-9]+" id="fullframevalue" min="0" value="0">
                 </fieldset>
             </label>
             <label>Description
@@ -369,7 +484,7 @@
             <label>
                 Set the price per session
                 <fieldset data-quantity>
-                    <input type="number" name="quantity" pattern="[0-9]+" id="cropdslrvalue" min="0">
+                    <input type="number" name="quantity" pattern="[0-9]+" id="cropdslrvalue" min="0" value="0">
                 </fieldset>
             </label>
             <label>Description
@@ -382,7 +497,7 @@
             <label>
                 Set the price per session
                 <fieldset data-quantity>
-                    <input type="number" name="quantity" pattern="[0-9]+" id="wideanglevalue" min="0">
+                    <input type="number" name="quantity" pattern="[0-9]+" id="wideanglevalue" min="0" value="0">
                 </fieldset>
             </label>
             <label>Description
@@ -395,7 +510,7 @@
             <label>
                 Set the price per session
                 <fieldset data-quantity>
-                    <input type="number" name="quantity" pattern="[0-9]+" id="normalvalue" min="0">
+                    <input type="number" name="quantity" pattern="[0-9]+" id="normalvalue" min="0" value="0">
                 </fieldset>
             </label>
             <label>Description
@@ -408,23 +523,23 @@
             <label>
                 Set the price per session
                 <fieldset data-quantity>
-                    <input type="number" name="quantity" pattern="[0-9]+" id="othersvalue" min="0">
+                    <input type="number" name="quantity" pattern="[0-9]+" id="othersvalue" min="0" value="0">
                 </fieldset>
             </label>
             <label>Description
                 <textarea name="coment" id="othersdesc"></textarea>
             </label>
-        </form>
+        </form> -->
 
-        <div class="navigation">
-            <a href="#page10" class="yellowbutton">Next</a>
-            <a href="#page8" class="blackbutton">Back</a>
+        <div class="navigation equipmentselections">
+            <a href="#page10" id="equipmentnextbutton" class="yellowbutton">Next</a>
+            <a href="#page7" class="blackbutton">Back</a>
         </div>
     </div>
 
     <div class="page" id="page10" class="page">
         <h2>Set the price for your space</h2>
-        <form id="priceform">
+        <form id="form">
             <label>
                 Set the price per day
                 <fieldset data-quantity>
@@ -434,27 +549,62 @@
             <label>Start, end Dates:
                 <input id="datepicker"/>
             </label>
-            <label>
+            <!-- <label>
                 Set time available for the deal
                 <fieldset data-quantity>
                     <input type="number" name="quantity" pattern="[0-9]+" id="dealdaysvalue" min="0"  value="0">
                 </fieldset>
-            </label>
-            <label>
+            </label> -->
+            <!-- <label>
                 Set the price for the deal
                 <fieldset data-quantity>
                     <input type="number" name="quantity" pattern="[0-9]+" id="dealpricevalue" min="0"  value="0">
                 </fieldset>
-            </label>
+            </label> -->
         </form>
         <div class="navigation">
-            <a href="#page11" id="reviewfields" class="yellowbutton">Next</a>
+            <a href="#page11" class="yellowbutton">Next</a>
             <a href="#page9" class="blackbutton">Back</a>
         </div>
     </div>
 
-
     <div class="page" id="page11" class="page">
+        <h2>Choose to offer custom BUNDLES to the artist!</h2>
+        <form id="priceform">
+            <label>
+                Camera
+                <input type="checkbox" id="cameracheckboxvalue">
+            </label>
+            <label>
+                Lens
+                <input type="checkbox" id="lenscheckboxvalue">
+            </label>
+            <label>
+                Backdrop
+                <input type="checkbox" id="backdropcheckboxvalue">
+            </label>
+            <label>
+                Flash Light
+                <input type="checkbox" id="flashlightcheckboxvalue">
+            </label>
+            <label>
+                Tripods
+                <input type="checkbox" id="tripodscheckboxvalue">
+            </label>
+            <label>
+                Set the price per day
+                <fieldset data-quantity>
+                    <input type="number" name="quantity" pattern="[0-9]+" id="bundlevalue" min="0"  value="0">
+                </fieldset>
+            </label>
+        </form>
+        <div class="navigation">
+            <a href="#page12" id="reviewfields" class="yellowbutton">Next</a>
+            <a href="#page10" class="blackbutton">Back</a>
+        </div>
+    </div>
+
+    <div class="page" id="page12" class="page">
         <h2>Review your listing</h2>
         <img src="https://picsum.photos/500/600?grayscale&random=$$$" alt="Space" width="500" height="600"> 
         <form id="reviewform">
@@ -493,8 +643,8 @@
         </form>
         <div class="navigation">
             <button class="button" id="createPropertybtn">Publish Listing</button>
-            <!-- <a href="#page11" class="yellowbutton">Publish Listing</a> -->
-            <a href="#page10" class="blackbutton">Back</a>
+            <!-- <a href="./index.html" id="createPropertybtn" class="yellowbutton">Publish Listing</a> -->
+            <a href="#page11" class="blackbutton">Back</a>
         </div>
     </div>
 
