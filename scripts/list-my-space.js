@@ -1,15 +1,18 @@
 // console.log('works')
 import "/styles/list-my-space.css";
 import { createProperty } from "/query/propertycreate.js";
-import {equipmentFormParser} from "../utility/equipmentFormParser.js"
+import { equipmentFormParser } from "../utility/equipmentFormParser.js";
 import {
-  input, UploadProcess, urlString
+  input,
+  UploadProcess,
+  urlString,
+  cameraUpload,
 } from "../utility/pictures-api";
-import { userId } from '../utility/getuserid.js';
-import { SaveURLtoFirestore } from '/query/imagecreate.js';
-import QuantityInput from '../utility/quantity.js';
-import { easepick } from '@easepick/bundle';
-import { RangePlugin } from '@easepick/range-plugin';
+import { userId } from "../utility/getuserid.js";
+import { SaveURLtoFirestore } from "/query/imagecreate.js";
+import QuantityInput from "../utility/quantity.js";
+import { easepick } from "@easepick/bundle";
+import { RangePlugin } from "@easepick/range-plugin";
 
 const allPages = document.querySelectorAll("div.page");
 allPages[0].style.display = "block";
@@ -29,8 +32,7 @@ navigateToPage();
 
 //init handler for hash navigation
 
-window.addEventListener('hashchange', navigateToPage);
-
+window.addEventListener("hashchange", navigateToPage);
 
 // What kind of space do you offer
 let _indoor = false;
@@ -40,39 +42,38 @@ let _studio = false;
 let _others = false;
 let _beach = false;
 
-const indoorButtonPressed = document.getElementById('indoorButton');
-const outdoorButton = document.getElementById('outdoorButton');
-const houseButton = document.getElementById('houseButton');
-const studioButton = document.getElementById('studioButton');
-const otherButton = document.getElementById('otherButton');
-const beachButton = document.getElementById('beachButton');
+const indoorButtonPressed = document.getElementById("indoorButton");
+const outdoorButton = document.getElementById("outdoorButton");
+const houseButton = document.getElementById("houseButton");
+const studioButton = document.getElementById("studioButton");
+const otherButton = document.getElementById("otherButton");
+const beachButton = document.getElementById("beachButton");
 
-indoorButtonPressed.addEventListener('click', () => {
+indoorButtonPressed.addEventListener("click", () => {
   // Turn it on
-    indoorButtonPressed.classList.toggle("selected");    
-    outdoorButton.classList.remove("selected");
-    houseButton.classList.remove("selected");
-    studioButton.classList.remove("selected");
-    otherButton.classList.remove("selected");
-    beachButton.classList.remove("selected");
+  indoorButtonPressed.classList.toggle("selected");
+  outdoorButton.classList.remove("selected");
+  houseButton.classList.remove("selected");
+  studioButton.classList.remove("selected");
+  otherButton.classList.remove("selected");
+  beachButton.classList.remove("selected");
 
+  if (indoorButtonPressed.classList.contains("selected")) {
+    _indoor = true;
+  } else {
+    _indoor = false;
+  }
 
-    if (indoorButtonPressed.classList.contains("selected")) {
-      _indoor = true;
-    } else {
-      _indoor = false;
-    }  
-    
-    _outdoor = false;
-    _house = false;
-    _studio = false;
-    _others = false;
-    _beach = false;
+  _outdoor = false;
+  _house = false;
+  _studio = false;
+  _others = false;
+  _beach = false;
 });
 
-outdoorButton.addEventListener('click', () => {
+outdoorButton.addEventListener("click", () => {
   // Turn it on
-  outdoorButton.classList.toggle("selected");  
+  outdoorButton.classList.toggle("selected");
   indoorButtonPressed.classList.remove("selected");
   houseButton.classList.remove("selected");
   studioButton.classList.remove("selected");
@@ -83,18 +84,18 @@ outdoorButton.addEventListener('click', () => {
     _outdoor = true;
   } else {
     _outdoor = false;
-  }  
-  
+  }
+
   _indoor = false;
   _house = false;
   _studio = false;
   _others = false;
   _beach = false;
-})
+});
 
-houseButton.addEventListener('click', () => {
+houseButton.addEventListener("click", () => {
   // Turn it on
-  outdoorButton.classList.remove("selected");  
+  outdoorButton.classList.remove("selected");
   indoorButtonPressed.classList.remove("selected");
   houseButton.classList.toggle("selected");
   studioButton.classList.remove("selected");
@@ -105,18 +106,18 @@ houseButton.addEventListener('click', () => {
     _house = true;
   } else {
     _house = false;
-  }  
+  }
 
   _indoor = false;
   _outdoor = false;
   _studio = false;
   _others = false;
   _beach = false;
-})
+});
 
-studioButton.addEventListener('click', () => {
+studioButton.addEventListener("click", () => {
   // Turn it on
-  outdoorButton.classList.remove("selected");  
+  outdoorButton.classList.remove("selected");
   indoorButtonPressed.classList.remove("selected");
   houseButton.classList.remove("selected");
   studioButton.classList.toggle("selected");
@@ -127,18 +128,18 @@ studioButton.addEventListener('click', () => {
     _studio = true;
   } else {
     _studio = false;
-  }  
+  }
 
   _indoor = false;
   _outdoor = false;
   _house = false;
   _others = false;
   _beach = false;
-})
+});
 
-otherButton.addEventListener('click', () => {
+otherButton.addEventListener("click", () => {
   // Turn it on
-  outdoorButton.classList.remove("selected");  
+  outdoorButton.classList.remove("selected");
   indoorButtonPressed.classList.remove("selected");
   houseButton.classList.remove("selected");
   studioButton.classList.remove("selected");
@@ -149,18 +150,18 @@ otherButton.addEventListener('click', () => {
     _others = true;
   } else {
     _others = false;
-  }  
+  }
 
   _indoor = false;
   _outdoor = false;
   _house = false;
   _studio = false;
   _beach = false;
-})
+});
 
-beachButton.addEventListener('click', () => {
+beachButton.addEventListener("click", () => {
   // Turn it on
-  outdoorButton.classList.remove("selected");  
+  outdoorButton.classList.remove("selected");
   indoorButtonPressed.classList.remove("selected");
   houseButton.classList.remove("selected");
   studioButton.classList.remove("selected");
@@ -171,15 +172,14 @@ beachButton.addEventListener('click', () => {
     _beach = true;
   } else {
     _beach = false;
-  }  
+  }
 
   _indoor = false;
   _outdoor = false;
   _house = false;
   _others = false;
   _studio = false;
-})
-
+});
 
 // indoorButtonPressed.addEventListener('click', () => {
 //   // Turn it on
@@ -189,7 +189,7 @@ beachButton.addEventListener('click', () => {
 //   } else {
 //     indoorButtonPressed.classList.add("selected");
 //     _indoor = true;
-//   }  
+//   }
 // })
 
 // outdoorButton.addEventListener('click', () => {
@@ -276,6 +276,7 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
         // Convert the canvas image to a data URL and display it in the preview element
         previewImage.src = canvas.toDataURL("image/png");
+        previewImage;
         console.log(previewImage.src);
         previewImage.style.display = "block";
       });
@@ -286,6 +287,26 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 } else {
   console.error("Camera not supported by this browser");
 }
+
+
+// Uploading Pictures
+const SelBtn = document.getElementById("selbtn");
+const UpBtn = document.getElementById("upbtn");
+const DownBtn = document.getElementById("downbtn");
+const upvideobtn = document.getElementById('upvideobtn');
+
+SelBtn.onclick = function () {
+  input.click();
+};
+
+// UpBtn.onclick = UploadProcess;
+UpBtn.addEventListener("click", () => {
+  UploadProcess();
+});
+// DownBtn.onclick = GetImagefromFirestore;
+upvideobtn.addEventListener("click", () => {
+  UploadProcess();
+});
 
 
 // Getting values from UI
@@ -326,7 +347,7 @@ let _wedding = false;
 //   } else {
 //     foodPhotoButton.classList.add("selected");
 //     _foodphotography = true;
-//   }  
+//   }
 // })
 
 // commercialButton.addEventListener('click', () => {
@@ -337,7 +358,7 @@ let _wedding = false;
 //   } else {
 //     commercialButton.classList.add("selected");
 //     _commercial = true;
-//   }  
+//   }
 // })
 
 // fashionButton.addEventListener('click', () => {
@@ -348,7 +369,7 @@ let _wedding = false;
 //   } else {
 //     fashionButton.classList.add("selected");
 //     _fashion = true;
-//   }  
+//   }
 // })
 
 // portraitButton.addEventListener('click', () => {
@@ -359,7 +380,7 @@ let _wedding = false;
 //   } else {
 //     portraitButton.classList.add("selected");
 //     _portrait = true;
-//   }  
+//   }
 // })
 
 // lifestyleButton.addEventListener('click', () => {
@@ -370,7 +391,7 @@ let _wedding = false;
 //   } else {
 //     lifestyleButton.classList.add("selected");
 //     _lifestyle = true;
-//   }  
+//   }
 // })
 
 // newbornButton.addEventListener('click', () => {
@@ -381,7 +402,7 @@ let _wedding = false;
 //   } else {
 //     newbornButton.classList.add("selected");
 //     _newborn = true;
-//   }  
+//   }
 // })
 
 // weddingButton.addEventListener('click', () => {
@@ -392,7 +413,7 @@ let _wedding = false;
 //   } else {
 //     weddingButton.classList.add("selected");
 //     _wedding = true;
-//   }  
+//   }
 // })
 
 // Amenities
@@ -405,30 +426,34 @@ let _elevator = false;
 let _parking = false;
 let _airconditioner = false;
 
-const amenitiesWrapper = document.querySelectorAll(".div-amenities-buttons button");
+const amenitiesWrapper = document.querySelectorAll(
+  ".div-amenities-buttons button"
+);
 const amenitiesBtns = [...amenitiesWrapper];
-amenitiesBtns.forEach(btnElement => {
+amenitiesBtns.forEach((btnElement) => {
   btnElement.addEventListener("click", (event) => {
     const target = event.target;
-    
+
     const tagname = target.getAttribute("data-tagname");
     // console.log(tagname)
-    if(_amenities.includes(tagname)) {
-      const removedArray = _amenities.filter(selectedTags => selectedTags != tagname);
+    if (_amenities.includes(tagname)) {
+      const removedArray = _amenities.filter(
+        (selectedTags) => selectedTags != tagname
+      );
       _amenities = removedArray;
     } else {
       _amenities.push(tagname);
     }
-  })
-})
+  });
+});
 
-const washroombtn = document.getElementById('washroombtn');
-const wifibtn = document.getElementById('wifibtn');
-const elevatorbtn = document.getElementById('elevatorbtn');
-const parkingbtn = document.getElementById('parkingbtn');
-const airconditionerbtn = document.getElementById('airconditionerbtn');
+const washroombtn = document.getElementById("washroombtn");
+const wifibtn = document.getElementById("wifibtn");
+const elevatorbtn = document.getElementById("elevatorbtn");
+const parkingbtn = document.getElementById("parkingbtn");
+const airconditionerbtn = document.getElementById("airconditionerbtn");
 
-washroombtn.addEventListener('click', () => {
+washroombtn.addEventListener("click", () => {
   // Turn it on
   if (washroombtn.classList.contains("selected")) {
     washroombtn.classList.remove("selected");
@@ -436,8 +461,8 @@ washroombtn.addEventListener('click', () => {
   } else {
     washroombtn.classList.add("selected");
     _washroom = true;
-  }  
-})
+  }
+});
 
 // kitchenbtn.addEventListener('click', () => {
 //   // Turn it on
@@ -447,7 +472,7 @@ washroombtn.addEventListener('click', () => {
 //   } else {
 //     kitchenbtn.classList.add("selected");
 //     _kitchen = true;
-//   }  
+//   }
 // })
 
 // naturalbtn.addEventListener('click', () => {
@@ -458,10 +483,10 @@ washroombtn.addEventListener('click', () => {
 //   } else {
 //     naturalbtn.classList.add("selected");
 //     _natural = true;
-//   }  
+//   }
 // })
 
-wifibtn.addEventListener('click', () => {
+wifibtn.addEventListener("click", () => {
   // Turn it on
   if (wifibtn.classList.contains("selected")) {
     wifibtn.classList.remove("selected");
@@ -469,10 +494,10 @@ wifibtn.addEventListener('click', () => {
   } else {
     wifibtn.classList.add("selected");
     _wifi = true;
-  }  
-})
+  }
+});
 
-elevatorbtn.addEventListener('click', () => {
+elevatorbtn.addEventListener("click", () => {
   // Turn it on
   if (elevatorbtn.classList.contains("selected")) {
     elevatorbtn.classList.remove("selected");
@@ -480,10 +505,10 @@ elevatorbtn.addEventListener('click', () => {
   } else {
     elevatorbtn.classList.add("selected");
     _elevator = true;
-  }  
-})
+  }
+});
 
-parkingbtn.addEventListener('click', () => {
+parkingbtn.addEventListener("click", () => {
   // Turn it on
   if (parkingbtn.classList.contains("selected")) {
     parkingbtn.classList.remove("selected");
@@ -491,10 +516,10 @@ parkingbtn.addEventListener('click', () => {
   } else {
     parkingbtn.classList.add("selected");
     _parking = true;
-  }  
-})
+  }
+});
 
-airconditionerbtn.addEventListener('click', () => {
+airconditionerbtn.addEventListener("click", () => {
   // Turn it on
   if (airconditionerbtn.classList.contains("selected")) {
     airconditionerbtn.classList.remove("selected");
@@ -502,9 +527,8 @@ airconditionerbtn.addEventListener('click', () => {
   } else {
     airconditionerbtn.classList.add("selected");
     _airconditioner = true;
-  }  
-})
-
+  }
+});
 
 // Equipment
 let _light;
@@ -515,13 +539,12 @@ let _lens;
 let _otherequipment;
 let _equipments = []; // Equip[{tagname, desc, price},{},{} ]
 
-
-const equipmentWrapper = document.getElementById('equipmentnextbutton');
+const equipmentWrapper = document.getElementById("equipmentnextbutton");
 console.log(equipmentWrapper);
-equipmentWrapper.addEventListener('click', (event) => {
+equipmentWrapper.addEventListener("click", (event) => {
   // event.preventDefault();
   const equipmentForm = document.getElementById("equipmentform");
-  const equipmentid = Object.fromEntries(new FormData(equipmentForm))
+  const equipmentid = Object.fromEntries(new FormData(equipmentForm));
   // console.log(equipmentid);
 
   // console.log(equipmentid["photography-equipments-camera"]);
@@ -546,28 +569,30 @@ equipmentWrapper.addEventListener('click', (event) => {
 // equipmentInputs.forEach(btnElement => {
 //   btnElement.addEventListener("click", (event) => {
 //     console.log('a')
-    
-    // const target = event.target;
-    
-    // const tagname = target.getAttribute("data-tagname");
-    // console.log(tagname)
-    // if(_equipments.includes(tagname)) {
-    //   const removedArray = _equipments.filter(selectedTags => selectedTags != tagname);
-    //   _equipments = removedArray;
-    // } else {
-    //   _equipments.push(tagname);
-    // }
+
+// const target = event.target;
+
+// const tagname = target.getAttribute("data-tagname");
+// console.log(tagname)
+// if(_equipments.includes(tagname)) {
+//   const removedArray = _equipments.filter(selectedTags => selectedTags != tagname);
+//   _equipments = removedArray;
+// } else {
+//   _equipments.push(tagname);
+// }
 //   })
 // })
 
 // Set up quantity forms
-(function(){
-  let quantities = document.querySelectorAll('[data-quantity]');
+(function () {
+  let quantities = document.querySelectorAll("[data-quantity]");
 
   if (quantities instanceof Node) quantities = [quantities];
   if (quantities instanceof NodeList) quantities = [].slice.call(quantities);
   if (quantities instanceof Array) {
-    quantities.forEach(div => (div.quantity = new QuantityInput(div, 'Down', 'Up')));
+    quantities.forEach(
+      (div) => (div.quantity = new QuantityInput(div, "Down", "Up"))
+    );
   }
 })();
 
@@ -663,47 +688,47 @@ equipmentWrapper.addEventListener('click', (event) => {
 // const cellingflashvalue = document.getElementById('cellingflashvalue');
 // // Floor Flass values
 // const floorflashform = document.getElementById('floorflashform');
-// const floorflashinput = document.getElementById('floorflash');  
+// const floorflashinput = document.getElementById('floorflash');
 // const floorflashvalue = document.getElementById('floorflashvalue');
 // // Ubmrella values
 // const umbrellaform = document.getElementById('umbrellaform');
-// const umbrellainput = document.getElementById('umbrella');  
+// const umbrellainput = document.getElementById('umbrella');
 // const umbrellavalue = document.getElementById('umbrellavalue');
 // // Beauty Dish values
 // const breautydishform = document.getElementById('breautydishform');
-// const beautydishinput = document.getElementById('beautydish');  
+// const beautydishinput = document.getElementById('beautydish');
 // const breautydishvalue = document.getElementById('breautydishvalue');
 // // Soft Box values
 // const softboxform = document.getElementById('softboxform');
-// const softboxinput = document.getElementById('softbox');  
+// const softboxinput = document.getElementById('softbox');
 // const softboxvalue = document.getElementById('softboxvalue');
 // // Light Box values
 // const lightboxform = document.getElementById('lightboxform');
-// const lightboxinput = document.getElementById('lightbox');  
+// const lightboxinput = document.getElementById('lightbox');
 // const lightboxvalue = document.getElementById('lightboxvalue');
 // // Tripod values
 // const tripodform = document.getElementById('tripodform');
-// const tripodinput = document.getElementById('tripod');  
+// const tripodinput = document.getElementById('tripod');
 // const tripodvalue = document.getElementById('tripodvalue');
 // // Full Frame values
 // const fullframeform = document.getElementById('fullframeform');
-// const fullframeinput = document.getElementById('fullframe');  
+// const fullframeinput = document.getElementById('fullframe');
 // const fullframevalue = document.getElementById('fullframevalue');
 // // Crop DSLR values
 // const cropdslrform = document.getElementById('cropdslrform');
-// const cropdslrinput = document.getElementById('cropdslr');  
+// const cropdslrinput = document.getElementById('cropdslr');
 // const cropdslrvalue = document.getElementById('cropdslrvalue');
 // // Wide Angle values
 // const wideangleform = document.getElementById('wideangleform');
-// const wideangleinput = document.getElementById('wideangle');  
+// const wideangleinput = document.getElementById('wideangle');
 // const wideanglevalue = document.getElementById('wideanglevalue');
 // // Normal values
 // const normalform = document.getElementById('normalform');
-// const normalinput = document.getElementById('normal');  
+// const normalinput = document.getElementById('normal');
 // const normalvalue = document.getElementById('normalvalue');
 // // Other values
 // const othersformprice = document.getElementById('othersformprice');
-// const othersinput = document.getElementById('others');  
+// const othersinput = document.getElementById('others');
 // const othersvalue = document.getElementById('othersvalue');
 
 // validateinputs.addEventListener('click', () => {
@@ -724,7 +749,7 @@ equipmentWrapper.addEventListener('click', (event) => {
 //   else{
 //     floorflashform.classList.add('active');
 //   }
-  
+
 //   umbrellavalue.value = umbrellainput.value;
 //   if(umbrellavalue.value > 0 ){
 //     umbrellaform.classList.remove('active');
@@ -809,8 +834,8 @@ equipmentWrapper.addEventListener('click', (event) => {
 
 // Select price and date
 const picker = new easepick.create({
-  element: document.getElementById('datepicker'),
-  css: ['https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css'],
+  element: document.getElementById("datepicker"),
+  css: ["https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css"],
   // css: [
   //   'https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css',
   //   'https://easepick.com/css/customize_sample.css',
@@ -821,74 +846,96 @@ const picker = new easepick.create({
       return num - 1;
     },
     locale: {
-      one: 'night',
-      other: 'nights',
+      one: "night",
+      other: "nights",
     },
   },
 });
 
 // Bundles values
-const cameracheckboxvalue = document.getElementById('cameracheckboxvalue');
-const lenscheckboxvalue = document.getElementById('lenscheckboxvalue');
-const backdropcheckboxvalue = document.getElementById('backdropcheckboxvalue');
-const flashlightcheckboxvalue = document.getElementById('flashlightcheckboxvalue');
-const tripodscheckboxvalue = document.getElementById('tripodscheckboxvalue');
-const bundlevalue = document.getElementById('bundlevalue');
+const cameracheckboxvalue = document.getElementById("cameracheckboxvalue");
+const lenscheckboxvalue = document.getElementById("lenscheckboxvalue");
+const backdropcheckboxvalue = document.getElementById("backdropcheckboxvalue");
+const flashlightcheckboxvalue = document.getElementById(
+  "flashlightcheckboxvalue"
+);
+const tripodscheckboxvalue = document.getElementById("tripodscheckboxvalue");
+const bundlevalue = document.getElementById("bundlevalue");
 
 // Values to create property
 let _uid;
 let _propertytitle;
 let _propertydescription;
 let _price; // property pricereview
-let _media = [] // Object 5 images
+let _media = []; // Object 5 images
 let _dates = {}; // Obj {from, to}
 let _bundleinfo = {}; // Obj {price, equipments[] }
 let _address = {}; // Obj {street,flatroom,city,state,postalcode,country,_lat,_long}
 let _typeofspace;
 
 // Review your listing
-const reviewfieldsbtn = document.getElementById('reviewfields');
-const titlereview = document.getElementById('titlereview');
-const descriptionreview = document.getElementById('descriptionreview');
-const addressreview = document.getElementById('addressreview');
-const tagsreview = document.getElementById('tagsreview');
-const equipmentreview = document.getElementById('equipmentreview');
-const dealsreview = document.getElementById('dealsreview');
-const dealdaysvalue = document.getElementById('dealdaysvalue');
-const dealpricevalue = document.getElementById('dealpricevalue');
-const availabilityreview = document.getElementById('availabilityreview');
-const pricereview = document.getElementById('pricereview');
-const pricevalue = document.getElementById('pricevalue');
-const datepicker = document.getElementById('datepicker');
+const reviewfieldsbtn = document.getElementById("reviewfields");
+const titlereview = document.getElementById("titlereview");
+const descriptionreview = document.getElementById("descriptionreview");
+const addressreview = document.getElementById("addressreview");
+const tagsreview = document.getElementById("tagsreview");
+const equipmentreview = document.getElementById("equipmentreview");
+const dealsreview = document.getElementById("dealsreview");
+const dealdaysvalue = document.getElementById("dealdaysvalue");
+const dealpricevalue = document.getElementById("dealpricevalue");
+const availabilityreview = document.getElementById("availabilityreview");
+const pricereview = document.getElementById("pricereview");
+const pricevalue = document.getElementById("pricevalue");
+const datepicker = document.getElementById("datepicker");
 
 // Equipment Description
-const cellingflashdesc = document.getElementById('cellingflashdesc');
-const floorflashdesc = document.getElementById('floorflashdesc');
+const cellingflashdesc = document.getElementById("cellingflashdesc");
+const floorflashdesc = document.getElementById("floorflashdesc");
 
 // Review info and setting values to create a property
-reviewfieldsbtn.addEventListener('click', () => {
- 
+reviewfieldsbtn.addEventListener("click", () => {
   titlereview.value = propertytitle.value;
   descriptionreview.value = propertydescription.value;
-  addressreview.value = street.value+' '+
-                        flatroom.value+' '+
-                        city.value+' '+
-                        state.value+' '+
-                        postalcode.value+' '+
-                        country.value;
-  tagsreview.value = _foodphotography?"Food Photography ":""+
-                    _commercial?"Food Photography ":""+
-                    _fashion?"Fashion ":""+
-                    _portrait?"Portrait ":""+
-                    _lifestyle?"Lifestyle ":""+
-                    _newborn?"Newborn ":""+
-                    _wedding?"Wedding ":"";
-  equipmentreview.value = _light?"Light ":""+
-                        _lightshapers?"Light Shapers ":""+
-                        _camerastand?"Camera Stand ":""+
-                        _camera?"Camera ":""+
-                        _lens?"Lens ":""+
-                        _otherequipment?"Other equipment ":"";
+  addressreview.value =
+    street.value +
+    " " +
+    flatroom.value +
+    " " +
+    city.value +
+    " " +
+    state.value +
+    " " +
+    postalcode.value +
+    " " +
+    country.value;
+  tagsreview.value = _foodphotography
+    ? "Food Photography "
+    : "" + _commercial
+    ? "Food Photography "
+    : "" + _fashion
+    ? "Fashion "
+    : "" + _portrait
+    ? "Portrait "
+    : "" + _lifestyle
+    ? "Lifestyle "
+    : "" + _newborn
+    ? "Newborn "
+    : "" + _wedding
+    ? "Wedding "
+    : "";
+  equipmentreview.value = _light
+    ? "Light "
+    : "" + _lightshapers
+    ? "Light Shapers "
+    : "" + _camerastand
+    ? "Camera Stand "
+    : "" + _camera
+    ? "Camera "
+    : "" + _lens
+    ? "Lens "
+    : "" + _otherequipment
+    ? "Other equipment "
+    : "";
   // dealsreview.value = `$ ${dealpricevalue.value} for ${dealdaysvalue.value} days`;
   // availabilityreview.value = datepicker.value;
   // pricereview.value = `$ ${pricevalue.value} per day`;
@@ -900,45 +947,45 @@ reviewfieldsbtn.addEventListener('click', () => {
   //                   _lens?"Lens ":"",
   //                   _otherequipment?"Other equipment ":""];
 
-  _propertytitle        = propertytitle.value;
-  _propertydescription  = propertydescription.value;
-  _price                = pricevalue.value;
-  _dates                = datepicker.value;
-  _bundleinfo           = {"price":bundlevalue.value,
-                          "equipment":[cameracheckboxvalue.checked?"Camera":"",
-                                      lenscheckboxvalue.checked?"Lens":"",
-                                      backdropcheckboxvalue.checked?"Back Drop":"",
-                                      flashlightcheckboxvalue.checked?"Flash Light":"",
-                                      tripodscheckboxvalue.checked?"Tripods":""
-                                      ]};
-  _address              = {"street":street.value,
-                            "flatroom":flatroom.value,
-                            "city":city.value,
-                            "state":state.value,
-                            "postalcode":postalcode.value,
-                            "country":country.value,
-                            "lat":"1",//_lat.value,
-                            "long":"2"};//_long.value};
-  
-  if(_indoor)
-    _typeofspace = "photography-type-indoor";
-  else if(_outdoor)
-    _typeofspace = "photography-type-outdoor";
-  else if(_studio)
-    _typeofspace = "photography-type-studio"; 
-  else if(_house)
-    _typeofspace = "photography-type-house";
-  else if(_beach)
-    _typeofspace = "photography-type-beach-house";
-  else if(_others)
-    _typeofspace = "photography-type-cottage";
+  _propertytitle = propertytitle.value;
+  _propertydescription = propertydescription.value;
+  _price = pricevalue.value;
+  _dates = datepicker.value;
+  _bundleinfo = {
+    price: bundlevalue.value,
+    equipment: [
+      cameracheckboxvalue.checked ? "Camera" : "",
+      lenscheckboxvalue.checked ? "Lens" : "",
+      backdropcheckboxvalue.checked ? "Back Drop" : "",
+      flashlightcheckboxvalue.checked ? "Flash Light" : "",
+      tripodscheckboxvalue.checked ? "Tripods" : "",
+    ],
+  };
+  _address = {
+    street: street.value,
+    flatroom: flatroom.value,
+    city: city.value,
+    state: state.value,
+    postalcode: postalcode.value,
+    country: country.value,
+    lat: "1", //_lat.value,
+    long: "2",
+  }; //_long.value};
+
+  if (_indoor) _typeofspace = "photography-type-indoor";
+  else if (_outdoor) _typeofspace = "photography-type-outdoor";
+  else if (_studio) _typeofspace = "photography-type-studio";
+  else if (_house) _typeofspace = "photography-type-house";
+  else if (_beach) _typeofspace = "photography-type-beach-house";
+  else if (_others) _typeofspace = "photography-type-cottage";
 
   // _uid = userId();
   _uid = localStorage.getItem("uid");
 
-
+  _media.push(urlString);
 
   console.log(_uid)
+
 
   // _from = datepicker.value;
   // _price = pricevalue.value;
@@ -973,6 +1020,21 @@ createPropertybtn.addEventListener("click", async function (event) {
   // console.log(_amenities); // Amenities[]
   // console.log(_equipments);
 
+  propertyInfo = await createProperty(
+    //'4BTWTvRfqDEQ7vXdrIxA', //uid
+    _uid, //string
+    _propertytitle,
+    _propertydescription,
+    _price, // property pricereview
+    _media, // Object 5 images
+    _dates, // Obj {from, to}
+    _bundleinfo, // Obj {price, equipments[] }
+    _address, // Obj {street,flatroom,city,state,postalcode,country,_lat,_long}
+    _typeofspace,
+    _amenities, // Amenities[]
+    _equipments // Equip[{tagname, desc, price},{},{} ]
+  );
+
 
   propertyInfo = await createProperty(//'4BTWTvRfqDEQ7vXdrIxA', //uid
                                         _uid, //string
@@ -987,14 +1049,15 @@ createPropertybtn.addEventListener("click", async function (event) {
                                         _amenities, // Amenities[]
                                         _equipments // Equip[{tagname, desc, price},{},{} ]
                                     );
-                                    
+
+
   window.location.href = window.location.origin;
 
-    // console.log(propertyInfo);
+  // console.log(propertyInfo);
 
     // alert(`Property created successfully ${propertyInfo}`);
     // Post Image Collection with propertyId
-    //await SaveURLtoFirestore(urlString,propertyInfo);
+    await SaveURLtoFirestore(urlString,propertyInfo);
 })
 
 // const submitbutton = document.getElementById("save");
@@ -1022,18 +1085,3 @@ createPropertybtn.addEventListener("click", async function (event) {
 //   // do something with selected option
 //   console.log(option + " selected");
 // }
-
-// Uploading Pictures
-const SelBtn = document.getElementById("selbtn");
-const UpBtn = document.getElementById("upbtn");
-const DownBtn = document.getElementById("downbtn");
-
-SelBtn.onclick = function () {
-  input.click();
-};
-
-// UpBtn.onclick = UploadProcess;
-UpBtn.addEventListener("click", () => {
-  UploadProcess();
-});
-// DownBtn.onclick = GetImagefromFirestore;

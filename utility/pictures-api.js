@@ -63,7 +63,6 @@ function GetFileExt(file) {
 }
 
 // Upload Process
-
 async function UploadProcess() {
   let ImgToUpload = files[0];
   let ImgName = namebox.value + extlab.innerHTML;
@@ -75,6 +74,37 @@ async function UploadProcess() {
   const storage = getStorage();
   const storageRef = sRef(storage, `IMAGES/${ImgName}`);
   const uploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
+
+  uploadTask.on(
+    "state_changed",
+    (snapshot) => {},
+    (error) => {
+      console.log(error.message);
+      alert("error: image not uploaded! ");
+    },
+    () => {
+      getDownloadURL(uploadTask.snapshot.ref).then((_downloadURL) => {
+        // SaveURLtoFirestore(_downloadURL);
+        console.log("Image uploaded successfully!");
+        console.log(_downloadURL);
+        urlString = "" + _downloadURL;
+      });
+    }
+  );
+}
+
+//////////////////////// PICTURE UPLOAD CAMERA
+async function cameraUpload(img, name) {
+  // let ImgToUpload = files[0];
+  // let ImgName = namebox.value + extlab.innerHTML;
+  // console.log(ImgName);
+
+  const metaData = {
+    contentType: img.type,
+  };
+  const storage = getStorage();
+  const storageRef = sRef(storage, `IMAGES/${name}`);
+  const uploadTask = uploadBytesResumable(storageRef, img, metaData);
 
   uploadTask.on(
     "state_changed",
@@ -123,4 +153,4 @@ async function UploadProcess() {
 // DownBtn.onclick = GetImagefromFirestore;
 
 // export { input, UploadProcess, GetImagefromFirestore, downloadURL};
-export { input, UploadProcess, urlString };
+export { input, UploadProcess, urlString, cameraUpload };
