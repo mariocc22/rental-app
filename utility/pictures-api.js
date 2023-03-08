@@ -98,6 +98,8 @@ async function cameraUpload(img, name) {
   // let ImgToUpload = files[0];
   // let ImgName = namebox.value + extlab.innerHTML;
   // console.log(ImgName);
+  console.log(img);
+  console.log(name);
 
   const metaData = {
     contentType: img.type,
