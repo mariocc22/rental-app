@@ -53,7 +53,7 @@ function filterPlacesPrepQuery(params) {
         query = `
         UNWIND $tags as tag
         WITH tag
-        MATCH (p:Property)<-[:TAGGED_WITH]-(t:Tag { name: tag })
+        OPTIONAL MATCH (p:Property)<-[:TAGGED_WITH]-(t:Tag { name: tag })
         WITH p
         RETURN COLLECT(p.id) as propertyIds`
     }
@@ -82,7 +82,7 @@ async function filterPlaces(params) {
 
     try {
 
-        console.log(params)
+        // console.log(params)
 
         // todo validation for params        
 
@@ -98,7 +98,9 @@ async function filterPlaces(params) {
             return propertyIds
         });
 
-        console.log(propertyIds)
+        // console.log(propertyIds)
+
+        return propertyIds[0]
 
     } catch (error) {
         console.log(error)

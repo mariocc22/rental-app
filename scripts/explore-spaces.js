@@ -4,6 +4,12 @@ import '/styles/explore-spaces.css';
 // import utility functions
 import { tagnameToInfo, activitysubCatList } from '../utility/tagnameToInfo.js'
 
+// queries
+import { filterPlaces } from '../query/neo4jQueries.js'
+import { propertyFuncion } from '../query/propertylist.js'
+
+
+
 // global variables for the file
 const params = new URLSearchParams(document.location.search);
 const activity = params.get("activity");
@@ -43,7 +49,7 @@ function init() {
 
 
     // display Properties
-    // displayProperties()
+    displayProperties()
 
     // console.log(tagnameToInfo("photography-type-house"))
 }
@@ -79,7 +85,7 @@ function registerAdditionalFilterBtns() {
         toggleAdditionalFilter()
         // TODO change the list now
 
-        updateList()
+        displayProperties()
     })
 
 
@@ -226,7 +232,7 @@ function loadAllTags(activity) {
 
 // Update List of Spaces
 
-function updateList() {
+async function displayProperties() {
     // todo use the tags and properties
     // todo use the string search
 
@@ -236,27 +242,33 @@ function updateList() {
     const listContainer = document.getElementsByClassName("suggested-spaces-list")[0];
     listContainer.innerHTML = "";
 
+    const activityTag = `activity-${activity}`
 
-    populateList(listContainer);
+    const propertyIds = await filterPlaces({ tags: [activityTag] });
+    console.log(propertyIds)
 
+    // TODO add limit
 
+    for (let propertyId of propertyIds) {
+        const propertyInfo = await propertyFuncion(propertyId);
+        if (propertyInfo) {
+            const propertyObject = {
+                img: propertyInfo?.media[0] || "https://picsum.photos/1200/500?random=1",
+                title: propertyInfo.propertytitle,
+                rating: 5,
+                location: propertyInfo.address.city + " ," + propertyInfo.address.state,
+                propertyId: propertyId
+            }
+
+            populateList(listContainer, propertyObject);
+        }
+    }
 }
 
 
-function populateList(listContainer) {
-
-    const listLength = 5;
-    const propertyObj = {
-        img: "https://picsum.photos/1200/500?random=1",
-        title: "Space Title 1",
-        rating: "5",
-        location: "Metrotown, Burnaby",
-        propertyId: "0djsGVd2vaDz4cs7KM1j"
-    }
-
-    for (let i = 0; i < listLength; i++) {
-
-        const string = `<li>
+function populateList(listContainer, propertyObj) {
+    console.log(propertyObj)
+    const string = `<li>
         <section>
             <a href="/property.html?propertyId=${propertyObj.propertyId}">
                 <img src="${propertyObj.img}" alt="">
@@ -273,7 +285,5 @@ function populateList(listContainer) {
         </section>
     </li>`
 
-        listContainer.innerHTML += string;
-    }
-
+    listContainer.innerHTML += string;
 }

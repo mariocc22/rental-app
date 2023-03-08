@@ -3,6 +3,10 @@ import '/styles/property.css';
 import { DateRangePicker } from 'vanillajs-datepicker';
 import 'vanillajs-datepicker/css/datepicker.css';
 
+// import queries
+import { propertyFuncion } from '../query/propertylist.js'
+import { tagnameToInfo } from '../utility/tagnameToInfo.js'
+
 const elem = document.getElementById('foo');
 const rangepicker = new DateRangePicker(elem, {
   autohide: true
@@ -74,6 +78,133 @@ prevSlide.addEventListener("click", function () {
 });
 
 // Slider Code ends ===============
+
+
+// global variables to view property
+const params = new URLSearchParams(document.location.search);
+const propertyId = params.get("propertyId");
+
+
+init()
+
+// ================= FUNCTIONS
+
+function init() {
+
+
+  // load the data from firebase
+  showPropertyDetails()
+}
+
+
+async function showPropertyDetails() {
+  const propertyInfo = await propertyFuncion(propertyId)
+  console.log(propertyInfo);
+
+  // add name
+  const propertyName = document.getElementById("propery-name");
+  propertyName.innerText = propertyInfo.propertytitle;
+
+  // load images
+  let propertyImages = propertyInfo.media.filter(link => link != "");
+
+  if(!propertyImages.length) {
+    propertyImages = ["https://source.unsplash.com/random?landscape,mountain"]
+  }
+
+  const imgSlider = document.getElementById("slider");
+  imgSlider.innerHTML = "";
+  propertyImages.forEach(link => {
+    imgSlider.innerHTML = `<div class="slide" style="transform: translateX(0%);">
+          <img src="${link}" alt="">
+      </div>`;
+  })
+
+
+  // load bundle information
+  const bundleInfo = propertyInfo.bundleinfo;
+  const bundlePrice = bundleInfo.price;
+  const bundleEquipment = bundleInfo.equipment.filter(val => val != "");
+
+  const bundlePriceElem = document.getElementsByClassName("bundle-title")[0]
+  bundlePriceElem.innerHTML = `Reduced Base Price $${bundlePrice}`;
+
+  const bundleEquipWrapper = document.querySelector(".bundle-equipments ul");
+  console.log(bundleEquipWrapper)
+  bundleEquipWrapper.innerHTML = "";
+
+  // bundleEquipments
+
+    bundleEquipment.forEach(equip => {
+      const string = `<li>
+            <span class="bundle-prop">
+                <i class="fa fa-camera"></i>
+                ${equip}
+            </span>
+        </li>`;
+
+
+        bundleEquipWrapper.innerHTML += string;
+    })
+
+
+  // load equipments
+  const equipmentObjectList = propertyInfo.equipments;
+  const equipmentWrapper = document.querySelector('.property-equipments ul');
+  equipmentWrapper.innerHTML = "";
+  equipmentObjectList.forEach(object => {
+    // console.log(object)
+    const tagname = object.tagname;
+    const tagInfo = tagnameToInfo(tagname);
+    const tag = tagInfo.name;
+    const price = object.price;
+
+    const string = `<li>
+            <input type="checkbox" id="${tagname}" name="props" value="${price}">
+            <label for="${tagname}">
+                <span>
+                    <i class="fa fa-camera"></i>
+                    ${tag}
+                </span>
+                <span class="prop-price">
+                    ${price}
+                </span>
+            </label>
+        </li>`
+
+    equipmentWrapper.innerHTML += string;
+  })
+
+
+
+  // customize options
+  const detailsWrapper = document.querySelector('.property-description > p');
+  detailsWrapper.innerText = propertyInfo.propertydescription;
+
+  // amenities
+  const amenitiesTagNames = propertyInfo.amenities;
+
+  const amenitiesWrapper = document.querySelector(".property-amenities > ul");
+  amenitiesWrapper.innerHTML = "";
+  amenitiesTagNames.forEach(tagname => {
+
+   
+    const tagInfo = tagnameToInfo(tagname);
+    const tag = tagInfo.name;
+
+    const string = `<li>${tag}</li>`
+    amenitiesWrapper.innerHTML += string;
+  })
+
+  // show price details
+
+}
+
+
+
+
+
+
 
 
 // // display menu section based on URL
