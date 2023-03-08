@@ -253,6 +253,11 @@ const captureButton = document.getElementById("capture-btn");
 const previewImage = document.getElementById("picture-preview");
 const video = document.getElementById("video");
 previewImage.style.display = "none";
+let cameraUrl;
+let _imgCamera = new Image();
+let file;
+let randomNumber;
+let photoList;
 
 // Check if the browser supports the camera API
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -276,9 +281,46 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
         // Convert the canvas image to a data URL and display it in the preview element
         previewImage.src = canvas.toDataURL("image/png");
+        cameraUrl = canvas.toDataURL("image/png");
         previewImage;
-        console.log(previewImage.src);
+        // console.log(previewImage.src);
         previewImage.style.display = "block";
+        _imgCamera.src = cameraUrl;
+        photoList = previewImage.src;
+
+        async function test(){
+          const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.9));
+          console.log(blob);
+          file = new File([blob], 'image.jpg', { type: 'image/jpeg' });
+          console.log(file);
+        }
+
+        test();
+        randomNumber = Math.floor(Math.random() * 100) + 1;
+        // const blob = new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.9));
+        // console.log(blob);
+        // file = new File([blob], 'image.jpg', { type: 'image/jpeg' });
+        // console.log(file);
+
+
+        // const base64String = cameraUrl.replace(/^data:image\/jpeg;base64,/, '');
+        // const binaryString = Buffer.from(base64String, 'base64');// andbuf.toString('base64')
+        // //const binaryString = atob(base64String);
+        // const uint8Array = new Uint8Array(binaryString.length);
+        // for (let i = 0; i < binaryString.length; i++) {
+        //   uint8Array[i] = binaryString.charCodeAt(i);
+        // }
+        // const blob = new Blob([uint8Array], { type: 'image/jpeg' });
+        // file = new File([blob], 'image.jpg', { type: 'image/jpeg' });
+        // console.log(file);
+
+
+        // const base64 = cameraUrl;//'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD//'
+        // const pathToSaveImage = '../'
+        
+        // const path = converBase64ToImage(base64, pathToSaveImage) //returns path /public/image.png
+
+
       });
     })
     .catch((error) => {
@@ -286,7 +328,7 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     });
 } else {
   console.error("Camera not supported by this browser");
-}
+};
 
 
 // Uploading Pictures
@@ -302,10 +344,13 @@ SelBtn.onclick = function () {
 // UpBtn.onclick = UploadProcess;
 UpBtn.addEventListener("click", () => {
   UploadProcess();
+  photoList = urlString;
 });
 // DownBtn.onclick = GetImagefromFirestore;
 upvideobtn.addEventListener("click", () => {
-  UploadProcess();
+  // console.log(file);
+  cameraUpload(file,randomNumber);
+  // photoList = urlString;
 });
 
 
@@ -887,6 +932,7 @@ const availabilityreview = document.getElementById("availabilityreview");
 const pricereview = document.getElementById("pricereview");
 const pricevalue = document.getElementById("pricevalue");
 const datepicker = document.getElementById("datepicker");
+const photolistmyspace = document.getElementById('photolistmyspace');
 
 // Equipment Description
 const cellingflashdesc = document.getElementById("cellingflashdesc");
@@ -983,8 +1029,8 @@ reviewfieldsbtn.addEventListener("click", () => {
   _uid = localStorage.getItem("uid");
 
   _media.push(urlString);
-
-  console.log(_uid)
+  photolistmyspace.src = photoList;
+  // console.log(_uid)
 
 
   // _from = datepicker.value;
@@ -1019,22 +1065,6 @@ createPropertybtn.addEventListener("click", async function (event) {
   // console.log(_typeofspace);
   // console.log(_amenities); // Amenities[]
   // console.log(_equipments);
-
-  propertyInfo = await createProperty(
-    //'4BTWTvRfqDEQ7vXdrIxA', //uid
-    _uid, //string
-    _propertytitle,
-    _propertydescription,
-    _price, // property pricereview
-    _media, // Object 5 images
-    _dates, // Obj {from, to}
-    _bundleinfo, // Obj {price, equipments[] }
-    _address, // Obj {street,flatroom,city,state,postalcode,country,_lat,_long}
-    _typeofspace,
-    _amenities, // Amenities[]
-    _equipments // Equip[{tagname, desc, price},{},{} ]
-  );
-
 
   propertyInfo = await createProperty(//'4BTWTvRfqDEQ7vXdrIxA', //uid
                                         _uid, //string
