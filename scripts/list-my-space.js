@@ -288,6 +288,27 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
   console.error("Camera not supported by this browser");
 }
 
+
+// Uploading Pictures
+const SelBtn = document.getElementById("selbtn");
+const UpBtn = document.getElementById("upbtn");
+const DownBtn = document.getElementById("downbtn");
+const upvideobtn = document.getElementById('upvideobtn');
+
+SelBtn.onclick = function () {
+  input.click();
+};
+
+// UpBtn.onclick = UploadProcess;
+UpBtn.addEventListener("click", () => {
+  UploadProcess();
+});
+// DownBtn.onclick = GetImagefromFirestore;
+upvideobtn.addEventListener("click", () => {
+  UploadProcess();
+});
+
+
 // Getting values from UI
 // const _uid =
 let _lat;
@@ -961,7 +982,10 @@ reviewfieldsbtn.addEventListener("click", () => {
   // _uid = userId();
   _uid = localStorage.getItem("uid");
 
-  console.log(_uid);
+  _media.push(urlString);
+
+  console.log(_uid)
+
 
   // _from = datepicker.value;
   // _price = pricevalue.value;
@@ -1011,14 +1035,30 @@ createPropertybtn.addEventListener("click", async function (event) {
     _equipments // Equip[{tagname, desc, price},{},{} ]
   );
 
+
+  propertyInfo = await createProperty(//'4BTWTvRfqDEQ7vXdrIxA', //uid
+                                        _uid, //string
+                                        _propertytitle,
+                                        _propertydescription,
+                                        _price, // property pricereview
+                                        _media, // Object 5 images
+                                        _dates, // Obj {from, to}
+                                        _bundleinfo, // Obj {price, equipments[] }
+                                        _address, // Obj {street,flatroom,city,state,postalcode,country,_lat,_long}
+                                        _typeofspace,
+                                        _amenities, // Amenities[]
+                                        _equipments // Equip[{tagname, desc, price},{},{} ]
+                                    );
+
+
   window.location.href = window.location.origin;
 
   // console.log(propertyInfo);
 
-  // alert(`Property created successfully ${propertyInfo}`);
-  // Post Image Collection with propertyId
-  // await SaveURLtoFirestore(urlString, propertyInfo);
-});
+    // alert(`Property created successfully ${propertyInfo}`);
+    // Post Image Collection with propertyId
+    await SaveURLtoFirestore(urlString,propertyInfo);
+})
 
 // const submitbutton = document.getElementById("save");
 // console.log('a');
@@ -1045,18 +1085,3 @@ createPropertybtn.addEventListener("click", async function (event) {
 //   // do something with selected option
 //   console.log(option + " selected");
 // }
-
-// Uploading Pictures
-const SelBtn = document.getElementById("selbtn");
-const UpBtn = document.getElementById("upbtn");
-const DownBtn = document.getElementById("downbtn");
-
-SelBtn.onclick = function () {
-  input.click();
-};
-
-// UpBtn.onclick = UploadProcess;
-UpBtn.addEventListener("click", () => {
-  UploadProcess();
-});
-// DownBtn.onclick = GetImagefromFirestore;
