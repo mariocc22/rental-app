@@ -32,6 +32,7 @@
   "dependencies": {
     "@easepick/bundle": "^1.2.1",
     "@firebase/firestore": "^3.8.3",
+    "convert-base64-to-image": "^0.0.16",
     "firebase": "^9.17.1",
     "font-awesome": "^4.7.0",
     "litepicker": "^2.0.12",
