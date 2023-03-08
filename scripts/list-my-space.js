@@ -2,9 +2,7 @@
 import "/styles/list-my-space.css";
 import { createProperty } from "/query/propertycreate.js";
 import {equipmentFormParser} from "../utility/equipmentFormParser.js"
-import {
-  input, UploadProcess, urlString
-} from "../utility/pictures-api";
+import { input, UploadProcess, urlString } from "../utility/pictures-api";
 import { userId } from '../utility/getuserid.js';
 import { SaveURLtoFirestore } from '/query/imagecreate.js';
 import QuantityInput from '../utility/quantity.js';
@@ -286,6 +284,26 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 } else {
   console.error("Camera not supported by this browser");
 }
+
+// Uploading Pictures
+const SelBtn = document.getElementById("selbtn");
+const UpBtn = document.getElementById("upbtn");
+const DownBtn = document.getElementById("downbtn");
+const upvideobtn = document.getElementById('upvideobtn');
+
+SelBtn.onclick = function () {
+  input.click();
+};
+
+// UpBtn.onclick = UploadProcess;
+UpBtn.addEventListener("click", () => {
+  UploadProcess();
+});
+// DownBtn.onclick = GetImagefromFirestore;
+upvideobtn.addEventListener("click", () => {
+  UploadProcess();
+});
+
 
 
 // Getting values from UI
@@ -936,7 +954,7 @@ reviewfieldsbtn.addEventListener('click', () => {
   // _uid = userId();
   _uid = localStorage.getItem("uid");
 
-
+  _media.push(urlString);
 
   console.log(_uid)
 
@@ -987,14 +1005,14 @@ createPropertybtn.addEventListener("click", async function (event) {
                                         _amenities, // Amenities[]
                                         _equipments // Equip[{tagname, desc, price},{},{} ]
                                     );
-                                    
+
   window.location.href = window.location.origin;
 
     // console.log(propertyInfo);
 
     // alert(`Property created successfully ${propertyInfo}`);
     // Post Image Collection with propertyId
-    //await SaveURLtoFirestore(urlString,propertyInfo);
+    await SaveURLtoFirestore(urlString,propertyInfo);
 })
 
 // const submitbutton = document.getElementById("save");
@@ -1022,18 +1040,3 @@ createPropertybtn.addEventListener("click", async function (event) {
 //   // do something with selected option
 //   console.log(option + " selected");
 // }
-
-// Uploading Pictures
-const SelBtn = document.getElementById("selbtn");
-const UpBtn = document.getElementById("upbtn");
-const DownBtn = document.getElementById("downbtn");
-
-SelBtn.onclick = function () {
-  input.click();
-};
-
-// UpBtn.onclick = UploadProcess;
-UpBtn.addEventListener("click", () => {
-  UploadProcess();
-});
-// DownBtn.onclick = GetImagefromFirestore;
