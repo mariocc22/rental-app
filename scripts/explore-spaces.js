@@ -9,16 +9,15 @@ const params = new URLSearchParams(document.location.search);
 const activity = params.get("activity");
 const validateActivities = ["music", "performance", "photography"];
 // used for properties filteration
-const MY_COORDINATES = {lat: undefined, lng: undefined};
+const MY_COORDINATES = { lat: undefined, lng: undefined };
 let SEARCHED_STRING = undefined;
 let SPACE_TYPE = undefined;
 let SELECTED_PROPS = [];
 let SELECTED_AMENITIES = [];
+let PRICE = undefined;
+let DISTANCE = undefined;
 
 // const 
-
-
-
 
 
 // initialise logic by calling init
@@ -37,7 +36,7 @@ function init() {
     registerSpaceTypeSelection();
     registerPropsSelection();
     registerAmenitiesSelection();
-
+    registerAdditionalFilterBtns();
 
     // load all Tags Info
     loadAllTags(activity);
@@ -57,12 +56,48 @@ function init() {
 // validate activity type
 function validateActivity() {
     var url = window.location.href.split('?')[0];
-    if(!validateActivities.includes(activity)) {
+    if (!validateActivities.includes(activity)) {
         window.location = `${url}?activity=photography`;
     }
 }
 
 // register listeners on page
+
+function registerAdditionalFilterBtns() {
+
+    // apply filter
+    const applyFilterBtn = document.getElementById("applyFilters");
+
+    applyFilterBtn.addEventListener("click", () => {
+        // hide it using same toggle logic
+        const priceValue = document.getElementById("price").value;
+        const distanceValue = document.getElementById("distance").value;
+
+        PRICE = priceValue;
+        DISTANCE = distanceValue;
+
+        toggleAdditionalFilter()
+        // TODO change the list now
+
+        updateList()
+    })
+
+
+    // close filter
+    const closeFilterBtn = document.getElementById("clearFilters");
+
+    closeFilterBtn.addEventListener("click", () => {
+
+        SELECTED_AMENITIES = [];
+        SELECTED_PROPS = [];
+
+        const addtionalFilterForm = document.getElementById("additional-filter-form");
+        addtionalFilterForm.reset();
+    })
+
+
+}
+
 function registerFilterToggle() {
 
     const filterOn = document.getElementById("additional-filters-on");
@@ -76,7 +111,7 @@ function registerSpaceTypeSelection() {
     const spaceTypeParent = document.getElementsByClassName("types-of-spaces")[0];
     spaceTypeParent.addEventListener("click", (event) => {
         // console.log(event.target.nodeName)
-        if(event.target.nodeName == "INPUT" && event.target.getAttribute("name")) {
+        if (event.target.nodeName == "INPUT" && event.target.getAttribute("name")) {
             SPACE_TYPE = event.target.id;
         }
     })
@@ -86,8 +121,8 @@ function registerSpaceTypeSelection() {
 function registerPropsSelection() {
     const elementProps = document.querySelector('.props-input > ul')
     elementProps.addEventListener("click", (event) => {
-        
-        if(event.target.nodeName == "INPUT" ){
+
+        if (event.target.nodeName == "INPUT") {
             const selectedPropsNodes = document.querySelectorAll('.props-input input');
             const selectedProps = [...selectedPropsNodes].filter(element => element.checked).map(element => element.id);
             SELECTED_PROPS = selectedProps;
@@ -99,7 +134,7 @@ function registerPropsSelection() {
 function registerAmenitiesSelection() {
     const elementAmenities = document.querySelector('.amenities-input > ul');
     elementAmenities.addEventListener("click", event => {
-        if(event.target.nodeName == "INPUT") {
+        if (event.target.nodeName == "INPUT") {
             const selectedAmenitiessNodes = document.querySelectorAll('.amenities-input input');
 
             const selectedAmenities = [...selectedAmenitiessNodes].filter(element => element.checked).map(element => element.id);
@@ -185,5 +220,60 @@ function loadAllTags(activity) {
         </li>`;
         elementAmenities.innerHTML += string;
     })
+
+}
+
+
+// Update List of Spaces
+
+function updateList() {
+    // todo use the tags and properties
+    // todo use the string search
+
+    // await to get the list from the database
+
+    // empty the container
+    const listContainer = document.getElementsByClassName("suggested-spaces-list")[0];
+    listContainer.innerHTML = "";
+
+
+    populateList(listContainer);
+
+
+}
+
+
+function populateList(listContainer) {
+
+    const listLength = 5;
+    const propertyObj = {
+        img: "https://picsum.photos/1200/500?random=1",
+        title: "Space Title 1",
+        rating: "5",
+        location: "Metrotown, Burnaby",
+        propertyId: "0djsGVd2vaDz4cs7KM1j"
+    }
+
+    for (let i = 0; i < listLength; i++) {
+
+        const string = `<li>
+        <section>
+            <a href="/property.html?propertyId=${propertyObj.propertyId}">
+                <img src="${propertyObj.img}" alt="">
+            </a>
+            <div class="space-details">
+                <a href="/property.html?propertyId=${propertyObj.propertyId}">
+                    <div class="space-name">${propertyObj.title}</div>
+                </a>
+                <p class="space-rating">${propertyObj.rating}</p>
+            </div>
+            <div class="space-location">
+                ${propertyObj.location}
+            </div>
+        </section>
+    </li>`
+
+        listContainer.innerHTML += string;
+    }
 
 }
