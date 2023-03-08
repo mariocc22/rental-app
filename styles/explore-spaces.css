@@ -135,6 +135,10 @@
     color: var(--explore-text-color);
 }
 
+#additional-filters-on {
+    cursor: pointer;
+}
+
 /* TODO fix this */
 
 
