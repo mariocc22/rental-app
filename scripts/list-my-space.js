@@ -244,11 +244,10 @@ SelBtn.onclick = function () {
   input.click();
 };
 
+let fromImage = false;
 UpBtn.addEventListener("click", () => {
   UploadProcess();
-  photoList = urlString;
-  console.log(photoList);
-  console.log(urlString);
+  fromImage = true;
 });
 
 upvideobtn.addEventListener("click", () => {
@@ -399,7 +398,7 @@ let _otherequipment;
 let _equipments = []; // Equip[{tagname, desc, price},{},{} ]
 
 const equipmentWrapper = document.getElementById("equipmentnextbutton");
-console.log(equipmentWrapper);
+// console.log(equipmentWrapper);
 equipmentWrapper.addEventListener("click", (event) => {
 
   const equipmentForm = document.getElementById("equipmentform");
@@ -546,6 +545,11 @@ reviewfieldsbtn.addEventListener("click", () => {
 
   _uid = localStorage.getItem("uid");
   _media.push(urlString);
+
+  if(fromImage){
+    photoList = urlString;
+  }
+
   photolistmyspace.src = photoList;
 });
 
