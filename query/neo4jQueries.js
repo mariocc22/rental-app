@@ -120,16 +120,30 @@ async function filterPlaces(params) {
 
 // todo validate activityName with the top level key in tags.json
 
-async function addPlace(placeId, placeName, userId, tagNames, activityName) {
+async function addPlace(placeId, placeName, userId, typeofspace, amenities, equipments, activityName, coordinates) {
 
-    const isTagsValid = validateTagNames(tagNames);
-    if(!isTagsValid) {
-        throw new Error("Tags are not valid")
-        return false;
-    }
+    console.log(typeofspace);
+    console.log(amenities)
+    console.log(equipments)
+
+    const tagNames = [typeofspace, ...amenities, `activity-${activityName}`];
+    equipments.forEach(tagobj => {
+        tagNames.push(tagobj.tagname)
+    })
+
+    // todo coordinates pending
+    // const {lat, long} = coordinates;
+
+    // todo validation pending
+    // const isTagsValid = validateTagNames(tagNames);
+
+    // if(!isTagsValid) {
+    //     throw new Error("Tags are not valid")
+    //     return false;
+    // }
 
     const givenTagNames = [...tagNames]
-    givenTagNames.push(`activity-${activityName}`);
+    // givenTagNames.push(`activity-${activityName}`);
 
 
     const session = driver.session({database: 'neo4j'})
@@ -139,18 +153,19 @@ async function addPlace(placeId, placeName, userId, tagNames, activityName) {
         const writeQuery = `
         MATCH(u:User{id: $userId})
         WITH u
-        CREATE (p:Property{id: $placeId, $name: $placeName })
+        CREATE (p:Property{id: $placeId, name: $placeName })
         WITH u, p
         MERGE (p)-[:OWNED_BY]->(u)
         WITH p
         UNWIND $tagNames as tagName
         MERGE(t:Tag{name: tagName})
-        WITH t
+        WITH t, p
         MERGE (p)<-[:TAGGED_WITH]-(t)
+        WITH COLLECT(t) as dump, p
         RETURN p.id as propertyId;`
 
-        const writeResponse = await session.executeWrite(tx => {
-            tx.run(
+        const writeResponse = await session.executeWrite(tx => 
+             tx.run(
                 writeQuery,
                 {
                     placeId,
@@ -159,7 +174,8 @@ async function addPlace(placeId, placeName, userId, tagNames, activityName) {
                     tagNames: givenTagNames
                 }
             )
-        })
+        );
+
 
         const propertyId = writeResponse.records.map(record => {
             const propertyId = record.get('propertyId');
@@ -167,6 +183,8 @@ async function addPlace(placeId, placeName, userId, tagNames, activityName) {
         });
 
         console.log(propertyId[0])
+
+        return propertyId[0];
         
     } catch (error) {
         console.log(error)

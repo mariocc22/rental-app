@@ -5,6 +5,7 @@ import { equipmentFormParser } from "../utility/equipmentFormParser.js";
 import { input, UploadProcess, urlString, cameraUpload } from "../utility/pictures-api";
 // import { userId } from "../utility/getuserid.js";
 import { SaveURLtoFirestore } from "/query/imagecreate.js";
+import { addPlace } from "../query/neo4jQueries.js"
 import QuantityInput from "../utility/quantity.js";
 import { easepick } from "@easepick/bundle";
 import { RangePlugin } from "@easepick/range-plugin";
@@ -181,6 +182,7 @@ const captureButton = document.getElementById("capture-btn");
 const previewImage = document.getElementById("picture-preview");
 const video = document.getElementById("video");
 previewImage.style.display = "none";
+
 let file;
 let randomNumber;
 let photoList;
@@ -580,8 +582,13 @@ createPropertybtn.addEventListener("click", async function (event) {
                                         _equipments // Equip[{tagname, desc, price},{},{} ]
                                     );
 
-  // Save Img into Firebase with propertyId
-  await SaveURLtoFirestore(urlString,propertyInfo);
-  // Going back home page
-  window.location.href = window.location.origin;
+    // alert(`Property created successfully ${propertyInfo}`);
+    // Post Image Collection with propertyId
+    await SaveURLtoFirestore(urlString,propertyInfo);
+
+    // Add Property Info to Neo4j
+    await addPlace(propertyInfo, _propertytitle, _uid, _typeofspace, _amenities, _equipments, "photography")
+
+    // Take user back to home page after all Database Functions
+    window.location.href = window.location.origin;
 });
