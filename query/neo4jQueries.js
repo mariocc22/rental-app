@@ -38,24 +38,27 @@ async function addUser(userId) {
     }
 }
 
-function filterPlacesPrepQuery(params) {
+function filterPlacesPrepQuery(distance, coords) {
     let query = ''
-    if (params.coords) {
+    if (coords) {
         query = `
-        UNWIND $tags as tag
-        WITH tag
-        MATCH (p:Property)<-[:TAGGED_WITH]-(t:Tag { name: tag })
-        WHERE point.distance(p.location, point({ longitude: $coords.longitude, latitude: $coords.latitude })) < $coords.distance
-        WITH p
-        RETURN COLLECT(p.id) as propertyIds`
+        MATCH (p:Property)<-[:TAGGED_WITH]-(t:Tag)
+        WHERE point.distance(p.location, point({ longitude: $coords.lng, latitude: $coords.lat })) < $distance
+        WITH p, t
+        WHERE toLower(p.name) CONTAINS toLower($string) and p.price <= $price and t.name IN $tags
+        WITH p, COUNT(DISTINCT t) AS tagCount
+        WHERE tagCount = $tagsLength
+        RETURN COLLECT(p.id) as propertyIds;`
+
+        console.log(query)
 
     } else {
         query = `
-        UNWIND $tags as tag
-        WITH tag
-        OPTIONAL MATCH (p:Property)<-[:TAGGED_WITH]-(t:Tag { name: tag })
-        WITH p
-        RETURN COLLECT(p.id) as propertyIds`
+        MATCH (p:Property)<-[:TAGGED_WITH]-(t:Tag)
+        WHERE toLower(p.name) CONTAINS toLower($string) and p.price <= $price and t.name IN $tags
+        WITH p, COUNT(DISTINCT t) AS tagCount
+        WHERE tagCount = $tagsLength
+        RETURN COLLECT(p.id) as propertyIds;`
     }
 
     return query;
@@ -67,37 +70,35 @@ params template:
 
 distance in metres
 tags are in key-value pair
-
 params example: 
-
 params = { tags: ['amenities-washroom'], coords: { latitude: 37.563534, longitude: -122.322269, distance: 2000 } }
 
 todo
 probably add the activity like addPlace
 
 */
-async function filterPlaces(params) {
+async function filterPlaces(tags, price, string, distance, coords) {
 
     const session = driver.session({ database: 'neo4j' });
 
     try {
-
-        // console.log(params)
-
-        // todo validation for params        
-
-        const readQuery = filterPlacesPrepQuery(params);
-        console.log(readQuery)
+        const readQuery = filterPlacesPrepQuery(distance, coords);
 
         const readResult = await session.executeRead(tx =>
-            tx.run(readQuery, { ...params })
+            tx.run(readQuery, { 
+                tags, 
+                tagsLength: tags.length, 
+                string, 
+                price: Number(price),
+                distance: distance*1000,
+                coords 
+            })
         );
 
         const propertyIds = readResult.records.map(record => {
             const propertyIds = record.get('propertyIds');
             return propertyIds
         });
-
         // console.log(propertyIds)
 
         return propertyIds[0]
@@ -122,11 +123,7 @@ async function filterPlaces(params) {
 
 // todo validate activityName with the top level key in tags.json
 
-async function addPlace(placeId, placeName, userId, typeofspace, amenities, equipments, activityName, coordinates) {
-
-    console.log(typeofspace);
-    console.log(amenities)
-    console.log(equipments)
+async function addPlace(placeId, price, placeName, userId, typeofspace, amenities, equipments, activityName, coordinates) {
 
     const tagNames = [typeofspace, ...amenities, `activity-${activityName}`];
     equipments.forEach(tagobj => {
@@ -152,8 +149,8 @@ async function addPlace(placeId, placeName, userId, typeofspace, amenities, equi
         const writeQuery = `
         MATCH(u:User{id: $userId})
         WITH u
-        CREATE (p:Property{id: $placeId, name: $placeName })
-        SET b.location = Point(latitude: $lat, longitude: $long)
+        CREATE (p:Property{id: $placeId, name: $placeName , price: $price })
+        SET p.location = Point({latitude: $lat, longitude: $long})
         WITH u, p
         MERGE (p)-[:OWNED_BY]->(u)
         WITH p
@@ -169,6 +166,7 @@ async function addPlace(placeId, placeName, userId, typeofspace, amenities, equi
                 writeQuery,
                 {
                     placeId,
+                    price: Number(price),
                     placeName,
                     userId,
                     tagNames: givenTagNames,
