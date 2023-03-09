@@ -592,7 +592,7 @@ createPropertybtn.addEventListener("click", async function (event) {
 
     // Add Property Info to Neo4j
     const coordinates = {lat: 49.2244201, long: -123.1110692}
-    await addPlace(propertyInfo, _propertytitle, _uid, _typeofspace, _amenities, _equipments, "photography", coordinates);
+    await addPlace(propertyInfo, _price, _propertytitle, _uid, _typeofspace, _amenities, _equipments, "photography", coordinates);
 
     // Take user back to home page after all Database Functions
     window.location.href = window.location.origin;
