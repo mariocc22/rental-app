@@ -8,9 +8,11 @@ function calendarBook(min = "", max = "") {
     element: document.getElementById("datepicker"),
     css: ["https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css"],
     zIndex: 10,
+    autoApply: false,
     AmpPlugin: {
       // reset dates
       resetButton: true,
+      darkMode: false,
     },
     LockPlugin: {
       // disable the following dates within this range (YYYY-MM-DD)
