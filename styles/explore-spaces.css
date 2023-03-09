@@ -22,6 +22,10 @@
    display: none;
 }
 
+.types-of-spaces input:checked + label {
+    color: var(--explore-text-color);
+  }
+
 .types-of-spaces {
     margin-right: 1.5rem;
     overflow: auto;
