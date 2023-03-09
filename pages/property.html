@@ -1,140 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stage | Space Details</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav class="index-nav">
-            <ul>
-                <li>
-                    <button onclick="history.back()">
-                        <i class="fa fa-caret-left"></i>
-                    </button>
-                </li>
-                <li>
-                    <button>
-                        <i class="fa fa-bars"></i>
-                    </button>
-                </li>
-            </ul>
-        </nav>
+      <nav class="index-nav">
+        <ul>
+          <li>
+            <button onclick="history.back()">
+              <i class="fa fa-caret-left"></i>
+            </button>
+          </li>
+          <li>
+            <button>
+              <i class="fa fa-bars"></i>
+            </button>
+          </li>
+        </ul>
+      </nav>
     </header>
 
     <!-- Space Details -->
     <main>
-        <!-- Property Details -->
-        <section class="property-details" id="property-details">
-            <h1 id="propery-name" class="property-name">
-                {{ Name of the property }}
-            </h1>
-            <div id="property-images-carousel">
-                <!-- Slider container -->
-                <div class="slider" id="slider">
-                    <!-- slide 1 -->
-                    <div class="slide">
-                        <img src="https://source.unsplash.com/random?landscape,mountain" alt="" />
-                    </div>
-
-                    <!-- slide 2 -->
-                    <div class="slide">
-                        <img src="https://source.unsplash.com/random?landscape,cars" alt="" />
-                    </div>
-
-                    <!-- slide 3 -->
-                    <div class="slide">
-                        <img src="https://source.unsplash.com/random?landscape,night" alt="" />
-                    </div>
-
-                    <!-- slide 4 -->
-                    <div class="slide">
-                        <img src="https://source.unsplash.com/random?landscape,city" alt="" />
-                    </div>
-
-                    <!-- Control buttons -->
-                    <button class="btn btn-next"> &gt; </button>
-                    <button class="btn btn-prev">
-                        &lt; </button>
-                </div>
+      <!-- Property Details -->
+      <section class="property-details" id="property-details">
+        <h1 id="propery-name" class="property-name">
+          {{ Name of the property }}
+        </h1>
+        <div id="property-images-carousel">
+          <!-- Slider container -->
+          <div class="slider" id="slider">
+            <!-- slide 1 -->
+            <div class="slide">
+              <img
+                src="https://source.unsplash.com/random?landscape,mountain"
+                alt=""
+              />
             </div>
 
-            <!-- Property info -->
-            <div id="property-info" class="property-info">
-                <div class="menu-tabs" data-value="customize">
-                    <a href="#customize">
-                        Customize
-                    </a>
-                </div>
-                <div class="menu-tabs" data-value="details">
-                    <a href="#details">
-                        Details
-                    </a>
-                </div>
-                <div class="menu-tabs" data-value="showcases">
-                    <a href="#showcases">
-                        Showcases
-                    </a>
-                </div>
+            <!-- slide 2 -->
+            <div class="slide">
+              <img
+                src="https://source.unsplash.com/random?landscape,cars"
+                alt=""
+              />
             </div>
-            <div class="property-menu-info-wrapper">
-                <!-- Customize Tab -->
-                <div class="property-customize-tab">
-                    <!-- Pick Dates -->
-                    <div class="property-pick-dates">
-                        <h2>Pick Dates</h2>
-                        <div id="foo">
-                            <input type="text" name="start" id="start">
+
+            <!-- slide 3 -->
+            <div class="slide">
+              <img
+                src="https://source.unsplash.com/random?landscape,night"
+                alt=""
+              />
+            </div>
+
+            <!-- slide 4 -->
+            <div class="slide">
+              <img
+                src="https://source.unsplash.com/random?landscape,city"
+                alt=""
+              />
+            </div>
+
+            <!-- Control buttons -->
+            <button class="btn btn-next">&gt;</button>
+            <button class="btn btn-prev">&lt;</button>
+          </div>
+        </div>
+
+        <!-- Property info -->
+        <div id="property-info" class="property-info">
+          <div class="menu-tabs" data-value="customize">
+            <a href="#customize"> Customize </a>
+          </div>
+          <div class="menu-tabs" data-value="details">
+            <a href="#details"> Details </a>
+          </div>
+          <div class="menu-tabs" data-value="showcases">
+            <a href="#showcases"> Showcases </a>
+          </div>
+        </div>
+        <div class="property-menu-info-wrapper">
+          <!-- Customize Tab -->
+          <div class="property-customize-tab">
+            <!-- Pick Dates -->
+            <div class="property-pick-dates">
+              <h2>Pick Dates</h2>
+              <div id="foo">
+                <!-- <input type="text" name="start" id="start">
                             <span>to</span>
-                            <input type="text" name="end" id="end">
-                        </div>
-                    </div>
-                    <!-- Suggested Bundles -->
-                    <div class="property-bundles" id="property-bundles">
-                        <h2>Suggested Bundles</h2>
-                        <div class="bundle-details">
-                                <img src="../assets/svg-icons/bundleA2dm.svg">
-                            <div class="bundle-details-props">
-                                <p class="bundle-title">Reduced Base Price $300</p>
-                                <div class="bundle-equipments">
-                                    <ul>
-                                        <li>
-                                            <span class="bundle-prop">
-                                                <i class="fa fa-camera"></i>
-                                                Camera
-                                            </span>
-                                            <span class="bundle-prop-price">
-                                                10
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="bundle-prop">
-                                                <i class="fa fa-camera"></i>
-                                                Light Mount
-                                            </span>
-                                            <span class="bundle-prop-price">
-                                                10
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="bundle-prop">
-                                                <i class="fa fa-camera"></i>
-                                                Shaper
-                                            </span>
-                                            <span class="bundle-prop-price">
-                                                10
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <input type="button" value="Choose Bundle" data-price="300">
-                            </div>
-                        </div>
-                        <!-- <div class="bundle">
+                            <input type="text" name="end" id="end"> -->
+                <label>
+                Available Dates:
+                  <input id="datepicker" />
+                </label>
+              </div>
+            </div>
+            <!-- Suggested Bundles -->
+            <div class="property-bundles" id="property-bundles">
+              <h2>Suggested Bundles</h2>
+              <div class="bundle-details">
+                <img src="../assets/svg-icons/bundleA2dm.svg" />
+                <div class="bundle-details-props">
+                  <p class="bundle-title">Reduced Base Price $300</p>
+                  <div class="bundle-equipments">
+                    <ul>
+                      <li>
+                        <span class="bundle-prop">
+                          <i class="fa fa-camera"></i>
+                          Camera
+                        </span>
+                        <span class="bundle-prop-price"> 10 </span>
+                      </li>
+                      <li>
+                        <span class="bundle-prop">
+                          <i class="fa fa-camera"></i>
+                          Light Mount
+                        </span>
+                        <span class="bundle-prop-price"> 10 </span>
+                      </li>
+                      <li>
+                        <span class="bundle-prop">
+                          <i class="fa fa-camera"></i>
+                          Shaper
+                        </span>
+                        <span class="bundle-prop-price"> 10 </span>
+                      </li>
+                    </ul>
+                  </div>
+                  <input type="button" value="Choose Bundle" data-price="300" />
+                </div>
+              </div>
+              <!-- <div class="bundle">
                             <h3>$250 / Per Day</h3>
                             <p>Get these items and save $30</p>
                             <div class="bundle-equipments">
@@ -146,192 +148,176 @@
                             </div>
                             <input type="button" value="Choose Bundle" data-price="250">
                         </div> -->
-                    </div>
-                    <!-- Equipment and Props -->
-                    <div class="property-equipments" id="property-equipments">
-                        <h2>Equipment and Props</h2>
-                        <ul>
-                            <li>
-                                <input type="checkbox" id="camera" name="props" value="camera">
-                                <label for="camera">
-                                    <span>
-                                        <i class="fa fa-camera"></i>
-                                        Camera
-                                    </span>
-                                    <span class="prop-price">
-                                        $10
-                                    </span>
-                                </label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="camera" name="props" value="camera">
-                                <label for="camera">
-                                    <span>
-                                        <i class="fa fa-camera"></i>
-                                        Camera
-                                    </span>
-                                    <span class="prop-price">
-                                        $10
-                                    </span>
-                                </label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="camera" name="props" value="camera">
-                                <label for="camera">
-                                    <span>
-                                        <i class="fa fa-camera"></i>
-                                        Camera
-                                    </span>
-                                    <span class="prop-price">
-                                        $10
-                                    </span>
-                                </label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="camera" name="props" value="camera">
-                                <label for="camera">
-                                    <span>
-                                        <i class="fa fa-camera"></i>
-                                        Camera
-                                    </span>
-                                    <span class="prop-price">
-                                        $10
-                                    </span>
-                                </label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="camera" name="props" value="camera">
-                                <label for="camera">
-                                    <span>
-                                        <i class="fa fa-camera"></i>
-                                        Camera
-                                    </span>
-                                    <span class="prop-price">
-                                        $10
-                                    </span>
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Property Details Tab -->
-                <div class="property-details-tab">
-                    <div class="property-description" id="property-description">
-                        <h2>Property Description</h2>
-                        <p>A long Description about the property</p>
-                    </div>
-                    <div class="property-amenities" id="property-amenities">
-                        <h2>Property Amenities</h2>
-                        <ul>
-                            <li>One</li>
-                            <li>Two</li>
-                            <li>Three</li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- Showcases tab -->
-                <div class="property-showcases-tab ">
-                    <div class="showcase-list">
-                        <h2>Explore Past showcases</h2>
-                        <ul class="showcase-list" id="showcase-list">
-                            <li class="property-showcase">
-                                <img src="https://picsum.photos/1200/500?random=2">
-                                <div class="showcase-title">
-                                    Showcase
-                                </div>
-                                <div class="showcase-meta">
-                                    <span>
-                                        by Pablo
-                                    </span>
-                                    <span>
-                                        20 Jan 2023
-                                    </span>
-                                </div>
-                            </li>
-                            <li class="property-showcase">
-                                <img src="https://picsum.photos/1200/500?random=2">
-                                <div class="showcase-title">
-                                    Showcase
-                                </div>
-                                <div class="showcase-meta">
-                                    <span>
-                                        by Pablo
-                                    </span>
-                                    <span>
-                                        20 Jan 2023
-                                    </span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </div>
-            <div class="property-booking-details">
-                <!-- Price Details -->
-                <div>
-                    <h2>Price Details</h2>
-                    <div id="property-price-breakdown" class="property-price-breakdown">
-
-                        <!-- Base price -->
-                        <div class="price-detail-wrapper">
-                            <div class="price-detail-title">Base Price</div>
-                            <ul>
-                                <li>
-                                    <span>
-                                        Price before props
-                                    </span>
-                                    <span>
-                                        CAD 100
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- Props -->
-                        <div class="price-detail-wrapper">
-                            <div class="price-detail-title">Props</div>
-                            <ul>
-                                <li>
-                                    <span>
-                                        Camera
-                                    </span>
-                                    <span>
-                                        CAD 15
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>
-                                        Tripod
-                                    </span>
-                                    <span>
-                                        CAD 15
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- Total Price  -->
-                        <div class="price-detail-wrapper">
-                            <div class="price-detail-title">Total Price</div>
-                            <ul>
-                                <li>
-                                    <span>
-                                        Price for 3 days
-                                    </span>
-                                    <span>
-                                        130 x 3 = CAD 390
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div id="property-booking-btn" class="book-space">
-                        <input type="button" value="Book">
-                    </div>
-                </div>
+            <!-- Equipment and Props -->
+            <div class="property-equipments" id="property-equipments">
+              <h2>Equipment and Props</h2>
+              <ul>
+                <li>
+                  <input
+                    type="checkbox"
+                    id="camera"
+                    name="props"
+                    value="camera"
+                  />
+                  <label for="camera">
+                    <span>
+                      <i class="fa fa-camera"></i>
+                      Camera
+                    </span>
+                    <span class="prop-price"> $10 </span>
+                  </label>
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    id="camera"
+                    name="props"
+                    value="camera"
+                  />
+                  <label for="camera">
+                    <span>
+                      <i class="fa fa-camera"></i>
+                      Camera
+                    </span>
+                    <span class="prop-price"> $10 </span>
+                  </label>
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    id="camera"
+                    name="props"
+                    value="camera"
+                  />
+                  <label for="camera">
+                    <span>
+                      <i class="fa fa-camera"></i>
+                      Camera
+                    </span>
+                    <span class="prop-price"> $10 </span>
+                  </label>
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    id="camera"
+                    name="props"
+                    value="camera"
+                  />
+                  <label for="camera">
+                    <span>
+                      <i class="fa fa-camera"></i>
+                      Camera
+                    </span>
+                    <span class="prop-price"> $10 </span>
+                  </label>
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    id="camera"
+                    name="props"
+                    value="camera"
+                  />
+                  <label for="camera">
+                    <span>
+                      <i class="fa fa-camera"></i>
+                      Camera
+                    </span>
+                    <span class="prop-price"> $10 </span>
+                  </label>
+                </li>
+              </ul>
             </div>
-        </section>
+          </div>
+          <!-- Property Details Tab -->
+          <div class="property-details-tab">
+            <div class="property-description" id="property-description">
+              <h2>Property Description</h2>
+              <p>A long Description about the property</p>
+            </div>
+            <div class="property-amenities" id="property-amenities">
+              <h2>Property Amenities</h2>
+              <ul>
+                <li>One</li>
+                <li>Two</li>
+                <li>Three</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Showcases tab -->
+          <div class="property-showcases-tab">
+            <div class="showcase-list">
+              <h2>Explore Past showcases</h2>
+              <ul class="showcase-list" id="showcase-list">
+                <li class="property-showcase">
+                  <img src="https://picsum.photos/1200/500?random=2" />
+                  <div class="showcase-title">Showcase</div>
+                  <div class="showcase-meta">
+                    <span> by Pablo </span>
+                    <span> 20 Jan 2023 </span>
+                  </div>
+                </li>
+                <li class="property-showcase">
+                  <img src="https://picsum.photos/1200/500?random=2" />
+                  <div class="showcase-title">Showcase</div>
+                  <div class="showcase-meta">
+                    <span> by Pablo </span>
+                    <span> 20 Jan 2023 </span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="property-booking-details">
+          <!-- Price Details -->
+          <div>
+            <h2>Price Details</h2>
+            <div id="property-price-breakdown" class="property-price-breakdown">
+              <!-- Base price -->
+              <div class="price-detail-wrapper">
+                <div class="price-detail-title">Base Price</div>
+                <ul>
+                  <li>
+                    <span> Price before props </span>
+                    <span> CAD 100 </span>
+                  </li>
+                </ul>
+              </div>
+              <!-- Props -->
+              <div class="price-detail-wrapper">
+                <div class="price-detail-title">Props</div>
+                <ul>
+                  <li>
+                    <span> Camera </span>
+                    <span> CAD 15 </span>
+                  </li>
+                  <li>
+                    <span> Tripod </span>
+                    <span> CAD 15 </span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Total Price  -->
+              <div class="price-detail-wrapper">
+                <div class="price-detail-title">Total Price</div>
+                <ul>
+                  <li>
+                    <span> Price for 3 days </span>
+                    <span> 130 x 3 = CAD 390 </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div id="property-booking-btn" class="book-space">
+              <input type="button" value="Book" />
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
-</body>
-
+  </body>
 </html>
