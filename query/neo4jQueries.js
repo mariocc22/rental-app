@@ -133,9 +133,6 @@ async function addPlace(placeId, placeName, userId, typeofspace, amenities, equi
         tagNames.push(tagobj.tagname)
     })
 
-    // todo coordinates pending
-    // const {lat, long} = coordinates;
-
     // todo validation pending
     // const isTagsValid = validateTagNames(tagNames);
 
@@ -156,6 +153,7 @@ async function addPlace(placeId, placeName, userId, typeofspace, amenities, equi
         MATCH(u:User{id: $userId})
         WITH u
         CREATE (p:Property{id: $placeId, name: $placeName })
+        SET b.location = Point(latitude: $lat, longitude: $long)
         WITH u, p
         MERGE (p)-[:OWNED_BY]->(u)
         WITH p
@@ -173,7 +171,9 @@ async function addPlace(placeId, placeName, userId, typeofspace, amenities, equi
                     placeId,
                     placeName,
                     userId,
-                    tagNames: givenTagNames
+                    tagNames: givenTagNames,
+                    lat: coordinates.lat,
+                    long: coordinates.long
                 }
             )
         );
