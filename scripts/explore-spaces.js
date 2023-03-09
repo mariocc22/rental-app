@@ -257,7 +257,8 @@ async function displayProperties() {
                 title: propertyInfo.propertytitle,
                 rating: 5,
                 location: propertyInfo.address.city + " ," + propertyInfo.address.state,
-                propertyId: propertyId
+                propertyId: propertyId,
+                price: propertyInfo.price
             }
 
             populateList(listContainer, propertyObject);
@@ -266,6 +267,7 @@ async function displayProperties() {
 }
 
 
+// function to populate list inside html script
 function populateList(listContainer, propertyObj) {
     console.log(propertyObj)
     const string = `<li>
@@ -277,10 +279,11 @@ function populateList(listContainer, propertyObj) {
                 <a href="/property.html?propertyId=${propertyObj.propertyId}">
                     <div class="space-name">${propertyObj.title}</div>
                 </a>
-                <p class="space-rating">${propertyObj.rating}</p>
+                <p class="space-price">CAD ${propertyObj.price}</p>
             </div>
             <div class="space-location">
-                ${propertyObj.location}
+                <p>${propertyObj.location}</p>
+                <p class="space-rating">${propertyObj.rating}</p>
             </div>
         </section>
     </li>`

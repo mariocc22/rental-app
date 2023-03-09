@@ -201,7 +201,7 @@
     color: var(--text-color);
 }
 
-.places-cards-wrapper .space-details {
+.places-cards-wrapper .space-details, .places-cards-wrapper .space-location {
     display: flex;
     flex-wrap: row wrap;
     align-items: center;
