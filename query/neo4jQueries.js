@@ -50,8 +50,6 @@ function filterPlacesPrepQuery(distance, coords) {
         WHERE tagCount = $tagsLength
         RETURN COLLECT(p.id) as propertyIds;`
 
-        console.log(query)
-
     } else {
         query = `
         MATCH (p:Property)<-[:TAGGED_WITH]-(t:Tag)

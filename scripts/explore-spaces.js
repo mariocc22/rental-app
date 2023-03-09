@@ -379,7 +379,6 @@ async function displayProperties() {
     const coords = MY_COORDINATES.lat && MY_COORDINATES.lng ? MY_COORDINATES : undefined;
 
     const propertyIds = await filterPlaces(tags, price, string, distance, coords);
-    console.log(propertyIds)
 
     // TODO add limit
 
