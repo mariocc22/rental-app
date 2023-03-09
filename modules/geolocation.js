@@ -3,8 +3,13 @@ const usersLoc = document.querySelector(".users-loc");
 
 const getPosition = function () {
   return new Promise(function (resolve, reject) {
+    let options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    };
     //User's current position
-    navigator.geolocation.getCurrentPosition(resolve, reject);
+    navigator.geolocation.getCurrentPosition(resolve, reject, options);
   });
 };
 
@@ -18,7 +23,6 @@ const whereAmI = async function () {
 
     // === Reverse Geocoding with an external API
     const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
-
     // === Handle errors
     if (!resGeo.ok) {
       throw new Error("Problem getting the location data");
