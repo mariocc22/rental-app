@@ -52,7 +52,7 @@ musician.addEventListener('click', () =>{
 });
 
 photographer.addEventListener('click', () =>{
-  _activity = "photographer";
+  _activity = "photography";
 });
 
 performance.addEventListener('click', () =>{
@@ -318,24 +318,24 @@ geobtn.addEventListener('click', async function (event) {
   //   center: [_lat, _long],
   //   zoom: 13});
   // console.log(map);
-  
+
   // var map = L.map(_map).setView([_lat, _long], 13);
   // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   //   // maxZoom: 19,
   //   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   // }).addTo(map);  
-  
+
   // const settingmap = document.getElementById('settingmap');
   // settingmap.src = `http://maps.googleapis.com/maps/api/staticmap?center=${_lat},${_long}&zoom=11&size=200x200&sensor=false`;
 
 
-  var map = L.map('map').setView([_lat, _long], 13);
+  var map = L.map(_map).setView([_lat, _long], 13);
 
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '© OpenStreetMap'
   }).addTo(map);
-})
+});
 
 // Tags
 let _foodphotography = false;
@@ -601,35 +601,33 @@ reviewfieldsbtn.addEventListener("click", () => {
   _propertydescription = propertydescription.value;
   _price = pricevalue.value;
   _dates = datepicker.value;
+  _bundleinfo = {
+    price: bundlevalue.value,
+    equipment: [
+      cameracheckboxvalue.checked ? "Camera" : "",
+      lenscheckboxvalue.checked ? "Lens" : "",
+      backdropcheckboxvalue.checked ? "Back Drop" : "",
+      flashlightcheckboxvalue.checked ? "Flash Light" : "",
+      tripodscheckboxvalue.checked ? "Tripods" : "",
+    ],
+  };
+  _address = {
+    street: street.value,
+    flatroom: flatroom.value,
+    city: city.value,
+    state: state.value,
+    postalcode: postalcode.value,
+    country: country.value,
+    lat: _lat,//"49.2577143", //_lat.value,
+    long: _long,//"-123.1939433",
+  }; //_long.value};
 
-  _bundleinfo = {price: bundlevalue.value,
-                equipment: [cameracheckboxvalue.checked ? "Camera" : "",
-                            lenscheckboxvalue.checked ? "Lens" : "",
-                            backdropcheckboxvalue.checked ? "Back Drop" : "",
-                            flashlightcheckboxvalue.checked ? "Flash Light" : "",
-                            tripodscheckboxvalue.checked ? "Tripods" : ""]};
-  _address = {street: street.value,
-              flatroom: flatroom.value,
-              city: city.value,
-              state: state.value,
-              postalcode: postalcode.value,
-              country: country.value,
-              lat: _lat,//"49.2577143", //_lat.value,
-              long: _long};//"-123.1939433",}; //_long.value};
-
-  if (_indoor) 
-    _typeofspace = "photography-type-indoor";
-  else if (_outdoor) 
-    _typeofspace = "photography-type-outdoor";
-  else if (_studio) 
-    _typeofspace = "photography-type-studio";
-  else if (_house) 
-    _typeofspace = "photography-type-house";
-  else if (_beach) 
-    _typeofspace = "photography-type-beach-house";
-  else if (_others) 
-    _typeofspace = "photography-type-cottage";
-
+  if (_indoor) _typeofspace = "photography-type-indoor";
+  else if (_outdoor) _typeofspace = "photography-type-outdoor";
+  else if (_studio) _typeofspace = "photography-type-studio";
+  else if (_house) _typeofspace = "photography-type-house";
+  else if (_beach) _typeofspace = "photography-type-beach-house";
+  else if (_others) _typeofspace = "photography-type-cottage";
 
   _uid = localStorage.getItem("uid");
   _media.push(urlString);
@@ -680,8 +678,9 @@ createPropertybtn.addEventListener("click", async function (event) {
   await SaveURLtoFirestore(urlString, propertyInfo);
 
     // Add Property Info to Neo4j
+    // Use _lat and _long values, also _activity
     const coordinates = {lat: 49.2244201, long: -123.1110692}
-    await addPlace(propertyInfo, _price, _propertytitle, _uid, _typeofspace, _amenities, _equipments, "photography", coordinates);
+    await addPlace(propertyInfo, _price, _propertytitle, _uid, _typeofspace, _amenities, _equipments, _activity, coordinates);
 
   // Take user back to home page after all Database Functions
   window.location.href = window.location.origin;
