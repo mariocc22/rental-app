@@ -1,11 +1,8 @@
 // console.log('works')
 import "/styles/list-my-space.css";
-<<<<<<< Updated upstream
-
-=======
+import "../node_modules/leaflet/dist/leaflet.css";
 import "../node_modules/leaflet/dist/leaflet.css";
 import '/styles/common-styles.css';
->>>>>>> Stashed changes
 import { createProperty } from "/query/propertycreate.js";
 import { equipmentFormParser } from "../utility/equipmentFormParser.js";
 import {
@@ -21,10 +18,10 @@ import QuantityInput from "../utility/quantity.js";
 // import { easepick } from "@easepick/bundle";
 // import { RangePlugin } from "@easepick/range-plugin";
 import { calendarBook } from "../utility/datePicker.js";
-import * as L from '../node_modules/leaflet/dist/leaflet.js';
+import * as L from "../node_modules/leaflet/dist/leaflet.js";
 
 // Geolocation
-import { whereAmI, getPosition } from '../modules/geolocation.js';
+import { whereAmI, getPosition } from "../modules/geolocation.js";
 
 const allPages = document.querySelectorAll("div.page");
 allPages[0].style.display = "block";
@@ -48,19 +45,19 @@ window.addEventListener("hashchange", navigateToPage);
 
 // Activity
 let _activity;
-const musician = document.getElementById('musician');
-const photographer = document.getElementById('photographer');
-const performance = document.getElementById('performance');
+const musician = document.getElementById("musician");
+const photographer = document.getElementById("photographer");
+const performance = document.getElementById("performance");
 
-musician.addEventListener('click', () =>{
+musician.addEventListener("click", () => {
   _activity = "musician";
 });
 
-photographer.addEventListener('click', () =>{
+photographer.addEventListener("click", () => {
   _activity = "photography";
 });
 
-performance.addEventListener('click', () =>{
+performance.addEventListener("click", () => {
   _activity = "performance";
 });
 
@@ -303,8 +300,8 @@ const propertytitle = document.getElementById("propertytitle");
 const propertydescription = document.getElementById("propertydescription");
 
 // Geolocation
-const geobtn = document.getElementById('geobtn');
-geobtn.addEventListener('click', async function (event) {
+const geobtn = document.getElementById("geobtn");
+geobtn.addEventListener("click", async function (event) {
   const test = await getPosition();
   // console.log(test);
   const test2 = await whereAmI();
@@ -313,12 +310,12 @@ geobtn.addEventListener('click', async function (event) {
   city.value = test2.city;
   state.value = test2.state;
   // postalcode.value = test2.city;
-  country.value = test2.country;  
+  country.value = test2.country;
   _lat = test2.latt;
   _long = test2.longt;
   console.log(_lat);
   console.log(_long);
-  const _map = document.getElementById('map');
+  const _map = document.getElementById("map");
   // var map = L.map(_map, {
   //   center: [_lat, _long],
   //   zoom: 13});
@@ -328,13 +325,11 @@ geobtn.addEventListener('click', async function (event) {
   // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   //   // maxZoom: 19,
   //   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-  // }).addTo(map);  
+  // }).addTo(map);
 
   // const settingmap = document.getElementById('settingmap');
   // settingmap.src = `http://maps.googleapis.com/maps/api/staticmap?center=${_lat},${_long}&zoom=11&size=200x200&sensor=false`;
 
-<<<<<<< Updated upstream
-=======
   let map = L.map(_map, {
     renderer: L.canvas(),
   }).setView([_lat, _long], 13);
@@ -344,14 +339,9 @@ geobtn.addEventListener('click', async function (event) {
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   }).addTo(map);
->>>>>>> Stashed changes
 
-  var map = L.map(_map).setView([_lat, _long], 13);
-
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '© OpenStreetMap'
-  }).addTo(map);
+  let marker = L.marker([_lat, _long]).addTo(map);
+  marker.bindPopup("<h3> I'm here! </h3>").openPopup();
 });
 
 // Tags
@@ -635,8 +625,8 @@ reviewfieldsbtn.addEventListener("click", () => {
     state: state.value,
     postalcode: postalcode.value,
     country: country.value,
-    lat: _lat,//"49.2577143", //_lat.value,
-    long: _long,//"-123.1939433",
+    lat: _lat, //"49.2577143", //_lat.value,
+    long: _long, //"-123.1939433",
   }; //_long.value};
 
   if (_indoor) _typeofspace = "photography-type-indoor";
@@ -649,7 +639,7 @@ reviewfieldsbtn.addEventListener("click", () => {
   _uid = localStorage.getItem("uid");
   _media.push(urlString);
 
-  if(fromImage){
+  if (fromImage) {
     photoList = urlString;
   }
 
@@ -694,10 +684,20 @@ createPropertybtn.addEventListener("click", async function (event) {
   // Post Image Collection with propertyId
   await SaveURLtoFirestore(urlString, propertyInfo);
 
-    // Add Property Info to Neo4j
-    // Use _lat and _long values, also _activity
-    const coordinates = {lat: 49.2244201, long: -123.1110692}
-    await addPlace(propertyInfo, _price, _propertytitle, _uid, _typeofspace, _amenities, _equipments, _activity, coordinates);
+  // Add Property Info to Neo4j
+  // Use _lat and _long values, also _activity
+  const coordinates = { lat: 49.2244201, long: -123.1110692 };
+  await addPlace(
+    propertyInfo,
+    _price,
+    _propertytitle,
+    _uid,
+    _typeofspace,
+    _amenities,
+    _equipments,
+    _activity,
+    coordinates
+  );
 
   // Take user back to home page after all Database Functions
   window.location.href = window.location.origin;
