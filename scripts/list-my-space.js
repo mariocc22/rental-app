@@ -570,7 +570,7 @@ reviewfieldsbtn.addEventListener("click", () => {
   _uid = localStorage.getItem("uid");
   _media.push(urlString);
 
-  if (fromImage) {
+  if(fromImage){
     photoList = urlString;
   }
 
