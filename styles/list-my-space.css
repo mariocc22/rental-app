@@ -292,4 +292,9 @@ textarea{
     text-align: center;
 }
 
+#map{
+    width: 180px;
+    height: 180px;
+}
+
 /* MEDIA QUERIES====================== */
