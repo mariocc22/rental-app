@@ -8,7 +8,59 @@
   </head>
   <body>
 
-    <div class="page" id="page1" class="page">
+    <div class="wrap-main-content page" id="page1"> 
+        <nav class="index-nav">
+            <ul>
+                <li>
+                    <button onclick="history.back()">
+                        <i class="fa fa-caret-left"></i>
+                    </button>
+                </li>
+                <li>
+                    <button>
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        <!-- main content of the page -->
+        <div class="explore-space-main">
+            <!-- page title -->
+            <div class="page-title">
+                <h1>
+                    <span class="page-title-activity-menu">
+                        Choose your activity
+                    </span>
+                </h1>
+            </div>
+            <!-- Main Menu -->
+            <div class="main-menu-activity" id="main-menu-activity">
+                <ul>
+                    <li><a id="musician" href="#page2">
+                            <h2>
+                                Musician
+                            </h2>
+                            <img src="../assets/img/musician.jpg" alt="">
+                        </a></li>
+                    <li><a id="photographer" href="#page2">
+                            <h2>
+                                Photographer
+                            </h2>
+                            <img src="../assets/img/photographer.jpg" alt="">
+                        </a>
+                    </li>
+                    <li><a id="performance" href="#page2">
+                            <h2>
+                                Performance
+                            </h2>
+                            <img src="../assets/img/performance.jpg" alt="">
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="page2">
         <h1>What kind of space do you offer?</h1>
         <div class="div-buttons">
             <button id="indoorButton" class="button indoorButton">Indoor</button>
@@ -19,15 +71,16 @@
             <button id="otherButton" class="button">Other</button>
         </div>
         <div class="navigation">
-            <a href="#page2" class="yellowbutton">Next</a>
+            <a href="#page3" class="yellowbutton">Next</a>
             <a href="./index.html" class="blackbutton">Cancel</a>                   
         </div>
     </div>
 
 
-    <div class="page" id="page2" class="page">
+    <div class="page" id="page3">
         <h1>Enter the place address</h1>
         <div class="divform">
+            <button id="geobtn" class="users-loc"><i class="fa-solid fa-map-location-dot">Get your address</i></button>
             <form id="formAddress">
                 <label>
                     <!-- Street: -->
@@ -54,24 +107,28 @@
                 </label> 
                 
             </form>
+            <div class="wrap-map">
+                <div id="map"></div>
+            </div>  
+            <!-- <img src="" id="settingmap" alt="Space" width="500" height="600">  -->
             <div class="navigation">
-                <a href="#page3" class="yellowbutton">Next</a>
-                <a href="#page1" class="blackbutton">Back</a>
+                <a href="#page4" class="yellowbutton">Next</a>
+                <a href="#page2" class="blackbutton">Back</a>
             </div>
         </div>
       </div>
     </div>
 
 
-    <div class="page" id="page3" class="page">
+    <div class="page" id="page4">
         <div class="div-buttons">
-            <button class="button addPhotoButton"><a href="#page5" class="yellowbutton">Add Photo</a></button>
-            <button class="button takePhotoButton"><a href="#page4" class="blackbutton">Take a Photo</a></button>
+            <button class="button addPhotoButton"><a href="#page6" class="yellowbutton">Add Photo</a></button>
+            <button class="button takePhotoButton"><a href="#page5" class="blackbutton">Take a Photo</a></button>
         </div>
     </div>
 
 
-    <div class="page" id="page4" class="page">
+    <div class="page" id="page5">
         <div class="gridcamera">
             <div class="videogrid">
                 <video id="video" autoplay></video>
@@ -85,13 +142,13 @@
             <button class="button" id="upvideobtn">Upload Image</button>
         </div>
         <div class="navigation">
-            <a href="#page6" class="yellowbutton">Next</a>
-            <a href="#page2" class="blackbutton">Back</a>
+            <a href="#page7" class="yellowbutton">Next</a>
+            <a href="#page3" class="blackbutton">Back</a>
         </div>
     </div>
 
 
-    <div class="page" id="page5" class="page">
+    <div class="page" id="page6">
         <h2>Upload photos</h2>
         <div class="div-image">
             <label>Image Name</label>
@@ -102,13 +159,13 @@
             <button class="button" id="upbtn">Upload Image</button>
         </div>
         <div class="navigation">
-            <a href="#page6" class="yellowbutton">Next</a>
-            <a href="#page2" class="blackbutton">Back</a>
+            <a href="#page7" class="yellowbutton">Next</a>
+            <a href="#page3" class="blackbutton">Back</a>
         </div>
     </div>
 
 
-    <div class="page" id="page6" class="page">
+    <div class="page" id="page7">
         <h2>Add description about your space</h2>
         <div class="divform">
             <form id="descriptionform">
@@ -123,24 +180,14 @@
             </form>
         </div>
         <div class="navigation">
-            <a href="#page7" class="yellowbutton">Next</a>
-            <a href="#page2" class="blackbutton">Back</a>
+            <a href="#page8" class="yellowbutton">Next</a>
+            <a href="#page4" class="blackbutton">Back</a>
         </div>
     </div>
 
 
-    <div class="page" id="page7" class="page">
+    <div class="page" id="page8">
         <h2>Select Amenities that best suite your space</h2>
-        <!-- <h3>Tags</h3>
-        <div class="div-tags-buttons">
-            <button class="button" id="foodPhotographybtn">Food Photography</button>
-            <button class="button" id="commercialbtn">Commercial</button>
-            <button class="button" id="fashionbtn">Fashion</button>
-            <button class="button" id="portraitbtn">Portrait</button>
-            <button class="button" id="lifestylebtn">Lifestyle</button>
-            <button class="button" id="newbornbtn">Newborn</button>
-            <button class="button" id="weddingbtn">Wedding</button>
-        </div> -->
         <h3>Amenities & Specifications</h3>
 
         <div class="div-amenities-buttons">
@@ -152,7 +199,7 @@
         </div>
         <div class="navigation">
             <a href="#page9" class="yellowbutton">Next</a>
-            <a href="#page6" class="blackbutton">Back</a>
+            <a href="#page7" class="blackbutton">Back</a>
         </div>
     </div>
 
@@ -225,7 +272,7 @@
         </form>
         <div class="navigation equipmentselections">
             <a href="#page10" id="equipmentnextbutton" class="yellowbutton">Next</a>
-            <a href="#page7" class="blackbutton">Back</a>
+            <a href="#page8" class="blackbutton">Back</a>
         </div>
     </div>
 

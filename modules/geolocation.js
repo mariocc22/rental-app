@@ -1,7 +1,8 @@
 // Container
-const usersLoc = document.querySelector(".users-loc");
+// const usersLoc = document.querySelector(".users-loc");
 
-const getPosition = function () {
+// const getPosition = function () {
+async function getPosition () {
   return new Promise(function (resolve, reject) {
     let options = {
       enableHighAccuracy: true,
@@ -13,7 +14,8 @@ const getPosition = function () {
   });
 };
 
-const whereAmI = async function () {
+// const whereAmI = async function () {
+async function whereAmI () {
   try {
     // === Geo Location ===
     // Here, we don't need an if condition to throw error, since the getPosition() function, throws an error if the Promise has a reject state
@@ -29,6 +31,7 @@ const whereAmI = async function () {
     }
     const dataGeo = await resGeo.json();
     console.log("Current location!", dataGeo);
+    return dataGeo;
     // const html = `
     //     <p>City: ${dataGeo.city}</p>
     //     <p>Province: ${dataGeo.statename}</p>
@@ -47,7 +50,7 @@ const whereAmI = async function () {
 };
 
 // Event Listener
-const btn_geo = document.querySelector(".btn-geo");
-btn_geo.addEventListener("click", whereAmI);
+// const btn_geo = document.querySelector(".btn-geo");
+// btn_geo.addEventListener("click", whereAmI);
 
-export { whereAmI };
+export { whereAmI , getPosition };

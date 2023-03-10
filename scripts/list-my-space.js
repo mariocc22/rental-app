@@ -9,6 +9,11 @@ import { addPlace } from "../query/neo4jQueries.js"
 import QuantityInput from "../utility/quantity.js";
 import { easepick } from "@easepick/bundle";
 import { RangePlugin } from "@easepick/range-plugin";
+import * as L from '../node_modules/leaflet/dist/leaflet.js';
+
+
+// Geolocation
+import { whereAmI, getPosition } from '../modules/geolocation.js';
 
 const allPages = document.querySelectorAll("div.page");
 allPages[0].style.display = "block";
@@ -266,6 +271,46 @@ const postalcode = document.getElementById("postalcode");
 const country = document.getElementById("country");
 const propertytitle = document.getElementById("propertytitle");
 const propertydescription = document.getElementById("propertydescription");
+
+// Geolocation
+const geobtn = document.getElementById('geobtn');
+geobtn.addEventListener('click', async function (event) {
+  const test = await getPosition();
+  // console.log(test);
+  const test2 = await whereAmI();
+  console.log(test2);
+  street.value = test2.staddress;
+  city.value = test2.city;
+  state.value = test2.state;
+  // postalcode.value = test2.city;
+  country.value = test2.country;  
+  _lat = test2.latt;
+  _long = test2.longt;
+  console.log(_lat);
+  console.log(_long);
+  const _map = document.getElementById('map');
+  // var map = L.map(_map, {
+  //   center: [_lat, _long],
+  //   zoom: 13});
+  // console.log(map);
+  
+  // var map = L.map(_map).setView([_lat, _long], 13);
+  // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  //   // maxZoom: 19,
+  //   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  // }).addTo(map);  
+  
+  // const settingmap = document.getElementById('settingmap');
+  // settingmap.src = `http://maps.googleapis.com/maps/api/staticmap?center=${_lat},${_long}&zoom=11&size=200x200&sensor=false`;
+
+
+  var map = L.map('map').setView([_lat, _long], 13);
+
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap'
+  }).addTo(map);
+})
 
 // Tags
 let _foodphotography = false;
@@ -527,8 +572,8 @@ reviewfieldsbtn.addEventListener("click", () => {
               state: state.value,
               postalcode: postalcode.value,
               country: country.value,
-              lat: "49.2577143", //_lat.value,
-              long: "-123.1939433",}; //_long.value};
+              lat: _lat,//"49.2577143", //_lat.value,
+              long: _long};//"-123.1939433",}; //_long.value};
 
   if (_indoor) 
     _typeofspace = "photography-type-indoor";
