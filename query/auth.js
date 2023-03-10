@@ -163,7 +163,16 @@ btn_google.addEventListener("click", () => {
       // // Reset Login Form Values
       // loginForm.reset();
       // If the user is approved, it takes you to the previous screen to follow the process
-      window.location.href = window.location.origin;
+
+      const userId = user.uid;
+      // Adds user to Neo4j Database
+      createUser(userId).then((r) => {
+          window.location.href = window.location.origin;
+      }).catch((error) => {
+        console.log(error)
+        throw new Error("Could not create user in Neo4j")
+      });
+
     })
     .catch((error) => {
       // Handle Errors here.

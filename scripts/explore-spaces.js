@@ -3,6 +3,13 @@ import '/styles/explore-spaces.css';
 
 // import utility functions
 import { tagnameToInfo, activitysubCatList } from '../utility/tagnameToInfo.js'
+import { getCurrentPosition } from '../utility/getCurrentPosition.js';
+
+// queries
+import { filterPlaces } from '../query/neo4jQueries.js'
+import { propertyFuncion } from '../query/propertylist.js'
+
+
 
 // global variables for the file
 const params = new URLSearchParams(document.location.search);
@@ -10,14 +17,13 @@ const activity = params.get("activity");
 const validateActivities = ["music", "performance", "photography"];
 // used for properties filteration
 const MY_COORDINATES = { lat: undefined, lng: undefined };
-let SEARCHED_STRING = undefined;
+let SEARCHED_STRING = "";
 let SPACE_TYPE = undefined;
 let SELECTED_PROPS = [];
 let SELECTED_AMENITIES = [];
-let PRICE = undefined;
-let DISTANCE = undefined;
-
-// const 
+let PRICE = 200;
+let DISTANCE = 100;
+ 
 
 
 // initialise logic by calling init
@@ -28,11 +34,17 @@ function init() {
     // redirect to photography
     validateActivity()
 
+
+    // ask user to turn on his coordinates
+    allowLocationSharing();
+
+
     // register event listerners on the page
     registerFilterToggle()
 
 
     // register space type selection, props selection
+    registerSearchInput();
     registerSpaceTypeSelection();
     registerPropsSelection();
     registerAmenitiesSelection();
@@ -43,15 +55,24 @@ function init() {
 
 
     // display Properties
-    // displayProperties()
+    displayProperties()
 
     // console.log(tagnameToInfo("photography-type-house"))
+
+    // store coordinates
+    storeLocationInfo();
 }
 
 
 
 
 // ========================== Functions
+
+
+// allow location sharing
+function allowLocationSharing() {
+
+}
 
 // validate activity type
 function validateActivity() {
@@ -62,6 +83,93 @@ function validateActivity() {
 }
 
 // register listeners on page
+// range distance overlay
+
+// const rangeOverlay = document.querySelector('#range-overlay');
+// const rangeInput = document.getElementById("distance");
+// rangeOverlay.addEventListener('click', () => {
+    
+//     // ask user to enable if he disabled it
+//     getLocation();
+
+//     // geolocation starts
+//     if ('geolocation' in navigator) {
+//         // Prompt the user for permission to access their location
+//         navigator.geolocation.getCurrentPosition(
+//           // If the user allows access, store the coordinates in a variable
+//           (position) => {
+//             const latitude = position.coords.latitude;
+//             const longitude = position.coords.longitude;
+      
+//              // hide overlay and enable range input
+//             rangeOverlay.classList.add("hide");
+//             rangeInput.removeAttribute('disabled');
+
+//             console.log(latitude)
+//             console.log(longitude)
+
+//           },
+//         );
+//       }
+// });
+
+
+
+// function getLocation() {
+//     navigator.permissions.query({name:'geolocation'}).then(permissionStatus => {
+//     if (permissionStatus.state === 'denied') {
+//         // User has denied permission
+//         alert('Please enable location services in your browser or device settings.');
+//       }
+//     });
+//   }
+
+
+// function registerDistanceSelector() {
+//     const distance = document.getElementById("distance-wrapper");
+//     console.log(distance)
+//     distance.addEventListener("click", (event) => {
+//         console.log(event)
+//     }, true)
+// }
+
+
+
+let searchTimeout = null
+function registerSearchInput() {
+    const searchInput = document.getElementById("search-places");
+    searchInput.addEventListener("keyup", () => {
+        clearTimeout(searchTimeout);
+
+        SEARCHED_STRING = searchInput.value;
+
+        searchTimeout = setTimeout(function() {
+            displayProperties()
+        }, 500)
+
+    })
+}
+
+
+
+// ask browser to allow permission to share location
+
+async function storeLocationInfo() {
+    const resp = await navigator.permissions.query({name:'geolocation'})
+    if(resp.state === 'denied') {
+        alert('Please enable location services in your browser or device settings.');
+    } else {
+        storeCoords();
+    }
+}
+
+async function storeCoords() {
+    const position = await getCurrentPosition();
+    MY_COORDINATES.lat = position.coords.latitude;
+    MY_COORDINATES.lng = position.coords.longitude;
+    console.log(MY_COORDINATES)
+};
+
 
 function registerAdditionalFilterBtns() {
 
@@ -69,6 +177,7 @@ function registerAdditionalFilterBtns() {
     const applyFilterBtn = document.getElementById("applyFilters");
 
     applyFilterBtn.addEventListener("click", () => {
+
         // hide it using same toggle logic
         const priceValue = document.getElementById("price").value;
         const distanceValue = document.getElementById("distance").value;
@@ -79,7 +188,7 @@ function registerAdditionalFilterBtns() {
         toggleAdditionalFilter()
         // TODO change the list now
 
-        updateList()
+        displayProperties()
     })
 
 
@@ -113,6 +222,8 @@ function registerSpaceTypeSelection() {
         // console.log(event.target.nodeName)
         if (event.target.nodeName == "INPUT" && event.target.getAttribute("name")) {
             SPACE_TYPE = event.target.id;
+
+            displayProperties();
         }
     })
 }
@@ -224,9 +335,33 @@ function loadAllTags(activity) {
 }
 
 
+// prepare tags for displayProperties
+function prepareTags() {
+    // activity
+    const activityTag = `activity-${activity}`;
+    let tags = [activityTag]
+
+    // type of space
+    if(SPACE_TYPE) {
+        tags.push(SPACE_TYPE)
+    }
+
+    // props
+    if(SELECTED_PROPS.length) {
+        tags = [...tags, ...SELECTED_PROPS]
+    }
+
+    // amenities
+    if(SELECTED_AMENITIES.length) {
+        tags = [...tags, ...SELECTED_AMENITIES]
+    }
+
+    return tags;
+}
+
 // Update List of Spaces
 
-function updateList() {
+async function displayProperties() {
     // todo use the tags and properties
     // todo use the string search
 
@@ -237,26 +372,37 @@ function updateList() {
     listContainer.innerHTML = "";
 
 
-    populateList(listContainer);
+    const tags = prepareTags();
+    const price = PRICE;
+    const distance = DISTANCE;
+    const string = SEARCHED_STRING;
+    const coords = MY_COORDINATES.lat && MY_COORDINATES.lng ? MY_COORDINATES : undefined;
 
+    const propertyIds = await filterPlaces(tags, price, string, distance, coords);
 
+    // TODO add limit
+
+    for (let propertyId of propertyIds) {
+        const propertyInfo = await propertyFuncion(propertyId);
+        if (propertyInfo) {
+            const propertyObject = {
+                img: propertyInfo?.media[0] || "https://picsum.photos/1200/500?random=1",
+                title: propertyInfo.propertytitle,
+                rating: 5,
+                location: propertyInfo.address.city + " ," + propertyInfo.address.state,
+                propertyId: propertyId,
+                price: propertyInfo.price
+            }
+
+            populateList(listContainer, propertyObject);
+        }
+    }
 }
 
 
-function populateList(listContainer) {
-
-    const listLength = 5;
-    const propertyObj = {
-        img: "https://picsum.photos/1200/500?random=1",
-        title: "Space Title 1",
-        rating: "5",
-        location: "Metrotown, Burnaby",
-        propertyId: "0djsGVd2vaDz4cs7KM1j"
-    }
-
-    for (let i = 0; i < listLength; i++) {
-
-        const string = `<li>
+// function to populate list inside html script
+function populateList(listContainer, propertyObj) {
+    const string = `<li>
         <section>
             <a href="/property.html?propertyId=${propertyObj.propertyId}">
                 <img src="${propertyObj.img}" alt="">
@@ -265,15 +411,14 @@ function populateList(listContainer) {
                 <a href="/property.html?propertyId=${propertyObj.propertyId}">
                     <div class="space-name">${propertyObj.title}</div>
                 </a>
-                <p class="space-rating">${propertyObj.rating}</p>
+                <p class="space-price">CAD ${propertyObj.price}</p>
             </div>
             <div class="space-location">
-                ${propertyObj.location}
+                <p>${propertyObj.location}</p>
+                <p class="space-rating">${propertyObj.rating}</p>
             </div>
         </section>
     </li>`
 
-        listContainer.innerHTML += string;
-    }
-
+    listContainer.innerHTML += string;
 }

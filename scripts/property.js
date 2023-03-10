@@ -1,24 +1,30 @@
-import '/styles/common-styles.css';
-import '/styles/property.css';
-import { DateRangePicker } from 'vanillajs-datepicker';
-import 'vanillajs-datepicker/css/datepicker.css';
+import "/styles/common-styles.css";
+import "/styles/property.css";
+// import { DateRangePicker } from "vanillajs-datepicker";
+// import "vanillajs-datepicker/css/datepicker.css";
 
-const elem = document.getElementById('foo');
-const rangepicker = new DateRangePicker(elem, {
-  autohide: true
-});
+// import queries
+import { propertyFuncion } from "../query/propertylist.js";
+import { tagnameToInfo } from "../utility/tagnameToInfo.js";
+import { calendarBook } from "../utility/datePicker.js";
 
-const startElem = document.getElementById('start');
-const endElem = document.getElementById('end');
+const elem = document.getElementById("foo");
+// const rangepicker = new DateRangePicker(elem, {
+//   autohide: true,
+// });
 
-startElem.addEventListener('changeDate', function(e) {
-  console.log('start', e.detail.date);
-});
+// const startElem = document.getElementById("start");
+// const endElem = document.getElementById("end");
 
-endElem.addEventListener('changeDate', function(e) {
-  console.log('end', e.detail.date);
-});
+// startElem.addEventListener("changeDate", function (e) {
+//   console.log("start", e.detail.date);
+// });
 
+// endElem.addEventListener("changeDate", function (e) {
+//   console.log("end", e.detail.date);
+// });
+
+// Calendar Date Picker ======================
 
 // Slider Code ===================
 
@@ -75,6 +81,117 @@ prevSlide.addEventListener("click", function () {
 
 // Slider Code ends ===============
 
+// global variables to view property
+const params = new URLSearchParams(document.location.search);
+const propertyId = params.get("propertyId");
+
+init();
+
+// ================= FUNCTIONS
+
+function init() {
+  // load the data from firebase
+  showPropertyDetails();
+}
+
+async function showPropertyDetails() {
+  const propertyInfo = await propertyFuncion(propertyId);
+  console.log(propertyInfo);
+
+  // add name
+  const propertyName = document.getElementById("propery-name");
+  propertyName.innerText = propertyInfo.propertytitle;
+
+  // This will set the calendar with the availability of the place
+  const [min, max] = propertyInfo.dates.split(" - ");
+  calendarBook(min, max);
+
+  // load images
+  let propertyImages = propertyInfo.media.filter((link) => link != "");
+
+  if (!propertyImages.length) {
+    propertyImages = ["https://source.unsplash.com/random?landscape,mountain"];
+  }
+
+  const imgSlider = document.getElementById("slider");
+  imgSlider.innerHTML = "";
+  propertyImages.forEach((link) => {
+    imgSlider.innerHTML = `<div class="slide" style="transform: translateX(0%);">
+          <img src="${link}" alt="">
+      </div>`;
+  });
+
+  // load bundle information
+  const bundleInfo = propertyInfo.bundleinfo;
+  const bundlePrice = bundleInfo.price;
+  const bundleEquipment = bundleInfo.equipment.filter((val) => val != "");
+
+  const bundlePriceElem = document.getElementsByClassName("bundle-title")[0];
+  bundlePriceElem.innerHTML = `Reduced Base Price $${bundlePrice}`;
+
+  const bundleEquipWrapper = document.querySelector(".bundle-equipments ul");
+  console.log(bundleEquipWrapper);
+  bundleEquipWrapper.innerHTML = "";
+
+  // bundleEquipments
+
+  bundleEquipment.forEach((equip) => {
+    const string = `<li>
+            <span class="bundle-prop">
+                <i class="fa fa-camera"></i>
+                ${equip}
+            </span>
+        </li>`;
+
+    bundleEquipWrapper.innerHTML += string;
+  });
+
+  // load equipments
+  const equipmentObjectList = propertyInfo.equipments;
+  const equipmentWrapper = document.querySelector(".property-equipments ul");
+  equipmentWrapper.innerHTML = "";
+  equipmentObjectList.forEach((object) => {
+    // console.log(object)
+    const tagname = object.tagname;
+    const tagInfo = tagnameToInfo(tagname);
+    const tag = tagInfo.name;
+    const price = object.price;
+
+    const string = `<li>
+            <input type="checkbox" id="${tagname}" name="props" value="${price}">
+            <label for="${tagname}">
+                <span>
+                    <i class="fa fa-camera"></i>
+                    ${tag}
+                </span>
+                <span class="prop-price">
+                    ${price}
+                </span>
+            </label>
+        </li>`;
+
+    equipmentWrapper.innerHTML += string;
+  });
+
+  // customize options
+  const detailsWrapper = document.querySelector(".property-description > p");
+  detailsWrapper.innerText = propertyInfo.propertydescription;
+
+  // amenities
+  const amenitiesTagNames = propertyInfo.amenities;
+
+  const amenitiesWrapper = document.querySelector(".property-amenities > ul");
+  amenitiesWrapper.innerHTML = "";
+  amenitiesTagNames.forEach((tagname) => {
+    const tagInfo = tagnameToInfo(tagname);
+    const tag = tagInfo.name;
+
+    const string = `<li>${tag}</li>`;
+    amenitiesWrapper.innerHTML += string;
+  });
+
+  // show price details
+}
 
 // // display menu section based on URL
 // const URLhash = window.location.hash;
@@ -85,7 +202,7 @@ prevSlide.addEventListener("click", function () {
 //     const elemValue = splitHash[1];
 //     displaySelectedMenuInfo(elemValue);
 
-//   } 
+//   }
 // }
 
 // // Code to toggle tabs
@@ -98,7 +215,6 @@ prevSlide.addEventListener("click", function () {
 //     displaySelectedMenuInfo(elemValue);
 //   })
 // })
-
 
 // // displays the selected menu info based on user selection and url
 // function displaySelectedMenuInfo(elemValue) {
@@ -115,7 +231,6 @@ prevSlide.addEventListener("click", function () {
 
 // // Connect items to calculate total price
 
-
 // // displays the content to the user and attaches buttons
 // async function displayContent() {
 //   // read data from the server to populate the content
@@ -127,8 +242,6 @@ prevSlide.addEventListener("click", function () {
 //   populateShowcases(allPropertyData)
 //   // attach all events to the page
 // }
-
-
 
 // function populateShowcases(allPropertyData) {
 //   // update showcases
@@ -165,7 +278,6 @@ prevSlide.addEventListener("click", function () {
 
 // }
 
-
 // function populateDetailsInfo(allPropertyData) {
 //   // update property
 //   const description = document.getElementById("property-description");
@@ -185,9 +297,8 @@ prevSlide.addEventListener("click", function () {
 //   amenities.innerHTML += `<ul>${amenitiesList}</ul>`
 // }
 
-
 // function populateCustomizeInfo(allPropertyData) {
-  
+
 //   // bundles
 //   const bundlesInfo = document.getElementById("property-bundles");
 //   bundlesInfo.innerHTML = "";
@@ -230,7 +341,7 @@ prevSlide.addEventListener("click", function () {
 // }
 
 // function populatePropertyInfo(allPropertyData) {
-  
+
 //   // name
 //   const nameElement = document.getElementById("propery-name");
 //   nameElement.innerText = allPropertyData.propertyName + ` @ CAD ${allPropertyData.price}`;
@@ -251,8 +362,6 @@ prevSlide.addEventListener("click", function () {
 //   slider.classList.remove('hide');
 
 // }
-
-
 
 // async function readPropertyData() {
 //   const data = {
@@ -314,7 +423,6 @@ prevSlide.addEventListener("click", function () {
 
 //   return data;
 // }
-
 
 // // ============ call display content
 // displayContent()
