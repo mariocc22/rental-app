@@ -22,6 +22,10 @@
    display: none;
 }
 
+.types-of-spaces input:checked + label {
+    color: var(--explore-text-color);
+  }
+
 .types-of-spaces {
     margin-right: 1.5rem;
     overflow: auto;
@@ -201,7 +205,7 @@
     color: var(--text-color);
 }
 
-.places-cards-wrapper .space-details {
+.places-cards-wrapper .space-details, .places-cards-wrapper .space-location {
     display: flex;
     flex-wrap: row wrap;
     align-items: center;
