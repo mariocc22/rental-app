@@ -58,8 +58,12 @@
                 </ul>
             </div>
         </div>
+        <!-- <svg viewBox="25 25 50 50">
+            <circle r="20" cy="50" cx="50"></circle>
+        </svg> -->
     </div>
 
+<<<<<<< Updated upstream
     <div class="page" id="page2">
         <h1>What kind of space do you offer?</h1>
         <div class="div-buttons">
@@ -111,204 +115,291 @@
                 <div id="map"></div>
             </div>  
             <!-- <img src="" id="settingmap" alt="Space" width="500" height="600">  -->
+=======
+    <div class="wrap-page2-3">
+        <div class="page" id="page2">
+            <progress class="progress" value="10" max="100"></progress>
+            <!-- <div class="progress-bar-container">
+                <div class="progress"></div>
+            </div> -->
+            <h1>What kind of space do you offer?</h1>
+            <div class="list-space-categories-buttons-wrapper div-buttons">
+                <button id="indoorButton" class="button indoorButton">
+                    <img class="filter-white" src="/assets/svg-icons/Indoor.svg" alt="Indoor icon">
+                    Indoor                    
+                </button>
+                <button id="outdoorButton" class="button">
+                    <img class="filter-white"src="/assets/svg-icons/Outdoor.svg" alt="Outdoor icon">
+                    Outdoor
+                </button>
+                <button id="houseButton" class="button">
+                    <img class="filter-white" src="/assets/svg-icons/House.svg" alt="House icon">
+                    House
+                </button>
+                <button id="studioButton" class="button">
+                    <img class="filter-white"src="/assets/svg-icons/Studio.svg" alt="Studio icon">
+                    Studio
+                </button>
+                <button id="beachButton" class="button">Beach House</button>
+                <button id="otherButton" class="button">
+                    <img class="filter-white"src="/assets/svg-icons/Other.svg" alt="Other icon">
+                    Other
+                </button>
+            </div>
+>>>>>>> Stashed changes
             <div class="navigation">
-                <a href="#page4" class="yellowbutton">Next</a>
-                <a href="#page2" class="blackbutton">Back</a>
+                <a href="#page3" class="yellowbutton">Next</a>
+                <a href="./index.html" class="blackbutton">Cancel</a>
             </div>
         </div>
-      </div>
-    </div>
-
-
-    <div class="page" id="page4">
-        <div class="div-buttons">
-            <button class="button addPhotoButton"><a href="#page6" class="yellowbutton">Add Photo</a></button>
-            <button class="button takePhotoButton"><a href="#page5" class="blackbutton">Take a Photo</a></button>
-        </div>
-    </div>
-
-
-    <div class="page" id="page5">
-        <div class="gridcamera">
-            <div class="videogrid">
-                <video id="video" autoplay></video>
+        <div class="page" id="page3">
+            <progress class="progress" value="20" max="100"></progress>
+            <h1>Enter the place address</h1>
+            <div class="divform">
+                <button id="geobtn" class="users-loc"><i class="fa-solid fa-map-location-dot">Get your address</i></button>
+                <form id="formAddress">
+                    <label>
+                        <!-- Street: -->
+                        <input type="text" id="street" placeholder="Street" required>
+                    </label>
+                    <label>
+                        <input type="number" pattern="[0-9]*" id="flatroom" placeholder="Flat/Room Number ETC" required>
+                    </label>
+                    <label>
+                        <!-- City: -->
+                        <input type="text" id="city" placeholder="City" required>
+                    </label>
+                    <label>
+                        <!-- State: -->
+                        <input type="text" id="state" placeholder="State" required>
+                    </label>
+                    <label>
+                        <!-- Postal Code: -->
+                        <input type="text" id="postalcode" placeholder="Postal Code" required>
+                    </label>
+                    <label>
+                        <!-- Country: -->
+                        <input type="text" id="country" placeholder="Country" required>
+                    </label>
+        
+                </form>
+                <div id="map" style="width: 100%; height: 15rem; background: transparent"></div>
+                <!-- <img src="" id="settingmap" alt="Space" width="500" height="600">  -->
+                <div class="navigation">
+                    <a href="#page4" class="yellowbutton">Next</a>
+                    <a href="#page2" class="blackbutton">Back</a>
+                </div>
             </div>
-            <div class="imggrid">
-                <img id="picture-preview" src="" alt="Picture Preview">
+          </div>
+        </div>
+    </div>
+
+
+    <div class="wrap-page4-5-6">
+        <div class="page" id="page4">
+            <progress class="progress" value="30" max="100"></progress>
+            <div class="div-buttons">
+                <button class="button addPhotoButton"><a href="#page6" class="yellowbutton">Add Photo</a></button>
+                <button class="button takePhotoButton"><a href="#page5" class="blackbutton">Take a Photo</a></button>
             </div>
         </div>
-        <div>
-            <button id="capture-btn">Capture</button>
-            <button class="button" id="upvideobtn">Upload Image</button>
+        <div class="page" id="page5">
+            <div class="gridcamera">
+                <div class="videogrid">
+                    <video id="video" autoplay></video>
+                </div>
+                <div class="imggrid">
+                    <img id="picture-preview" src="" alt="Picture Preview">
+                </div>
+            </div>
+            <div>
+                <button id="capture-btn">Capture</button>
+                <button class="button" id="upvideobtn">Upload Image</button>
+            </div>
+            <div class="navigation">
+                <a href="#page7" class="yellowbutton">Next</a>
+                <a href="#page3" class="blackbutton">Back</a>
+            </div>
         </div>
-        <div class="navigation">
-            <a href="#page7" class="yellowbutton">Next</a>
-            <a href="#page3" class="blackbutton">Back</a>
+        <div class="page" id="page6">
+            <progress class="progress" value="40" max="100"></progress>
+            <h2>Upload photos</h2>
+            <div class="div-image">
+                <label>Image Name</label>
+                <input type="text" id="namebox">
+                <label id="extlab"></label><br><br>
+                <img id="myimg"><label id="upprogess"></label><br><br>
+                <button class="button" id="selbtn">Select Image</button>
+                <button class="button" id="upbtn">Upload Image</button>
+            </div>
+            <div class="navigation">
+                <a href="#page7" class="yellowbutton">Next</a>
+                <a href="#page3" class="blackbutton">Back</a>
+            </div>
         </div>
     </div>
 
 
-    <div class="page" id="page6">
-        <h2>Upload photos</h2>
-        <div class="div-image">
-            <label>Image Name</label>
-            <input type="text" id="namebox">
-            <label id="extlab"></label><br><br>
-            <img id="myimg"><label id="upprogess"></label><br><br>
-            <button class="button" id="selbtn">Select Image</button>
-            <button class="button" id="upbtn">Upload Image</button>
+    <div class="wrap-page7-8">
+        <div class="page" id="page7">
+            <progress class="progress" value="50" max="100"></progress>
+            <h2>Add description about your space</h2>
+            <div class="divform">
+                <form id="descriptionform">
+                    <label>
+                        <!-- Title: -->
+                        <input type="text" id="propertytitle" placeholder="Title" required>
+                    </label>
+                    <label>
+                        <!-- Description: -->
+                        <textarea type="text" id="propertydescription" placeholder="Description"></textarea>
+                    </label>
+                </form>
+            </div>
+            <div class="navigation">
+                <a href="#page8" class="yellowbutton">Next</a>
+                <a href="#page4" class="blackbutton">Back</a>
+            </div>
         </div>
-        <div class="navigation">
-            <a href="#page7" class="yellowbutton">Next</a>
-            <a href="#page3" class="blackbutton">Back</a>
+        <div class="page" id="page8">
+            <progress class="progress" value="60" max="100"></progress>
+            <h2>Select Amenities that best suite your space</h2>
+            <h3>Amenities & Specifications</h3>
+            <div class="div-amenities-buttons">
+                <button class="button" data-tagname="photography-amenities-washroom" id="washroombtn">Washroom</button>
+                <button class="button" data-tagname="photography-amenities-wifi" id="wifibtn">WiFi</button>
+                <button class="button" data-tagname="photography-amenities-elevator" id="elevatorbtn">Elevator</button>
+                <button class="button" data-tagname="photography-amenities-parking" id="parkingbtn">Parking</button>
+                <button class="button" data-tagname="photography-amenities-air-conditoner" id="airconditionerbtn">Airconditioner</button>
+            </div>
+            <div class="navigation">
+                <a href="#page9" class="yellowbutton">Next</a>
+                <a href="#page7" class="blackbutton">Back</a>
+            </div>
         </div>
     </div>
 
-
-    <div class="page" id="page7">
-        <h2>Add description about your space</h2>
-        <div class="divform">
-            <form id="descriptionform">
+    <div class="wrap-page9-10">
+        <div class="page" id="page9">
+            <progress class="progress" value="70" max="100"></progress>
+            <h2>Edit the price and details for the equipment</h2>
+            <form class="equipment" id="equipmentform">
+            <!-- <form id="cameraform"> -->
+                <caption>Camera</caption>
                 <label>
-                    <!-- Title: -->
-                    <input type="text" id="propertytitle" placeholder="Title" required>
-                </label>                
+                    Set the price per day
+                    <fieldset data-quantity >
+                        <input type="number" data-tagname="photography-equipments-camera" name="photography-equipments-camera" pattern="[0-9]+" id="cameravalue" min="0" value="1">
+                    </fieldset>
+                </label>
+                <label>Description
+                    <textarea name="photography-equipments-camera-desc" id="cameradesc"></textarea>
+                </label>
+            <!-- </form> -->
+            <!-- <form id="lensform"> -->
+                <caption>Lens</caption>
                 <label>
-                    <!-- Description: -->
-                    <textarea type="text" id="propertydescription" placeholder="Description"></textarea>
+                    Set the price per day
+                    <fieldset data-quantity >
+                        <input type="number" data-tagname="photography-equipments-lens" name="photography-equipments-lens" pattern="[0-9]+" id="lensvalue" min="0" value="1">
+                    </fieldset>
+                </label>
+                <label>Description
+                    <textarea name="photography-equipments-lens-desc" id="lensdesc"></textarea>
+                </label>
+            <!-- </form> -->
+            <!-- <form id="backdropform"> -->
+                <caption>Backdrop</caption>
+                <label>
+                    Set the price per day
+                    <fieldset data-quantity >
+                        <input type="number" data-tagname="photography-equipments-backdrop" name="photography-equipments-backdrop" pattern="[0-9]+" id="backdropvalue" min="0" value="1">
+                    </fieldset>
+                </label>
+                <label>Description
+                    <textarea name="photography-equipments-backdrop-desc" id="backdropdesc"></textarea>
+                </label>
+            <!-- </form> -->
+            <!-- <form id="flashlightform"> -->
+                <caption>Flash Light</caption>
+                <label>
+                    Set the price per day
+                    <fieldset data-quantity >
+                        <input type="number" data-tagname="photography-equipments-flashlight" name="photography-equipments-flashlight" pattern="[0-9]+" id="flashlightvalue" min="0" value="1">
+                    </fieldset>
+                </label>
+                <label>Description
+                    <textarea name="photography-equipments-flashlight-desc" id="flashlightdesc"></textarea>
+                </label>
+            <!-- </form> -->
+            <!-- <form id="tripodsform"> -->
+                <caption>Tripods</caption>
+                <label>
+                    Set the price per day
+                    <fieldset data-quantity >
+                        <input type="number" data-tagname="photography-equipments-tripods" name="photography-equipments-tripods" pattern="[0-9]+" id="tripodsvalue" min="0" value="1">
+                    </fieldset>
+                </label>
+                <label>Description
+                    <textarea name="photography-equipments-tripods-desc" id="tripodsdesc"></textarea>
                 </label>
             </form>
+            <div class="navigation equipmentselections">
+                <a href="#page10" id="equipmentnextbutton" class="yellowbutton">Next</a>
+                <a href="#page8" class="blackbutton">Back</a>
+            </div>
         </div>
-        <div class="navigation">
-            <a href="#page8" class="yellowbutton">Next</a>
-            <a href="#page4" class="blackbutton">Back</a>
-        </div>
-    </div>
-
-
-    <div class="page" id="page8">
-        <h2>Select Amenities that best suite your space</h2>
-        <h3>Amenities & Specifications</h3>
-
-        <div class="div-amenities-buttons">
-            <button class="button" data-tagname="photography-amenities-washroom" id="washroombtn">Washroom</button>
-            <button class="button" data-tagname="photography-amenities-wifi" id="wifibtn">WiFi</button>
-            <button class="button" data-tagname="photography-amenities-elevator" id="elevatorbtn">Elevator</button>
-            <button class="button" data-tagname="photography-amenities-parking" id="parkingbtn">Parking</button>
-            <button class="button" data-tagname="photography-amenities-air-conditoner" id="airconditionerbtn">Airconditioner</button>
-        </div>
-        <div class="navigation">
-            <a href="#page9" class="yellowbutton">Next</a>
-            <a href="#page7" class="blackbutton">Back</a>
-        </div>
-    </div>
-
-    <div class="page" id="page9" class="page">
-        <h2>Edit the price and details for the equipment</h2>
-        <form class="equipment" id="equipmentform">
-        <!-- <form id="cameraform"> -->
-            <caption>Camera</caption>
-            <label>
-                Set the price per day
-                <fieldset data-quantity >
-                    <input type="number" data-tagname="photography-equipments-camera" name="photography-equipments-camera" pattern="[0-9]+" id="cameravalue" min="0" value="1">
-                </fieldset>
-            </label>
-            <label>Description
-                <textarea name="photography-equipments-camera-desc" id="cameradesc"></textarea>
-            </label>
-        <!-- </form> -->
-
-        <!-- <form id="lensform"> -->
-            <caption>Lens</caption>
-            <label>
-                Set the price per day
-                <fieldset data-quantity >
-                    <input type="number" data-tagname="photography-equipments-lens" name="photography-equipments-lens" pattern="[0-9]+" id="lensvalue" min="0" value="1">
-                </fieldset>
-            </label>
-            <label>Description
-                <textarea name="photography-equipments-lens-desc" id="lensdesc"></textarea>
-            </label>
-        <!-- </form> -->
-
-        <!-- <form id="backdropform"> -->
-            <caption>Backdrop</caption>
-            <label>
-                Set the price per day
-                <fieldset data-quantity >
-                    <input type="number" data-tagname="photography-equipments-backdrop" name="photography-equipments-backdrop" pattern="[0-9]+" id="backdropvalue" min="0" value="1">
-                </fieldset>
-            </label>
-            <label>Description
-                <textarea name="photography-equipments-backdrop-desc" id="backdropdesc"></textarea>
-            </label>
-        <!-- </form> -->
-
-        <!-- <form id="flashlightform"> -->
-            <caption>Flash Light</caption>
-            <label>
-                Set the price per day
-                <fieldset data-quantity >
-                    <input type="number" data-tagname="photography-equipments-flashlight" name="photography-equipments-flashlight" pattern="[0-9]+" id="flashlightvalue" min="0" value="1">
-                </fieldset>
-            </label>
-            <label>Description
-                <textarea name="photography-equipments-flashlight-desc" id="flashlightdesc"></textarea>
-            </label>
-        <!-- </form> -->
-
-        <!-- <form id="tripodsform"> -->
-            <caption>Tripods</caption>
-            <label>
-                Set the price per day
-                <fieldset data-quantity >
-                    <input type="number" data-tagname="photography-equipments-tripods" name="photography-equipments-tripods" pattern="[0-9]+" id="tripodsvalue" min="0" value="1">
-                </fieldset>
-            </label>
-            <label>Description
-                <textarea name="photography-equipments-tripods-desc" id="tripodsdesc"></textarea>
-            </label>
-        </form>
-        <div class="navigation equipmentselections">
-            <a href="#page10" id="equipmentnextbutton" class="yellowbutton">Next</a>
-            <a href="#page8" class="blackbutton">Back</a>
+        <div class="page" id="page10">
+            <progress class="progress" value="80" max="100"></progress>
+            <h2>Set the price for your space</h2>
+            <form id="form">
+                <label>
+                    Set the price per day
+                    <fieldset data-quantity>
+                        <input type="number" name="quantity" pattern="[0-9]+" id="pricevalue" min="0"  value="0">
+                    </fieldset>
+                </label>
+                <label>Start, end Dates:
+                    <input id="datepicker"/>
+                </label>
+                <!-- <label>
+                    Set time available for the deal
+                    <fieldset data-quantity>
+                        <input type="number" name="quantity" pattern="[0-9]+" id="dealdaysvalue" min="0"  value="0">
+                    </fieldset>
+                </label> -->
+                <!-- <label>
+                    Set the price for the deal
+                    <fieldset data-quantity>
+                        <input type="number" name="quantity" pattern="[0-9]+" id="dealpricevalue" min="0"  value="0">
+                    </fieldset>
+                </label> -->
+            </form>
+            <div class="navigation">
+                <a href="#page11" class="yellowbutton">Next</a>
+                <a href="#page9" class="blackbutton">Back</a>
+            </div>
         </div>
     </div>
 
-    <div class="page" id="page10" class="page">
-        <h2>Set the price for your space</h2>
-        <form id="form">
-            <label>
-                Set the price per day
-                <fieldset data-quantity>
-                    <input type="number" name="quantity" pattern="[0-9]+" id="pricevalue" min="0"  value="0">
-                </fieldset>
-            </label>
-            <label>Start, end Dates:
-                <input id="datepicker"/>
-            </label>
-            <!-- <label>
-                Set time available for the deal
-                <fieldset data-quantity>
-                    <input type="number" name="quantity" pattern="[0-9]+" id="dealdaysvalue" min="0"  value="0">
-                </fieldset>
-            </label> -->
-            <!-- <label>
-                Set the price for the deal
-                <fieldset data-quantity>
-                    <input type="number" name="quantity" pattern="[0-9]+" id="dealpricevalue" min="0"  value="0">
-                </fieldset>
-            </label> -->
-        </form>
-        <div class="navigation">
-            <a href="#page11" class="yellowbutton">Next</a>
-            <a href="#page9" class="blackbutton">Back</a>
-        </div>
-    </div>
-
-    <div class="page" id="page11" class="page">
+    <div class="page" id="page11">
+        <progress class="progress" value="90" max="100"></progress>
         <h2>Choose to offer custom BUNDLES to the artist!</h2>
+        <!-- .moreinfo>details>summary>h3{What are BUNDLES?}+img[src="../assets/svg-icons/bundle.svg"]+p{Bundles are custom packages that you can offer to Artist!}+p{Artist can either choose to pay for the equipment individually}+p{OR}+p{choose a bundle for a better deal!}+p{With Bundles, you can earn more by combining offers and allowing the artists to book the space for a longer period of days.}+p{You always have an option to skip this process.} -->
+        <div class="moreinfo">
+            <details>
+                <summary>
+                    <h3>What are BUNDLES?</h3>
+                </summary>
+                <img src="../assets/svg-icons/bundleA1dm.svg" alt="">
+                <p>Bundles are custom packages that you can offer to Artist!</p>
+                <p>Artist can either choose to pay for the equipment individually</p>
+                <p>OR</p>
+                <p>choose a bundle for a better deal!</p>
+                <p>With Bundles, you can earn more by combining offers and allowing the artists to book the space for a longer period of days.</p>
+                <p>You always have an option to skip this process.</p>
+            </details>
+        </div>
         <form id="priceform">
             <label>
                 Camera
@@ -343,13 +434,14 @@
         </div>
     </div>
 
-    <div class="page" id="page12" class="page">
+    <div class="page" id="page12">
+        <progress class="progress" value="100" max="100"></progress>
         <h2>Review your listing</h2>
         <img src="" id="photolistmyspace" alt="Space" width="500" height="600"> 
         <form id="reviewform">
             <label>
                 Title
-                <input type="text" id="titlereview">
+                <textarea type="text" id="titlereview">
             </label>
             <label>
                 Description
@@ -373,11 +465,11 @@
             </label>
             <label>
                 Availability
-                <input type="text" id="availabilityreview" disabled>
+                <textarea type="text" id="availabilityreview" disabled>
             </label>
             <label>
                 Pricing
-                <input type="text" id="pricereview" disabled>
+                <textarea type="text" id="pricereview" disabled>
             </label>
         </form>
         <div class="navigation">

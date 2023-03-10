@@ -1,6 +1,11 @@
 // console.log('works')
 import "/styles/list-my-space.css";
+<<<<<<< Updated upstream
 
+=======
+import "../node_modules/leaflet/dist/leaflet.css";
+import '/styles/common-styles.css';
+>>>>>>> Stashed changes
 import { createProperty } from "/query/propertycreate.js";
 import { equipmentFormParser } from "../utility/equipmentFormParser.js";
 import {
@@ -328,6 +333,18 @@ geobtn.addEventListener('click', async function (event) {
   // const settingmap = document.getElementById('settingmap');
   // settingmap.src = `http://maps.googleapis.com/maps/api/staticmap?center=${_lat},${_long}&zoom=11&size=200x200&sensor=false`;
 
+<<<<<<< Updated upstream
+=======
+  let map = L.map(_map, {
+    renderer: L.canvas(),
+  }).setView([_lat, _long], 13);
+  L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+    maxZoom: 21,
+    zoomSnap: 0.25,
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
+>>>>>>> Stashed changes
 
   var map = L.map(_map).setView([_lat, _long], 13);
 
