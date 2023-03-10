@@ -1,6 +1,7 @@
 // Container
 //const usersLoc = document.querySelector(".users-loc");
 
+// const getPosition = function () {
 async function getPosition () {
   return new Promise(function (resolve, reject) {
     let options = {
@@ -13,6 +14,7 @@ async function getPosition () {
   });
 };
 
+// const whereAmI = async function () {
 async function whereAmI () {
   try {
     // === Geo Location ===

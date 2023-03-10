@@ -16,8 +16,8 @@ import QuantityInput from "../utility/quantity.js";
 // import { easepick } from "@easepick/bundle";
 // import { RangePlugin } from "@easepick/range-plugin";
 import { calendarBook } from "../utility/datePicker.js";
-// Geolocation
 import * as L from '../node_modules/leaflet/dist/leaflet.js';
+
 // Geolocation
 import { whereAmI, getPosition } from '../modules/geolocation.js';
 
