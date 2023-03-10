@@ -41,6 +41,24 @@ navigateToPage();
 
 window.addEventListener("hashchange", navigateToPage);
 
+// Activity
+let _activity;
+const musician = document.getElementById('musician');
+const photographer = document.getElementById('photographer');
+const performance = document.getElementById('performance');
+
+musician.addEventListener('click', () =>{
+  _activity = "musician";
+});
+
+photographer.addEventListener('click', () =>{
+  _activity = "photographer";
+});
+
+performance.addEventListener('click', () =>{
+  _activity = "performance";
+});
+
 // What kind of space do you offer
 let _indoor = false;
 let _outdoor = false;
@@ -643,8 +661,8 @@ createPropertybtn.addEventListener("click", async function (event) {
   // console.log(_equipments);
 
   propertyInfo = await createProperty(
-    //'4BTWTvRfqDEQ7vXdrIxA', //uid
     _uid, //string
+    _activity,
     _propertytitle,
     _propertydescription,
     _price, // property pricereview
