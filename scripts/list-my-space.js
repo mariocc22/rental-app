@@ -1,16 +1,22 @@
 // console.log('works')
 import "/styles/list-my-space.css";
+
 import { createProperty } from "/query/propertycreate.js";
 import { equipmentFormParser } from "../utility/equipmentFormParser.js";
-import { input, UploadProcess, urlString, cameraUpload } from "../utility/pictures-api";
+import {
+  input,
+  UploadProcess,
+  urlString,
+  cameraUpload,
+} from "../utility/pictures-api";
 // import { userId } from "../utility/getuserid.js";
 import { SaveURLtoFirestore } from "/query/imagecreate.js";
-import { addPlace } from "../query/neo4jQueries.js"
+import { addPlace } from "../query/neo4jQueries.js";
 import QuantityInput from "../utility/quantity.js";
-import { easepick } from "@easepick/bundle";
-import { RangePlugin } from "@easepick/range-plugin";
+// import { easepick } from "@easepick/bundle";
+// import { RangePlugin } from "@easepick/range-plugin";
+import { calendarBook } from "../utility/datePicker.js";
 import * as L from '../node_modules/leaflet/dist/leaflet.js';
-
 
 // Geolocation
 import { whereAmI, getPosition } from '../modules/geolocation.js';
@@ -221,10 +227,12 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         console.log(previewImage.src);
 
         // Converting base64 to Img
-        async function test(){
-          const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.9));
+        async function test() {
+          const blob = await new Promise((resolve) =>
+            canvas.toBlob(resolve, "image/jpeg", 0.9)
+          );
           console.log(blob);
-          file = new File([blob], 'image.jpg', { type: 'image/jpeg' });
+          file = new File([blob], "image.jpg", { type: "image/jpeg" });
           // console.log(file);
         }
 
@@ -237,13 +245,13 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     });
 } else {
   console.error("Camera not supported by this browser");
-};
+}
 
 // Uploading Pictures
 const SelBtn = document.getElementById("selbtn");
 const UpBtn = document.getElementById("upbtn");
 const DownBtn = document.getElementById("downbtn");
-const upvideobtn = document.getElementById('upvideobtn');
+const upvideobtn = document.getElementById("upvideobtn");
 
 SelBtn.onclick = function () {
   input.click();
@@ -256,9 +264,8 @@ UpBtn.addEventListener("click", () => {
 });
 
 upvideobtn.addEventListener("click", () => {
-  cameraUpload(file,randomNumber);
+  cameraUpload(file, randomNumber);
 });
-
 
 // Getting values from UI
 let _lat;
@@ -331,7 +338,9 @@ let _elevator = false;
 let _parking = false;
 let _airconditioner = false;
 
-const amenitiesWrapper = document.querySelectorAll(".div-amenities-buttons button");
+const amenitiesWrapper = document.querySelectorAll(
+  ".div-amenities-buttons button"
+);
 const amenitiesBtns = [...amenitiesWrapper];
 amenitiesBtns.forEach((btnElement) => {
   btnElement.addEventListener("click", (event) => {
@@ -445,7 +454,6 @@ let _equipments = []; // Equip[{tagname, desc, price},{},{} ]
 const equipmentWrapper = document.getElementById("equipmentnextbutton");
 // console.log(equipmentWrapper);
 equipmentWrapper.addEventListener("click", (event) => {
-
   const equipmentForm = document.getElementById("equipmentform");
   const equipmentid = Object.fromEntries(new FormData(equipmentForm));
   const parsedData = equipmentFormParser(equipmentid);
@@ -466,31 +474,30 @@ equipmentWrapper.addEventListener("click", (event) => {
   }
 })();
 
-// Select price and date
-const picker = new easepick.create({
-  element: document.getElementById("datepicker"),
-  css: ["https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css"],
-  // css: [
-  //   'https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css',
-  //   'https://easepick.com/css/customize_sample.css',
-  // ],
-  plugins: [RangePlugin],
-  RangePlugin: {
-    tooltipNumber(num) {
-      return num - 1;
-    },
-    locale: {
-      one: "night",
-      other: "nights",
-    },
-  },
-});
+// // Select price and date
+// const picker = new easepick.create({
+//   element: document.getElementById("datepicker"),
+//   css: ["https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css"],
+//   plugins: [RangePlugin],
+//   RangePlugin: {
+//     tooltipNumber(num) {
+//       return num - 1;
+//     },
+//     locale: {
+//       one: "night",
+//       other: "nights",
+//     },
+//   },
+// });
+calendarBook();
 
 // Bundles values
 const cameracheckboxvalue = document.getElementById("cameracheckboxvalue");
 const lenscheckboxvalue = document.getElementById("lenscheckboxvalue");
 const backdropcheckboxvalue = document.getElementById("backdropcheckboxvalue");
-const flashlightcheckboxvalue = document.getElementById("flashlightcheckboxvalue");
+const flashlightcheckboxvalue = document.getElementById(
+  "flashlightcheckboxvalue"
+);
 const tripodscheckboxvalue = document.getElementById("tripodscheckboxvalue");
 const bundlevalue = document.getElementById("bundlevalue");
 
@@ -519,7 +526,7 @@ const availabilityreview = document.getElementById("availabilityreview");
 const pricereview = document.getElementById("pricereview");
 const pricevalue = document.getElementById("pricevalue");
 const datepicker = document.getElementById("datepicker");
-const photolistmyspace = document.getElementById('photolistmyspace');
+const photolistmyspace = document.getElementById("photolistmyspace");
 
 // Equipment Description
 const cellingflashdesc = document.getElementById("cellingflashdesc");
@@ -529,37 +536,54 @@ const floorflashdesc = document.getElementById("floorflashdesc");
 reviewfieldsbtn.addEventListener("click", () => {
   titlereview.value = propertytitle.value;
   descriptionreview.value = propertydescription.value;
-  addressreview.value = street.value +
-                        " " +
-                        flatroom.value +
-                        " " +
-                        city.value +
-                        " " +
-                        state.value +
-                        " " +
-                        postalcode.value +
-                        " " +
-                        country.value;
+  addressreview.value =
+    street.value +
+    " " +
+    flatroom.value +
+    " " +
+    city.value +
+    " " +
+    state.value +
+    " " +
+    postalcode.value +
+    " " +
+    country.value;
 
-  tagsreview.value = _foodphotography ? "Food Photography " : "" + 
-                      _commercial ? "Food Photography " : "" +
-                      _fashion ? "Fashion ": "" + 
-                      _portrait ? "Portrait ": "" + 
-                      _lifestyle ? "Lifestyle " : "" + 
-                      _newborn ? "Newborn " : "" + 
-                      _wedding ? "Wedding " : "";
+  tagsreview.value = _foodphotography
+    ? "Food Photography "
+    : "" + _commercial
+    ? "Food Photography "
+    : "" + _fashion
+    ? "Fashion "
+    : "" + _portrait
+    ? "Portrait "
+    : "" + _lifestyle
+    ? "Lifestyle "
+    : "" + _newborn
+    ? "Newborn "
+    : "" + _wedding
+    ? "Wedding "
+    : "";
 
-  equipmentreview.value = _light ? "Light ": "" + 
-                          _lightshapers ? "Light Shapers " : "" + 
-                          _camerastand ? "Camera Stand " : "" + 
-                          _camera ? "Camera " : "" + 
-                          _lens ? "Lens " : "" + 
-                          _otherequipment ? "Other equipment ": "";
+  equipmentreview.value = _light
+    ? "Light "
+    : "" + _lightshapers
+    ? "Light Shapers "
+    : "" + _camerastand
+    ? "Camera Stand "
+    : "" + _camera
+    ? "Camera "
+    : "" + _lens
+    ? "Lens "
+    : "" + _otherequipment
+    ? "Other equipment "
+    : "";
 
   _propertytitle = propertytitle.value;
   _propertydescription = propertydescription.value;
   _price = pricevalue.value;
   _dates = datepicker.value;
+
   _bundleinfo = {price: bundlevalue.value,
                 equipment: [cameracheckboxvalue.checked ? "Camera" : "",
                             lenscheckboxvalue.checked ? "Lens" : "",
@@ -587,6 +611,7 @@ reviewfieldsbtn.addEventListener("click", () => {
     _typeofspace = "photography-type-beach-house";
   else if (_others) 
     _typeofspace = "photography-type-cottage";
+
 
   _uid = localStorage.getItem("uid");
   _media.push(urlString);
@@ -617,27 +642,29 @@ createPropertybtn.addEventListener("click", async function (event) {
   // console.log(_amenities); // Amenities[]
   // console.log(_equipments);
 
-  propertyInfo = await createProperty(//'4BTWTvRfqDEQ7vXdrIxA', //uid
-                                        _uid, //string
-                                        _propertytitle,
-                                        _propertydescription,
-                                        _price, // property pricereview
-                                        _media, // Object 5 images
-                                        _dates, // Obj {from, to}
-                                        _bundleinfo, // Obj {price, equipments[] }
-                                        _address, // Obj {street,flatroom,city,state,postalcode,country,_lat,_long}
-                                        _typeofspace,
-                                        _amenities, // Amenities[]
-                                        _equipments // Equip[{tagname, desc, price},{},{} ]
-                                    );
+  propertyInfo = await createProperty(
+    //'4BTWTvRfqDEQ7vXdrIxA', //uid
+    _uid, //string
+    _propertytitle,
+    _propertydescription,
+    _price, // property pricereview
+    _media, // Object 5 images
+    _dates, // Obj {from, to}
+    _bundleinfo, // Obj {price, equipments[] }
+    _address, // Obj {street,flatroom,city,state,postalcode,country,_lat,_long}
+    _typeofspace,
+    _amenities, // Amenities[]
+    _equipments // Equip[{tagname, desc, price},{},{} ]
+  );
 
-    // alert(`Property created successfully ${propertyInfo}`);
-    // Post Image Collection with propertyId
-    await SaveURLtoFirestore(urlString,propertyInfo);
+  // alert(`Property created successfully ${propertyInfo}`);
+  // Post Image Collection with propertyId
+  await SaveURLtoFirestore(urlString, propertyInfo);
 
     // Add Property Info to Neo4j
-    await addPlace(propertyInfo, _propertytitle, _uid, _typeofspace, _amenities, _equipments, "photography")
+    const coordinates = {lat: 49.2244201, long: -123.1110692}
+    await addPlace(propertyInfo, _price, _propertytitle, _uid, _typeofspace, _amenities, _equipments, "photography", coordinates);
 
-    // Take user back to home page after all Database Functions
-    window.location.href = window.location.origin;
+  // Take user back to home page after all Database Functions
+  window.location.href = window.location.origin;
 });
