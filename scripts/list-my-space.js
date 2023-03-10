@@ -1,7 +1,8 @@
 // console.log('works')
 import "/styles/list-my-space.css";
 import "../node_modules/leaflet/dist/leaflet.css";
-
+import "../node_modules/leaflet/dist/leaflet.css";
+import '/styles/common-styles.css';
 import { createProperty } from "/query/propertycreate.js";
 import { equipmentFormParser } from "../utility/equipmentFormParser.js";
 import {
@@ -331,7 +332,7 @@ geobtn.addEventListener("click", async function (event) {
 
   let map = L.map(_map, {
     renderer: L.canvas(),
-  }).setView([_lat, _long], 0);
+  }).setView([_lat, _long], 13);
   L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
     maxZoom: 21,
     zoomSnap: 0.25,
