@@ -332,9 +332,23 @@ input::placeholder,
     margin: 1rem 0 0 0;
 }
 
+/* PAGE 9 LAYOUT============================ */
 
+.equipment{
+    display: flex;
+    flex-flow: column nowrap;
+    text-align: center;
+}
 
+.wrap-title{
+    display: flex;
+    flex-flow: row wrap;
+}
 
+.wrap-title img{
+    height: 1rem;
+    width: 1rem;
+}
 
 /* input.input-number {
     -moz-appearance: textfield;
@@ -653,7 +667,7 @@ fieldset{
 
 [data-quantity] button:hover {
     color: var(--tertiary-text-dm);
-    background-color: var(--listmyspace-button-color);
+    background-color: transparent;
 }
 
 [data-quantity] button.sub {
