@@ -11,129 +11,61 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    '
-    <title>Login & Sign Up Modal</title>
+    <title>Login Stage</title>
   </head>
   <body>
-    <!-- ===== MOBILE VERSION ONLY ====== AUTHENTICATION IN FIREBASE -->
-    <div class="wrp">
-      <main>
-        <div class="modal-signup-login modal">
-          <button class="modal-btn hamburger">
-            <a href="./index.html">
-              <span></span>
-              <span></span>
-              <span></span>
-            </a>
-          </button>
-          <h3>log in</h3>
-          <form id="login-form">
-            <div class="input-field">
-              <label class="input-label" for="login-email"
-                >E-Mail Address</label
-              >
-              <input type="email" id="login-email" required />
-            </div>
-
-            <div class="input-field">
-              <label class="input-label" for="login-password">Password</label>
-              <input type="password" id="login-password" required />
-            </div>
-            <button class="btn-login">Log in</button>
-            <button class="btn-logout hidden">Log Out</button>
-          </form>
-
-          <div class="social-auth">
-            <div class="social-text">
-              <p>You haven't signed up yet?</p>
-              <p>Sign up with Gmail or Facebook</p>
-            </div>
-            <button class="email btn-social">
-              <span class="icon-wrp"></span>
-              <span class="txt-wrp">Email and Password</span>
-            </button>
-            <button class="google btn-social">
-              <span class="icon-wrp"></span>
-              <span class="txt-wrp">Sign in with Google</span>
-            </button>
-          </div>
+    <header>
+      <nav>
+        <a href="./index.html"><i class="fa-solid fa-xmark"></i></a>
+      </nav>
+    </header>
+    <main>
+      <div class="login-dialog-wrapper">
+        <!-- Site logo -->
+        <div class="logo-site">
+          <img
+            class="filter-white"
+            src="/assets/svg-icons/Profile.svg"
+            alt="Stage's site logo"
+          />
         </div>
-        <!-- <div class="modal-phone-verify modal">
-                    <button class="modal-btn hamburger phone-close">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
+        <!-- Login Title -->
+        <div class="login-dialog-header">
+          <h1>log in</h1>
+          <p>Please sign-in to continue</p>
+        </div>
+        <!-- Login Form -->
+        <form id="login-form">
+          <div class="input-field">
+            <label class="input-label" for="login-email">E-Mail Address</label>
+            <input type="email" id="login-email" required />
+          </div>
 
-                    <div class="verified-title-wrp">
-                        <h3>LIST YOUR SPACE ON STAGE!</h3>
-                        <p>
-                            Great Way To Increase Your Visibility And Attract
-                            More Business
-                        </p>
-                        <br />
-                        <p id="user-phone-succesful"></p>
-                    </div>
+          <div class="input-field">
+            <label class="input-label" for="login-password">Password</label>
+            <input type="password" id="login-password" required />
+          </div>
 
-                    <form id="verification-form">
-                        <div class="input-field-2">
-                            <label for="phone-input"
-                                >ENTER YOUR MOBILE NUMBER TO CONTINUE
-                            </label>
-                            <input type="text" id="phone-input" />
-                        </div>
+          <div class="button-wrapper">
+            <button class="btn-login button">Log in</button>
+            <button class="btn-logout button hidden">Log Out</button>
+          </div>
+        </form>
 
-                        <div class="input-field-2">
-                            <label for="verified-code">ENTER CODE SENT</label>
-                            <input type="text" id="verified-code" />
-                        </div>
-                        <div id="recaptcha-container"></div>
-
-                        <div class="btns-phone-wrp">
-                            <button
-                                type="button"
-                                id="btn-phone"
-                                class="btn-submit"
-                            >
-                                Verify
-                            </button>
-                            <button
-                                type="button"
-                                id="btn-code"
-                                class="btn-verify"
-                            >
-                                Get Code
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-                <section class="main-hero">
-                    <div class="main-hero-title">
-                        <h1>EXPLORE SPACES</h1>
-                        <p>for your next creative project</p>
-                    </div>
-                    <div class="main-hero-btns">
-                        <button class="btn-start">BUTTON</button>
-                        <div class="dot-container">
-                            <button class="dot dot_active"></button>
-                            <button class="dot"></button>
-                            <button class="dot"></button>
-                        </div>
-                    </div>
-                </section>
-                <section class="main-ls">
-                    <div class="main-ls-title">
-                        <h1>LIST MY SPACE</h1>
-                        <p>Lorem ipsum dolor sit amet.</p>
-                    </div>
-                    <div class="main-ls-btns">
-                        <button id="btn-space" class="btn-ls btn-start">
-                            BUTTON
-                        </button>
-                    </div>
-                </section> -->
-      </main>
-    </div>
+        <div class="login-alternative-wrapper">
+          <!-- Email Password Button -->
+          <button class="email button">
+            <span class="icon-wrp"></span>
+            <span class="txt-wrp">Sign up with Email</span>
+          </button>
+          <p>or</p>
+          <!-- Google Button -->
+          <button class="google button">
+            <span class="icon-wrp"></span>
+            <span class="txt-wrp">Continue with Gmail</span>
+          </button>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
