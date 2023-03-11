@@ -404,7 +404,7 @@ async function displayProperties() {
 function populateList(listContainer, propertyObj) {
     const string = `<li>
         <section>
-            <a href="/property.html?propertyId=${propertyObj.propertyId}">
+            <a href="/property.html?propertyId=${propertyObj.propertyId}#customize">
                 <img src="${propertyObj.img}" alt="">
             </a>
             <div class="space-details">
