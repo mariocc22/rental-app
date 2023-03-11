@@ -4,7 +4,7 @@ import { RangePlugin } from "@easepick/range-plugin";
 // Select price and date
 
 function calendarBook(min = "", max = "") {
-  const picker = new easepick.create({
+  const datePicker = new easepick.create({
     element: document.getElementById("datepicker"),
     css: ["https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css"],
     zIndex: 10,
@@ -20,6 +20,10 @@ function calendarBook(min = "", max = "") {
       maxDate: max,
     },
     plugins: [RangePlugin, AmpPlugin, LockPlugin],
+    dateFormat: "d/m/Y" // set the date format to dd/mm/yyyy
+
   });
+
+  return datePicker
 }
 export { calendarBook };
