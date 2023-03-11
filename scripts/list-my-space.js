@@ -1,7 +1,8 @@
 // console.log('works')
 import "/styles/list-my-space.css";
 import "../node_modules/leaflet/dist/leaflet.css";
-
+import "../node_modules/leaflet/dist/leaflet.css";
+import '/styles/common-styles.css';
 import { createProperty } from "/query/propertycreate.js";
 import { equipmentFormParser } from "../utility/equipmentFormParser.js";
 import {
@@ -257,6 +258,23 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
         test();
         randomNumber = Math.floor(Math.random() * 100) + 1;
+
+        const imgtaken = document.getElementById('imgtaken');
+        const closeimg = document.getElementById('closeimg');
+
+        // imgtaken.classList.toggle('imageactive');
+        imgtaken.classList.add('imageactive');
+        if(imgtaken.classList.contains('imageactive')){
+          imgtaken.style.display = "initial";
+        }
+        // else{
+        //   imgtaken.style.display = "none";
+        // }
+
+        closeimg.addEventListener('click', () => {
+          imgtaken.style.display = "none";
+        })
+
       });
     })
     .catch((error) => {
@@ -331,7 +349,7 @@ geobtn.addEventListener("click", async function (event) {
 
   let map = L.map(_map, {
     renderer: L.canvas(),
-  }).setView([_lat, _long], 0);
+  }).setView([_lat, _long], 13);
   L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
     maxZoom: 21,
     zoomSnap: 0.25,
