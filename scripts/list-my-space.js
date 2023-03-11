@@ -805,7 +805,7 @@ createPropertybtn.addEventListener("click", async function (event) {
 
   // Add Property Info to Neo4j
   // Use _lat and _long values, also _activity
-  const coordinates = { lat: 49.2244201, long: -123.1110692 };
+  const coordinates = { lat: _address.lat || 49.2244201, long: _address.long || -123.1110692 };
   await addPlace(
     propertyInfo,
     _price,
