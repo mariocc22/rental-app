@@ -258,6 +258,23 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
         test();
         randomNumber = Math.floor(Math.random() * 100) + 1;
+
+        const imgtaken = document.getElementById('imgtaken');
+        const closeimg = document.getElementById('closeimg');
+
+        // imgtaken.classList.toggle('imageactive');
+        imgtaken.classList.add('imageactive');
+        if(imgtaken.classList.contains('imageactive')){
+          imgtaken.style.display = "initial";
+        }
+        // else{
+        //   imgtaken.style.display = "none";
+        // }
+
+        closeimg.addEventListener('click', () => {
+          imgtaken.style.display = "none";
+        })
+
       });
     })
     .catch((error) => {
