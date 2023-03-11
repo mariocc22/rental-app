@@ -2,6 +2,7 @@
 import { doc, setDoc, db, collection, addDoc } from '../modules/firebase.js'
 
 async function createProperty(  _uid, //string
+                                _activity,
                                 _propertytitle,
                                 _propertydescription,
                                 _price, // property pricereview
@@ -21,6 +22,7 @@ async function createProperty(  _uid, //string
         properties = await addDoc(collection(db, "PROPERTIES"), {
             // properties = await setDoc(doc(db, "PROPERTIES"), {
             uid: _uid, //string
+            activity: _activity,
             propertytitle: _propertytitle,
             price: _price, // property pricereview
             propertydescription: _propertydescription,

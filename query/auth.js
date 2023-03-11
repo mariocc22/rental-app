@@ -1,4 +1,5 @@
 import "/styles/login.css";
+import "/styles/standard-styles.css";
 
 import {
   app,
@@ -166,13 +167,14 @@ btn_google.addEventListener("click", () => {
 
       const userId = user.uid;
       // Adds user to Neo4j Database
-      createUser(userId).then((r) => {
+      createUser(userId)
+        .then((r) => {
           window.location.href = window.location.origin;
-      }).catch((error) => {
-        console.log(error)
-        throw new Error("Could not create user in Neo4j")
-      });
-
+        })
+        .catch((error) => {
+          console.log(error);
+          throw new Error("Could not create user in Neo4j");
+        });
     })
     .catch((error) => {
       // Handle Errors here.

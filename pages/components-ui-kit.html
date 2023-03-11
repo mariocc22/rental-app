@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Components</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <h1>General Styles</h1>
+    <div class="wrp">
+      <div class="buttons-wrapper">
+        <button class="button-primary-explore-spaces button">
+          <a href="#">Apply Filters</a>
+        </button>
+        <button class="button-secondary-explore-spaces button">
+          <a href="#">Clear All FIlters</a>
+        </button>
+        <button class="button-primary-list-space button">
+          <a href="#">Next</a>
+        </button>
+        <button class="button-secondary-list-space button">
+          <a href="#">Cancel</a>
+        </button>
+      </div>
+      <div class="input-container">
+        <label for="input"></label>
+        <input
+          type="text"
+          id="input"
+          class="input-text"
+          placeholder="Enter text...."
+          required
+        />
+      </div>
+      <div class="input-container">
+        <label for="input"></label>
+        <input
+          type="number"
+          id="input"
+          class="input-number"
+          placeholder="Enter number...."
+          required
+        />
+      </div>
+      <div class="input-container-filter">
+        <label for="input"></label>
+        <input
+          type="text"
+          id="input"
+          class="input-text"
+          placeholder="Enter text...."
+          required
+        />
+        <button class="filter-button">
+          <i class="fa-solid fa-sliders"></i>
+        </button>
+      </div>
+
+      <div class="phone-verification-container">
+        <div class="input-container-number">
+          <label for="input"></label>
+          <input
+            type="text"
+            id="input"
+            class="input-number phone"
+            placeholder="#"
+            maxlength="1"
+            size="1"
+            required
+          />
+        </div>
+        <div class="input-container-number">
+          <label for="input"></label>
+          <input
+            type="text"
+            id="input"
+            class="input-number phone"
+            placeholder="#"
+            maxlength="1"
+            size="1"
+            required
+          />
+        </div>
+        <div class="input-container-number">
+          <label for="input"></label>
+          <input
+            type="text"
+            id="input"
+            class="input-number phone"
+            placeholder="#"
+            maxlength="1"
+            size="1"
+            required
+          />
+        </div>
+        <div class="input-container-number">
+          <label for="input"></label>
+          <input
+            type="text"
+            id="input"
+            class="input-number phone"
+            placeholder="#"
+            maxlength="1"
+            size="1"
+            required
+          />
+        </div>
+        <div class="input-container-number">
+          <label for="input"></label>
+          <input
+            type="text"
+            id="input"
+            class="input-number phone"
+            placeholder="#"
+            maxlength="1"
+            size="1"
+            required
+          />
+        </div>
+        <div class="input-container-number">
+          <label for="input"></label>
+          <input
+            type="text"
+            id="input"
+            class="input-number phone"
+            placeholder="#"
+            maxlength="1"
+            size="1"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="textarea-container">
+        <label for="input"></label>
+        <textarea class="textarea-description" id="textarea" cols="30" rows="5" placeholder="Insert text..."></textarea>
+      </div>
+
+      <div class="distance-range">
+        <input type="range" id="" step="10" value="200" />
+        <div class="distance-range-limits">
+          <p class="initial-distance">1 mi</p>
+          <p class="final-distance">200 mi</p>
+        </div>
+      </div>
+
+      <div class="progress-bar-container">
+        <div class="progress"></di>
+      </div>
+
+    </div>
+    
+    <!-- Tags normal state -->
+    <div class="tags-wrapper">
+      <div class="tag-wrapper">
+        <img class="filter-white" src="/assets/svg-icons/Camera.svg" alt="camera icon">
+        <p>Camera</p>
+      </div>
+      <div class="tag-wrapper">
+        <img class="filter-white" src="/assets/svg-icons/Ceiling Mount.svg" alt="celling icon">
+        <p>Flash light & Mount</p>
+      </div>
+      <div class="tag-wrapper">
+        <img class="filter-white" src="/assets/svg-icons/Lens.svg" alt="lens icon">
+        <p>Lens</p>
+      </div>
+      <div class="tag-wrapper">
+        <img class="filter-white" src="/assets/svg-icons/Other_1.svg" alt="other icon">
+        <p>Other Equipment</p>
+      </div>
+      <div class="tag-wrapper">
+        <img class="filter-white" src="/assets/svg-icons/Tripod.svg" alt="tripod icon">
+        <p>Tripod</p>
+      </div>
+      <div class="tag-wrapper">
+        <img class="filter-white" src="/assets/svg-icons/Umbrella.svg" alt="umbrella icon">
+        <p>Light Shapers</p>
+      </div>
+    </div>
+    <!-- Tags with no icon -->
+    <div class="tags-wrapper">
+      <div class="tag-amenity-wrapper">
+        <p>Camera</p>
+      </div>
+      <div class="tag-amenity-wrapper">
+        <p>Air Conditioner</p>
+      </div>
+      <div class="tag-amenity-wrapper">
+        <p>Air Conditioner</p>
+      </div>
+      <div class="tag-amenity-wrapper">
+        <p>Air Conditioner</p>
+      </div>
+      <div class="tag-amenity-wrapper">
+        <p>Air Conditioner</p>
+      </div>
+      <div class="tag-amenity-wrapper">
+        <p>Air Conditioner</p>
+      </div>
+      <div class="tag-amenity-wrapper">
+        <p>Air Conditioner</p>
+      </div>
+    </div>
+    <!-- Dropdown changed to checkbox (for now) -->
+    <div class="dropdown-wrapper">
+      <div class="dropdown-equipment">
+        <img src="/assets/svg-icons/Umbrella.svg" alt="Light Shapers">
+        <p>Light Shapers</p>
+        <input class="checkbox" type="checkbox" name="checkbox" id="">
+      </div>
+    </div>
+    <!-- Slider Container with Icons -->
+    <div class="places-wrapper">
+      <div class="place-wrapper">
+        <img class="filter-white"src="/assets/svg-icons/Indoor.svg" alt="Indoor">
+        <p>Indoor</p>
+      </div>
+      <div class="place-wrapper">
+        <img class="filter-white"src="/assets/svg-icons/Outdoor.svg" alt="Indoor">
+        <p>Outdoor</p>
+      </div>
+      <div class="place-wrapper">
+        <img class="filter-white"src="/assets/svg-icons/Studio.svg" alt="Indoor">
+        <p>Studio</p>
+      </div>
+      <div class="place-wrapper">
+        <img class="filter-white"src="/assets/svg-icons/House.svg" alt="Indoor">
+        <p>House</p>
+      </div>
+      <div class="place-wrapper">
+        <img class="filter-white"src="/assets/svg-icons/Other.svg" alt="Indoor">
+        <p>Other</p>
+      </div>
+    </div>
+
+    <!-- Properties Cards with Images, Like button, Text -->
+    <section class="cards">
+      <div class="suggested-space">
+          <input class="like-button" type="checkbox">
+          <div class="img-container">
+            <div class="img-wrapper img-wrapper-1">
+            </div>
+
+            <div class="img-wrapper img-wrapper-2">
+            </div>
+
+            <div class="img-wrapper img-wrapper-3">
+            </div>
+
+            <div class="img-wrapper img-wrapper-4">
+            </div>
+
+            <div class="img-wrapper img-wrapper-5">
+            </div>
+          </div>
+
+          <div class="price">
+              <p>$ 120/Day</p>
+          </div>
+      </div>
+
+
+      <div class="title-rating-wrapper">
+          <p class="space-title">Lorem ipsum dolor sit.</p>
+          <div class="space-rating">
+              <i class="fa-solid fa-star"></i>
+              <p class="rating">4.5</p>
+          </div>
+      </div>
+      <p class="space-location">
+          Lorem, ipsum.
+      </p>
+    </section>
+
+    <!-- Bundles -->
+    <section class="bundles">
+      <div class="bundle-wrapper">
+        <div class="bundle-top">
+          <img class="bundle-icon filter-white" src="/assets/svg-icons/blackBundle.svg" alt="bundle">
+          <div class="bundle-title">
+            <h3>$310/booking</h3>
+            <p>Bundle and Save:</p>
+            <p>Book these items alongside the space for 3days and save $65!</p>
+          </div>
+        </div>
+        <div class="bundle-footer">
+            <div class="bundle-footer-text">
+              <p><b>Equipment and Props</b></p>
+              <ul>
+                <li>1 Cameras</li>
+                <li>3 strobes on floor</li>
+                <li>1 Umbrella</li>
+              </ul>
+            </div>
+            <button class="btn-bundle">Select Bundle</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+    <!-- List My Space Category Wrapper -->
+    <h1>List My Space Components</h1>
+    <section class="list-my-space">
+      <!-- Buttons with Icons for Category -->
+      <div class="list-space-categories-buttons-wrapper">
+        <div class="button-category"><img class="filter-white"src="/assets/svg-icons/Indoor.svg" alt="Indoor icon">
+        <p>Indoor</p></div>
+        <div class="button-category"><img class="filter-white"src="/assets/svg-icons/Outdoor.svg" alt="Outdoor icon">
+        <p>Outdoor</p></div>
+        <div class="button-category"><img class="filter-white"src="/assets/svg-icons/House.svg" alt="House icon">
+        <p>House</p></div>
+        <div class="button-category"><img class="filter-white"src="/assets/svg-icons/Studio.svg" alt="Studio icon">
+        <p>Studio</p></div>
+        <div class="button-category"><img class="filter-white"src="/assets/svg-icons/Other.svg" alt="Other icon">
+        <p>Other</p></div>
+      </div>
+      <!-- Buttons -->
+      <div class="list-space-photos-buttons-wrapper">
+        <button class="button-photos">Add Photo</button>
+        <button class="button-photos">Take a Photo</button>
+      </div>
+
+      <!-- Summary Text Fields  -->
+      <div class="list-space-summary-text-wrapper">
+        <div class="header-textarea">
+          <label for="textarea">Title</label>
+          <img src="assets/svg-icons/editA1-dm.svg" alt="edit icon">
+        </div>
+
+        <textarea name="add name" id="textarea"></textarea>
+      </div>
+    </section>
+
+    <h1>Explore Spaces</h1>
+    <!-- Property Card with Image layout responsive (a few details missing) -->
+    <section class="explore-spaces">
+      <div class="selected-space-images">
+        <input class="like-button" type="checkbox">
+        <div class="img-container">
+            <div class="img-wrapper img-wrapper-1">
+            </div>
+            <div class="img-wrapper img-wrapper-2">
+            </div>
+            <div class="img-wrapper img-wrapper-3">
+            </div>
+            <div class="img-wrapper img-wrapper-4">
+            </div>
+            <div class="img-wrapper img-wrapper-5">
+            </div>
+        </div>
+    </section>
+  </body>
+</html>

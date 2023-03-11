@@ -15,6 +15,7 @@ module.exports = {
     showcase: "./scripts/showcase.js",
     exploreSpaces: "./scripts/explore-spaces.js",
     profile: "./scripts/profile.js",
+    components: "./scripts/ui-kit.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -108,6 +109,11 @@ module.exports = {
       template: "./pages/profile.html",
       filename: "profile.html",
       chunks: ["profile"],
+    }),
+    new HtmlWebpackPlugin({
+      template: "./pages/components-ui-kit.html",
+      filename: "components-ui-kit.html",
+      chunks: ["components"],
     }),
   ],
   devServer: {

@@ -1,6 +1,8 @@
 // console.log('works')
 import "/styles/list-my-space.css";
-
+import "../node_modules/leaflet/dist/leaflet.css";
+import "../node_modules/leaflet/dist/leaflet.css";
+import '/styles/common-styles.css';
 import { createProperty } from "/query/propertycreate.js";
 import { equipmentFormParser } from "../utility/equipmentFormParser.js";
 import {
@@ -16,10 +18,10 @@ import QuantityInput from "../utility/quantity.js";
 // import { easepick } from "@easepick/bundle";
 // import { RangePlugin } from "@easepick/range-plugin";
 import { calendarBook } from "../utility/datePicker.js";
-import * as L from '../node_modules/leaflet/dist/leaflet.js';
+import * as L from "../node_modules/leaflet/dist/leaflet.js";
 
 // Geolocation
-import { whereAmI, getPosition } from '../modules/geolocation.js';
+import { whereAmI, getPosition } from "../modules/geolocation.js";
 
 const allPages = document.querySelectorAll("div.page");
 allPages[0].style.display = "block";
@@ -40,6 +42,24 @@ navigateToPage();
 //init handler for hash navigation
 
 window.addEventListener("hashchange", navigateToPage);
+
+// Activity
+let _activity;
+const musician = document.getElementById("musician");
+const photographer = document.getElementById("photographer");
+const performance = document.getElementById("performance");
+
+musician.addEventListener("click", () => {
+  _activity = "musician";
+});
+
+photographer.addEventListener("click", () => {
+  _activity = "photography";
+});
+
+performance.addEventListener("click", () => {
+  _activity = "performance";
+});
 
 // What kind of space do you offer
 let _indoor = false;
@@ -238,6 +258,23 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
         test();
         randomNumber = Math.floor(Math.random() * 100) + 1;
+
+        const imgtaken = document.getElementById('imgtaken');
+        const closeimg = document.getElementById('closeimg');
+
+        // imgtaken.classList.toggle('imageactive');
+        imgtaken.classList.add('imageactive');
+        if(imgtaken.classList.contains('imageactive')){
+          imgtaken.style.display = "initial";
+        }
+        // else{
+        //   imgtaken.style.display = "none";
+        // }
+
+        closeimg.addEventListener('click', () => {
+          imgtaken.style.display = "none";
+        })
+
       });
     })
     .catch((error) => {
@@ -280,8 +317,8 @@ const propertytitle = document.getElementById("propertytitle");
 const propertydescription = document.getElementById("propertydescription");
 
 // Geolocation
-const geobtn = document.getElementById('geobtn');
-geobtn.addEventListener('click', async function (event) {
+const geobtn = document.getElementById("geobtn");
+geobtn.addEventListener("click", async function (event) {
   const test = await getPosition();
   // console.log(test);
   const test2 = await whereAmI();
@@ -290,34 +327,39 @@ geobtn.addEventListener('click', async function (event) {
   city.value = test2.city;
   state.value = test2.state;
   // postalcode.value = test2.city;
-  country.value = test2.country;  
+  country.value = test2.country;
   _lat = test2.latt;
   _long = test2.longt;
   console.log(_lat);
   console.log(_long);
-  const _map = document.getElementById('map');
+  const _map = document.getElementById("map");
   // var map = L.map(_map, {
   //   center: [_lat, _long],
   //   zoom: 13});
   // console.log(map);
-  
+
   // var map = L.map(_map).setView([_lat, _long], 13);
   // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   //   // maxZoom: 19,
   //   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-  // }).addTo(map);  
-  
+  // }).addTo(map);
+
   // const settingmap = document.getElementById('settingmap');
   // settingmap.src = `http://maps.googleapis.com/maps/api/staticmap?center=${_lat},${_long}&zoom=11&size=200x200&sensor=false`;
 
-
-  var map = L.map('map').setView([_lat, _long], 13);
-
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '© OpenStreetMap'
+  let map = L.map(_map, {
+    renderer: L.canvas(),
+  }).setView([_lat, _long], 13);
+  L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+    maxZoom: 21,
+    zoomSnap: 0.25,
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   }).addTo(map);
-})
+
+  let marker = L.marker([_lat, _long]).addTo(map);
+  marker.bindPopup("<h3> I'm here! </h3>").openPopup();
+});
 
 // Tags
 let _foodphotography = false;
@@ -517,7 +559,7 @@ const reviewfieldsbtn = document.getElementById("reviewfields");
 const titlereview = document.getElementById("titlereview");
 const descriptionreview = document.getElementById("descriptionreview");
 const addressreview = document.getElementById("addressreview");
-const tagsreview = document.getElementById("tagsreview");
+// const tagsreview = document.getElementById("tagsreview");
 const equipmentreview = document.getElementById("equipmentreview");
 const dealsreview = document.getElementById("dealsreview");
 const dealdaysvalue = document.getElementById("dealdaysvalue");
@@ -527,6 +569,7 @@ const pricereview = document.getElementById("pricereview");
 const pricevalue = document.getElementById("pricevalue");
 const datepicker = document.getElementById("datepicker");
 const photolistmyspace = document.getElementById("photolistmyspace");
+const amenitiesreview = document.getElementById("amenitiesreview");
 
 // Equipment Description
 const cellingflashdesc = document.getElementById("cellingflashdesc");
@@ -534,6 +577,50 @@ const floorflashdesc = document.getElementById("floorflashdesc");
 
 // Review info and setting values to create a property
 reviewfieldsbtn.addEventListener("click", () => {
+  // console.log(propertytitle.value);
+  // console.log(propertydescription.value);
+  // console.log(street.value +
+  //   " " +
+  //   flatroom.value +
+  //   " " +
+  //   city.value +
+  //   " " +
+  //   state.value +
+  //   " " +
+  //   postalcode.value +
+  //   " " +
+  //   country.value);
+  // console.log(_foodphotography
+  //   ? "Food Photography "
+  //   : "" + _commercial
+  //   ? "Food Photography "
+  //   : "" + _fashion
+  //   ? "Fashion "
+  //   : "" + _portrait
+  //   ? "Portrait "
+  //   : "" + _lifestyle
+  //   ? "Lifestyle "
+  //   : "" + _newborn
+  //   ? "Newborn "
+  //   : "" + _wedding
+  //   ? "Wedding "
+  //   : "");
+
+  // console.log( _light
+  //   ? "Light "
+  //   : "" + _lightshapers
+  //   ? "Light Shapers "
+  //   : "" + _camerastand
+  //   ? "Camera Stand "
+  //   : "" + _camera
+  //   ? "Camera "
+  //   : "" + _lens
+  //   ? "Lens "
+  //   : "" + _otherequipment
+  //   ? "Other equipment "
+  //   : "");
+
+
   titlereview.value = propertytitle.value;
   descriptionreview.value = propertydescription.value;
   addressreview.value =
@@ -549,74 +636,129 @@ reviewfieldsbtn.addEventListener("click", () => {
     " " +
     country.value;
 
-  tagsreview.value = _foodphotography
-    ? "Food Photography "
-    : "" + _commercial
-    ? "Food Photography "
-    : "" + _fashion
-    ? "Fashion "
-    : "" + _portrait
-    ? "Portrait "
-    : "" + _lifestyle
-    ? "Lifestyle "
-    : "" + _newborn
-    ? "Newborn "
-    : "" + _wedding
-    ? "Wedding "
-    : "";
+  // tagsreview.value = _foodphotography
+  //   ? "Food Photography "
+  //   : "" + _commercial
+  //   ? "Food Photography "
+  //   : "" + _fashion
+  //   ? "Fashion "
+  //   : "" + _portrait
+  //   ? "Portrait "
+  //   : "" + _lifestyle
+  //   ? "Lifestyle "
+  //   : "" + _newborn
+  //   ? "Newborn "
+  //   : "" + _wedding
+  //   ? "Wedding "
+  //   : "";
 
-  equipmentreview.value = _light
-    ? "Light "
-    : "" + _lightshapers
-    ? "Light Shapers "
-    : "" + _camerastand
-    ? "Camera Stand "
-    : "" + _camera
-    ? "Camera "
-    : "" + _lens
-    ? "Lens "
-    : "" + _otherequipment
-    ? "Other equipment "
-    : "";
+  let amenitiestext = "";
+
+  if(_washroom) {
+    amenitiestext += "Washroom, ";
+  }
+  if(_wifi) {
+    amenitiestext += "WiFi, ";
+  }
+  if(_elevator) {
+    amenitiestext += "Elevator, ";
+  }
+  if(_parking) {
+    amenitiestext += "Parking, ";
+  }
+  if(_airconditioner) {
+    amenitiestext += "Air Conditioner.";
+  }
+
+  amenitiesreview.value = amenitiestext;
+  
+  let equipmenttext = "";
+
+  if(_equipments[0].price > 0){
+    equipmenttext += `Camera for ${_equipments[0].price}\n`;
+  }
+  if(_equipments[1].price > 0){
+    equipmenttext += `Lens for ${_equipments[1].price}\n`;
+  }
+  if(_equipments[2].price > 0){
+    equipmenttext += `Backdrop for ${_equipments[2].price}\n`;
+  }
+  if(_equipments[3].price > 0){
+    equipmenttext += `Flash Lights for ${_equipments[3].price}\n`;
+  }
+  if(_equipments[4].price > 0){
+    equipmenttext += `Tripods for ${_equipments[4].price}\n`;
+  }
+
+
+  equipmentreview.value = equipmenttext;//_equipments;
+  // _light
+  //   ? "Light "
+  //   : "" + _lightshapers
+  //   ? "Light Shapers "
+  //   : "" + _camerastand
+  //   ? "Camera Stand "
+  //   : "" + _camera
+  //   ? "Camera "
+  //   : "" + _lens
+  //   ? "Lens "
+  //   : "" + _otherequipment
+  //   ? "Other equipment "
+  //   : "";
+  availabilityreview.value = datepicker.value;
+  pricereview.value = `$ ${pricevalue.value} per day`;
+
+  let _dealtext = "";
+
+  if(cameracheckboxvalue.checked) {
+    _dealtext += "Camera \n";
+  }
+  if(lenscheckboxvalue.checked) {
+    _dealtext += "Lens \n";
+  }
+  if(backdropcheckboxvalue.checked) {
+    _dealtext += "Back Drop \n";
+  }
+  if(flashlightcheckboxvalue.checked) {
+    _dealtext += "Flash Light \n";
+  }
+  if(tripodscheckboxvalue.checked) {
+    _dealtext += "Tripods.";
+  }
+  
+  dealsreview.value = `$ ${bundlevalue.value} for `+ _dealtext;
 
   _propertytitle = propertytitle.value;
   _propertydescription = propertydescription.value;
   _price = pricevalue.value;
   _dates = datepicker.value;
+  _bundleinfo = {
+    price: bundlevalue.value,
+    equipment: [_dealtext],
+  };
 
-  _bundleinfo = {price: bundlevalue.value,
-                equipment: [cameracheckboxvalue.checked ? "Camera" : "",
-                            lenscheckboxvalue.checked ? "Lens" : "",
-                            backdropcheckboxvalue.checked ? "Back Drop" : "",
-                            flashlightcheckboxvalue.checked ? "Flash Light" : "",
-                            tripodscheckboxvalue.checked ? "Tripods" : ""]};
-  _address = {street: street.value,
-              flatroom: flatroom.value,
-              city: city.value,
-              state: state.value,
-              postalcode: postalcode.value,
-              country: country.value,
-              lat: _lat,//"49.2577143", //_lat.value,
-              long: _long};//"-123.1939433",}; //_long.value};
+  _address = {
+    street: street.value,
+    flatroom: flatroom.value,
+    city: city.value,
+    state: state.value,
+    postalcode: postalcode.value,
+    country: country.value,
+    lat: _lat, //"49.2577143", //_lat.value,
+    long: _long, //"-123.1939433",
+  }; //_long.value};
 
-  if (_indoor) 
-    _typeofspace = "photography-type-indoor";
-  else if (_outdoor) 
-    _typeofspace = "photography-type-outdoor";
-  else if (_studio) 
-    _typeofspace = "photography-type-studio";
-  else if (_house) 
-    _typeofspace = "photography-type-house";
-  else if (_beach) 
-    _typeofspace = "photography-type-beach-house";
-  else if (_others) 
-    _typeofspace = "photography-type-cottage";
-
+  if (_indoor) _typeofspace = "photography-type-indoor";
+  else if (_outdoor) _typeofspace = "photography-type-outdoor";
+  else if (_studio) _typeofspace = "photography-type-studio";
+  else if (_house) _typeofspace = "photography-type-house";
+  else if (_beach) _typeofspace = "photography-type-beach-house";
+  else if (_others) _typeofspace = "photography-type-cottage";
 
   _uid = localStorage.getItem("uid");
   _media.push(urlString);
 
-  if(fromImage){
+  if (fromImage) {
     photoList = urlString;
   }
 
@@ -643,8 +785,8 @@ createPropertybtn.addEventListener("click", async function (event) {
   // console.log(_equipments);
 
   propertyInfo = await createProperty(
-    //'4BTWTvRfqDEQ7vXdrIxA', //uid
     _uid, //string
+    _activity,
     _propertytitle,
     _propertydescription,
     _price, // property pricereview
@@ -661,9 +803,20 @@ createPropertybtn.addEventListener("click", async function (event) {
   // Post Image Collection with propertyId
   await SaveURLtoFirestore(urlString, propertyInfo);
 
-    // Add Property Info to Neo4j
-    const coordinates = {lat: 49.2244201, long: -123.1110692}
-    await addPlace(propertyInfo, _price, _propertytitle, _uid, _typeofspace, _amenities, _equipments, "photography", coordinates);
+  // Add Property Info to Neo4j
+  // Use _lat and _long values, also _activity
+  const coordinates = { lat: 49.2244201, long: -123.1110692 };
+  await addPlace(
+    propertyInfo,
+    _price,
+    _propertytitle,
+    _uid,
+    _typeofspace,
+    _amenities,
+    _equipments,
+    _activity,
+    coordinates
+  );
 
   // Take user back to home page after all Database Functions
   window.location.href = window.location.origin;

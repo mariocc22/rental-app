@@ -1,5 +1,5 @@
 // Container
-// const usersLoc = document.querySelector(".users-loc");
+//const usersLoc = document.querySelector(".users-loc");
 
 // const getPosition = function () {
 async function getPosition () {
@@ -50,7 +50,7 @@ async function whereAmI () {
 };
 
 // Event Listener
-// const btn_geo = document.querySelector(".btn-geo");
-// btn_geo.addEventListener("click", whereAmI);
+//const btn_geo = document.querySelector(".btn-geo");
+//btn_geo.addEventListener("click", whereAmI);
 
 export { whereAmI , getPosition };
