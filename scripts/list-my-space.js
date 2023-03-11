@@ -559,7 +559,7 @@ const reviewfieldsbtn = document.getElementById("reviewfields");
 const titlereview = document.getElementById("titlereview");
 const descriptionreview = document.getElementById("descriptionreview");
 const addressreview = document.getElementById("addressreview");
-const tagsreview = document.getElementById("tagsreview");
+// const tagsreview = document.getElementById("tagsreview");
 const equipmentreview = document.getElementById("equipmentreview");
 const dealsreview = document.getElementById("dealsreview");
 const dealdaysvalue = document.getElementById("dealdaysvalue");
@@ -569,6 +569,7 @@ const pricereview = document.getElementById("pricereview");
 const pricevalue = document.getElementById("pricevalue");
 const datepicker = document.getElementById("datepicker");
 const photolistmyspace = document.getElementById("photolistmyspace");
+const amenitiesreview = document.getElementById("amenitiesreview");
 
 // Equipment Description
 const cellingflashdesc = document.getElementById("cellingflashdesc");
@@ -576,6 +577,50 @@ const floorflashdesc = document.getElementById("floorflashdesc");
 
 // Review info and setting values to create a property
 reviewfieldsbtn.addEventListener("click", () => {
+  // console.log(propertytitle.value);
+  // console.log(propertydescription.value);
+  // console.log(street.value +
+  //   " " +
+  //   flatroom.value +
+  //   " " +
+  //   city.value +
+  //   " " +
+  //   state.value +
+  //   " " +
+  //   postalcode.value +
+  //   " " +
+  //   country.value);
+  // console.log(_foodphotography
+  //   ? "Food Photography "
+  //   : "" + _commercial
+  //   ? "Food Photography "
+  //   : "" + _fashion
+  //   ? "Fashion "
+  //   : "" + _portrait
+  //   ? "Portrait "
+  //   : "" + _lifestyle
+  //   ? "Lifestyle "
+  //   : "" + _newborn
+  //   ? "Newborn "
+  //   : "" + _wedding
+  //   ? "Wedding "
+  //   : "");
+
+  // console.log( _light
+  //   ? "Light "
+  //   : "" + _lightshapers
+  //   ? "Light Shapers "
+  //   : "" + _camerastand
+  //   ? "Camera Stand "
+  //   : "" + _camera
+  //   ? "Camera "
+  //   : "" + _lens
+  //   ? "Lens "
+  //   : "" + _otherequipment
+  //   ? "Other equipment "
+  //   : "");
+
+
   titlereview.value = propertytitle.value;
   descriptionreview.value = propertydescription.value;
   addressreview.value =
@@ -591,35 +636,97 @@ reviewfieldsbtn.addEventListener("click", () => {
     " " +
     country.value;
 
-  tagsreview.value = _foodphotography
-    ? "Food Photography "
-    : "" + _commercial
-    ? "Food Photography "
-    : "" + _fashion
-    ? "Fashion "
-    : "" + _portrait
-    ? "Portrait "
-    : "" + _lifestyle
-    ? "Lifestyle "
-    : "" + _newborn
-    ? "Newborn "
-    : "" + _wedding
-    ? "Wedding "
-    : "";
+  // tagsreview.value = _foodphotography
+  //   ? "Food Photography "
+  //   : "" + _commercial
+  //   ? "Food Photography "
+  //   : "" + _fashion
+  //   ? "Fashion "
+  //   : "" + _portrait
+  //   ? "Portrait "
+  //   : "" + _lifestyle
+  //   ? "Lifestyle "
+  //   : "" + _newborn
+  //   ? "Newborn "
+  //   : "" + _wedding
+  //   ? "Wedding "
+  //   : "";
 
-  equipmentreview.value = _light
-    ? "Light "
-    : "" + _lightshapers
-    ? "Light Shapers "
-    : "" + _camerastand
-    ? "Camera Stand "
-    : "" + _camera
-    ? "Camera "
-    : "" + _lens
-    ? "Lens "
-    : "" + _otherequipment
-    ? "Other equipment "
-    : "";
+  let amenitiestext = "";
+
+  if(_washroom) {
+    amenitiestext += "Washroom, ";
+  }
+  if(_wifi) {
+    amenitiestext += "WiFi, ";
+  }
+  if(_elevator) {
+    amenitiestext += "Elevator, ";
+  }
+  if(_parking) {
+    amenitiestext += "Parking, ";
+  }
+  if(_airconditioner) {
+    amenitiestext += "Air Conditioner.";
+  }
+
+  amenitiesreview.value = amenitiestext;
+  
+  let equipmenttext = "";
+
+  if(_equipments[0].price > 0){
+    equipmenttext += `Camera for ${_equipments[0].price}\n`;
+  }
+  if(_equipments[1].price > 0){
+    equipmenttext += `Lens for ${_equipments[1].price}\n`;
+  }
+  if(_equipments[2].price > 0){
+    equipmenttext += `Backdrop for ${_equipments[2].price}\n`;
+  }
+  if(_equipments[3].price > 0){
+    equipmenttext += `Flash Lights for ${_equipments[3].price}\n`;
+  }
+  if(_equipments[4].price > 0){
+    equipmenttext += `Tripods for ${_equipments[4].price}\n`;
+  }
+
+
+  equipmentreview.value = equipmenttext;//_equipments;
+  // _light
+  //   ? "Light "
+  //   : "" + _lightshapers
+  //   ? "Light Shapers "
+  //   : "" + _camerastand
+  //   ? "Camera Stand "
+  //   : "" + _camera
+  //   ? "Camera "
+  //   : "" + _lens
+  //   ? "Lens "
+  //   : "" + _otherequipment
+  //   ? "Other equipment "
+  //   : "";
+  availabilityreview.value = datepicker.value;
+  pricereview.value = `$ ${pricevalue.value} per day`;
+
+  let _dealtext = "";
+
+  if(cameracheckboxvalue.checked) {
+    _dealtext += "Camera \n";
+  }
+  if(lenscheckboxvalue.checked) {
+    _dealtext += "Lens \n";
+  }
+  if(backdropcheckboxvalue.checked) {
+    _dealtext += "Back Drop \n";
+  }
+  if(flashlightcheckboxvalue.checked) {
+    _dealtext += "Flash Light \n";
+  }
+  if(tripodscheckboxvalue.checked) {
+    _dealtext += "Tripods.";
+  }
+  
+  dealsreview.value = `$ ${bundlevalue.value} for `+ _dealtext;
 
   _propertytitle = propertytitle.value;
   _propertydescription = propertydescription.value;
@@ -627,14 +734,9 @@ reviewfieldsbtn.addEventListener("click", () => {
   _dates = datepicker.value;
   _bundleinfo = {
     price: bundlevalue.value,
-    equipment: [
-      cameracheckboxvalue.checked ? "Camera" : "",
-      lenscheckboxvalue.checked ? "Lens" : "",
-      backdropcheckboxvalue.checked ? "Back Drop" : "",
-      flashlightcheckboxvalue.checked ? "Flash Light" : "",
-      tripodscheckboxvalue.checked ? "Tripods" : "",
-    ],
+    equipment: [_dealtext],
   };
+
   _address = {
     street: street.value,
     flatroom: flatroom.value,

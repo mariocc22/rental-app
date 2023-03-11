@@ -7,96 +7,49 @@ import "/styles/property.css";
 import { propertyFuncion } from "../query/propertylist.js";
 import { tagnameToInfo } from "../utility/tagnameToInfo.js";
 import { calendarBook } from "../utility/datePicker.js";
+import { calculateDays } from "../utility/dateRangeToDays.js";
 
-const elem = document.getElementById("foo");
-// const rangepicker = new DateRangePicker(elem, {
-//   autohide: true,
-// });
-
-// const startElem = document.getElementById("start");
-// const endElem = document.getElementById("end");
-
-// startElem.addEventListener("changeDate", function (e) {
-//   console.log("start", e.detail.date);
-// });
-
-// endElem.addEventListener("changeDate", function (e) {
-//   console.log("end", e.detail.date);
-// });
-
-// Calendar Date Picker ======================
-
-// Slider Code ===================
-
-// https://codepen.io/davehert/pen/MWrYjZy
-
-// Select all slides
-const slides = document.querySelectorAll(".slide");
-
-// loop through slides and set each slides translateX
-slides.forEach((slide, indx) => {
-  slide.style.transform = `translateX(${indx * 100}%)`;
-});
-
-// select next slide button
-const nextSlide = document.querySelector(".btn-next");
-
-// current slide counter
-let curSlide = 0;
-// maximum number of slides
-let maxSlide = slides.length - 1;
-
-// add event listener and navigation functionality
-nextSlide.addEventListener("click", function () {
-  // check if current slide is the last and reset current slide
-  if (curSlide === maxSlide) {
-    curSlide = 0;
-  } else {
-    curSlide++;
-  }
-
-  //   move slide by -100%
-  slides.forEach((slide, indx) => {
-    slide.style.transform = `translateX(${100 * (indx - curSlide)}%)`;
-  });
-});
-
-// select next slide button
-const prevSlide = document.querySelector(".btn-prev");
-
-// add event listener and navigation functionality
-prevSlide.addEventListener("click", function () {
-  // check if current slide is the first and reset current slide to last
-  if (curSlide === 0) {
-    curSlide = maxSlide;
-  } else {
-    curSlide--;
-  }
-
-  //   move slide by 100%
-  slides.forEach((slide, indx) => {
-    slide.style.transform = `translateX(${100 * (indx - curSlide)}%)`;
-  });
-});
-
-// Slider Code ends ===============
+let datePicker = undefined;
 
 // global variables to view property
 const params = new URLSearchParams(document.location.search);
 const propertyId = params.get("propertyId");
+const VALID_TABS = ["customize", "details", "showcases"];
+
+// use this to calculate total price -> selected by the user
+let BUNDLE_INFO = undefined;
+let property_BASE_PRICE = undefined;
+const USER_CART = { basePrice: undefined, equipments: [], dateTo: undefined, dateFrom: undefined, daysInfo: undefined };
+
 
 init();
 
 // ================= FUNCTIONS
 
-function init() {
-  // load the data from firebase
-  showPropertyDetails();
+async function init() {
+
+  // validate url and selected tabs
+  validateURL();
+
+  // load data in the website from database
+  const propertyInfo = await showPropertyDetails();
+
+  // Update Variables and Load the Price Dtails Section
+  loadPriceDetails(propertyInfo)
+
+  // register event
+  registerLoadTabs()
+  registerDatesSelection();
+  registerBundleSelection()
+  registerPropsSelection();
+  registerBookButton();
+
+
+  // load the slider
 }
 
 async function showPropertyDetails() {
   const propertyInfo = await propertyFuncion(propertyId);
-  console.log(propertyInfo);
 
   // add name
   const propertyName = document.getElementById("propery-name");
@@ -104,7 +57,12 @@ async function showPropertyDetails() {
 
   // This will set the calendar with the availability of the place
   const [min, max] = propertyInfo.dates.split(" - ");
-  calendarBook(min, max);
+  if(min) {
+    datePicker = calendarBook(min, max);
+  } else {
+    datePicker = calendarBook();
+  }
+  
 
   // load images
   let propertyImages = propertyInfo.media.filter((link) => link != "");
@@ -123,6 +81,7 @@ async function showPropertyDetails() {
 
   // load bundle information
   const bundleInfo = propertyInfo.bundleinfo;
+  BUNDLE_INFO = bundleInfo;
   const bundlePrice = bundleInfo.price;
   const bundleEquipment = bundleInfo.equipment.filter((val) => val != "");
 
@@ -130,7 +89,6 @@ async function showPropertyDetails() {
   bundlePriceElem.innerHTML = `Reduced Base Price $${bundlePrice}`;
 
   const bundleEquipWrapper = document.querySelector(".bundle-equipments ul");
-  console.log(bundleEquipWrapper);
   bundleEquipWrapper.innerHTML = "";
 
   // bundleEquipments
@@ -190,239 +148,245 @@ async function showPropertyDetails() {
     amenitiesWrapper.innerHTML += string;
   });
 
+  // address
+  const addressWrapper = document.querySelector(".property-address > p")
+  const address = propertyInfo.address;
+  addressWrapper.innerText = `${address.street}, ${address.city}, ${address.state}, ${address.postalcode}, ${address.country}`
+
   // show price details
+  return propertyInfo;
 }
 
-// // display menu section based on URL
-// const URLhash = window.location.hash;
-// if(URLhash) {
-//   // get split value
-//   const splitHash = URLhash.split("#")
-//   if(splitHash[1]) {
-//     const elemValue = splitHash[1];
-//     displaySelectedMenuInfo(elemValue);
 
-//   }
-// }
+// load price details
+function loadPriceDetails(propertyInfo) {
+  // update base
+  property_BASE_PRICE = propertyInfo.price;
+  updateBasePrice(propertyInfo.price);
 
-// // Code to toggle tabs
-// const menuTabs = document.getElementsByClassName('menu-tabs');
-// const menuTabsArray = Array.from(menuTabs);
+}
 
-// menuTabsArray.forEach(elem => {
-//   elem.addEventListener('click', function(event) {
-//     const elemValue = this.dataset.value;
-//     displaySelectedMenuInfo(elemValue);
-//   })
-// })
 
-// // displays the selected menu info based on user selection and url
-// function displaySelectedMenuInfo(elemValue) {
-//   // hide all elements inside the wrapper
-//     // .property-menu-info-wrapper
-//     const allElementsToHide = document.querySelectorAll('.property-menu-info-wrapper > div')
-//     allElementsToHide.forEach(elem => elem.classList.add("hide"));
 
-//     // remove hide class
-//     const elemToShowClass = `property-${elemValue}-tab`;
-//     const elemToShow = document.getElementsByClassName(elemToShowClass);
-//     elemToShow[0].classList.remove("hide");
-// }
 
-// // Connect items to calculate total price
+function validateURL() {
+  const URLhash = window.location.hash;
+  if(URLhash) {
+    const splitHash = URLhash.split("#");
+    const elemValue = splitHash[1];
+    if(elemValue) {
+      if(!VALID_TABS.includes(elemValue)) {
+        const urlWithoutHash = window.location.origin + window.location.pathname + window.location.search;
+        window.location.href = urlWithoutHash + "#customize"
+      } else {
+        displaySelectedMenuInfo(elemValue);
+      }
+    }
+  } else {
+    window.location.href = window.location.href + "#customize"
+  }
+}
 
-// // displays the content to the user and attaches buttons
-// async function displayContent() {
-//   // read data from the server to populate the content
-//   const allPropertyData = await readPropertyData();
 
-//   populatePropertyInfo(allPropertyData)
-//   populateCustomizeInfo(allPropertyData)
-//   populateDetailsInfo(allPropertyData);
-//   populateShowcases(allPropertyData)
-//   // attach all events to the page
-// }
 
-// function populateShowcases(allPropertyData) {
-//   // update showcases
-//   const showcases = allPropertyData.showcases;
-//   const showcaseListElement = document.getElementById("showcase-list");
-//   showcaseListElement.innerHTML = "";
+// =========================================================== DOM insertions and User Cart in some cases
 
-//   showcases.forEach(showcase => {
-//     console.log(showcase);
+function updateBasePrice(price) {
 
-//     showcaseListElement.innerHTML = `
-//     <li class="property-showcase">
-//       <img src="${showcase.img}">
-//       <h3 class="showcase-title">
-//           ${showcase.title}
-//       </h3>
-//       <p class="showcase-description">
-//           ${showcase.description}
-//       </p>
-//     </li>`
-//   })
+  // update in dom
+  const basePriceElem = document.querySelector(".detail-base ul > li:first-child span:last-child");
+  // console.log(propertyInfo.price)
+  basePriceElem.innerHTML = `CAD ${price}`;
 
-//   const x = `
-//   <li class="property-showcase">
-//     <img src="https://picsum.photos/1200/500?random=2">
-//     <h3 class="showcase-title">
-//         Showcase
-//     </h3>
-//     <p class="showcase-description">
-//         Lorem ipsum dolor sit, amet consectetur adipisicing elit. A delectus aperiam eos non
-//         dolorem. Odit corrupti voluptatem iste quae perspiciatis?
-//     </p>
-//   </li>`;
+  // update in cart
+  USER_CART.basePrice = price;
+}
 
-// }
+function updateProps(props) {
+  const propsList = document.querySelector(".detail-props ul");
 
-// function populateDetailsInfo(allPropertyData) {
-//   // update property
-//   const description = document.getElementById("property-description");
-//   description.innerHTML = `
-//     <h2>Property Description</h2>
-//     <p>${allPropertyData.propertyDetails.description}</p>
-//   `
+  propsList.innerHTML = "";
+  props.forEach(propObj => {
+    propsList.innerHTML += `<li>
+                            <span> ${propObj.name} </span>
+                            <span> CAD ${propObj.price} </span>
+                          </li>`
+  })
 
-//   // amenities
-//   const amenities = document.getElementById("property-amenities");
+  // show props
+  const propsElem = document.querySelector(".detail-props");
+  if(props.length) {
+    propsElem.classList.remove("hide");
+  } else {
+    propsElem.classList.add("hide")
+  }
 
-//   amenities.innerHTML = `<h2>Property Amenities</h2>`;
-//   let amenitiesList = ""
-//   allPropertyData.propertyDetails.amenities.forEach(amenity => {
-//     amenitiesList += ` <li>${amenity}</li>`
-//   })
-//   amenities.innerHTML += `<ul>${amenitiesList}</ul>`
-// }
 
-// function populateCustomizeInfo(allPropertyData) {
+  // update in cart
+  USER_CART.equipments = props;
 
-//   // bundles
-//   const bundlesInfo = document.getElementById("property-bundles");
-//   bundlesInfo.innerHTML = "";
-//   bundlesInfo.innerHTML += `<h2>Suggested Bundles</h2>`
-//   allPropertyData.customize.bundles.forEach(bundleInfo => {
-//     let equipmentList = "";
-//     bundleInfo.equipments.forEach(equipment => {
-//       // todo tag id to name
-//       equipmentList += `<li>${equipment}</li>`
-//     })
+}
 
-//     const elems = `
-//     <div class="bundle">
-//       <h3>$${bundleInfo.price} / Per Day</h3>
-//       <p>THIS P TAG TEXT NEEDS TO BE UPDATED</p>
-//       <div class="bundle-equipments">
-//           <ul>
-//               ${equipmentList}
-//           </ul>
-//       </div>
-//       <input type="button" value="Choose Bundle" data-price="${bundleInfo.price}">
-//   </div>`
+// total price is reflected with date
+function updateTotalPrice() {
 
-//   bundlesInfo.innerHTML += elems;
-//   })
-//   bundlesInfo.classList.remove('hide');
+  const totalPriceElem = document.querySelector(".detail-total-price");
+  const bookBtn = document.querySelector("#property-booking-btn input")
+  const priceDescription = document.querySelector(".detail-total-price ul span:first-child")
+  const priceCalculation = document.querySelector(".detail-total-price ul span:last-child")
+ 
+  
+  const {priceWithProps, totalPrice, daysInfo} = calculatePrice()
 
-//   // Equipments and Props
-//   const equipment = document.getElementById("property-equipments");
-//   equipment.innerHTML = "";
-//   equipment.innerHTML += `<h2>Equipment and Props</h2>`;
-//   let equipmentList = ""
-//   allPropertyData.customize.equipments.forEach(({price, tagname}) => {
-//     equipmentList += `<li data-price="${price}">${tagname} $${price}</li>`
-//   })
-//   equipment.innerHTML += `<ul>${equipmentList}</ul>`
+  priceDescription.innerText = `Price for ${daysInfo} days`
+  priceCalculation.innerText = `${priceWithProps} x ${daysInfo} days = CAD ${totalPrice}`
 
-//   // TODO enable date with custom changes
+  if(daysInfo) {
+      // show the element
+    totalPriceElem.classList.remove("hide")
 
-// }
+    // show button
+    bookBtn.removeAttribute("disabled");
+    bookBtn.value = "Book"
+  } else {
+    totalPriceElem.classList.add("hide")
+    bookBtn.value = "Select Dates";
+    bookBtn.setAttribute("disabled", true);
+  }
 
-// function populatePropertyInfo(allPropertyData) {
 
-//   // name
-//   const nameElement = document.getElementById("propery-name");
-//   nameElement.innerText = allPropertyData.propertyName + ` @ CAD ${allPropertyData.price}`;
+}
 
-//   // images
-//   const slider = document.getElementById("slider");
-//   slider.innerHTML = "";
-//   allPropertyData.propertyImages.forEach(imageLink => {
-//     slider.innerHTML += `
-//     <div class="slide">
-//     <img src="${imageLink}" alt="" />
-//     </div>`
-//   })
-//   // btns
-//   slider.innerHTML += `
-//   <button class="btn btn-next"> > </button>
-//   <button class="btn btn-prev"> < </button>`
-//   slider.classList.remove('hide');
+function calculatePrice () {
 
-// }
+  const totalProps = USER_CART.equipments.map(obj => Number(obj.price) ).reduce(function(a, b) { return a + b; }, 0);
+  const basePrice = Number(USER_CART.basePrice);
+  const priceWithProps = basePrice + totalProps;
+  const totalPrice = priceWithProps * Number(USER_CART.daysInfo);
 
-// async function readPropertyData() {
-//   const data = {
-//     propertyId: "0djsGVd2vaDz4cs7KM1j",
-//     propertyName: "Kevin's Rooftop Bar",
-//     propertyImages: ["https://source.unsplash.com/random?landscape,mountain", "https://source.unsplash.com/random?landscape,cars"],
-//     price: "100",
-//     customize: {
-//       bundles: [
-//         {
-//           price: "300",
-//           equipments: ["photography-equipments-camera-stand", "photography-equipments-light-shaper-umbrella", "photography-equipments-light-stand"]
-//         },
-//         {
-//           price: "250",
-//           equipments: ["photography-equipments-lens"]
-//         }
-//       ],
-//       equipments: [
-//         {
-//           price: "30",
-//           tagname: "photography-equipments-light-shaper-umbrella"
-//         },
-//         {
-//           price: "20",
-//           tagname: "photography-equipments-camera-stand"
-//         },
-//         {
-//           price: "10",
-//           tagname: "photography-equipments-light-stand"
-//         }
-//       ],
-//       availableTimestamp: {
-//         from: "",
-//         to: ""
-//       },
-//       bookingsTimestamp: [
-//         {
-//           from: "",
-//           to: ""
-//         }
-//       ]
-//     },
-//     propertyDetails: {
-//       description: "long textual descprtion about the property",
-//       ownerInfo: {},
-//       amenities: ["first", "second", "third"]
-//     },
-//     showcases: [
-//       {
-//         id: "someid",
-//         img: "https://source.unsplash.com/random?landscape,mountain",
-//         description: "a long text lorem ipsum maybe wmdd wwwooaahh",
-//         userInfo: {},
-//         title: "Nice Bar"
-//       }
-//     ]
-//   }
+  return {priceWithProps, totalPrice, daysInfo: USER_CART.daysInfo}
 
-//   return data;
-// }
+}
 
-// // ============ call display content
-// displayContent()
+// =========================================================== Register Event Listeners
+
+function registerBookButton() {
+  
+  const bookBtn = document.querySelector("#property-booking-btn > input");
+  bookBtn.addEventListener("click", ()  => {
+    console.log('book property now')
+    console.log(USER_CART)
+  })
+}
+
+function registerPropsSelection() {
+  const propsElements = document.querySelectorAll(".property-equipments input[type='checkbox']");
+  propsElements.forEach(propElement => {
+    propElement.addEventListener('change', (event) => {
+      if(event.target.checked) {
+        const tagInfo = tagnameToInfo(event.target.id);
+        const tag = tagInfo.name;
+        const equipmentObj = {name: tag, price: event.target.value }
+
+        const z  = USER_CART.equipments.filter(function( obj ) {
+          return obj.price != 0;
+        });
+        USER_CART.equipments = z;
+
+
+        USER_CART.equipments.push(equipmentObj);
+      } else {
+        const tagInfo = tagnameToInfo(event.target.id);
+        const tag = tagInfo.name;
+
+        const z  = USER_CART.equipments.filter(function( obj ) {
+          return obj.name !== tag;
+        });
+        USER_CART.equipments = z;
+      }
+
+      updateBasePrice(property_BASE_PRICE)
+      updateProps(USER_CART.equipments)
+      updateTotalPrice()
+
+    })
+
+    
+  })
+
+
+};
+
+function registerDatesSelection() {
+  const dateElement = document.getElementById("datepicker");
+ 
+  datePicker.on("select", (event) => {
+    // get info
+    const startDate = dateElement.value.split(" - ")[0];
+    const endDate = dateElement.value.split(" - ")[1];
+    const daysDifference = calculateDays(startDate, endDate);
+
+    // update cart
+    USER_CART.dateFrom = startDate;
+    USER_CART.dateTo = endDate;
+    USER_CART.daysInfo = daysDifference;
+
+    // total Price and Enable button
+    updateTotalPrice()
+  })
+
+}
+
+
+
+function registerBundleSelection() {
+  const bundleSelectBtn = document.querySelector(".bundle-details-props input[type='button']");
+  const bundleInfo = BUNDLE_INFO;
+  bundleSelectBtn.addEventListener("click", (event) => {
+    const price = bundleInfo.price
+    const props = bundleInfo.equipment.filter(prop => prop != "").map(prop => {
+      return {name: prop, price: 0}
+    });
+
+    // unselect existing props
+    const allProps = document.querySelectorAll(".property-equipments input[type='checkbox']");
+    allProps.forEach(propElement => {
+     propElement.checked = false;
+    })
+
+    updateBasePrice(price)
+    updateProps(props)
+    updateTotalPrice()
+
+  })
+}
+
+function registerLoadTabs() {
+  // Code to toggle tabs
+  const menuTabs = document.getElementsByClassName('menu-tabs');
+  const menuTabsArray = Array.from(menuTabs);
+
+  menuTabsArray.forEach(elem => {
+    elem.addEventListener('click', function(event) {
+      const elemValue = this.dataset.value;
+      displaySelectedMenuInfo(elemValue);
+    })
+  })
+
+};
+
+
+// displays the selected menu info based on user selection and url
+function displaySelectedMenuInfo(elemValue) {
+  // hide all elements inside the wrapper
+    // .property-menu-info-wrapper
+    const allElementsToHide = document.querySelectorAll('.property-menu-info-wrapper > div')
+    allElementsToHide.forEach(elem => elem.classList.add("hide"));
+
+    // remove hide class
+    const elemToShowClass = `property-${elemValue}-tab`;
+    const elemToShow = document.getElementsByClassName(elemToShowClass);
+    elemToShow[0].classList.remove("hide");
+};
+
+

@@ -1,52 +1,55 @@
 /* Slider Styles start ==================*/
 
 .slider {
-    width: 100%;
-    max-width: 800px;
-    height: 350px;
-    position: relative;
-    overflow: hidden; /* <===  */
-    border-radius: 15px;
-  }
-  
-  .slide {
-    width: 100%;
-    max-width: 800px;
-    height: 350px;
-    position: absolute;
-    transition: all 0.5s;
-  }
-  
-  .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .btn {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    padding: 10px;
-    border: none;
-    border-radius: 50%;
-    z-index: 10px;
-    cursor: pointer;
-    background-color: #fff;
-    font-size: 18px;
-  }
-  .btn:active {
-    transform: scale(1.1);
-  }
-  .btn-prev {
-    top: 45%;
-    left: 2%;
-  }
-  
-  .btn-next {
-    top: 45%;
-    right: 2%;
-  }
+  width: 100%;
+  max-width: 800px;
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+  /* <===  */
+  border-radius: 15px;
+}
+
+.slide {
+  width: 100%;
+  max-width: 800px;
+  height: 350px;
+  position: absolute;
+  transition: all 0.5s;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.btn {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  z-index: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  font-size: 18px;
+}
+
+.btn:active {
+  transform: scale(1.1);
+}
+
+.btn-prev {
+  top: 45%;
+  left: 2%;
+}
+
+.btn-next {
+  top: 45%;
+  right: 2%;
+}
 
 /* Slider Styles End =================== */
 
@@ -78,7 +81,9 @@ main ul {
   margin-bottom: 1rem;
 }
 
-.property-customize-tab, .property-details-tab, .property-showcases-tab {
+.property-customize-tab,
+.property-details-tab,
+.property-showcases-tab {
   margin-bottom: 3rem;
   display: grid;
   grid-template-columns: 1fr;
@@ -125,6 +130,23 @@ main ul {
   max-height: 8rem;
 }
 
+/*  Dates slection */
+
+#datepicker-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem
+}
+
+#datepicker {
+  background-color: var(--body-background-color);
+  border: 1px solid var(--text-color);
+  border-radius: var(--img-border-radius);
+  padding: 1rem;
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
 
 /* TODO fix this */
 
@@ -141,13 +163,21 @@ main ul {
 .property-equipments li {
   border: 1px solid var(--text-color);
   border-radius: var(--img-border-radius);
-  padding: 1rem;
+  cursor: pointer;
+}
+
+.property-equipments li:has(input:checked) {
+  border: 1px solid var(--explore-text-color);
+  color: var(--explore-text-color);
+  cursor: pointer;
 }
 
 .property-equipments label {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  padding: 1rem;
+  cursor: pointer;
 }
 
 
@@ -222,6 +252,15 @@ main ul {
   color: var(--text-color);
   font-size: 1rem;
   font-weight: 700;
+}
+
+.book-space input:disabled,
+.book-space input[disabled] {
+  border: 1px solid var(--text-color);
+  background-color: var(--text-color);
+  color: black;
+  cursor: unset;
+  opacity: .4;
 }
 
 /* 
