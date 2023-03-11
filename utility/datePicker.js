@@ -12,7 +12,7 @@ function calendarBook(min = "", max = "") {
     AmpPlugin: {
       // reset dates
       resetButton: true,
-      darkMode: false,
+      darkMode: true,
     },
     LockPlugin: {
       // disable the following dates within this range (YYYY-MM-DD)
