@@ -4,6 +4,7 @@ import "/styles/booking-confirmation.css";
 
 // import queries
 import { propertyFuncion } from "../query/propertylist.js";
+import { saveBookingInfo, getBookingInfo, saveMyBooking } from '../query/booking.js';
 
 // Global Variables for the file
 let BOOKING_OBJ = undefined;
@@ -11,7 +12,6 @@ const params = new URLSearchParams(document.location.search);
 const bookingInfoBase64 = params.get("bookingInfo");
 let toBook = undefined;
 let BOOKING_INFO = undefined;
-const taxPercent = 5;
 
 init();
 
@@ -28,9 +28,9 @@ async function init() {
     // when it comes from my bookigns page the object should look like -> bookingInfo=base64String({bookingId: 'somebookingid'})
     if(Object.keys(BOOKING_OBJ).length > 1) {
         toBook = true;
+        let taxPercent = 5;
         const propertyInfo = await getPropertyInfo(BOOKING_OBJ.propertyId)
         BOOKING_INFO =  {...propertyInfo, ...BOOKING_OBJ, taxPercent};
-        console.log(BOOKING_INFO)
     } else {
         toBook = false;
         alert('pending')
@@ -40,6 +40,8 @@ async function init() {
     displayBookingInfo(toBook, BOOKING_INFO);
 
     // register button actions
+    registerConfirmBtn();
+    registerInvoiceBtn();
 
 
 }
@@ -59,7 +61,7 @@ async function getPropertyInfo(propertyId) {
     return {addressString, primaryPhoto, propertyTitle, bookedAt};
 }
 
-function getBookingInfo() {
+function readBookingInfo() {
 
 }
 
@@ -73,6 +75,23 @@ function getTodayDate() {
 
 
 // ======================== Register Event Listeners
+function registerConfirmBtn() {
+    const confirmBtn = document.querySelector("#confirm-btn");
+    confirmBtn.addEventListener("click", async () => {
+        const bookingId = await saveBookingInfo(BOOKING_INFO);
+        const userId = localStorage.getItem("uid");
+        const saveMyBookingRsp = await saveMyBooking(userId, bookingId)
+        if(saveMyBookingRsp) {
+            window.location.href = `${window.location.origin}/booking-confirmation-success.html`
+        }
+    })
+}
+
+
+function registerInvoiceBtn() {
+
+}
+
 
 
 
@@ -132,9 +151,6 @@ function displayBookingInfo(toBook, bookingInfo) {
             </li>`
             propsList.innerHTML += string;
         })
-
-        console.log(bookingInfo.equipments)
-        // const propsList = 
 
         // show  the  props list
         const propsWrapper = document.getElementsByClassName("detail-props")[0];
