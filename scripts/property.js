@@ -17,6 +17,7 @@ const propertyId = params.get("propertyId");
 const VALID_TABS = ["customize", "details", "showcases"];
 
 // use this to calculate total price -> selected by the user
+let all_propertyInfo = undefined;
 let BUNDLE_INFO = undefined;
 let property_BASE_PRICE = undefined;
 const USER_CART = { basePrice: undefined, equipments: [], dateTo: undefined, dateFrom: undefined, daysInfo: undefined };
@@ -161,9 +162,9 @@ async function showPropertyDetails() {
 // load price details
 function loadPriceDetails(propertyInfo) {
   // update base
+  all_propertyInfo = propertyInfo;
   property_BASE_PRICE = propertyInfo.price;
   updateBasePrice(propertyInfo.price);
-
 }
 
 
@@ -274,8 +275,10 @@ function registerBookButton() {
   
   const bookBtn = document.querySelector("#property-booking-btn > input");
   bookBtn.addEventListener("click", ()  => {
-    console.log('book property now')
-    console.log(USER_CART)
+    const bookingInfo = JSON.parse(JSON.stringify(USER_CART));
+    bookingInfo.propertyId = propertyId;
+    const bookingInfoBase64 = btoa(JSON.stringify(bookingInfo));
+    window.location.href = window.location.origin + "/booking-confirmation.html?bookingInfo=" + bookingInfoBase64
   })
 }
 

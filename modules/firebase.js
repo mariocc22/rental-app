@@ -16,6 +16,7 @@ import {
   deleteField,
   deleteDoc, //new function
   addDoc,
+  arrayUnion
 } from "firebase/firestore";
 
 import {
@@ -87,4 +88,5 @@ export {
   uploadBytesResumable,
   getDownloadURL,
   addDoc,
+  arrayUnion
 };

@@ -1,0 +1,67 @@
+main ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+
+#page-title {
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+}
+
+section h2 {
+    font-size: var(--tagline-font-size);
+    margin-bottom: 1rem;
+}
+
+.price-detail-title {
+    font-size: var(--tagline-font-size);
+}
+
+#booking-detail-space-name {
+    /* text-decoration: none; */
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+/* grid, flex and spacing */
+
+.booking-information-wrapper {
+    margin-top: 1rem;
+    border: 1px solid var(--text-color);
+    border-radius: var(--img-border-radius);
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;   
+}
+
+.booking-information-wrapper section ul li{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.property-price-breakdown {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.confirm-booking-btn-wrapper, .download-invoice-btn-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+
+.confirm-booking-btn-wrapper input, .download-invoice-btn-wrapper input {
+    margin-top: 1rem;
+    width: 100%;
+    padding: .5rem;
+    border-radius: var(--img-border-radius);
+    background-color: var(--explore-text-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
