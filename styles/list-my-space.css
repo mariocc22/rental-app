@@ -14,8 +14,62 @@
     filter: invert(0%) sepia(90%) saturate(87%) hue-rotate(120deg) brightness(106%) contrast(87%);
 }
 
+.specialbuttons i{
+    height: 2rem;
+    width: 11rem;
+    text-align: center;
+    padding: 0.5rem 0.25rem;
+    border: 1px solid var(--text-color);
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.specialbuttons i:hover{
+    background-color:  var(--text-color);
+    color: var(--body-background-color);
+}
+/* PAGE 1 LAYOUT=========================*/
+.index-nav ul{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding-top: 1rem;
+}
+
+.index-nav i{
+    font-size: 2rem;
+}
+
+.page1style{
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.page1style h2,
+.page1style img{
+    grid-column: 1;
+    grid-row: 1;
+} 
+
+.page1style h2{
+    z-index: 100;
+}
+
+#page1 img{
+    height: 10rem;
+    width: 100%;
+}
+
+#page1 li h2:hover{
+    color: var(--explore-text-color);
+}
+
 /* PAGE 2 LAYOUT========================= */
 .page{
+    /* padding: 0 1rem 4rem 1rem; */
     padding: 0 1rem 4rem 1rem;
 }
 
@@ -71,7 +125,8 @@ progress::-webkit-progress-value {
 .progress{
     width: 100%;
     height: 5px;
-    margin: 4rem 0 2rem 0;
+    margin: 2rem 0 1rem 0;
+    /* margin: 4rem 0 2rem 0; 4rem? */
     /* color: var(--body-background-color); */
     /* background-color: #fff; */
     /* margin: 0 1rem; */
@@ -234,7 +289,7 @@ input::placeholder,
 }
 
 
-/* PAGE 5 LAYOUT===================== */
+/* PAGE 5 and 6 LAYOUT===================== */
 .gridcamera{
     display: grid;
     grid-template-columns: 100%;
@@ -301,6 +356,34 @@ input::placeholder,
 
 #divcapturebtn button{
     flex: 1 0 100%;
+}
+
+
+#selbtn,
+#upbtn,
+#upvideobtn{
+    margin-top: 1rem;
+    height: 2rem;
+    width: 11rem;
+    text-align: center;
+    padding: 0.5rem 0.25rem;
+    border: 1px solid var(--text-color);
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+#selbtn:hover,
+#upbtn:hover,
+#upvideobtn:hover{
+    color: var(--body-background-color); 
+    background-color: var(--text-color);
+}
+
+/* #upbtn{
+    display: none;
+} */
+.hide {
+    display: none;
 }
 
 /* PAGE 7 LAYOUT===================================== */

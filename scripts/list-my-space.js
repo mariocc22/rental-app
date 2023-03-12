@@ -289,19 +289,38 @@ const SelBtn = document.getElementById("selbtn");
 const UpBtn = document.getElementById("upbtn");
 const DownBtn = document.getElementById("downbtn");
 const upvideobtn = document.getElementById("upvideobtn");
+const addphoto = document.getElementById("addphoto");
+const nextcamera = document.getElementById("nextcamera");
+const nextvideo = document.getElementById("nextvideo");
+const takephoto = document.getElementById("takephoto");
+
+takephoto.addEventListener("click", ()=>{
+  nextvideo.style.visibility = 'hidden';
+});
+
+addphoto.addEventListener("click", ()=>{
+  UpBtn.classList.add("hide");
+  nextcamera.style.visibility = 'hidden';
+  SelBtn.classList.remove("hide");
+});
 
 SelBtn.onclick = function () {
   input.click();
+  UpBtn.classList.remove("hide");
+  SelBtn.classList.add("hide");
 };
 
 let fromImage = false;
 UpBtn.addEventListener("click", () => {
   UploadProcess();
   fromImage = true;
+  UpBtn.classList.add("hide");
+  nextcamera.style.visibility = 'visible';
 });
 
 upvideobtn.addEventListener("click", () => {
   cameraUpload(file, randomNumber);
+  nextvideo.style.visibility = 'visible';
 });
 
 // Getting values from UI
