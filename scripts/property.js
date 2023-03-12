@@ -184,7 +184,8 @@ function validateURL() {
       }
     }
   } else {
-    window.location.href = window.location.href + "#customize"
+    window.location.href = window.location.href + "#customize";
+    window.location.reload();
   }
 }
 
