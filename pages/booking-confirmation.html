@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stage | Space Details</title>
+</head>
+
+<body>
+    <header>
+        <nav class="index-nav">
+            <ul>
+                <li>
+                    <button onclick="history.back()">
+                        <i class="fa fa-caret-left"></i>
+                    </button>
+                </li>
+                <li>
+                    <button>
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- property details -->
+        <section class="property-details" id="property-details">
+            <h1 id="page-title">
+                Booking Confirmation || Booking Information
+            </h1>
+            <div id="property-image">
+                <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
+                    <img src="https://picsum.photos/1200/500?random=1" alt="">
+                </a>
+            </div>
+        </section>
+        <div class="booking-information-wrapper">
+            <!-- booking already confirmed -->
+            <section class="confirmed-booking-info">
+                <h2>Booking Details</h2>
+                <ul>
+                    <li>
+                        <span>Space Name</span>
+                        <span>
+                            <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
+                                {{ Name of Property }}
+                            </a>
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            Address
+                        </span>
+                        <span>
+                            Vancouver, Burnaby
+                        </span>
+                    </li>
+                    <li>
+                        <span>Booked at</span>
+                        <span> 17 March 2023 </span>
+                    </li>
+                </ul>
+            </section>
+            <!-- date details  -->
+            <section class="date-details">
+                <h2>Date</h2>
+                <ul>
+                    <li>
+                        <span>Booked from</span>
+                        <span>27 March 2023</span>
+                    </li>
+                    <li>
+                        <span>Booked upto</span>
+                        <span>29 March 2023</span>
+                    </li>
+                    <li>
+                        <span>Booked For</span>
+                        <span>5 days</span>
+                    </li>
+                </ul>
+            </section>
+            <!-- Price Details -->
+            <section>
+                <h2>Price Details</h2>
+                <div id="property-price-breakdown" class="property-price-breakdown">
+                    <!-- Base price -->
+                    <div class="price-detail-wrapper detail-base">
+                        <div class="price-detail-title">Base Price</div>
+                        <ul>
+                            <li>
+                                <span> Price before equipments </span>
+                                <span> CAD 100 </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Props -->
+                    <div class="price-detail-wrapper detail-props">
+                        <div class="price-detail-title">Equipments</div>
+                        <ul>
+                            <li>
+                                <span> Camera </span>
+                                <span> CAD 15 </span>
+                            </li>
+                            <li>
+                                <span> Tripod </span>
+                                <span> CAD 15 </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Total Price  -->
+                    <div class="price-detail-wrapper detail-total-price-before-tax">
+                        <div class="price-detail-title">Total Price before tax</div>
+                        <ul>
+                            <li>
+                                <span> Price for 3 days </span>
+                                <span> 130 x 3 = CAD 390 </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Tax -->
+                    <div class="price-detail-wrapper detail-tax">
+                        <div class="price-detail-title">Tax</div>
+                        <ul>
+                            <li>
+                                <span> GST 5% </span>
+                                <span> 390 x 5% = CAD 15 </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Price After Tax -->
+                    <!-- Tax -->
+                    <div class="price-detail-wrapper detail-tax">
+                        <div class="price-detail-title">Final Price</div>
+                        <ul>
+                            <li>
+                                <span> Total Price + Tax </span>
+                                <span> 300 + 200 = CAD 500 </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+            <!-- confirm booking & print invoice button -->
+            <section class="confirm-booking-btn-wrapper">
+                <input id="confirm-btn" type="button" value="Confirm Booking">
+                <input id="invoice-btn" type="button" value="Download Invoice">
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>
