@@ -4,6 +4,9 @@ import "/styles/index.css";
 import { db, auth, onAuthStateChanged } from "../modules/firebase.js";
 import { whereAmI } from "../modules/geolocation.js";
 
+// import queries
+import { addProfile } from "../query/userProfile.js";
+
 console.log("hello from index.js");
 
 // Buttons to access different paths
@@ -13,12 +16,17 @@ const btn_explore = document.querySelector(".btn-explore"),
   btn_geo = document.querySelector(".btn-geo");
 
 // User state (logged In or Logged Out)
-const userState = onAuthStateChanged(auth, (user) => {
+const userState = onAuthStateChanged(auth, async (user) => {
   if (user) {
     const uid = user.uid;
 
     // todo fix this later
     localStorage.setItem("uid", uid);
+
+
+    // merges details or creates a new one in USERS Collection
+    const {displayName, email, photoURL} = user;
+    await addProfile(uid, {displayName, email, photoURL})
 
     console.log("active user: ", uid);
   } else {
