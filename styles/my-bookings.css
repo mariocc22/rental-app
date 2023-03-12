@@ -1,0 +1,58 @@
+.my-bookings-title {
+    font-size: 1.5rem;
+}
+
+body {
+    padding: 1rem;
+}
+
+.booking-space-card img {
+    border-radius: var(--img-border-radius);
+}
+
+.booking-space-card-title {
+    font-size: 1.25rem;
+}
+
+.booking-data {
+    font-size: 1rem;
+}
+
+.space-title a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.booking-space-invoice-link {
+    text-decoration: underline !important;
+}
+
+.booking-space-card-title h2 {
+    font-size: 1.25rem;
+}
+
+.booking-space-invoice-link:hover,.booking-space-card-title h2:hover {
+    color: var(--explore-text-color);
+}
+
+/* grid and flex */
+
+.booking-details p, .space-title {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bookings-wrapper {
+    margin: 2rem 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+}
+
+/* .booking-space-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .4rem;
+} */

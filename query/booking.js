@@ -1,9 +1,23 @@
-import { doc, setDoc, db, collection, addDoc, updateDoc, arrayUnion } from '../modules/firebase.js'
+import { doc, setDoc, db, collection, addDoc, getDoc, updateDoc, arrayUnion } from '../modules/firebase.js'
 
-// get a booking information ===============================================================> Booking Collection
-async function getBookingInfo(bookingId) {
+// get booking information using multiple ids ==============================================> Booking Collection
+async function getBookingInfo(originalBookingsIds) {
     try {
+        const allBookingInfo = {};
+        const bookingIds = originalBookingsIds.reverse();
 
+        for(let i = 0; i < bookingIds.length; i++) {
+            const bookingId = bookingIds[i];
+            const bookinRef = doc(db, "BOOKING", bookingId);
+            const bookingDoc = await getDoc(bookinRef);
+
+            if(bookingDoc.exists()) {
+                const bookingInfo = bookingDoc.data();
+                // const {finalPrice, propertyTitle, bookedAt, primaryPhoto, propertyId } = bookingInfo
+                allBookingInfo[bookingId] = bookingInfo;
+            }
+        }
+        return allBookingInfo;
         
     } catch (error) {
         console.log(error);
@@ -44,7 +58,15 @@ async function saveMyBooking(userId, bookingId) {
 // fetches all the booking ids from my profile -> param userId ==============================> User Collection
 async function getMyBookings(userId) {
     try {
-        
+
+        const userRef = doc(db, "USERS", userId);
+        const userDoc = await getDoc(userRef);
+        if(userDoc.exists()) {
+            const myBookings = userDoc.data().myBookings;
+            return myBookings;
+        } else {
+            return [];
+        }
     } catch (error) {
         console.log(error)
         throw new Error("Could not get bookings of this user");
