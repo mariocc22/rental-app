@@ -16,7 +16,8 @@ module.exports = {
     exploreSpaces: "./scripts/explore-spaces.js",
     profile: "./scripts/profile.js",
     components: "./scripts/ui-kit.js",
-    bookingConfirmation: './scripts/booking-confirmation.js'
+    bookingConfirmation: './scripts/booking-confirmation.js',
+    bookingConfirmationSuccess: './scripts/booking-confirmation-success.js'
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -90,6 +91,11 @@ module.exports = {
       template: "./pages/booking-confirmation.html",
       filename: "booking-confirmation.html",
       chunks: ["bookingConfirmation"],
+    }),
+    new HtmlWebpackPlugin({
+      template: "./pages/booking-confirmation-success.html",
+      filename: "booking-confirmation-success.html",
+      chunks: ["bookingConfirmationSuccess"],
     }),
     new HtmlWebpackPlugin({
       template: "./pages/list-my-space.html",
