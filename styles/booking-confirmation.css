@@ -18,6 +18,12 @@ section h2 {
     font-size: var(--tagline-font-size);
 }
 
+#booking-detail-space-name {
+    /* text-decoration: none; */
+    color: var(--text-color);
+    cursor: pointer;
+}
+
 /* grid, flex and spacing */
 
 .booking-information-wrapper {
@@ -58,3 +64,4 @@ section h2 {
     font-size: 1rem;
     font-weight: 700;
   }
+

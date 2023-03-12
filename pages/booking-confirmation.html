@@ -30,7 +30,7 @@
         <!-- property details -->
         <section class="property-details" id="property-details">
             <h1 id="page-title">
-                Booking Confirmation || Booking Information
+                Booking Information
             </h1>
             <div id="property-image">
                 <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
@@ -40,13 +40,13 @@
         </section>
         <div class="booking-information-wrapper">
             <!-- booking already confirmed -->
-            <section class="confirmed-booking-info">
+            <section id="booking-details" class="confirmed-booking-info">
                 <h2>Booking Details</h2>
                 <ul>
                     <li>
                         <span>Space Name</span>
                         <span>
-                            <a href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
+                            <a id="booking-detail-space-name" href="/property.html?propertyId=0djsGVd2vaDz4cs7KM1j">
                                 {{ Name of Property }}
                             </a>
                         </span>
@@ -55,13 +55,13 @@
                         <span>
                             Address
                         </span>
-                        <span>
+                        <span id="space-address">
                             Vancouver, Burnaby
                         </span>
                     </li>
                     <li>
                         <span>Booked at</span>
-                        <span> 17 March 2023 </span>
+                        <span id="booked-at"> 17 March 2023 </span>
                     </li>
                 </ul>
             </section>
@@ -71,15 +71,15 @@
                 <ul>
                     <li>
                         <span>Booked from</span>
-                        <span>27 March 2023</span>
+                        <span id="booked-from">27 March 2023</span>
                     </li>
                     <li>
                         <span>Booked upto</span>
-                        <span>29 March 2023</span>
+                        <span id="booked-upto">29 March 2023</span>
                     </li>
                     <li>
                         <span>Booked For</span>
-                        <span>5 days</span>
+                        <span id="booked-for">5 days</span>
                     </li>
                 </ul>
             </section>
@@ -93,12 +93,12 @@
                         <ul>
                             <li>
                                 <span> Price before equipments </span>
-                                <span> CAD 100 </span>
+                                <span id="base-price"> CAD 100 </span>
                             </li>
                         </ul>
                     </div>
                     <!-- Props -->
-                    <div class="price-detail-wrapper detail-props">
+                    <div class="price-detail-wrapper detail-props hide">
                         <div class="price-detail-title">Equipments</div>
                         <ul>
                             <li>
@@ -117,8 +117,8 @@
                         <div class="price-detail-title">Total Price before tax</div>
                         <ul>
                             <li>
-                                <span> Price for 3 days </span>
-                                <span> 130 x 3 = CAD 390 </span>
+                                <span id="price-for-days"> Price for 3 days </span>
+                                <span id="price-for-days-value"> 130 x 3 = CAD 390 </span>
                             </li>
                         </ul>
                     </div>
@@ -127,8 +127,8 @@
                         <div class="price-detail-title">Tax</div>
                         <ul>
                             <li>
-                                <span> GST 5% </span>
-                                <span> 390 x 5% = CAD 15 </span>
+                                <span id="tax-property"> GST 5% </span>
+                                <span id="tax-value"> 390 x 5% = CAD 15 </span>
                             </li>
                         </ul>
                     </div>
@@ -139,8 +139,8 @@
                         <div class="price-detail-title">Final Price</div>
                         <ul>
                             <li>
-                                <span> Total Price + Tax </span>
-                                <span> 300 + 200 = CAD 500 </span>
+                                <span> Price with Tax </span>
+                                <span id="price-with-tax"> 300 + 200 = CAD 500 </span>
                             </li>
                         </ul>
                     </div>
@@ -149,8 +149,8 @@
             </section>
             <!-- confirm booking & print invoice button -->
             <section class="confirm-booking-btn-wrapper">
-                <input id="confirm-btn" type="button" value="Confirm Booking">
-                <input id="invoice-btn" type="button" value="Download Invoice">
+                <input id="confirm-btn" class="hide" type="button" value="Confirm Booking">
+                <input id="invoice-btn" class="hide" type="button" value="Download Invoice">
             </section>
         </div>
     </main>
