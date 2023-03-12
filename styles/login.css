@@ -5,8 +5,13 @@
 
   max-width: 500px;
   margin: auto;
+  padding: 2rem 0;
 }
 /* Header ================= */
+header {
+  max-width: 600px;
+  margin: auto;
+}
 header nav {
   display: flex;
   align-items: center;
@@ -21,6 +26,10 @@ header nav a {
 
 header nav a:hover {
   transform: translateY(-2px);
+}
+
+.logo-site {
+  padding: 2rem;
 }
 
 .login-dialog-header {
