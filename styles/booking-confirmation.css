@@ -33,7 +33,8 @@ section h2 {
     padding: 1rem;
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 2rem;   
+    grid-gap: 2rem;
+    background-color: var(--body-background-color);
 }
 
 .booking-information-wrapper section ul li{
