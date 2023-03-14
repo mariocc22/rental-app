@@ -1,8 +1,8 @@
 // console.log('works')
 import "/styles/list-my-space.css";
+import "/styles/standard-styles.css";
 import "../node_modules/leaflet/dist/leaflet.css";
-import "../node_modules/leaflet/dist/leaflet.css";
-import '/styles/common-styles.css';
+import "/styles/common-styles.css";
 import { createProperty } from "/query/propertycreate.js";
 import { equipmentFormParser } from "../utility/equipmentFormParser.js";
 import {
@@ -10,6 +10,7 @@ import {
   UploadProcess,
   urlString,
   cameraUpload,
+  uploadAllFiles,
 } from "../utility/pictures-api";
 // import { userId } from "../utility/getuserid.js";
 import { SaveURLtoFirestore } from "/query/imagecreate.js";
@@ -61,6 +62,9 @@ performance.addEventListener("click", () => {
   _activity = "performance";
 });
 
+// Camera or Select Files
+let camera = false;
+
 // What kind of space do you offer
 let _indoor = false;
 let _outdoor = false;
@@ -75,6 +79,15 @@ const houseButton = document.getElementById("houseButton");
 const studioButton = document.getElementById("studioButton");
 const otherButton = document.getElementById("otherButton");
 const beachButton = document.getElementById("beachButton");
+const btn_activities = document.querySelectorAll(".activity-btn");
+
+btn_activities.forEach((activity) => {
+  activity.addEventListener("click", () => {
+    btn_activities.forEach((btn) => {
+      btn.classList.toggle("selected", btn === activity);
+    });
+  });
+});
 
 indoorButtonPressed.addEventListener("click", () => {
   // Turn it on
@@ -259,22 +272,21 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         test();
         randomNumber = Math.floor(Math.random() * 100) + 1;
 
-        const imgtaken = document.getElementById('imgtaken');
-        const closeimg = document.getElementById('closeimg');
+        const imgtaken = document.getElementById("imgtaken");
+        const closeimg = document.getElementById("closeimg");
 
         // imgtaken.classList.toggle('imageactive');
-        imgtaken.classList.add('imageactive');
-        if(imgtaken.classList.contains('imageactive')){
+        imgtaken.classList.add("imageactive");
+        if (imgtaken.classList.contains("imageactive")) {
           imgtaken.style.display = "initial";
         }
         // else{
         //   imgtaken.style.display = "none";
         // }
 
-        closeimg.addEventListener('click', () => {
+        closeimg.addEventListener("click", () => {
           imgtaken.style.display = "none";
-        })
-
+        });
       });
     })
     .catch((error) => {
@@ -294,13 +306,13 @@ const nextcamera = document.getElementById("nextcamera");
 const nextvideo = document.getElementById("nextvideo");
 const takephoto = document.getElementById("takephoto");
 
-takephoto.addEventListener("click", ()=>{
-  nextvideo.style.visibility = 'hidden';
+takephoto.addEventListener("click", () => {
+  nextvideo.style.visibility = "hidden";
 });
 
-addphoto.addEventListener("click", ()=>{
+addphoto.addEventListener("click", () => {
   UpBtn.classList.add("hide");
-  nextcamera.style.visibility = 'hidden';
+  nextcamera.style.visibility = "hidden";
   SelBtn.classList.remove("hide");
 });
 
@@ -311,16 +323,20 @@ SelBtn.onclick = function () {
 };
 
 let fromImage = false;
+
 UpBtn.addEventListener("click", () => {
-  UploadProcess();
+  // UploadProcess();
+  camera = false;
+  uploadAllFiles(featureImageNum);
   fromImage = true;
   UpBtn.classList.add("hide");
-  nextcamera.style.visibility = 'visible';
+  nextcamera.style.visibility = "visible";
 });
 
 upvideobtn.addEventListener("click", () => {
+  camera = true;
   cameraUpload(file, randomNumber);
-  nextvideo.style.visibility = 'visible';
+  nextvideo.style.visibility = "visible";
 });
 
 // Getting values from UI
@@ -639,7 +655,6 @@ reviewfieldsbtn.addEventListener("click", () => {
   //   ? "Other equipment "
   //   : "");
 
-
   titlereview.value = propertytitle.value;
   descriptionreview.value = propertydescription.value;
   addressreview.value =
@@ -673,44 +688,43 @@ reviewfieldsbtn.addEventListener("click", () => {
 
   let amenitiestext = "";
 
-  if(_washroom) {
+  if (_washroom) {
     amenitiestext += "Washroom, ";
   }
-  if(_wifi) {
+  if (_wifi) {
     amenitiestext += "WiFi, ";
   }
-  if(_elevator) {
+  if (_elevator) {
     amenitiestext += "Elevator, ";
   }
-  if(_parking) {
+  if (_parking) {
     amenitiestext += "Parking, ";
   }
-  if(_airconditioner) {
+  if (_airconditioner) {
     amenitiestext += "Air Conditioner.";
   }
 
   amenitiesreview.value = amenitiestext;
-  
+
   let equipmenttext = "";
 
-  if(_equipments[0].price > 0){
+  if (_equipments[0].price > 0) {
     equipmenttext += `Camera for ${_equipments[0].price}\n`;
   }
-  if(_equipments[1].price > 0){
+  if (_equipments[1].price > 0) {
     equipmenttext += `Lens for ${_equipments[1].price}\n`;
   }
-  if(_equipments[2].price > 0){
+  if (_equipments[2].price > 0) {
     equipmenttext += `Backdrop for ${_equipments[2].price}\n`;
   }
-  if(_equipments[3].price > 0){
+  if (_equipments[3].price > 0) {
     equipmenttext += `Flash Lights for ${_equipments[3].price}\n`;
   }
-  if(_equipments[4].price > 0){
+  if (_equipments[4].price > 0) {
     equipmenttext += `Tripods for ${_equipments[4].price}\n`;
   }
 
-
-  equipmentreview.value = equipmenttext;//_equipments;
+  equipmentreview.value = equipmenttext; //_equipments;
   // _light
   //   ? "Light "
   //   : "" + _lightshapers
@@ -729,23 +743,23 @@ reviewfieldsbtn.addEventListener("click", () => {
 
   let _dealtext = "";
 
-  if(cameracheckboxvalue.checked) {
+  if (cameracheckboxvalue.checked) {
     _dealtext += "Camera \n";
   }
-  if(lenscheckboxvalue.checked) {
+  if (lenscheckboxvalue.checked) {
     _dealtext += "Lens \n";
   }
-  if(backdropcheckboxvalue.checked) {
+  if (backdropcheckboxvalue.checked) {
     _dealtext += "Back Drop \n";
   }
-  if(flashlightcheckboxvalue.checked) {
+  if (flashlightcheckboxvalue.checked) {
     _dealtext += "Flash Light \n";
   }
-  if(tripodscheckboxvalue.checked) {
+  if (tripodscheckboxvalue.checked) {
     _dealtext += "Tripods.";
   }
-  
-  dealsreview.value = `$ ${bundlevalue.value} for `+ _dealtext;
+
+  dealsreview.value = `$ ${bundlevalue.value} for ` + _dealtext;
 
   _propertytitle = propertytitle.value;
   _propertydescription = propertydescription.value;
@@ -775,33 +789,48 @@ reviewfieldsbtn.addEventListener("click", () => {
   else if (_others) _typeofspace = "photography-type-cottage";
 
   _uid = localStorage.getItem("uid");
-  _media.push(urlString);
+  // _media.push(urlString);
 
-  if (fromImage) {
-    photoList = urlString;
+  if (!camera) {
+    const container = document.querySelector(".wrap-img-page12");
+    container.innerHTML = "";
+    urlString.forEach((url) => {
+      _media.push(url);
+      const img = document.createElement("img");
+      img.src = url;
+      container.insertAdjacentElement("beforeend", img);
+    });
+  } else {
+    photolistmyspace.src = photoList;
+    _media.push(urlString[0]);
   }
+});
 
-  photolistmyspace.src = photoList;
+// Select featured image!
+let featureImageNum;
+const imageContainerSelected = document.querySelector(".wrap-img-page12");
+
+imageContainerSelected.addEventListener("click", (e) => {
+  console.log(e.target);
+  e.target.classList.toggle("selectImage");
+  featureImageNum = Array.from(imageContainerSelected.children).indexOf(
+    e.target
+  );
+  console.log(featureImageNum);
 });
 
 // Create a property function
 let propertyInfo;
 const createPropertybtn = document.getElementById("createPropertybtn");
+
 createPropertybtn.addEventListener("click", async function (event) {
-  // console.log("button");
-  // event.preventDefault();
-  // Validate values
-  // console.log(_uid); //string
-  // console.log(_propertytitle);
-  // console.log(_propertydescription);
-  // console.log(_price); // property pricereview
-  // console.log(_media); // Object 5 images
-  // console.log(_dates); // Obj {from, to}
-  // console.log(_bundleinfo); // Obj {price, equipments[] }
-  // console.log(_address); // Obj {street,flatroom,city,state,postalcode,country,_lat,_long}
-  // console.log(_typeofspace);
-  // console.log(_amenities); // Amenities[]
-  // console.log(_equipments);
+  if (_media.length !== 1) {
+    console.log("before sorting array: ", _media);
+    [_media[0], _media[featureImageNum]] = [_media[featureImageNum], _media[0]];
+    console.log("AFTER sorting array: ", _media);
+  }
+
+  console.log(_media);
 
   propertyInfo = await createProperty(
     _uid, //string
@@ -824,7 +853,10 @@ createPropertybtn.addEventListener("click", async function (event) {
 
   // Add Property Info to Neo4j
   // Use _lat and _long values, also _activity
-  const coordinates = { lat: _address.lat || 49.2244201, long: _address.long || -123.1110692 };
+  const coordinates = {
+    lat: _address.lat || 49.2244201,
+    long: _address.long || -123.1110692,
+  };
   await addPlace(
     propertyInfo,
     _price,
@@ -838,5 +870,5 @@ createPropertybtn.addEventListener("click", async function (event) {
   );
 
   // Take user back to home page after all Database Functions
-  window.location.href = window.location.origin;
+  // window.location.href = window.location.origin;
 });
