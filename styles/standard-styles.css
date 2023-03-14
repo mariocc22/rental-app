@@ -302,12 +302,12 @@ input.input-number {
   padding: 0 2px;
 }
 
-.progress {
+/* .progress {
   background-color: var(--primary-black);
   width: 80%;
   height: 4px;
   border-radius: inherit;
-}
+} */
 
 /* TAG CONTAINER */
 .tags-wrapper {
@@ -668,7 +668,7 @@ input.input-number {
   align-items: center;
   justify-content: left;
   gap: var(--base-size);
-  padding: var(--padding-4);
+  /* padding: var(--padding-4); */
 
   background-color: var(--primary-black);
   color: var(--primary-white);
@@ -713,7 +713,7 @@ input.input-number {
   gap: var(--base-size);
 
   /* remove */
-  padding: 2rem 1rem;
+  /* padding: 2rem 1rem; */
   background-color: var(--primary-black);
 }
 .button-photos {
