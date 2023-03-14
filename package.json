@@ -36,6 +36,7 @@
     "convert-base64-to-image": "^0.0.16",
     "firebase": "^9.17.1",
     "font-awesome": "^4.7.0",
+    "html2pdf.js": "^0.10.1",
     "leaflet": "^1.9.3",
     "litepicker": "^2.0.12",
     "neo4j-driver": "^5.5.0",
