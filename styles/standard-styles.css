@@ -60,11 +60,14 @@
   box-sizing: border-box;
 }
 
-h1,
+h1 {
+  font-family: "Anton", sans-serif;
+}
+
 h2,
 h3,
 h4 {
-  font-family: "Anton", sans-serif;
+  font-family: "ّFira Sans", sans-serif;
 }
 
 h1 {
