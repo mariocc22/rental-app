@@ -28,6 +28,7 @@ const allPages = document.querySelectorAll("div.page");
 allPages[0].style.display = "block";
 
 function navigateToPage(event) {
+  let pagecontinue = true;
   const pageId = location.hash ? location.hash : "#page1";
   for (let page of allPages) {
     if (pageId === "#" + page.id) {
@@ -61,6 +62,58 @@ photographer.addEventListener("click", () => {
 performance.addEventListener("click", () => {
   _activity = "performance";
 });
+
+
+// Address
+const addressvalidation = document.getElementById("addressvalidation");
+addressvalidation.addEventListener("click", (e) =>{
+
+    // Validations:
+    let validatepage = true;
+    console.log(validatepage);
+    function validateForm() {
+      let street = document.forms["formAddress"]["street"].value;
+      let city = document.forms["formAddress"]["city"].value;
+      let state = document.forms["formAddress"]["state"].value;
+      let postalcode = document.forms["formAddress"]["postalcode"].value;
+      let country = document.forms["formAddress"]["country"].value;
+      if (street == "") {
+        alert("Street must be filled out");
+        return false;
+      }
+      else if (city == "") {
+        alert("City must be filled out");
+        return false;
+      }
+      else if (state == "") {
+        alert("State must be filled out");
+        return false;
+      }
+      else if (postalcode == "") {
+        alert("Postal Code must be filled out");
+        return false;
+      }
+      else if (country == "") {
+        alert("Country Code must be filled out");
+        return false;
+      }
+      else{
+        return true;
+      }
+    } 
+    validatepage = validateForm();
+    console.log(validatepage);
+    if(validatepage){
+      e.preventDefault();
+      window.location.href = 'http://localhost:3000/list-my-space.html#page4';
+    }
+    else{
+      e.preventDefault();
+      window.location.href = 'http://localhost:3000/list-my-space.html#page3';
+    }
+})
+
+
 
 // Camera or Select Files
 let camera = false;
@@ -354,46 +407,97 @@ const propertydescription = document.getElementById("propertydescription");
 // Geolocation
 const geobtn = document.getElementById("geobtn");
 geobtn.addEventListener("click", async function (event) {
-  const test = await getPosition();
-  // console.log(test);
-  const test2 = await whereAmI();
-  console.log(test2);
-  street.value = test2.staddress;
-  city.value = test2.city;
-  state.value = test2.state;
-  // postalcode.value = test2.city;
-  country.value = test2.country;
-  _lat = test2.latt;
-  _long = test2.longt;
-  console.log(_lat);
-  console.log(_long);
-  const _map = document.getElementById("map");
-  // var map = L.map(_map, {
-  //   center: [_lat, _long],
-  //   zoom: 13});
-  // console.log(map);
+  // const test = await getPosition();
+  if ( navigator.geolocation ) {
+    navigator.geolocation.getCurrentPosition(( position ) => { // success callback is called w. GeoLocationPosition
+      console.log( "latitude = " + position.coords.latitude );
+      console.log( "longitude = " + position.coords.longitude );
+      _lat = position.coords.latitude;// test2.latt;
+      _long = position.coords.longitude;//test2.longt;
+      // console.log(_lat);
+      // console.log(_long);
 
-  // var map = L.map(_map).setView([_lat, _long], 13);
-  // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  //   // maxZoom: 19,
-  //   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-  // }).addTo(map);
+      // Map
+      const _map = document.getElementById("map");
+      let map = L.map(_map, {
+        renderer: L.canvas(),
+      }).setView([_lat, _long], 13);
+      L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+        maxZoom: 21,
+        zoomSnap: 0.25,
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
 
-  // const settingmap = document.getElementById('settingmap');
-  // settingmap.src = `http://maps.googleapis.com/maps/api/staticmap?center=${_lat},${_long}&zoom=11&size=200x200&sensor=false`;
+      let marker = L.marker([_lat, _long]).addTo(map);
+      marker.bindPopup("<h3> I'm here! </h3>").openPopup();
 
-  let map = L.map(_map, {
-    renderer: L.canvas(),
-  }).setView([_lat, _long], 13);
-  L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
-    maxZoom: 21,
-    zoomSnap: 0.25,
-    attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  }).addTo(map);
+      setTimeout(async () => {
+        const resGeo = await fetch(`https://geocode.xyz/${_lat},${_long}?geoit=json`);
+        // === Handle errors
+        if (!resGeo.ok) {
+          alert('Was no possible to get your current address, please enter data manually')
+          // throw new Error("Problem getting the location data");
+        }
+        else{
+          const dataGeo = await resGeo.json();
+          if(dataGeo){
+            street.value = dataGeo.staddress;
+            city.value = dataGeo.city;
+            state.value = dataGeo.state;
+            // postalcode.value = dataGeo.postalcode;
+            country.value = dataGeo.country;
+          }
+          console.log("Current location!", dataGeo);
+        }
+      }, 4000);
+    },( error ) => { // failure callback is called w. error object
+        console.log( error );
+        if ( error.code == error.PERMISSION_DENIED ) {
+        window.alert( "geolocation permission denied" );
+        }
+      });
+    } else { // no geolocation in navigator. in case running in an old browser
+      console.log( "Geolocation is not supported by this browser." );
+    }
+    
+    // setTimeout(async () => {
+    // const resGeo = await fetch(`https://geocode.xyz/${_lat},${_long}?geoit=json`);
+    // // === Handle errors
+    // if (!resGeo.ok) {
+    //   throw new Error("Problem getting the location data");
+    // }
+    // const dataGeo = await resGeo.json();
+    // console.log("Current location!", dataGeo);
+    // }, 4000);
 
-  let marker = L.marker([_lat, _long]).addTo(map);
-  marker.bindPopup("<h3> I'm here! </h3>").openPopup();
+  // setTimeout(() => {
+    // console.log(test2);
+    // street.value = test2.staddress;
+    // city.value = test2.city;
+    // state.value = test2.state;
+    // postalcode.value = test2.city;
+    // country.value = test2.country;
+    // _lat = position.coords.latitude;// test2.latt;
+    // _long = position.coords.longitude;//test2.longt;
+    // console.log(_lat);
+    // console.log(_long);
+    // const _map = document.getElementById("map");
+
+    // let map = L.map(_map, {
+    //   renderer: L.canvas(),
+    // }).setView([_lat, _long], 13);
+    // L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+    //   maxZoom: 21,
+    //   zoomSnap: 0.25,
+    //   attribution:
+    //     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    // }).addTo(map);
+
+    // let marker = L.marker([_lat, _long]).addTo(map);
+    // marker.bindPopup("<h3> I'm here! </h3>").openPopup();
+  // }, 4000);
+  
 });
 
 // Tags
@@ -870,5 +974,5 @@ createPropertybtn.addEventListener("click", async function (event) {
   );
 
   // Take user back to home page after all Database Functions
-  // window.location.href = window.location.origin;
+  window.location.href = window.location.origin;
 });
