@@ -1,23 +1,25 @@
-import {
-    db,
-    addDoc,
-    collection
-  } from "../modules/firebase.js";
-
+import { db, addDoc, collection } from "../modules/firebase.js";
 
 // ... Post to DB //
 async function SaveURLtoFirestore(url, propertyId) {
-    // Here we can add the property ID, retrieving it from another module
-    let name = namebox.value;
-    let imageId;
-  
-    imageId = await addDoc(collection(db, "IMAGES"), {
-      propertyid: propertyId,
-      imageurl: url,
+  Promise.all([url.map((urlImg) => firestoreImg(urlImg, propertyId))])
+    .then((url) => {
+      console.log("uploaded to IMAGE");
+    })
+    .catch((err) => {
+      console.log(err.message);
     });
-
-    return imageId.id;
 }
 
-export { SaveURLtoFirestore }
-  
+async function firestoreImg(urlImg, propertyId) {
+  try {
+    let imageId = await addDoc(collection(db, "IMAGES"), {
+      propertyid: propertyId,
+      imageurl: urlImg,
+    });
+  } catch (err) {
+    console.log("Error uploading to Firestore: ", err.message);
+  }
+}
+
+export { SaveURLtoFirestore };

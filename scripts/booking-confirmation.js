@@ -3,6 +3,7 @@ import "/styles/booking-confirmation.css";
 
 
 // import queries
+import html2pdf from 'html2pdf.js';
 import { propertyFuncion } from "../query/propertylist.js";
 import { saveBookingInfo, getBookingInfo, saveMyBooking } from '../query/booking.js';
 
@@ -21,19 +22,19 @@ init();
 
 async function init() {
     // parse url and store variable
-    BOOKING_OBJ =  parseBase64(bookingInfoBase64)
-    
+    BOOKING_OBJ = parseBase64(bookingInfoBase64)
+
 
     // will book or already booked
     // when it comes from my bookigns page the object should look like -> bookingInfo=base64String({bookingId: 'somebookingid'})
-    if(Object.keys(BOOKING_OBJ).length > 1) {
+    if (Object.keys(BOOKING_OBJ).length > 1) {
         toBook = true;
         let taxPercent = 5;
         const propertyInfo = await getPropertyInfo(BOOKING_OBJ.propertyId)
-        BOOKING_INFO =  {...propertyInfo, ...BOOKING_OBJ, taxPercent};
+        BOOKING_INFO = { ...propertyInfo, ...BOOKING_OBJ, taxPercent };
     } else {
         toBook = false;
-        alert('pending')
+        BOOKING_INFO = await readBookingInfo(BOOKING_OBJ.bookingId);
     };
 
     // show the booking information
@@ -58,17 +59,18 @@ async function getPropertyInfo(propertyId) {
     const propertyTitle = propertyInfo.propertytitle;
     const bookedAt = getTodayDate();
 
-    return {addressString, primaryPhoto, propertyTitle, bookedAt};
+    return { addressString, primaryPhoto, propertyTitle, bookedAt };
 }
 
-function readBookingInfo() {
-
+async function readBookingInfo(bookingId) {
+    const bookingInfo = await getBookingInfo([bookingId]);
+    return bookingInfo[bookingId];
 }
 
 function getTodayDate() {
     const yourDate = new Date()
     const offset = yourDate.getTimezoneOffset()
-    const nDate = new Date(yourDate.getTime() - (offset*60*1000))
+    const nDate = new Date(yourDate.getTime() - (offset * 60 * 1000))
     return nDate.toISOString().split('T')[0]
 }
 
@@ -81,7 +83,7 @@ function registerConfirmBtn() {
         const bookingId = await saveBookingInfo(BOOKING_INFO);
         const userId = localStorage.getItem("uid");
         const saveMyBookingRsp = await saveMyBooking(userId, bookingId)
-        if(saveMyBookingRsp) {
+        if (saveMyBookingRsp) {
             window.location.href = `${window.location.origin}/booking-confirmation-success.html`
         }
     })
@@ -89,7 +91,25 @@ function registerConfirmBtn() {
 
 
 function registerInvoiceBtn() {
+    const invoiceWrapper = document.querySelector(".booking-information-wrapper");
+    const invoiceBtn = document.getElementById("invoice-btn");
+    invoiceBtn.addEventListener("click", () => {
+        
+        html2pdf()
+        .from(invoiceWrapper)
+        .set({
+            filename: 'your-filename.pdf',
+            html2canvas: {
+            // This option is used to remove the "display: none" elements
+            // from the PDF
+                ignoreElements: (element) => {
+                    return element.style.display === 'none' || element.id == "invoice-btn";
+                }
+            }
+        })
+        .save();
 
+    })
 }
 
 
@@ -98,7 +118,7 @@ function registerInvoiceBtn() {
 // ======================== DOM Manipulation
 
 function displayBookingInfo(toBook, bookingInfo) {
-    if(toBook) {
+    if (toBook) {
         const confirmBtn = document.getElementById("confirm-btn");
         confirmBtn.classList.remove("hide");
     } else {
@@ -139,7 +159,7 @@ function displayBookingInfo(toBook, bookingInfo) {
     basePrice.innerText = "CAD " + bookingInfo.basePrice;
 
     // conditionally show props
-    if(bookingInfo?.equipments?.length) {
+    if (bookingInfo?.equipments?.length) {
         // update the props list
         const propsList = document.querySelector(".detail-props ul");
         propsList.innerHTML = "";
@@ -159,7 +179,7 @@ function displayBookingInfo(toBook, bookingInfo) {
 
 
 
-    const totalPropsPrice = bookingInfo.equipments.map(obj => Number(obj.price) ).reduce(function(a, b) { return a + b; }, 0);
+    const totalPropsPrice = bookingInfo.equipments.map(obj => Number(obj.price)).reduce(function (a, b) { return a + b; }, 0);
     const priceWithProps = Number(bookingInfo.basePrice) + Number(totalPropsPrice);
     const priceForDays = priceWithProps * Number(bookingInfo.daysInfo);
 
@@ -168,7 +188,7 @@ function displayBookingInfo(toBook, bookingInfo) {
     const priceForDaysValueElem = document.getElementById("price-for-days-value");
     priceForDaysElem.innerHTML = ` Price for ${bookingInfo.daysInfo} days `;
     priceForDaysValueElem.innerHTML = ` ${priceWithProps} x ${bookingInfo.daysInfo} = CAD ${priceForDays} `;
-    
+
 
     // calculate tax
     const taxPercent = BOOKING_INFO.taxPercent;
@@ -183,6 +203,7 @@ function displayBookingInfo(toBook, bookingInfo) {
 
     // price with tax
     const finalPrice = priceForDays + taxValue;
+    BOOKING_INFO.finalPrice = finalPrice;
     const priceWithTaxElem = document.getElementById("price-with-tax");
     priceWithTaxElem.innerText = ` ${priceForDays} + ${taxValue} = CAD ${finalPrice} `;
 }
