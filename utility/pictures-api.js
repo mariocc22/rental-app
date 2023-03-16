@@ -13,6 +13,8 @@ import {
   sRef,
   uploadBytesResumable,
   getDownloadURL,
+  uploadBytes,
+  ref,
 } from "../modules/firebase.js";
 
 // Initialize variables
@@ -26,7 +28,6 @@ const proglab = document.getElementById("upprogress");
 const SelBtn = document.getElementById("selbtn");
 const UpBtn = document.getElementById("upbtn");
 const DownBtn = document.getElementById("downbtn");
-// let urlString = "";
 let urlString = [];
 
 function GetFileName(file) {
@@ -34,24 +35,6 @@ function GetFileName(file) {
   let fname = temp.slice(0, -1).join(".");
   return fname;
 }
-
-// Original =======================
-// let input = document.createElement("input");
-// input.type = "file";
-
-// input.onchange = (e) => {
-//   files = e.target.files;
-//   let extention = GetFileExt(files[0]);
-//   let name = GetFileName(files[0]);
-//   namebox.value = name;
-//   extlab.innerHTML = extention;
-//   reader.readAsDataURL(files[0]);
-// };
-
-// reader.onload = function () {
-//   myimg.src = reader.result;
-// };
-// Original =======================
 
 // Create Input to handle multiple files =====================
 let input = document.createElement("input");
@@ -62,16 +45,19 @@ input.setAttribute("multiple", "");
 input.addEventListener("change", handleFiles);
 
 function handleFiles() {
+  files = [];
   files = [...this.files];
   files.forEach((file) => {
     const reader = new FileReader();
     reader.onload = function () {
-      let img = document.createElement("img");
-      img.src = reader.result;
-      console.log("Image created: ", img);
+      let imgContent = `<div class="img" data-set="${file.name}">
+      <img class="select-img" src="${reader.result}" alt="image" />
+      <span class="remove-img"><i class="fa-solid fa-xmark"></i></span>
+    </div>`;
+      console.log("Image created: ", imgContent);
       document
         .querySelector(".image-container")
-        .insertAdjacentElement("afterbegin", img);
+        .insertAdjacentHTML("afterbegin", imgContent);
     };
 
     reader.readAsDataURL(file);
@@ -82,24 +68,18 @@ SelBtn.onclick = function () {
   input.click();
 };
 
-// function GetFileExt(file) {
-//   let temp = file.name.split(".");
-//   let ext = temp.slice(temp.length - 1, temp.length);
-//   return "." + ext[0];
-// }
-
 // Upload Process
-async function uploadAllFiles(src) {
-  console.log("before sorting: ", files);
-
+const uploadAllFiles = async () => {
+  let x = [];
   Promise.all([files.map((file) => UploadProcess(file))])
     .then((url) => {
-      console.log("uploading URL", url);
+      console.log("mylog==>", urlString);
+      return urlString;
     })
     .catch((err) => {
       console.log(err.message);
     });
-}
+};
 
 async function UploadProcess(file) {
   return new Promise(function (_res, _rej) {
@@ -125,49 +105,42 @@ async function UploadProcess(file) {
           // SaveURLtoFirestore(_downloadURL);
           console.log("Image uploaded successfully!");
           console.log(_downloadURL);
-          // urlString = ("" + _downloadURL);
           urlString.push("" + _downloadURL);
+          return urlString;
         });
       }
     );
   });
 }
-// ORIGINAL =======================
-// async function UploadProcess() {
-//   let ImgToUpload = files[0];
-//   let ImgName = namebox.value + extlab.innerHTML;
-//   console.log(ImgName);
 
-//   const metaData = {
-//     contentType: ImgToUpload.type,
-//   };
-//   const storage = getStorage();
-//   const storageRef = sRef(storage, `IMAGES/${ImgName}`);
-//   const uploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
+async function uploadFiles2(filesToUpload) {
+  const storage = getStorage();
+  const uploadPromises = filesToUpload.map(async (file) => {
+    let ImgName = GetFileName(file);
+    const fileId = ImgName;
+    // const fileId = `${Date.now()}-${file.name}`;
+    const fileRef = sRef(storage, `IMAGES/${fileId}`);
+    const snapshot = await uploadBytes(fileRef, file);
+    return snapshot;
+  });
 
-//   uploadTask.on(
-//     "state_changed",
-//     (snapshot) => {},
-//     (error) => {
-//       console.log(error.message);
-//       alert("error: image not uploaded! ");
-//     },
-//     () => {
-//       getDownloadURL(uploadTask.snapshot.ref).then((_downloadURL) => {
-//         // SaveURLtoFirestore(_downloadURL);
-//         console.log("Image uploaded successfully!");
-//         console.log(_downloadURL);
-//         urlString = "" + _downloadURL;
-//       });
-//     }
-//   );
-// }
+  try {
+    const snapshots = await Promise.all(uploadPromises);
+    const downloadUrls = [];
+    for (let i = 0; i < snapshots.length; i++) {
+      const snapshot = snapshots[i];
+      const url = await getDownloadURL(snapshot.ref);
+      console.log("This is the url: ", url);
+      downloadUrls.push(url);
+    }
+    return downloadUrls;
+  } catch (error) {
+    console.error("Error uploading files:", error);
+  }
+}
 
 //////////////////////// PICTURE UPLOAD CAMERA
 async function cameraUpload(img, name) {
-  // let ImgToUpload = files[0];
-  // let ImgName = namebox.value + extlab.innerHTML;
-  // console.log(ImgName);
   console.log(img);
   console.log(name);
 
@@ -195,34 +168,12 @@ async function cameraUpload(img, name) {
     }
   );
 }
-
-// ... Post to DB //
-// async function SaveURLtoFirestore(url) {
-//   // Here we can add the property ID, retrieving it from another module
-//   let name = namebox.value;
-//   // let ext = extlab.innerHTML;
-//   // let ref = doc(db, "IMAGES");
-
-//   await addDoc(collection(db, "IMAGES"), {
-//     propertyid: "property ID",
-//     imageurl: url,
-//   });
-// }
-
-// ... Get from DB //
-// async function GetImagefromFirestore() {
-//   let name = namebox.value;
-//   let ref = doc(db, "ImageLinks/" + name);
-
-//   const docSnap = await getDoc(ref);
-//   // myimg.src = docSnap.data().ImageURL;
-//   if (docSnap.exists()) {
-//     myimg.src = docSnap.data().imageurl;
-//   }
-// }
-
-// UpBtn.onclick = UploadProcess;
-// DownBtn.onclick = GetImagefromFirestore;
-
-// export { input, UploadProcess, GetImagefromFirestore, downloadURL};
-export { input, UploadProcess, urlString, cameraUpload, uploadAllFiles };
+export {
+  input,
+  UploadProcess,
+  urlString,
+  cameraUpload,
+  uploadAllFiles,
+  files,
+  uploadFiles2,
+};
