@@ -65,57 +65,47 @@ performance.addEventListener("click", () => {
   _activity = "performance";
 });
 
-
 // Address
 const addressvalidation = document.getElementById("addressvalidation");
-addressvalidation.addEventListener("click", (e) =>{
-
-    // Validations:
-    let validatepage = true;
-    console.log(validatepage);
-    function validateForm() {
-      let street = document.forms["formAddress"]["street"].value;
-      let city = document.forms["formAddress"]["city"].value;
-      let state = document.forms["formAddress"]["state"].value;
-      let postalcode = document.forms["formAddress"]["postalcode"].value;
-      let country = document.forms["formAddress"]["country"].value;
-      if (street == "") {
-        alert("Street must be filled out");
-        return false;
-      }
-      else if (city == "") {
-        alert("City must be filled out");
-        return false;
-      }
-      else if (state == "") {
-        alert("State must be filled out");
-        return false;
-      }
-      else if (postalcode == "") {
-        alert("Postal Code must be filled out");
-        return false;
-      }
-      else if (country == "") {
-        alert("Country Code must be filled out");
-        return false;
-      }
-      else{
-        return true;
-      }
-    } 
-    validatepage = validateForm();
-    console.log(validatepage);
-    if(validatepage){
-      e.preventDefault();
-      window.location.href = 'http://localhost:3000/list-my-space.html#page4';
+addressvalidation.addEventListener("click", (e) => {
+  // Validations:
+  let validatepage = true;
+  console.log(validatepage);
+  function validateForm() {
+    let street = document.forms["formAddress"]["street"].value;
+    let city = document.forms["formAddress"]["city"].value;
+    let state = document.forms["formAddress"]["state"].value;
+    let postalcode = document.forms["formAddress"]["postalcode"].value;
+    let country = document.forms["formAddress"]["country"].value;
+    if (street == "") {
+      alert("Street must be filled out");
+      return false;
+    } else if (city == "") {
+      alert("City must be filled out");
+      return false;
+    } else if (state == "") {
+      alert("State must be filled out");
+      return false;
+    } else if (postalcode == "") {
+      alert("Postal Code must be filled out");
+      return false;
+    } else if (country == "") {
+      alert("Country Code must be filled out");
+      return false;
+    } else {
+      return true;
     }
-    else{
-      e.preventDefault();
-      window.location.href = 'http://localhost:3000/list-my-space.html#page3';
-    }
-})
-
-
+  }
+  validatepage = validateForm();
+  console.log(validatepage);
+  if (validatepage) {
+    e.preventDefault();
+    window.location.href = "http://localhost:3000/list-my-space.html#page4";
+  } else {
+    e.preventDefault();
+    window.location.href = "http://localhost:3000/list-my-space.html#page3";
+  }
+});
 
 // Camera or Select Files
 let camera = false;
@@ -467,51 +457,57 @@ const propertydescription = document.getElementById("propertydescription");
 const geobtn = document.getElementById("geobtn");
 geobtn.addEventListener("click", async function (event) {
   // const test = await getPosition();
-  if ( navigator.geolocation ) {
-    navigator.geolocation.getCurrentPosition(( position ) => { // success callback is called w. GeoLocationPosition
-      console.log( "latitude = " + position.coords.latitude );
-      console.log( "longitude = " + position.coords.longitude );
-      _lat = position.coords.latitude;// test2.latt;
-      _long = position.coords.longitude;//test2.longt;
-      // console.log(_lat);
-      // console.log(_long);
-      // Map
-      const _map = document.getElementById("map");
-      let map = L.map(_map, {
-        renderer: L.canvas(),
-      }).setView([_lat, _long], 13);
-      L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
-        maxZoom: 21,
-        zoomSnap: 0.25,
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      }).addTo(map);
-      let marker = L.marker([_lat, _long]).addTo(map);
-      marker.bindPopup("<h3> I'm here! </h3>").openPopup();
-      //LOCATION IQ API
-      var xhr = new XMLHttpRequest();
-      var _url = `https://us1.locationiq.com/v1/reverse?key=pk.bacaddd84141d8123622e2937d0b47b0&lat=${_lat}&lon=${_long}&format=json`;
-      console.log(_url);
-      const userAction = async () => {
-        const response = await fetch(_url);
-        const myJson = await response.json(); //extract JSON from the http response
-        console.log(myJson);
-        street.value = myJson.address.road;
-        city.value = myJson.address.city;//response.address.city;//dataGeo.city;
-        state.value = myJson.address.state;
-        postalcode.value = myJson.address.postcode;
-        country.value = myJson.address.country;
-      }
-      userAction();
-    },( error ) => { // failure callback is called w. error object
-        console.log( error );
-        if ( error.code == error.PERMISSION_DENIED ) {
-        window.alert( "geolocation permission denied" );
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        // success callback is called w. GeoLocationPosition
+        console.log("latitude = " + position.coords.latitude);
+        console.log("longitude = " + position.coords.longitude);
+        _lat = position.coords.latitude; // test2.latt;
+        _long = position.coords.longitude; //test2.longt;
+        // console.log(_lat);
+        // console.log(_long);
+        // Map
+        const _map = document.getElementById("map");
+        let map = L.map(_map, {
+          renderer: L.canvas(),
+        }).setView([_lat, _long], 13);
+        L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+          maxZoom: 21,
+          zoomSnap: 0.25,
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(map);
+        let marker = L.marker([_lat, _long]).addTo(map);
+        marker.bindPopup("<h3> I'm here! </h3>").openPopup();
+        //LOCATION IQ API
+        var xhr = new XMLHttpRequest();
+        var _url = `https://us1.locationiq.com/v1/reverse?key=pk.bacaddd84141d8123622e2937d0b47b0&lat=${_lat}&lon=${_long}&format=json`;
+        console.log(_url);
+        const userAction = async () => {
+          const response = await fetch(_url);
+          const myJson = await response.json(); //extract JSON from the http response
+          console.log(myJson);
+          street.value = myJson.address.road;
+          city.value = myJson.address.city; //response.address.city;//dataGeo.city;
+          state.value = myJson.address.state;
+          postalcode.value = myJson.address.postcode;
+          country.value = myJson.address.country;
+        };
+        userAction();
+      },
+      (error) => {
+        // failure callback is called w. error object
+        console.log(error);
+        if (error.code == error.PERMISSION_DENIED) {
+          window.alert("geolocation permission denied");
         }
-      });
-    } else { // no geolocation in navigator. in case running in an old browser
-      console.log( "Geolocation is not supported by this browser." );
-    }
+      }
+    );
+  } else {
+    // no geolocation in navigator. in case running in an old browser
+    console.log("Geolocation is not supported by this browser.");
+  }
 });
 
 // Tags
@@ -802,12 +798,6 @@ reviewfieldsbtn.addEventListener("click", () => {
   if (!camera) {
     const container = document.querySelector(".wrap-img-page12");
     container.innerHTML = containerSelectedImg.innerHTML;
-    urlString.forEach((url) => {
-      _media.push(url);
-      const img = document.createElement("img");
-      img.src = url;
-      container.insertAdjacentElement("beforeend", img);
-    });
   } else {
     photolistmyspace.src = photoList;
     _media.push(urlString[0]);
@@ -832,7 +822,7 @@ let propertyInfo;
 const createPropertybtn = document.getElementById("createPropertybtn");
 
 createPropertybtn.addEventListener("click", async (event) => {
-  console.log("FIles: ", files);
+  console.log("Files: ", files);
   if (!camera) {
     const urlStringArray = await uploadFiles2(files);
     _media = [...urlStringArray];
@@ -874,7 +864,7 @@ createPropertybtn.addEventListener("click", async (event) => {
       coordinates
     );
     // Post Image Collection with propertyId
-    await SaveURLtoFirestore(urlString, propertyInfo);
+    // await SaveURLtoFirestore(urlString, propertyInfo);
   }
   await property();
   window.location.href = window.location.origin;
