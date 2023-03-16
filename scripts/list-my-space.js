@@ -466,7 +466,6 @@ const propertydescription = document.getElementById("propertydescription");
 // Geolocation
 const geobtn = document.getElementById("geobtn");
 geobtn.addEventListener("click", async function (event) {
-<<<<<<< Updated upstream
   // const test = await getPosition();
   if ( navigator.geolocation ) {
     navigator.geolocation.getCurrentPosition(( position ) => { // success callback is called w. GeoLocationPosition
@@ -476,7 +475,6 @@ geobtn.addEventListener("click", async function (event) {
       _long = position.coords.longitude;//test2.longt;
       // console.log(_lat);
       // console.log(_long);
-
       // Map
       const _map = document.getElementById("map");
       let map = L.map(_map, {
@@ -488,24 +486,8 @@ geobtn.addEventListener("click", async function (event) {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
-
       let marker = L.marker([_lat, _long]).addTo(map);
       marker.bindPopup("<h3> I'm here! </h3>").openPopup();
-=======
-  const test = await getPosition();
-  const test2 = await whereAmI();
-  console.log(test2);
-  street.value = test2.staddress;
-  city.value = test2.city;
-  state.value = test2.state;
-  country.value = test2.country;
-  _lat = test2.latt;
-  _long = test2.longt;
-  console.log(_lat);
-  console.log(_long);
-  const _map = document.getElementById("map");
->>>>>>> Stashed changes
-
       //LOCATION IQ API
       var xhr = new XMLHttpRequest();
       var _url = `https://us1.locationiq.com/v1/reverse?key=pk.bacaddd84141d8123622e2937d0b47b0&lat=${_lat}&lon=${_long}&format=json`;
@@ -514,7 +496,6 @@ geobtn.addEventListener("click", async function (event) {
         const response = await fetch(_url);
         const myJson = await response.json(); //extract JSON from the http response
         console.log(myJson);
-
         street.value = myJson.address.road;
         city.value = myJson.address.city;//response.address.city;//dataGeo.city;
         state.value = myJson.address.state;
@@ -522,7 +503,6 @@ geobtn.addEventListener("click", async function (event) {
         country.value = myJson.address.country;
       }
       userAction();
-
     },( error ) => { // failure callback is called w. error object
         console.log( error );
         if ( error.code == error.PERMISSION_DENIED ) {
@@ -876,46 +856,6 @@ createPropertybtn.addEventListener("click", async (event) => {
       _equipments // Equip[{tagname, desc, price},{},{} ]
     );
 
-<<<<<<< Updated upstream
-  propertyInfo = await createProperty(
-    _uid, //string
-    _activity,
-    _propertytitle,
-    _propertydescription,
-    _price, // property pricereview
-    _media, // Object 5 images
-    _dates, // Obj {from, to}
-    _bundleinfo, // Obj {price, equipments[] }
-    _address, // Obj {street,flatroom,city,state,postalcode,country,_lat,_long}
-    _typeofspace,
-    _amenities, // Amenities[]
-    _equipments // Equip[{tagname, desc, price},{},{} ]
-  );
-
-  // alert(`Property created successfully ${propertyInfo}`);
-  // Post Image Collection with propertyId
-  await SaveURLtoFirestore(urlString, propertyInfo);
-
-  // Add Property Info to Neo4j
-  // Use _lat and _long values, also _activity
-  const coordinates = {
-    lat: _address.lat || 49.2244201,
-    long: _address.long || -123.1110692,
-  };
-  await addPlace(
-    propertyInfo,
-    _price,
-    _propertytitle,
-    _uid,
-    _typeofspace,
-    _amenities,
-    _equipments,
-    _activity,
-    coordinates
-  );
-
-  // Take user back to home page after all Database Functions
-=======
     // Add Property Info to Neo4j
     // Use _lat and _long values, also _activity
     const coordinates = {
@@ -937,6 +877,5 @@ createPropertybtn.addEventListener("click", async (event) => {
     await SaveURLtoFirestore(urlString, propertyInfo);
   }
   await property();
->>>>>>> Stashed changes
   window.location.href = window.location.origin;
 });
