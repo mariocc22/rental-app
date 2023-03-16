@@ -864,7 +864,7 @@ createPropertybtn.addEventListener("click", async (event) => {
       coordinates
     );
     // Post Image Collection with propertyId
-    await SaveURLtoFirestore(urlString, propertyInfo);
+    // await SaveURLtoFirestore(urlString, propertyInfo);
   }
   await property();
   window.location.href = window.location.origin;
