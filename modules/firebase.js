@@ -16,7 +16,7 @@ import {
   deleteField,
   deleteDoc, //new function
   addDoc,
-  arrayUnion
+  arrayUnion,
 } from "firebase/firestore";
 
 import {
@@ -37,6 +37,7 @@ import {
   ref as sRef,
   uploadBytesResumable,
   getDownloadURL,
+  uploadBytes,
 } from "firebase/storage";
 
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -88,5 +89,6 @@ export {
   uploadBytesResumable,
   getDownloadURL,
   addDoc,
-  arrayUnion
+  arrayUnion,
+  uploadBytes,
 };
