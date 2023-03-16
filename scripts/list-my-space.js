@@ -434,9 +434,6 @@ geobtn.addEventListener("click", async function (event) {
 
       //LOCATION IQ API
       var xhr = new XMLHttpRequest();
-      // var _url = $(`https://us1.locationiq.com/v1/search?key=pk.bacaddd84141d8123622e2937d0b47b0&q=221b%2C%20Baker%20St%2C%20London%20&format=json`);
-      // var _url = `https://us1.locationiq.com/v1/search?key=pk.bacaddd84141d8123622e2937d0b47b0&lat=${_lat}&lon=${_long}&format=json`;
-      // var _url = `https://us1.locationiq.com/v1/reverse?key=pk.bacaddd84141d8123622e2937d0b47b0&lat=49.2244201&lon=-123.1110692&format=json`;
       var _url = `https://us1.locationiq.com/v1/reverse?key=pk.bacaddd84141d8123622e2937d0b47b0&lat=${_lat}&lon=${_long}&format=json`;
       console.log(_url);
       const userAction = async () => {
@@ -450,107 +447,7 @@ geobtn.addEventListener("click", async function (event) {
         postalcode.value = myJson.address.postcode;
         country.value = myJson.address.country;
       }
-
       userAction();
-
-      /*xhr.open('GET', _url, true);
-      xhr.send();
-      xhr.onreadystatechange = processRequest;
-      xhr.addEventListener("readystatechange", processRequest, false);
-      var response = JSON.parse(xhr.responseText);
-      console.log(response);
-
-      function processRequest(e) {
-          if (xhr.readyState == 4 && xhr.status == 200) {
-              var response = JSON.parse(xhr.responseText);
-              var city = response.address.city;
-              console.log(city);
-
-              // street.value = dataGeo.staddress;
-              city.value = response.address.city;//dataGeo.city;
-              // state.value = dataGeo.state;
-              // postalcode.value = dataGeo.postalcode;
-              // country.value = dataGeo.country;
-              return;
-          }
-      }*/
-
-      // function getCoordintes() {
-      //     var options = {
-      //         enableHighAccuracy: true,
-      //         timeout: 5000,
-      //         maximumAge: 0
-      //     };
-        
-      //     function success(pos) {
-      //         var crd = pos.coords;
-      //         var lat = crd.latitude.toString();
-      //         var lng = crd.longitude.toString();
-      //         var coordinates = [lat, lng];
-      //         console.log(`Latitude: ${lat}, Longitude: ${lng}`);
-      //         getCity(coordinates);
-      //         return;
-        
-      //     }
-        
-      //     function error(err) {
-      //         console.warn(`ERROR(${err.code}): ${err.message}`);
-      //     }
-        
-      //     navigator.geolocation.getCurrentPosition(success, error, options);
-      // }
-      
-
-
-      // function getCity(coordinates) {
-      //   var xhr = new XMLHttpRequest();
-      //   var lat = coordinates[0];
-      //   var lng = coordinates[1];
-      
-      //   // Paste your LocationIQ token below. pk.bacaddd84141d8123622e2937d0b47b0
-      //   xhr.open('GET', "https://us1.locationiq.com/v1/reverse.php?key=bacaddd84141d8123622e2937d0b47b0&lat=" +
-      //     lat + "&lon=" + long + "&format=json", true);
-      //     xhr.send();
-      //     xhr.onreadystatechange = processRequest;
-      //     xhr.addEventListener("readystatechange", processRequest, false);
-          
-      //     function processRequest(e) {
-      //         if (xhr.readyState == 4 && xhr.status == 200) {
-      //             var response = JSON.parse(xhr.responseText);
-      //             var city = response.address.city;
-      //             console.log(city);
-
-      //             // street.value = dataGeo.staddress;
-      //             city.value = response.address.city;//dataGeo.city;
-      //             // state.value = dataGeo.state;
-      //             // postalcode.value = dataGeo.postalcode;
-      //             // country.value = dataGeo.country;
-      //             return;
-      //         }
-      //     }
-      // }
-      // getCoordintes();
-
-      // GEOCODE API
-      // setTimeout(async () => {
-      //   const resGeo = await fetch(`https://geocode.xyz/${_lat},${_long}?geoit=json`);
-      //   // === Handle errors
-      //   if (!resGeo.ok) {
-      //     alert('Was no possible to get your current address, please enter data manually')
-      //     // throw new Error("Problem getting the location data");
-      //   }
-      //   else{
-      //     const dataGeo = await resGeo.json();
-      //     if(dataGeo){
-      //       street.value = dataGeo.staddress;
-      //       city.value = dataGeo.city;
-      //       state.value = dataGeo.state;
-      //       // postalcode.value = dataGeo.postalcode;
-      //       country.value = dataGeo.country;
-      //     }
-      //     console.log("Current location!", dataGeo);
-      //   }
-      // }, 4000);
 
     },( error ) => { // failure callback is called w. error object
         console.log( error );
@@ -561,44 +458,6 @@ geobtn.addEventListener("click", async function (event) {
     } else { // no geolocation in navigator. in case running in an old browser
       console.log( "Geolocation is not supported by this browser." );
     }
-    
-    // setTimeout(async () => {
-    // const resGeo = await fetch(`https://geocode.xyz/${_lat},${_long}?geoit=json`);
-    // // === Handle errors
-    // if (!resGeo.ok) {
-    //   throw new Error("Problem getting the location data");
-    // }
-    // const dataGeo = await resGeo.json();
-    // console.log("Current location!", dataGeo);
-    // }, 4000);
-
-  // setTimeout(() => {
-    // console.log(test2);
-    // street.value = test2.staddress;
-    // city.value = test2.city;
-    // state.value = test2.state;
-    // postalcode.value = test2.city;
-    // country.value = test2.country;
-    // _lat = position.coords.latitude;// test2.latt;
-    // _long = position.coords.longitude;//test2.longt;
-    // console.log(_lat);
-    // console.log(_long);
-    // const _map = document.getElementById("map");
-
-    // let map = L.map(_map, {
-    //   renderer: L.canvas(),
-    // }).setView([_lat, _long], 13);
-    // L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
-    //   maxZoom: 21,
-    //   zoomSnap: 0.25,
-    //   attribution:
-    //     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    // }).addTo(map);
-
-    // let marker = L.marker([_lat, _long]).addTo(map);
-    // marker.bindPopup("<h3> I'm here! </h3>").openPopup();
-  // }, 4000);
-  
 });
 
 // Tags
