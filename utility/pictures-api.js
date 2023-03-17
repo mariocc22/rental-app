@@ -139,6 +139,15 @@ async function uploadFiles2(filesToUpload) {
   }
 }
 
+// ////////////////// REFACTOR CODE FROM 128 TO 134
+// const snapshots = await Promise.all(uploadPromises);
+// const downloadUrls = await Promise.all(
+//   snapshots.map(async (snapshot) => {
+//     const url = await getDownloadURL(snapshot.ref);
+//     console.log("This is the url: ", url);
+//     return url;
+//   })
+// );
 //////////////////////// PICTURE UPLOAD CAMERA
 async function cameraUpload(img, name) {
   console.log(img);

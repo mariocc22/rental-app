@@ -288,6 +288,10 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
       // Capture the picture when the button is clicked
       captureButton.addEventListener("click", () => {
+        // const closeimg = document.getElementById("closeimg");
+        closeimg.style.display = "flex";
+        upvideobtn.style.display = "block";
+
         // Create a canvas element to capture the image
         const canvas = document.createElement("canvas");
         canvas.width = video.videoWidth;
@@ -318,7 +322,6 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         randomNumber = Math.floor(Math.random() * 100) + 1;
 
         const imgtaken = document.getElementById("imgtaken");
-        const closeimg = document.getElementById("closeimg");
 
         // imgtaken.classList.toggle('imageactive');
         imgtaken.classList.add("imageactive");
@@ -331,6 +334,8 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
         closeimg.addEventListener("click", () => {
           imgtaken.style.display = "none";
+          upvideobtn.style.display = "none";
+          nextvideo.classList.add("hide");
         });
       });
     })
@@ -405,8 +410,8 @@ nextcamera.addEventListener("click", (e) => {
 
 takephoto.addEventListener("click", () => {
   nextvideo.classList.add("hide");
-  UpBtn.classList.add("hide");
   nextcamera.classList.add("hide");
+  upvideobtn.style.display = "none";
 });
 
 addphoto.addEventListener("click", () => {
@@ -439,6 +444,8 @@ upvideobtn.addEventListener("click", () => {
   camera = true;
   cameraUpload(file, randomNumber);
   nextvideo.style.visibility = "visible";
+  nextvideo.classList.remove("hide");
+  upvideobtn.style.display = "none";
 });
 
 // Getting values from UI
@@ -555,6 +562,28 @@ const wifibtn = document.getElementById("wifibtn");
 const elevatorbtn = document.getElementById("elevatorbtn");
 const parkingbtn = document.getElementById("parkingbtn");
 const airconditionerbtn = document.getElementById("airconditionerbtn");
+// const naturalLight = document.getElementById("naturalLight");
+// const heater = document.getElementById("heater");
+/////// PENDING!!!!
+// naturalLight.addEventListener("click", () => {
+//   if (naturalLight.classList.contains("selected")) {
+//     naturalLight.classList.remove("selected");
+//     // _washroom = false;
+//   } else {
+//     naturalLight.classList.add("selected");
+//     // _washroom = true;
+//   }
+// });
+
+// heater.addEventListener("click", () => {
+//   if (heater.classList.contains("selected")) {
+//     heater.classList.remove("selected");
+//     // _washroom = false;
+//   } else {
+//     heater.classList.add("selected");
+//     // _washroom = true;
+//   }
+// });
 
 washroombtn.addEventListener("click", () => {
   if (washroombtn.classList.contains("selected")) {
@@ -653,6 +682,17 @@ const flashlightcheckboxvalue = document.getElementById(
 );
 const tripodscheckboxvalue = document.getElementById("tripodscheckboxvalue");
 const bundlevalue = document.getElementById("bundlevalue");
+const bundleCheckboxes = document.querySelectorAll(".dropdown-equipment");
+
+bundleCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener("click", () => {
+    const childCheckbox = checkbox.querySelector('input[type="checkbox"');
+    if (childCheckbox.checked) {
+      console.log("Checkbox checked!!");
+      checkbox.classList.toggle("selected");
+    }
+  });
+});
 
 // Values to create property
 let _uid;
@@ -749,6 +789,7 @@ reviewfieldsbtn.addEventListener("click", () => {
 
   if (cameracheckboxvalue.checked) {
     _dealtext += "Camera \n";
+    console.log("CHecked Input!");
   }
   if (lenscheckboxvalue.checked) {
     _dealtext += "Lens \n";
@@ -867,5 +908,19 @@ createPropertybtn.addEventListener("click", async (event) => {
     // await SaveURLtoFirestore(urlString, propertyInfo);
   }
   await property();
-  window.location.href = window.location.origin;
+  window.location.href = "http://localhost:3000/list-my-space.html#page13";
 });
+
+// Page 13 Buttons
+const btnListings = document.getElementById("myListings");
+const btnhomeBtn = document.getElementById("homeBtn");
+
+btnhomeBtn.addEventListener(
+  "click",
+  () => (window.location.href = window.origin)
+);
+
+btnListings.addEventListener(
+  "click",
+  () => (window.location.href = window.origin)
+);
