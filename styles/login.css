@@ -53,7 +53,13 @@ header nav a:hover {
   margin-bottom: var(--margin-4);
 }
 
+#login-email,
+#login-password {
+  padding: 1rem;
+}
+
 .input-field > .input-label {
+  color: var(--text-input-color);
   display: inline-block;
   margin-bottom: var(--margin-1);
 }
@@ -72,7 +78,7 @@ header nav a:hover {
 }
 
 .button-wrapper > .btn-login {
-  padding: var(--padding-2) 4rem;
+  padding: var(--padding-4);
   cursor: pointer;
   background-color: var(--accent-explore-space-dm);
   /* max-width: fit-content; */
@@ -81,7 +87,7 @@ header nav a:hover {
 }
 
 .button-wrapper > .btn-logout {
-  padding: var(--padding-2) 4rem;
+  padding: var(--padding-4);
   cursor: pointer;
   color: var(--accent-explore-space-dm);
   background-color: var(--primary-black);
@@ -101,7 +107,7 @@ button.email {
 
   color: var(--primary-black);
   background-color: var(--primary-white);
-  padding: var(--padding-2);
+  padding: var(--padding-4);
   cursor: pointer;
   transition: all 0.25s ease-in-out;
 }
@@ -140,4 +146,12 @@ button.email {
 
 .hidden {
   display: none;
+}
+
+/* Divider */
+.divider {
+  width: 40%;
+  height: 1px;
+  background-color: var(--text-input-color);
+  margin: auto;
 }
