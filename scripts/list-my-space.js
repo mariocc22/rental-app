@@ -5,6 +5,7 @@ import "../node_modules/leaflet/dist/leaflet.css";
 import "/styles/common-styles.css";
 import { createProperty } from "/query/propertycreate.js";
 import { equipmentFormParser } from "../utility/equipmentFormParser.js";
+import { rightslide, leftslide, counter } from "../utility/imageSlider";
 import {
   input,
   UploadProcess,
@@ -25,6 +26,8 @@ import * as L from "../node_modules/leaflet/dist/leaflet.js";
 
 // Geolocation
 import { whereAmI, getPosition } from "../modules/geolocation.js";
+
+// General Listeners
 
 const allPages = document.querySelectorAll("div.page");
 allPages[0].style.display = "block";
@@ -356,6 +359,7 @@ const nextcamera = document.getElementById("nextcamera");
 const nextvideo = document.getElementById("nextvideo");
 const takephoto = document.getElementById("takephoto");
 const containerSelectedImg = document.querySelector(".image-container");
+const containerImagePreview = document.querySelector("wrap-img-page12");
 const addphoto2 = document.getElementById("imageSelect");
 const imageContainer = document.querySelectorAll(".select-img");
 let photosCamera = true;
@@ -377,15 +381,12 @@ nextvideo.addEventListener("click", (e) => {
 
 containerSelectedImg.addEventListener("click", (e) => {
   const target = e.target;
-  console.log(target.tagName);
   if (target.tagName === "SPAN" || target.tagName === "I") {
     let attr = target.closest(".img").getAttribute("data-set");
-
     containerSelectedImg.removeChild(target.closest(".img"));
 
     files.forEach((file) => {
       if (file.name === attr) {
-        // filesToRemove.push(files.indexOf(file));
         console.log("Index", files.indexOf(file));
         files.splice(files.indexOf(file), 1);
       }
@@ -485,8 +486,12 @@ geobtn.addEventListener("click", async function (event) {
           attribution:
             '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(map);
-        let marker = L.marker([_lat, _long]).addTo(map);
-        marker.bindPopup("<h3> I'm here! </h3>").openPopup();
+        let stage = L.icon({
+          iconUrl: "../assets/svg-icons/Logo-Black.svg",
+          iconSize: [40, 40],
+          iconAnchor: [31, 38],
+        });
+        L.marker([_lat, _long], { icon: stage }).addTo(map);
         //LOCATION IQ API
         var xhr = new XMLHttpRequest();
         var _url = `https://us1.locationiq.com/v1/reverse?key=pk.bacaddd84141d8123622e2937d0b47b0&lat=${_lat}&lon=${_long}&format=json`;
@@ -726,6 +731,33 @@ const amenitiesreview = document.getElementById("amenitiesreview");
 const cellingflashdesc = document.getElementById("cellingflashdesc");
 const floorflashdesc = document.getElementById("floorflashdesc");
 
+// Image Container
+const carouselSlide = document.querySelector(".wrap-img-page12");
+
+document.addEventListener("keydown", (e) => {
+  if (e.code === "ArrowRight") {
+    if (!camera) {
+      const carouselImages = document.querySelectorAll(".wrap-img-page12 img");
+      rightslide(carouselSlide, carouselImages);
+    }
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.code === "ArrowLeft") {
+    if (!camera) {
+      const carouselImages = document.querySelectorAll(".wrap-img-page12 img");
+      leftslide(carouselSlide, carouselImages);
+    }
+  }
+});
+
+window.addEventListener("resize", () => {
+  carouselSlide.style.transition = "none";
+  let size = carouselImages[0].clientWidth;
+  carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
+});
+
 // Review info and setting values to create a property
 reviewfieldsbtn.addEventListener("click", () => {
   titlereview.value = propertytitle.value;
@@ -837,8 +869,8 @@ reviewfieldsbtn.addEventListener("click", () => {
   // _media.push(urlString);
 
   if (!camera) {
-    const container = document.querySelector(".wrap-img-page12");
-    container.innerHTML = containerSelectedImg.innerHTML;
+    // container.innerHTML = containerSelectedImg.innerHTML;
+    console.log("Number of Files: ", files.length);
   } else {
     photolistmyspace.src = photoList;
     _media.push(urlString[0]);
@@ -846,17 +878,17 @@ reviewfieldsbtn.addEventListener("click", () => {
 });
 
 // Select featured image!
-let featureImageNum;
-const imageContainerSelected = document.querySelector(".wrap-img-page12");
+// let featureImageNum;
+// const imageContainerSelected = document.querySelector(".wrap-img-page12");
 
-imageContainerSelected.addEventListener("click", (e) => {
-  console.log(e.target);
-  e.target.classList.toggle("selectImage");
-  featureImageNum = Array.from(imageContainerSelected.children).indexOf(
-    e.target
-  );
-  console.log(featureImageNum);
-});
+// imageContainerSelected.addEventListener("click", (e) => {
+//   console.log(e.target);
+//   e.target.classList.toggle("selectImage");
+//   featureImageNum = Array.from(imageContainerSelected.children).indexOf(
+//     e.target
+//   );
+//   console.log(featureImageNum);
+// });
 
 // Create a property function
 let propertyInfo;

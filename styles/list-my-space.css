@@ -566,6 +566,11 @@ button#nextcamera {
   border-radius: 0.5rem;
   cursor: pointer;
 }
+
+#photolistmyspace {
+  max-width: 100%;
+  height: auto;
+}
 /* PAGE 7 LAYOUT===================================== */
 
 .inner-wrapper-7,
@@ -821,7 +826,20 @@ details > summary {
   gap: 1rem;
 }
 
+/* CAROUSEL OF IMAGES!!!! */
+.wrap-img-page12-container {
+  overflow: hidden;
+  width: 100%;
+  border: 1px solid var(--text-color);
+  border-radius: var(--border-radius-base);
+}
+
 .wrap-img-page12 {
+  display: flex;
+  width: 100%;
+  height: 16.5rem;
+}
+/* .wrap-img-page12 {
   position: relative;
   border: 1px solid var(--text-color);
   padding: var(--padding-2) var(--padding-3);
@@ -829,21 +847,28 @@ details > summary {
   margin-bottom: 0.5rem;
   min-height: 16.5rem;
   overflow: hidden;
-}
+} */
 
 .wrap-img-page12 img {
+  display: block;
+  width: 1000px;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+/* .wrap-img-page12 img {
   width: 100%;
   position: absolute;
   top: 0;
   left: 0;
-}
-.wrap-img-page12 > img {
+} */
+/* .wrap-img-page12 > img {
   transition: all 0.25s ease;
-}
-.wrap-img-page12 > img:hover {
+} */
+/* .wrap-img-page12 > img:hover {
   transform: scale(1.1);
   cursor: pointer;
-}
+} */
 
 .list-space-summary-text-wrapper label {
   color: var(--tertiary-text-dm);
