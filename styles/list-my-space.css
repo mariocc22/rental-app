@@ -1054,7 +1054,7 @@ fieldset {
 /**************************************/
 /* View Port Size= Small */
 /**************************************/
-@media screen and (max-width:600px) {
+/* @media screen and (max-width:600px) {
   .list-space-wrapper{
     position: relative;
   }
@@ -1072,4 +1072,4 @@ fieldset {
     z-index: 1;
     margin-bottom: 9rem;
   }
-}
+} */
