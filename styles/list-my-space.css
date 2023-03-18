@@ -115,7 +115,7 @@ progress::-webkit-progress-value {
   display: flex;
   flex-flow: column nowrap;
   gap: 3rem;
-  justify-content: center;
+  justify-content: flex-start;
 
   min-height: 100vh;
 }
@@ -1026,3 +1026,25 @@ fieldset {
   border: none;
 }
 /* MEDIA QUERIES====================== */
+/**************************************/
+/* View Port Size= Small */
+/**************************************/
+@media screen and (max-width:600px) {
+  .list-space-wrapper{
+    position: relative;
+  }
+  .page .navigation{
+    background-color: var(--primary-black);
+    padding: 1rem 0;
+    position: fixed;
+    bottom: 0rem;
+    left: 1rem;
+    right: 1rem;
+    z-index: 10;
+  }
+  .margin-bottom
+  {
+    z-index: 1;
+    margin-bottom: 9rem;
+  }
+}

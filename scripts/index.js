@@ -1,11 +1,22 @@
 // include your styles like this
 
-import "/styles/index.css";
+import "../styles/index.css";
 import { db, auth, onAuthStateChanged } from "../modules/firebase.js";
 import { whereAmI } from "../modules/geolocation.js";
 
 // import queries
 import { addProfile } from "../query/userProfile.js";
+
+
+if (process.env.NODE_ENV == "production") {
+  if ('serviceWorker' in navigator) {
+    // console.log(process.env.NODE_ENV);
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/service-worker.js');
+    });
+  }
+}
+
 
 console.log("hello from index.js");
 
@@ -25,8 +36,8 @@ const userState = onAuthStateChanged(auth, async (user) => {
 
 
     // merges details or creates a new one in USERS Collection
-    const {displayName, email, photoURL} = user;
-    await addProfile(uid, {displayName, email, photoURL})
+    const { displayName, email, photoURL } = user;
+    await addProfile(uid, { displayName, email, photoURL })
 
     console.log("active user: ", uid);
   } else {
@@ -40,3 +51,24 @@ const userState = onAuthStateChanged(auth, async (user) => {
 });
 
 btn_geo.addEventListener("click", whereAmI);
+
+
+// todo work in progress
+window.addEventListener('online', () => {
+  const offlineMessage = document.getElementById('offline-message');
+  if (!window.navigator.onLine) {
+    offlineMessage.style.display = 'none';
+  }
+});
+
+window.addEventListener('offline', () => {
+  const offlineMessage = document.getElementById('offline-message');
+  if (window.navigator.onLine) {
+    offlineMessage.style.display = 'block';
+  }
+});
+
+setInterval(function () {
+  console.log("bingo")
+  console.log("Online status: " + window.navigator.onLine);
+}, 5000); // Check every 5 seconds (5000ms)
