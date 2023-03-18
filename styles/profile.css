@@ -8,11 +8,6 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Anton&family=Fira+Sans:wght@400;700&display=swap");
 
-img {
-  max-width: 100%;
-  height: auto;
-}
-
 a {
   color: var(--text-input-color);
 }
@@ -22,16 +17,22 @@ body {
 }
 
 .profile-wrapper {
-  padding: 1rem;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  right: 0;
+  padding: 1.25rem 2% 7rem 4%;
+  z-index: 100;
+  background-color: #101010;
 }
 
-main {
+.profile-main {
   display: flex;
   flex-flow: column nowrap;
   gap: 6.5rem;
 
-  color: var(--text-input-color);
-  min-height: 75vh;
+  color: #9e9e9e;
+  min-height: 92vh;
   margin-top: 5rem;
 }
 
@@ -40,7 +41,7 @@ main {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .profile-nav button,
@@ -49,9 +50,13 @@ main {
   appearance: none;
   border: none;
 
-  color: var(--primary-white);
+  color: #f8f8f8;
   font-size: 1.5rem;
   cursor: pointer;
+}
+
+.profile-nav button {
+  font-size: 1.5rem;
 }
 
 /* Top Content User Name */
@@ -60,9 +65,10 @@ main {
   font-style: normal;
   font-weight: 700;
   font-size: 2.25rem;
-  color: var(--primary-white);
+  color: #f8f8f8;
 
   line-height: 1.5;
+  text-transform: none;
 }
 
 .top-main p {
