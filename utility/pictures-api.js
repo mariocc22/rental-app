@@ -54,10 +54,15 @@ function handleFiles() {
       <img class="select-img" src="${reader.result}" alt="image" />
       <span class="remove-img"><i class="fa-solid fa-xmark"></i></span>
     </div>`;
+      let previewContent = `
+    <img class="preview-img" src="${reader.result}" alt="image" />`;
       console.log("Image created: ", imgContent);
       document
         .querySelector(".image-container")
         .insertAdjacentHTML("afterbegin", imgContent);
+      document
+        .querySelector(".wrap-img-page12")
+        .insertAdjacentHTML("afterbegin", previewContent);
     };
 
     reader.readAsDataURL(file);
