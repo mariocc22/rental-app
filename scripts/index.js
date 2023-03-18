@@ -70,7 +70,5 @@ window.addEventListener('offline', () => {
 
 setInterval(function () {
   console.log("bingo")
-
-  
   console.log("Online status: " + window.navigator.onLine);
 }, 5000); // Check every 5 seconds (5000ms)

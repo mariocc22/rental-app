@@ -8,7 +8,6 @@ const { GenerateSW } = require('workbox-webpack-plugin');
 const extendPlugins = [];
  
 if( process.env.NODE_ENV === 'production') {
-
   extendPlugins.push( new GenerateSW({
     skipWaiting: true,
     maximumFileSizeToCacheInBytes: 15 * 1024 * 1024, // Increase limit to 15MB
@@ -114,7 +113,7 @@ module.exports = {
     ],
   },
   plugins: [
-    [...extendPlugins],
+    ...extendPlugins,
     new CopyWebpackPlugin({
       patterns: [{ from: "assets", to: "assets" }],
     }),
