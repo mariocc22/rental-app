@@ -8,11 +8,15 @@ import { whereAmI } from "../modules/geolocation.js";
 import { addProfile } from "../query/userProfile.js";
 
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register('/service-worker.js');
-  });
+if (process.env.NODE_ENV == "production") {
+  if ('serviceWorker' in navigator) {
+    // console.log(process.env.NODE_ENV);
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/service-worker.js');
+    });
+  }
 }
+
 
 console.log("hello from index.js");
 
@@ -32,8 +36,8 @@ const userState = onAuthStateChanged(auth, async (user) => {
 
 
     // merges details or creates a new one in USERS Collection
-    const {displayName, email, photoURL} = user;
-    await addProfile(uid, {displayName, email, photoURL})
+    const { displayName, email, photoURL } = user;
+    await addProfile(uid, { displayName, email, photoURL })
 
     console.log("active user: ", uid);
   } else {
@@ -64,6 +68,9 @@ window.addEventListener('offline', () => {
   }
 });
 
-setInterval(function() {
+setInterval(function () {
+  console.log("bingo")
+
+  
   console.log("Online status: " + window.navigator.onLine);
 }, 5000); // Check every 5 seconds (5000ms)

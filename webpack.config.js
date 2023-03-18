@@ -5,46 +5,16 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const { GenerateSW } = require('workbox-webpack-plugin');
 
+const extendPlugins = [];
+ 
+if( process.env.NODE_ENV === 'production') {
 
+  extendPlugins.push( new GenerateSW({
+    skipWaiting: true,
+    maximumFileSizeToCacheInBytes: 15 * 1024 * 1024, // Increase limit to 15MB
+  }));
 
-module.exports = {
-  entry: {
-    index: "./scripts/index.js",
-    aboutUs: "./scripts/about-us.js",
-    explore: "./scripts/explore.js",
-    property: "./scripts/property.js",
-    listmyspace: "./scripts/list-my-space.js",
-    loginModal: "./query/auth.js",
-    phoneVer: "./query/phone-verification.js",
-    showcase: "./scripts/showcase.js",
-    exploreSpaces: "./scripts/explore-spaces.js",
-    profile: "./scripts/profile.js",
-    components: "./scripts/ui-kit.js",
-    bookingConfirmation: './scripts/booking-confirmation.js',
-    bookingConfirmationSuccess: './scripts/booking-confirmation-success.js',
-    myBookings: './scripts/my-bookings.js'
-  },
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "[name].bundle.js",
-    publicPath: "/",
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader, // instead of style-loader
-          "css-loader",
-        ],
-      },
-    ],
-  },
-  plugins: [
-    new GenerateSW({
-      skipWaiting: true,
-      maximumFileSizeToCacheInBytes: 15 * 1024 * 1024, // Increase limit to 15MB
-    }),
+  extendPlugins.push(
     new WebpackPwaManifest({
       filename: 'manifest.json',
       inject: true,
@@ -106,7 +76,45 @@ module.exports = {
           "purpose": "maskable any"
         }
       ],
-    }),
+    })
+  );
+}
+
+module.exports = {
+  entry: {
+    index: "./scripts/index.js",
+    aboutUs: "./scripts/about-us.js",
+    explore: "./scripts/explore.js",
+    property: "./scripts/property.js",
+    listmyspace: "./scripts/list-my-space.js",
+    loginModal: "./query/auth.js",
+    phoneVer: "./query/phone-verification.js",
+    showcase: "./scripts/showcase.js",
+    exploreSpaces: "./scripts/explore-spaces.js",
+    profile: "./scripts/profile.js",
+    components: "./scripts/ui-kit.js",
+    bookingConfirmation: './scripts/booking-confirmation.js',
+    bookingConfirmationSuccess: './scripts/booking-confirmation-success.js',
+    myBookings: './scripts/my-bookings.js'
+  },
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].bundle.js",
+    publicPath: "/",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader, // instead of style-loader
+          "css-loader",
+        ],
+      },
+    ],
+  },
+  plugins: [
+    [...extendPlugins],
     new CopyWebpackPlugin({
       patterns: [{ from: "assets", to: "assets" }],
     }),
