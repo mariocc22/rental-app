@@ -22,7 +22,6 @@ import { addUser } from "../query/neo4jQueries.js";
 // ===== BUTTONS =====
 const logSignIn_btn = document.querySelector("#btn-auth");
 const btn_login = document.querySelector(".btn-login");
-const btn_logout = document.querySelector(".btn-logout");
 const btn_google = document.querySelector(".google");
 const btn_email = document.querySelector(".email");
 
@@ -40,34 +39,51 @@ const close_phone_modal = document.querySelector(".phone-close");
 //  ================= SIGN IN USER (email/password) ================
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
-
   // Get User Info
   const email = loginForm["login-email"].value;
   const password = loginForm["login-password"].value;
-
-  signInWithEmailAndPassword(auth, email, password)
+  createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Successfully signed in!
+      // Signed in
       const user = userCredential.user;
-      // Adding a Display Name since it doesn't have if sign up with email & password
-      console.log(user);
-      user.displayName = "Michael Smith";
-      console.log("Welcome, ", user.displayName, user.email + "!");
-
-      // Get the parameter from the previous page
-      const urlParams = new URLSearchParams(window.location.search);
-      const name = urlParams.get("name");
-      console.log(name);
-      // Empty Form values
+      console.log("User Created! ", user.email);
+      // Reset Login Form Values
+      window.location = window.origin;
       loginForm.reset();
-      // If the user is approved, it takes you to the previous screen to follow the process
-      window.location.href = `${name}.html`;
     })
     .catch((error) => {
-      // If failed show the error
-      alert(error.message);
-      loginForm.reset();
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage);
+      //
     });
+
+  // // Get User Info
+  // const email = loginForm["login-email"].value;
+  // const password = loginForm["login-password"].value;
+
+  // signInWithEmailAndPassword(auth, email, password)
+  //   .then((userCredential) => {
+  //     // Successfully signed in!
+  //     const user = userCredential.user;
+  //     console.log(user);
+  //     user.displayName = "Michael Smith";
+  //     console.log("Welcome, ", user.displayName, user.email + "!");
+
+  //     // Get the parameter from the previous page
+  //     const urlParams = new URLSearchParams(window.location.search);
+  //     const name = urlParams.get("name");
+  //     console.log(name);
+  //     // Empty Form values
+  //     loginForm.reset();
+  //     // If the user is approved, it takes you to the previous screen to follow the process
+  //     window.location.href = `${name}.html`;
+  //   })
+  //   .catch((error) => {
+  //     // If failed show the error
+  //     alert(error.message);
+  //     loginForm.reset();
+  //   });
 });
 
 //  ================= GET USER STATUS CHANGES ================
@@ -75,7 +91,6 @@ const userState = onAuthStateChanged(auth, (user) => {
   if (user) {
     const uid = user.uid;
     console.log("active user: ", uid);
-    btn_logout.classList.toggle("hidden");
     btn_login.classList.toggle("hidden");
     // ...
   } else {
@@ -107,40 +122,24 @@ const userState = onAuthStateChanged(auth, (user) => {
 
 // ================ SIGN OUT ===============
 // IF THE USER CLICKS THE LOG OUT BUTTON
-btn_logout.addEventListener("click", (e) => {
-  e.preventDefault();
-  signOut(auth)
-    .then(() => {
-      // Sign-out successful.
-      console.log("User Logged out!");
-      loginForm.reset();
-      window.location.reload();
-    })
-    .catch((error) => {
-      console.log(error.message);
-    });
-});
+// btn_logout.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   signOut(auth)
+//     .then(() => {
+//       // Sign-out successful.
+//       console.log("User Logged out!");
+//       loginForm.reset();
+//       window.location.reload();
+//     })
+//     .catch((error) => {
+//       console.log(error.message);
+//     });
+// });
 
-//  ============ Sign In / Sign UP EMAIL ==============
+//  ============ Sign In / Log In EMAIL ==============
+
 btn_email.addEventListener("click", () => {
-  // Get User Info
-  const email = loginForm["login-email"].value;
-  const password = loginForm["login-password"].value;
-
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      console.log("User Created! ", user.email);
-      // Reset Login Form Values
-      loginForm.reset();
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage);
-      // ..
-    });
+  loginForm.classList.toggle("hideLogin");
 });
 
 // ============ Sign In / Sign UP Google Provider ===========

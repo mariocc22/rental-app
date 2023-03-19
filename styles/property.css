@@ -6,7 +6,6 @@
   height: 350px;
   position: relative;
   overflow: hidden;
-  /* <===  */
   border-radius: 15px;
 }
 
@@ -76,6 +75,14 @@ main ul {
   font-size: 1rem;
 }
 
+.property-info  a.selected-tab {
+    color: var(--explore-text-color);
+}
+
+.property-details > h2:first-of-type {
+  font-size: var(--h2-font-size);
+}
+
 .property-details h2 {
   font-size: var(--tagline-font-size);
   margin-bottom: 1rem;
@@ -87,7 +94,7 @@ main ul {
   margin-bottom: 3rem;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 3rem;
   justify-content: center;
 }
 
@@ -121,7 +128,7 @@ main ul {
   border: 1px solid var(--explore-text-color);
   padding: .5rem;
   border-radius: var(--img-border-radius);
-  color: var(--text-color);
+  color: var(--primary-black);
   font-weight: 700;
   font-size: 1rem;
 }
@@ -175,20 +182,40 @@ main ul {
 .property-equipments label {
   display: flex;
   flex-flow: row nowrap;
+  align-items: center;
   justify-content: space-between;
+}
+
+.property-equipments label span {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 0.5rem;
+  /* justify-content: space-between; */
   padding: 1rem;
   cursor: pointer;
 }
 
+.property-equipments label span img {
+  height: 2rem;
+  width: 2rem;
+
+  filter: var(--filter-white-svg);
+}
+
+.property-equipments li:has(input:checked) img {
+  filter: var(--filter-purple-svg);
+}
 
 /* TODO fix this  */
 
-.property-equipments {
+/* .property-equipments {
   margin-top: 3rem;
-}
+} */
 
 
 /* Property details */
+
 
 .property-details-tab ul {
   list-style-type: disc;
@@ -249,7 +276,7 @@ main ul {
   padding: .5rem;
   border-radius: var(--img-border-radius);
   background-color: var(--explore-text-color);
-  color: var(--text-color);
+  color: var(--primary-black);
   font-size: 1rem;
   font-weight: 700;
 }

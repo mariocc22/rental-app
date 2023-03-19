@@ -3,6 +3,12 @@ import "/styles/property.css";
 // import { DateRangePicker } from "vanillajs-datepicker";
 // import "vanillajs-datepicker/css/datepicker.css";
 
+
+// modules
+import { addOfflineSupport } from "../modules/offline";
+
+
+
 // import queries
 import { propertyFuncion } from "../query/propertylist.js";
 import { tagnameToInfo } from "../utility/tagnameToInfo.js";
@@ -35,6 +41,8 @@ init();
 async function init() {
   // validate url and selected tabs
   validateURL();
+
+  addOfflineSupport();
 
   // load data in the website from database
   const propertyInfo = await showPropertyDetails();
@@ -89,7 +97,7 @@ async function showPropertyDetails() {
   const bundleEquipment = bundleInfo.equipment.filter((val) => val != "");
 
   const bundlePriceElem = document.getElementsByClassName("bundle-title")[0];
-  bundlePriceElem.innerHTML = `Reduced Base Price $${bundlePrice}`;
+  bundlePriceElem.innerHTML = `Reduced Base Price CAD ${bundlePrice}`;
 
   const bundleEquipWrapper = document.querySelector(".bundle-equipments ul");
   bundleEquipWrapper.innerHTML = "";
@@ -99,7 +107,6 @@ async function showPropertyDetails() {
   bundleEquipment.forEach((equip) => {
     const string = `<li>
             <span class="bundle-prop">
-                <i class="fa fa-camera"></i>
                 ${equip}
             </span>
         </li>`;
@@ -122,11 +129,11 @@ async function showPropertyDetails() {
             <input type="checkbox" id="${tagname}" name="props" value="${price}">
             <label for="${tagname}">
                 <span>
-                    <i class="fa fa-camera"></i>
+                    <img src='../assets/svg-icons/${tagInfo.svg}'>
                     ${tag}
                 </span>
                 <span class="prop-price">
-                    ${price}
+                    CAD ${price}
                 </span>
             </label>
         </li>`;
@@ -380,6 +387,13 @@ function registerLoadTabs() {
 
 // displays the selected menu info based on user selection and url
 function displaySelectedMenuInfo(elemValue) {
+  const allTabs = document.querySelectorAll('.menu-tabs a');
+  const allTabsElem = [...allTabs];
+  allTabsElem.forEach(elem => {
+    elem.classList.remove('selected-tab');
+  })
+  const selectedTab = document.getElementsByClassName(elemValue)[0];
+  selectedTab.classList.add('selected-tab');
   // hide all elements inside the wrapper
   // .property-menu-info-wrapper
   const allElementsToHide = document.querySelectorAll(

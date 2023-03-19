@@ -9,6 +9,9 @@ import { getCurrentPosition } from "../utility/getCurrentPosition.js";
 import { filterPlaces } from "../query/neo4jQueries.js";
 import { propertyFuncion } from "../query/propertylist.js";
 
+// modules
+import { addOfflineSupport } from "../modules/offline";
+
 // global variables for the file
 const params = new URLSearchParams(document.location.search);
 const activity = params.get("activity");
@@ -32,6 +35,8 @@ function init() {
 
   // ask user to turn on his coordinates
   allowLocationSharing();
+
+  addOfflineSupport();
 
   // register event listerners on the page
   registerFilterToggle();
@@ -266,8 +271,12 @@ function loadAllTags(activity) {
     const string = `<input type="radio" name="spaceType" id="${tagInfo.tagname}" value="${tagInfo.name}" />
         <label for="${tagInfo.tagname}">
             <span>
-                <i class="fa-solid fa-person-shelter"></i>
-                ${tagInfo.name}
+                <span>
+                  <img src='../assets/svg-icons/${tagInfo.svg}' class='explore-spaces-svg'>
+                </span>
+                <span>
+                  ${tagInfo.name}
+                </span>
             </span>
         </label>`;
     elementType.innerHTML += string;
@@ -284,7 +293,7 @@ function loadAllTags(activity) {
             <input type="checkbox" id="${tagInfo.tagname}" name="props" value="${tagInfo.name}">
             <label for="${tagInfo.tagname}">
                 <span>
-                    <i class="fa fa-camera"></i>
+                    <img src='../assets/svg-icons/${tagInfo.svg}'>
                     ${tagInfo.name}
                 </span>
             </label>
@@ -304,7 +313,6 @@ function loadAllTags(activity) {
             <input type="checkbox" id="${tagInfo.tagname}" name="props" value="${tagInfo.name}">
             <label for="${tagInfo.tagname}">
                 <span>
-                    <i class="fa fa-camera"></i>
                     ${tagInfo.name}
                 </span>
             </label>
@@ -366,6 +374,7 @@ async function displayProperties() {
     const propertyInfo = await propertyFuncion(propertyId);
     if (propertyInfo) {
       const propertyObject = {
+        imgs: propertyInfo?.media,
         img:
           propertyInfo?.media[0] || "https://picsum.photos/1200/500?random=1",
         title: propertyInfo.propertytitle,
@@ -382,23 +391,53 @@ async function displayProperties() {
 
 // function to populate list inside html script
 function populateList(listContainer, propertyObj) {
+
+  console.log(propertyObj);
+
+  let imgsString = "";
+
+  const imgs = propertyObj.imgs;
+  imgs.forEach((imgLink, idx) => {
+    imgsString += `<div class="img-wrapper img-wrapper-${idx+1}" style="background-image: url(${imgLink});">
+    </div>`;
+  });
+
   const string = `<li>
-        <section>
-            <a href="/property.html?propertyId=${propertyObj.propertyId}#customize">
-                <img src="${propertyObj.img}" alt="">
-            </a>
-            <div class="space-details">
-                <a href="/property.html?propertyId=${propertyObj.propertyId}">
-                    <div class="space-name">${propertyObj.title}</div>
-                </a>
-                <p class="space-price">CAD ${propertyObj.price}</p>
+      <a href='/property.html?propertyId=${propertyObj.propertyId}#customize'>
+        <section class="cards">
+          <div class="suggested-space">
+            <div class="img-container">
+              ${imgsString}
             </div>
-            <div class="space-location">
-                <p>${propertyObj.location}</p>
-                <p class="space-rating">${propertyObj.rating}</p>
+            <div class="price">
+              <p>CAD ${propertyObj.price} / Day</p>
             </div>
+          </div>
+
+          <div class="title-rating-wrapper">
+            <p class="space-name">${propertyObj.title}</p>
+
+            <div class="space-rating">
+              <p class="rating">4.5</p>
+            </div>
+          </div>
+          
+          <p class="space-location">
+            ${propertyObj.location}
+          </p>
+
         </section>
+      </a>  
+
     </li>`;
 
   listContainer.innerHTML += string;
+
+
+
+
+
+
+
+
 }

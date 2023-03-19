@@ -7,6 +7,9 @@ import html2pdf from 'html2pdf.js';
 import { propertyFuncion } from "../query/propertylist.js";
 import { saveBookingInfo, getBookingInfo, saveMyBooking } from '../query/booking.js';
 
+// modules
+import { addOfflineSupport } from "../modules/offline";
+
 // Global Variables for the file
 let BOOKING_OBJ = undefined;
 const params = new URLSearchParams(document.location.search);
@@ -36,6 +39,9 @@ async function init() {
         toBook = false;
         BOOKING_INFO = await readBookingInfo(BOOKING_OBJ.bookingId);
     };
+
+    
+    addOfflineSupport();
 
     // show the booking information
     displayBookingInfo(toBook, BOOKING_INFO);
