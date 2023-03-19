@@ -266,8 +266,12 @@ function loadAllTags(activity) {
     const string = `<input type="radio" name="spaceType" id="${tagInfo.tagname}" value="${tagInfo.name}" />
         <label for="${tagInfo.tagname}">
             <span>
-                <i class="fa-solid fa-person-shelter"></i>
-                ${tagInfo.name}
+                <span>
+                  <img src='../assets/svg-icons/${tagInfo.svg}' class='explore-spaces-svg'>
+                </span>
+                <span>
+                  ${tagInfo.name}
+                </span>
             </span>
         </label>`;
     elementType.innerHTML += string;
