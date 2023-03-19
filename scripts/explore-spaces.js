@@ -159,6 +159,9 @@ function registerAdditionalFilterBtns() {
   // apply filter
   const applyFilterBtn = document.getElementById("applyFilters");
 
+  // toggle class to mark filter on
+  const filterIcon = document.getElementById("additional-filters-on");
+
   applyFilterBtn.addEventListener("click", () => {
     // hide it using same toggle logic
     const priceValue = document.getElementById("price").value;
@@ -171,6 +174,8 @@ function registerAdditionalFilterBtns() {
     // TODO change the list now
 
     displayProperties();
+
+    filterIcon.classList.add("dot");
   });
 
   // close filter
@@ -184,6 +189,8 @@ function registerAdditionalFilterBtns() {
       "additional-filter-form"
     );
     addtionalFilterForm.reset();
+
+    filterIcon.classList.remove("dot");
   });
 }
 
