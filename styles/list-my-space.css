@@ -736,6 +736,11 @@ details > summary {
   cursor: pointer;
 }
 
+.wrapper-priceform{
+  display: grid;
+  gap: 1rem;
+}
+
 .dropdown-equipment img {
   filter: invert(100%) sepia(1%) saturate(3888%) hue-rotate(80deg)
     brightness(126%) contrast(95%);
