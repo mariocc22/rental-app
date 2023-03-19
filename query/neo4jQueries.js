@@ -48,6 +48,7 @@ function filterPlacesPrepQuery(distance, coords) {
         WHERE toLower(p.name) CONTAINS toLower($string) and p.price <= $price and t.name IN $tags
         WITH p, COUNT(DISTINCT t) AS tagCount
         WHERE tagCount = $tagsLength
+        ORDER BY n.created
         RETURN COLLECT(p.id) as propertyIds;`;
   } else {
     query = `
@@ -55,6 +56,7 @@ function filterPlacesPrepQuery(distance, coords) {
         WHERE toLower(p.name) CONTAINS toLower($string) and p.price <= $price and t.name IN $tags
         WITH p, COUNT(DISTINCT t) AS tagCount
         WHERE tagCount = $tagsLength
+        ORDER BY n.created
         RETURN COLLECT(p.id) as propertyIds;`;
   }
 
@@ -145,12 +147,13 @@ async function addPlace(
   // givenTagNames.push(`activity-${activityName}`);
 
   const session = driver.session({ database: "neo4j" });
+  const timestamp = Math.floor(new Date.now() / 1000);
 
   try {
     const writeQuery = `
         MATCH(u:User{id: $userId})
         WITH u
-        CREATE (p:Property{id: $placeId, name: $placeName , price: $price })
+        CREATE (p:Property{id: $placeId, name: $placeName, price: $price, created: $timestamp  })
         SET p.location = Point({latitude: $lat, longitude: $long})
         WITH u, p
         MERGE (p)-[:OWNED_BY]->(u)
@@ -171,6 +174,7 @@ async function addPlace(
         tagNames: givenTagNames,
         lat: +coordinates.lat,
         long: +coordinates.long,
+        timestamp
       })
     );
 
