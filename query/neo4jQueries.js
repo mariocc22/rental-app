@@ -48,7 +48,8 @@ function filterPlacesPrepQuery(distance, coords) {
         WHERE toLower(p.name) CONTAINS toLower($string) and p.price <= $price and t.name IN $tags
         WITH p, COUNT(DISTINCT t) AS tagCount
         WHERE tagCount = $tagsLength
-        ORDER BY n.created
+        WITH p
+        ORDER BY p.created
         RETURN COLLECT(p.id) as propertyIds;`;
   } else {
     query = `
@@ -56,7 +57,8 @@ function filterPlacesPrepQuery(distance, coords) {
         WHERE toLower(p.name) CONTAINS toLower($string) and p.price <= $price and t.name IN $tags
         WITH p, COUNT(DISTINCT t) AS tagCount
         WHERE tagCount = $tagsLength
-        ORDER BY n.created
+        WITH p
+        ORDER BY p.created
         RETURN COLLECT(p.id) as propertyIds;`;
   }
 
