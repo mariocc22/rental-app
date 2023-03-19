@@ -256,10 +256,12 @@
 }
 
 .suggested-space {
-    position: relative;
 }
 
 .img-container {
+    position: relative;
+
+
     display: flex;
     flex-flow: row nowrap;
     gap: 0.5rem;
@@ -284,4 +286,24 @@
     object-fit: contain;
     overflow: hidden;
     height: auto;
+}
+
+.cards .suggested-space .price {
+    position: absolute;
+
+    bottom: 1rem;
+    right: 1rem;
+}
+
+.title-rating-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-rating-wrapper .space-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
