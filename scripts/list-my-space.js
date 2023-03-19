@@ -3,6 +3,7 @@ import "/styles/list-my-space.css";
 import "/styles/standard-styles.css";
 import "../node_modules/leaflet/dist/leaflet.css";
 import "/styles/common-styles.css";
+import "/styles/header-list-space.css";
 import { createProperty } from "/query/propertycreate.js";
 import { equipmentFormParser } from "../utility/equipmentFormParser.js";
 import { rightslide, leftslide, counter } from "../utility/imageSlider";
@@ -32,27 +33,373 @@ addOfflineSupport();
 import { whereAmI, getPosition } from "../modules/geolocation.js";
 
 // General Listeners
+// SPA FUNCTIONALITY!!!
+// const allPages = document.querySelectorAll("div.page");
+// allPages[0].style.display = "block";
 
+// function navigateToPage(event) {
+//   let pagecontinue = true;
+//   const pageId = location.hash ? location.hash : "#page1";
+//   for (let page of allPages) {
+//     if (pageId === "#" + page.id) {
+//       page.style.display = "block";
+//     } else {
+//       page.style.display = "none";
+//     }
+//   }
+//   return;
+// }
+// navigateToPage();
+
+//init handler for hash navigation
+
+// DESKTOP VERSION
+let desktopVIew = false;
 const allPages = document.querySelectorAll("div.page");
 allPages[0].style.display = "block";
 
 function navigateToPage(event) {
   let pagecontinue = true;
   const pageId = location.hash ? location.hash : "#page1";
-  for (let page of allPages) {
-    if (pageId === "#" + page.id) {
-      page.style.display = "block";
-    } else {
-      page.style.display = "none";
+  let x = window.matchMedia("(max-width: 800px)");
+  console.log("Valor de X: ", x);
+  const page1 = document.getElementById("page1");
+  const page2 = document.getElementById("page2");
+  const page3 = document.getElementById("page3");
+  const page4 = document.getElementById("page4");
+  const page5 = document.getElementById("page5");
+  const page6 = document.getElementById("page6");
+  const page7 = document.getElementById("page7");
+  const page8 = document.getElementById("page8");
+  const page9 = document.getElementById("page9");
+  const page10 = document.getElementById("page10");
+  const page11 = document.getElementById("page11");
+  const page12 = document.getElementById("page12");
+  const page13 = document.getElementById("page13");
+
+  // Navigations page
+  const navigationPage1 = document.querySelector("#page1 .navigation");
+  const progressPageMobile = document.querySelectorAll(".page .progress");
+  const progressPageDesktop13 = document.querySelector(".progressDesktop-1-3");
+  const progressPageDesktop456 = document.querySelector(
+    ".progressDesktop-4-5-6"
+  );
+  const backButtonAddress = document.querySelectorAll(".backButtonAddress");
+
+  // Mobile
+  if (x.matches) {
+    desktopVIew = false;
+    progressPageMobile.forEach((progress) => {
+      progress.style.display = "block";
+    });
+    progressPageDesktop13.style.display = "none";
+    progressPageDesktop456.style.display = "none";
+    console.log("Valor de X adentro del primer If");
+    backButtonAddress.forEach((back) => {
+      back.style.display = "block";
+    });
+    if (pageId === "#page1") {
+      navigationPage1.style.display = "flex";
+      page1.style.display = "block";
+      page3.style.display = "none";
+      page4.style.display = "none";
+      page5.style.display = "none";
+      page6.style.display = "none";
+      page7.style.display = "none";
+      page9.style.display = "none";
+      page10.style.display = "none";
+      page11.style.display = "none";
+      page12.style.display = "none";
+      page13.style.display = "none";
+      console.log("Esta es Pagina 1");
+    } else if (pageId === "#page3") {
+      page1.style.display = "none";
+      page3.style.display = "block";
+      page4.style.display = "none";
+      page5.style.display = "none";
+      page6.style.display = "none";
+      page7.style.display = "none";
+      page9.style.display = "none";
+      page10.style.display = "none";
+      page11.style.display = "none";
+      page12.style.display = "none";
+      page13.style.display = "none";
+    } else if (pageId === "#page4") {
+      page1.style.display = "none";
+      page3.style.display = "none";
+      page4.style.display = "block";
+      page5.style.display = "none";
+      page6.style.display = "none";
+      page7.style.display = "none";
+      page9.style.display = "none";
+      page10.style.display = "none";
+      page11.style.display = "none";
+      page12.style.display = "none";
+      page13.style.display = "none";
+    } else if (pageId === "#page5") {
+      page1.style.display = "none";
+      page3.style.display = "none";
+      page4.style.display = "none";
+      page5.style.display = "block";
+      page6.style.display = "none";
+      page7.style.display = "none";
+      page9.style.display = "none";
+      page10.style.display = "none";
+      page11.style.display = "none";
+      page12.style.display = "none";
+      page13.style.display = "none";
+    } else if (pageId === "#page6") {
+      page1.style.display = "none";
+      page3.style.display = "none";
+      page4.style.display = "none";
+      page5.style.display = "none";
+      page6.style.display = "block";
+      page7.style.display = "none";
+      page9.style.display = "none";
+      page10.style.display = "none";
+      page11.style.display = "none";
+      page12.style.display = "none";
+      page13.style.display = "none";
+    } else if (pageId === "#page7") {
+      page1.style.display = "none";
+      page3.style.display = "none";
+      page4.style.display = "none";
+      page5.style.display = "none";
+      page6.style.display = "none";
+      page7.style.display = "block";
+      page9.style.display = "none";
+      page10.style.display = "none";
+      page11.style.display = "none";
+      page12.style.display = "none";
+      page13.style.display = "none";
+    } else if (pageId === "#page9") {
+      page1.style.display = "none";
+      page3.style.display = "none";
+      page4.style.display = "none";
+      page5.style.display = "none";
+      page6.style.display = "none";
+      page7.style.display = "none";
+      page9.style.display = "block";
+      page10.style.display = "none";
+      page11.style.display = "none";
+      page12.style.display = "none";
+      page13.style.display = "none";
+    } else if (pageId === "#page10") {
+      page1.style.display = "none";
+      page3.style.display = "none";
+      page4.style.display = "none";
+      page5.style.display = "none";
+      page6.style.display = "none";
+      page7.style.display = "none";
+      page9.style.display = "none";
+      page10.style.display = "block";
+      page11.style.display = "none";
+      page12.style.display = "none";
+      page13.style.display = "none";
+    } else if (pageId === "#page11") {
+      page1.style.display = "none";
+      page3.style.display = "none";
+      page4.style.display = "none";
+      page5.style.display = "none";
+      page6.style.display = "none";
+      page7.style.display = "none";
+      page9.style.display = "none";
+      page10.style.display = "none";
+      page11.style.display = "block";
+      page12.style.display = "none";
+      page13.style.display = "none";
+    } else if (pageId === "#page12") {
+      page1.style.display = "none";
+      page3.style.display = "none";
+      page4.style.display = "none";
+      page5.style.display = "none";
+      page6.style.display = "none";
+      page7.style.display = "none";
+      page9.style.display = "none";
+      page10.style.display = "none";
+      page11.style.display = "none";
+      page12.style.display = "block";
+      page13.style.display = "none";
+    } else if (pageId === "#page13") {
+      page1.style.display = "none";
+      page3.style.display = "none";
+      page4.style.display = "none";
+      page5.style.display = "none";
+      page6.style.display = "none";
+      page7.style.display = "none";
+      page9.style.display = "none";
+      page10.style.display = "none";
+      page11.style.display = "none";
+      page12.style.display = "none";
+      page13.style.display = "block";
+    }
+    // Desktop
+  } else {
+    progressPageDesktop13.style.display = "none";
+    progressPageDesktop456.style.display = "none";
+    desktopVIew = true;
+    backButtonAddress.forEach((back) => {
+      back.style.display = "none";
+    });
+    progressPageMobile.forEach((progress) => {
+      progress.style.display = "none";
+      if (
+        pageId === "#page7" ||
+        pageId === "#page9" ||
+        pageId === "#page10" ||
+        pageId === "#page11" ||
+        pageId === "#page12"
+      ) {
+        progress.style.display = "block";
+      }
+    });
+
+    if (pageId === "#page1" || pageId === "#page3") {
+      navigationPage1.style.display = "none";
+      page1.style.display = "block";
+      page3.style.display = "block";
+      page4.style.display = "none";
+      page5.style.display = "none";
+      page6.style.display = "none";
+      page7.style.display = "none";
+      page9.style.display = "none";
+      page10.style.display = "none";
+      page11.style.display = "none";
+      page12.style.display = "none";
+      page13.style.display = "none";
+      progressPageDesktop13.style.display = "block";
+    } else if (pageId === "#page3") {
+      page1.style.display = "block";
+      page3.style.display = "block";
+      page4.style.display = "none";
+      page5.style.display = "none";
+      page6.style.display = "none";
+      page7.style.display = "none";
+      page9.style.display = "none";
+      page10.style.display = "none";
+      page11.style.display = "none";
+      page12.style.display = "none";
+      page13.style.display = "none";
+    } else if (
+      pageId === "#page4" ||
+      pageId === "#page5" ||
+      pageId === "#page6"
+    ) {
+      progressPageDesktop456.style.display = "block";
+      if (addphotoDesktop) {
+        page6.style.display = "block";
+        page5.style.display = "none";
+      } else if (takePhotoDesktop) {
+        page5.style.display = "block";
+        page6.style.display = "none";
+      }
+      page1.style.display = "none";
+      page3.style.display = "none";
+      page4.style.display = "block";
+      page7.style.display = "none";
+      page9.style.display = "none";
+      page10.style.display = "none";
+      page11.style.display = "none";
+      page12.style.display = "none";
+      page13.style.display = "none";
+    } else if (pageId === "#page7") {
+      page1.style.display = "none";
+      page3.style.display = "none";
+      page4.style.display = "none";
+      page5.style.display = "none";
+      page6.style.display = "none";
+      page7.style.display = "block";
+      page9.style.display = "none";
+      page10.style.display = "none";
+      page11.style.display = "none";
+      page12.style.display = "none";
+      page13.style.display = "none";
+    } else if (pageId === "#page9") {
+      page1.style.display = "none";
+      page3.style.display = "none";
+      page4.style.display = "none";
+      page5.style.display = "none";
+      page6.style.display = "none";
+      page7.style.display = "none";
+      page9.style.display = "block";
+      page10.style.display = "none";
+      page11.style.display = "none";
+      page12.style.display = "none";
+      page13.style.display = "none";
+    } else if (pageId === "#page10") {
+      page1.style.display = "none";
+      page3.style.display = "none";
+      page4.style.display = "none";
+      page5.style.display = "none";
+      page6.style.display = "none";
+      page7.style.display = "none";
+      page9.style.display = "none";
+      page10.style.display = "block";
+      page11.style.display = "none";
+      page12.style.display = "none";
+      page13.style.display = "none";
+    } else if (pageId === "#page11") {
+      page1.style.display = "none";
+      page3.style.display = "none";
+      page4.style.display = "none";
+      page5.style.display = "none";
+      page6.style.display = "none";
+      page7.style.display = "none";
+      page9.style.display = "none";
+      page10.style.display = "none";
+      page11.style.display = "block";
+      page12.style.display = "none";
+      page13.style.display = "none";
+    } else if (pageId === "#page12") {
+      page1.style.display = "none";
+      page3.style.display = "none";
+      page4.style.display = "none";
+      page5.style.display = "none";
+      page6.style.display = "none";
+      page7.style.display = "none";
+      page9.style.display = "none";
+      page10.style.display = "none";
+      page11.style.display = "none";
+      page12.style.display = "block";
+      page13.style.display = "none";
+    } else if (pageId === "#page13") {
+      page1.style.display = "none";
+      page3.style.display = "none";
+      page4.style.display = "none";
+      page5.style.display = "none";
+      page6.style.display = "none";
+      page7.style.display = "none";
+      page9.style.display = "none";
+      page10.style.display = "none";
+      page11.style.display = "none";
+      page12.style.display = "none";
+      page13.style.display = "block";
     }
   }
   return;
 }
 navigateToPage();
-
-//init handler for hash navigation
-
 window.addEventListener("hashchange", navigateToPage);
+window.addEventListener("resize", navigateToPage);
+
+// function navigateToPage() {
+
+// }
+// const pageId = location.hash ? location.hash : "#page1";
+// const pageId3 = "#page3";
+// if (pageId === "#page2") {
+//   page.style.display = "block";
+//   pageId3.style.display = "block";
+// } else {
+//   page.style.display = "none";
+// }
+// for (let page of allPages) {
+//   if (pageId === "#" + page.id) {
+//     page.style.display = "block";
+//   } else {
+//     page.style.display = "none";
+//   }
+// }
 
 // Activity
 let _activity;
@@ -70,48 +417,6 @@ photographer.addEventListener("click", () => {
 
 performance.addEventListener("click", () => {
   _activity = "performance";
-});
-
-// Address
-const addressvalidation = document.getElementById("addressvalidation");
-addressvalidation.addEventListener("click", (e) => {
-  // Validations:
-  let validatepage = true;
-  console.log(validatepage);
-  function validateForm() {
-    let street = document.forms["formAddress"]["street"].value;
-    let city = document.forms["formAddress"]["city"].value;
-    let state = document.forms["formAddress"]["state"].value;
-    let postalcode = document.forms["formAddress"]["postalcode"].value;
-    let country = document.forms["formAddress"]["country"].value;
-    if (street == "") {
-      alert("Street must be filled out");
-      return false;
-    } else if (city == "") {
-      alert("City must be filled out");
-      return false;
-    } else if (state == "") {
-      alert("State must be filled out");
-      return false;
-    } else if (postalcode == "") {
-      alert("Postal Code must be filled out");
-      return false;
-    } else if (country == "") {
-      alert("Country Code must be filled out");
-      return false;
-    } else {
-      return true;
-    }
-  }
-  validatepage = validateForm();
-  console.log(validatepage);
-  if (validatepage) {
-    e.preventDefault();
-    window.location.href = "http://localhost:3000/list-my-space.html#page4";
-  } else {
-    e.preventDefault();
-    window.location.href = "http://localhost:3000/list-my-space.html#page3";
-  }
 });
 
 // Camera or Select Files
@@ -273,6 +578,61 @@ beachButton.addEventListener("click", () => {
   _studio = false;
 });
 
+// Address
+const addressvalidation = document.getElementById("addressvalidation");
+addressvalidation.addEventListener("click", (e) => {
+  // Validations:
+  let validatepage = true;
+  console.log(validatepage);
+  function validateForm() {
+    let street = document.forms["formAddress"]["street"].value;
+    let city = document.forms["formAddress"]["city"].value;
+    let state = document.forms["formAddress"]["state"].value;
+    let postalcode = document.forms["formAddress"]["postalcode"].value;
+    let country = document.forms["formAddress"]["country"].value;
+    if (street == "") {
+      alert("Street must be filled out");
+      return false;
+    } else if (city == "") {
+      alert("City must be filled out");
+      return false;
+    } else if (state == "") {
+      alert("State must be filled out");
+      return false;
+    } else if (postalcode == "") {
+      alert("Postal Code must be filled out");
+      return false;
+    } else if (country == "") {
+      alert("Country Code must be filled out");
+      return false;
+    } else if (_activity == "") {
+      alert("Please select an activity");
+      return false;
+    } else if (
+      _indoor == false &&
+      _outdoor == false &&
+      _house == false &&
+      _studio == false &&
+      _others == false &&
+      _beach == false
+    ) {
+      alert("Please select type space");
+      return false;
+    } else {
+      return true;
+    }
+  }
+  validatepage = validateForm();
+  console.log(validatepage);
+  if (validatepage) {
+    e.preventDefault();
+    window.location.href = "http://localhost:3000/list-my-space.html#page4";
+  } else {
+    e.preventDefault();
+    window.location.href = "http://localhost:3000/list-my-space.html#page3";
+  }
+});
+
 // Camera functionality
 const captureButton = document.getElementById("capture-btn");
 const previewImage = document.getElementById("picture-preview");
@@ -353,15 +713,28 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
   console.error("Camera not supported by this browser");
 }
 
+const btnBackHome = document.querySelectorAll(".backToHome");
+btnBackHome.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    if (desktopVIew) {
+      window.location.href = "/list-my-space.html#page1";
+    } else {
+      window.location.href = "/list-my-space.html#page4";
+    }
+  });
+});
+
 // Uploading Pictures
 const SelBtn = document.getElementById("selbtn");
 const UpBtn = document.getElementById("upbtn");
 const DownBtn = document.getElementById("downbtn");
 const upvideobtn = document.getElementById("upvideobtn");
 const addphoto = document.getElementById("addphoto");
+let addphotoDesktop = false;
+const takephoto = document.getElementById("takephoto");
+let takePhotoDesktop = false;
 const nextcamera = document.getElementById("nextcamera");
 const nextvideo = document.getElementById("nextvideo");
-const takephoto = document.getElementById("takephoto");
 const containerSelectedImg = document.querySelector(".image-container");
 const containerImagePreview = document.querySelector("wrap-img-page12");
 const addphoto2 = document.getElementById("imageSelect");
@@ -417,6 +790,9 @@ takephoto.addEventListener("click", () => {
   nextvideo.classList.add("hide");
   nextcamera.classList.add("hide");
   upvideobtn.style.display = "none";
+  takePhotoDesktop = true;
+  addphotoDesktop = false;
+  navigateToPage();
 });
 
 addphoto.addEventListener("click", () => {
@@ -424,6 +800,9 @@ addphoto.addEventListener("click", () => {
   SelBtn.classList.add("hide");
   nextcamera.classList.remove("hide");
   containerSelectedImg.innerHTML = "";
+  addphotoDesktop = true;
+  takePhotoDesktop = false;
+  navigateToPage();
 });
 
 addphoto2.addEventListener("click", (e) => {
@@ -648,6 +1027,23 @@ airconditionerbtn.addEventListener("click", () => {
   }
 });
 
+//...
+// Amenities validation
+const nextpage7to9 = document.getElementById("nextpage7to9");
+nextpage7to9.addEventListener("click", () => {
+  console.log(_amenities);
+  if (!_washroom && !_wifi && !_elevator && !_parking && !_airconditioner) {
+    alert("Please select an amenity");
+  } else if (!propertytitle.value) {
+    alert("Please type property title");
+  } else if (!propertydescription.value) {
+    alert("Please type property description");
+  } else {
+    window.location.href = "/list-my-space.html#page9";
+  }
+});
+//....
+
 // Equipment
 let _light;
 let _lightshapers;
@@ -735,6 +1131,18 @@ const amenitiesreview = document.getElementById("amenitiesreview");
 const cellingflashdesc = document.getElementById("cellingflashdesc");
 const floorflashdesc = document.getElementById("floorflashdesc");
 
+// Validation dates and price
+const nextpage10to11 = document.getElementById("nextpage10to11");
+nextpage10to11.addEventListener("click", () => {
+  if (pricevalue.value == 0) {
+    alert("Please enter your space price");
+  } else if (!datepicker.value) {
+    alert("Please select a range of dates");
+  } else {
+    window.location.href = "/list-my-space.html#page11";
+  }
+});
+
 // Image Container
 const carouselSlide = document.querySelector(".wrap-img-page12");
 
@@ -756,11 +1164,11 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-window.addEventListener("resize", () => {
-  carouselSlide.style.transition = "none";
-  let size = carouselImages[0].clientWidth;
-  carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
-});
+// window.addEventListener("resize", () => {
+//   carouselSlide.style.transition = "none";
+//   let size = carouselImages[0].clientWidth;
+//   carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
+// });
 
 // Review info and setting values to create a property
 reviewfieldsbtn.addEventListener("click", () => {
