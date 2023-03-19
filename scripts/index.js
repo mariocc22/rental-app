@@ -3,13 +3,13 @@ import "../styles/offline-page.css";
 import "../styles/index.css";
 import "../styles/profile.css";
 
-
 import { db, auth, onAuthStateChanged } from "../modules/firebase.js";
+import { loggingOut, userState } from "../modules/user.js";
 import { whereAmI } from "../modules/geolocation.js";
 import { addOfflineSupport } from "../modules/offline";
 
 // import queries
-import { addProfile } from "../query/userProfile.js";
+// import { addProfile } from "../query/userProfile.js";
 
 if (process.env.NODE_ENV == "production") {
   if ("serviceWorker" in navigator) {
@@ -20,48 +20,83 @@ if (process.env.NODE_ENV == "production") {
   }
 }
 
-console.log("hello from index.js");
-let uid;
-
-////////////////////////////////////////////////////////////////
-// User state (logged In or Logged Out)
-const userState = onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    uid = user.uid;
-
-    // todo fix this later
-    localStorage.setItem("uid", uid);
-
-    // merges details or creates a new one in USERS Collection
-    const { displayName, email, photoURL } = user;
-    await addProfile(uid, { displayName, email, photoURL });
-
-    console.log("active user: ", uid);
-  } else {
-    // User is signed out
-    // const authPage = "login-modal.html";
-    // btn_explore.setAttribute("href", authPage);
-    // btn_showcase.setAttribute("href", authPage);
-    // btn_list_space.setAttribute("href", authPage);
-    uid = false;
-    console.log("No user logged!!");
-    console.log(uid);
-  }
+const logOutBtn = document.querySelectorAll(".logOutBtn");
+logOutBtn.forEach((logout) => {
+  logout.addEventListener("click", async () => {
+    await loggingOut();
+  });
 });
 
+console.log("hello from index.js");
+
+// User state (logged In or Logged Out)/////////////
+let uid;
+async function userStatus() {
+  uid = await userState();
+  console.log("This is the uid!", uid);
+}
+userStatus();
+/////////////////////////////////////////////
+
+// Menu
+const menuProfile = document.querySelector(".profile-wrapper");
+const menuButton = document.querySelectorAll(".menu-button");
+menuButton.forEach((menu) => {
+  menu.addEventListener("click", (e) => {
+    if (!uid) {
+      window.location.href = "/login-modal.html";
+    } else {
+      menuProfile.classList.toggle("hideMenu");
+    }
+  });
+});
+
+////////////////////////////////////////////////////////////////
+
+// const userState = onAuthStateChanged(auth, async (user) => {
+//   if (user) {
+//     uid = user.uid;
+
+//     // todo fix this later
+//     localStorage.setItem("uid", uid);
+
+//     // merges details or creates a new one in USERS Collection
+//     const { displayName, email, photoURL } = user;
+//     await addProfile(uid, { displayName, email, photoURL });
+
+//     console.log("active user: ", uid);
+//   } else {
+//     uid = false;
+//     console.log("No user logged!!");
+//     console.log(uid);
+//   }
+// });
 
 addOfflineSupport();
-
-
-// btn_geo.addEventListener("click", whereAmI);
 
 // BUTTON LINKS
 const btn_profile = document.querySelector(".btn-profile");
 const btn_links = document.querySelectorAll(".link-btn");
+const desktop_profile_menu = document.querySelector(".desktop-profile");
 
 const moveTo = function (link) {
   window.location.href = `/${link}.html`;
 };
+
+btn_profile.addEventListener("click", () => {
+  if (!uid) {
+    window.location.href = "/login-modal.html";
+  } else {
+    desktop_profile_menu.classList.toggle("scaleMenu");
+  }
+});
+
+window.addEventListener("resize", () => {
+  const win = window.matchMedia("(max-width: 650px)");
+  if (win.matches) {
+    desktop_profile_menu.classList.remove("scaleMenu");
+  }
+});
 
 btn_links.forEach((btn) => {
   btn.addEventListener("click", (e) => {
