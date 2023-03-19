@@ -3,6 +3,12 @@ import "/styles/property.css";
 // import { DateRangePicker } from "vanillajs-datepicker";
 // import "vanillajs-datepicker/css/datepicker.css";
 
+
+// modules
+import { addOfflineSupport } from "../modules/offline";
+
+
+
 // import queries
 import { propertyFuncion } from "../query/propertylist.js";
 import { tagnameToInfo } from "../utility/tagnameToInfo.js";
@@ -35,6 +41,8 @@ init();
 async function init() {
   // validate url and selected tabs
   validateURL();
+
+  addOfflineSupport();
 
   // load data in the website from database
   const propertyInfo = await showPropertyDetails();
