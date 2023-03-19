@@ -30,6 +30,11 @@
     margin-right: 1.5rem;
     overflow: auto;
     white-space: nowrap;
+
+}
+
+.types-of-spaces::-webkit-scrollbar {
+    display: none;
 }
 
 .types-of-spaces label {
@@ -45,8 +50,10 @@
     gap: .5rem;
 }
 
-.types-of-spaces i {
-    font-size: var(--icon-size);
+.types-of-spaces .explore-spaces-svg {
+    /* font-size: var(--icon-size); */
+    height: 4rem;
+    width: 4rem;
 }
 
 .types-of-spaces-title {
@@ -85,6 +92,10 @@
 
 .explore-search-field i {
     font-size: var(--tagline-font-size);
+    color: var(--body-background-color);
+    border-radius: var(--explore-filter-border-r);
+    padding: 0.5rem;
+    background-color: var(--text-color);
 }
 
 /* additional filter */
@@ -103,6 +114,10 @@
 }
 
 /* Heading styles */
+
+.price-range-input input, .distance-range-input input {
+    width: 100%;
+} 
 
 .additional-title {
     font-size: 1.5rem;

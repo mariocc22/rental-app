@@ -7,28 +7,31 @@
 
 /* Variables */
 :root {
-  --body-background-color: #101010;
-  --top-elements-padding: 1rem;
-  --text-color: #f8f8f8;
-  --header-height: 3.5rem;
-  --h1-font-size: 3rem;
-  --h2-font-size: 2.125rem;
-  --img-border-radius: 0.5rem;
-  --explore-text-color: #a98aff;
-  --tagline-font-size: 1.25rem;
-  --icon-size: 3rem;
-  --icon-text-size: 1rem;
-  --search-input-field-height: 4rem;
-  --listmyspace-button-color: #ffe45a;
-  --secondary-text-dm: #717171;
-  --tertiary-text-dm: #9e9e9e;
-  --base-size: 1rem;
-  --padding-0: 0;
-  --padding-2: 0.5rem;
-  --padding-3: 0.75rem;
-  --border-radius-base: 0.5rem;
-  --icon-size-sm: 1.5rem;
-  --fw-normal: 400;
+    --body-background-color: #101010;
+    --top-elements-padding: 1rem;
+    --text-color: #f8f8f8;
+    --header-height: 3.5rem;
+    --h1-font-size: 3rem;
+    --h2-font-size: 2.125rem;
+    --img-border-radius: .5rem;
+    --explore-text-color: #a98aff;
+    --tagline-font-size: 1.25rem;
+    --icon-size: 3rem;
+    --icon-text-size: 1rem;
+    --search-input-field-height: 4rem;
+    --listmyspace-button-color: #FFE45A;
+    --secondary-text-dm: #717171;
+    --tertiary-text-dm:#9e9e9e;
+    --base-size: 1rem;
+
+    --padding-0: 0;
+    --padding-2: 0.5rem;
+    --padding-3: 0.75rem;
+
+    --border-radius-base: 0.5rem;
+    --explore-filter-border-r: 0.25rem;
+    --icon-size-sm: 1.5rem;
+    --fw-normal: 400;
 }
 
 /* Common Styles for all pages */
@@ -81,7 +84,7 @@ header {
 }
 
 header .index-nav i {
-  font-size: 2rem;
+    font-size: 1.25rem;
 }
 
 .index-nav button {
