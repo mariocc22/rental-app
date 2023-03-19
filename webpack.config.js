@@ -4,6 +4,10 @@ const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const { GenerateSW } = require('workbox-webpack-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+
+// versioning to cache bust pwa
+const version = new Date().getTime();
 
 const extendPlugins = [];
  
@@ -11,6 +15,7 @@ if( process.env.NODE_ENV === 'production') {
   extendPlugins.push( new GenerateSW({
     skipWaiting: true,
     maximumFileSizeToCacheInBytes: 15 * 1024 * 1024, // Increase limit to 15MB
+    clientsClaim: true
   }));
 
   extendPlugins.push(
@@ -77,6 +82,25 @@ if( process.env.NODE_ENV === 'production') {
       ],
     })
   );
+
+  extendPlugins.push(
+    new WebpackManifestPlugin({
+    fileName: 'asset-manifest.json',
+    publicPath: '/',
+    generate: (seed, files) => {
+      const manifestFiles = files.reduce((manifest, file) => {
+        manifest[file.name] = file.path;
+        return manifest;
+      }, seed);
+
+      // Set cache busting strategies for the generated files
+      manifestFiles['sw.js'] += `?v=${version}`;
+      manifestFiles['index.html'] += `?v=${version}`;
+      manifestFiles['manifest.json'] += `?v=${version}`;
+      
+      return manifestFiles;
+    },
+  }))
 }
 
 module.exports = {
