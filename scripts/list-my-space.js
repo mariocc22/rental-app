@@ -26,9 +26,8 @@ import { calendarBook } from "../utility/datePicker.js";
 import * as L from "../node_modules/leaflet/dist/leaflet.js";
 
 // modules
-// This code disables our changes in List My Space
-// import { addOfflineSupport } from "../modules/offline";
-// addOfflineSupport();
+import { addOfflineSupport } from "../modules/offline";
+addOfflineSupport();
 
 // Geolocation
 import { whereAmI, getPosition } from "../modules/geolocation.js";
