@@ -375,6 +375,7 @@ async function displayProperties() {
     const propertyInfo = await propertyFuncion(propertyId);
     if (propertyInfo) {
       const propertyObject = {
+        imgs: propertyInfo?.media,
         img:
           propertyInfo?.media[0] || "https://picsum.photos/1200/500?random=1",
         title: propertyInfo.propertytitle,
@@ -391,23 +392,54 @@ async function displayProperties() {
 
 // function to populate list inside html script
 function populateList(listContainer, propertyObj) {
+
+  console.log(propertyObj);
+
+  let imgsString = "";
+
+  const imgs = propertyObj.imgs;
+  imgs.forEach((imgLink, idx) => {
+    imgsString += `<div class="img-wrapper img-wrapper-${idx+1}" style="background-image: url(${imgLink});">
+    </div>`;
+  });
+
   const string = `<li>
-        <section>
-            <a href="/property.html?propertyId=${propertyObj.propertyId}#customize">
-                <img src="${propertyObj.img}" alt="">
-            </a>
-            <div class="space-details">
+        <section class="cards">
+          <div class="suggested-space">
+
+            <div class="img-container">
+              ${imgsString}
+              <div class="price">
+                <p>CAD ${propertyObj.price} / Day</p>
+              </div>
+            </div>
+
+            <div class="title-rating-wrapper">
+              <p class="space-title">
                 <a href="/property.html?propertyId=${propertyObj.propertyId}">
-                    <div class="space-name">${propertyObj.title}</div>
+                  <div class="space-name">${propertyObj.title}</div>
                 </a>
-                <p class="space-price">CAD ${propertyObj.price}</p>
+              </p>
+
+              <div class="space-rating">
+                <i class="fa-solid fa-star"></i>
+                <p class="rating">4.5</p>
+              </div>
             </div>
-            <div class="space-location">
-                <p>${propertyObj.location}</p>
-                <p class="space-rating">${propertyObj.rating}</p>
-            </div>
+            <p class="space-location">
+              ${propertyObj.location}
+            </p>
+          </div>
         </section>
     </li>`;
 
   listContainer.innerHTML += string;
+
+
+
+
+
+
+
+
 }
