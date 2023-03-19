@@ -35,28 +35,33 @@
         "equipments": [
             {
                 "name": "Camera",
-                "svg": "camera.svg",
+                "svg": "Camera.svg",
                 "tagname": "photography-equipments-camera"
             },
             {
                 "name": "Lens",
-                "svg": "lens.svg",
+                "svg": "Lens.svg",
                 "tagname": "photography-equipments-lens"
             },
             {
-                "name": "Backdrop",
-                "svg": "Backdrop.svg",
-                "tagname": "photography-equipments-backdrop"
+                "name": "Light Shapers",
+                "svg": "Umbrella.svg",
+                "tagname": "photography-equipments-light-shapers"
             },
             {
-                "name": "Flashlight",
-                "svg": "flashlight.svg",
+                "name": "Flashlight and Mount",
+                "svg": "Ceiling Mount.svg",
                 "tagname": "photography-equipments-flashlight"
             },
             {
                 "name": "Tripods",
-                "svg": "tripods.svg",
+                "svg": "Tripod.svg",
                 "tagname": "photography-equipments-tripods"
+            },
+            {
+                "name": "Other",
+                "svg": "Other.svg",
+                "tagname": "photography-equipments-other"
             }
         ],
         "amenities": [

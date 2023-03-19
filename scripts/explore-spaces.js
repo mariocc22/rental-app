@@ -293,7 +293,7 @@ function loadAllTags(activity) {
             <input type="checkbox" id="${tagInfo.tagname}" name="props" value="${tagInfo.name}">
             <label for="${tagInfo.tagname}">
                 <span>
-                    <i class="fa fa-camera"></i>
+                    <img src='../assets/svg-icons/${tagInfo.svg}'>
                     ${tagInfo.name}
                 </span>
             </label>
@@ -313,7 +313,6 @@ function loadAllTags(activity) {
             <input type="checkbox" id="${tagInfo.tagname}" name="props" value="${tagInfo.name}">
             <label for="${tagInfo.tagname}">
                 <span>
-                    <i class="fa fa-camera"></i>
                     ${tagInfo.name}
                 </span>
             </label>
@@ -404,33 +403,32 @@ function populateList(listContainer, propertyObj) {
   });
 
   const string = `<li>
+      <a href='/property.html?propertyId=${propertyObj.propertyId}#customize'>
         <section class="cards">
           <div class="suggested-space">
-
             <div class="img-container">
               ${imgsString}
-              <div class="price">
-                <p>CAD ${propertyObj.price} / Day</p>
-              </div>
             </div>
-
-            <div class="title-rating-wrapper">
-              <p class="space-title">
-                <a href="/property.html?propertyId=${propertyObj.propertyId}">
-                  <div class="space-name">${propertyObj.title}</div>
-                </a>
-              </p>
-
-              <div class="space-rating">
-                <i class="fa-solid fa-star"></i>
-                <p class="rating">4.5</p>
-              </div>
+            <div class="price">
+              <p>CAD ${propertyObj.price} / Day</p>
             </div>
-            <p class="space-location">
-              ${propertyObj.location}
-            </p>
           </div>
+
+          <div class="title-rating-wrapper">
+            <p class="space-name">${propertyObj.title}</p>
+
+            <div class="space-rating">
+              <p class="rating">4.5</p>
+            </div>
+          </div>
+          
+          <p class="space-location">
+            ${propertyObj.location}
+          </p>
+
         </section>
+      </a>  
+
     </li>`;
 
   listContainer.innerHTML += string;

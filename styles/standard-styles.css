@@ -46,6 +46,8 @@
 
   /* Border Radius */
   --border-radius-base: 0.5rem;
+  --explore-filter-border-r: 0.25rem;
+
 
   /* Others */
   --header-height: 3.5rem;
@@ -60,10 +62,7 @@
   box-sizing: border-box;
 }
 
-h1,
-h2,
-h3,
-h4 {
+h1 {
   font-family: "Anton", sans-serif;
 }
 
@@ -575,23 +574,6 @@ input.input-number {
 
 .like-button:checked::before {
   color: var(--accent-showcase-lm);
-}
-
-.price {
-  background-color: var(--primary-white);
-  position: absolute;
-
-  bottom: 1rem;
-  right: 1rem;
-
-  color: var(--primary-black);
-  padding: var(--padding-2);
-  border-radius: var(--border-radius-base);
-}
-
-.price p {
-  letter-spacing: 1px;
-  font-weight: var(--fw-bold);
 }
 
 .title-rating-wrapper {
