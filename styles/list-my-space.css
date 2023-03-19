@@ -1,6 +1,11 @@
 @import url("../node_modules/font-awesome/css/font-awesome.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
+/* Header */
+.site-header {
+  display: none;
+}
+
 /* Pages */
 .page {
   min-height: 100vh;
@@ -560,7 +565,9 @@ button#upvideobtn {
   display: none;
 }
 
-button#nextcamera {
+button#nextcamera,
+button#nextpage7to9,
+button#nextpage10to11 {
   padding: 0.75rem;
   font-weight: bold;
   border-radius: 0.5rem;
@@ -578,7 +585,8 @@ button#nextcamera {
   display: grid;
   gap: 1rem;
 }
-button#backToPhotos {
+button#backToPhotos,
+button.blackbutton {
   padding: 0.75rem;
   font-size: 1rem;
   font-weight: bold;
@@ -1050,7 +1058,228 @@ fieldset {
   background-color: var(--accent-list-space-dm);
   border: none;
 }
+
+#map {
+  width: 100%;
+  height: 15rem;
+}
+
 /* MEDIA QUERIES====================== */
+@media screen and (min-width: 800px) {
+  .site-header {
+    display: block;
+  }
+
+  /* DESKTOP LAYOUT */
+  /* PAGE 1 - 3 */
+  .wrapper-page-1-3 {
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 1100px;
+    margin: auto;
+  }
+
+  .wrapper-page-1-3 #page1 {
+    flex: 1 0 40%;
+  }
+
+  .wrapper-page-1-3 #page3 {
+    flex: 1 0 55%;
+  }
+
+  .wrapper-page-1-3 .progressDesktop {
+    flex: 1 0 90%;
+    margin: 2rem 1rem;
+  }
+
+  /* PAGE 4 - 5 - 6 */
+  .wrapper-page-4-5-6 {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    max-width: 1100px;
+    margin: auto;
+  }
+
+  .wrapper-page-4-5-6 #page4 {
+    grid-column: 1 / 2;
+    grid-row: 2/3;
+  }
+
+  .wrapper-page-4-5-6 #page5,
+  .wrapper-page-4-5-6 #page6 {
+    grid-column: 2 /3;
+    grid-row: 2/3;
+  }
+
+  .wrapper-page-4-5-6 .progressDesktop-4-5-6 {
+    grid-column: 1/-1;
+    grid-row: 1/2;
+  }
+
+  #map {
+    width: 100%;
+    max-height: 23rem;
+    height: 23rem;
+  }
+
+  .page6 .navigation {
+    margin-top: 1rem;
+  }
+
+  /* PAGE 7 */
+  .page7 {
+    display: flex;
+    flex-flow: row-reverse wrap;
+    max-width: 1100px;
+    margin: auto;
+  }
+
+  .page7 .inner-wrapper-7 {
+    flex: 1 0 45%;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+  }
+
+  .page7 .navigation {
+    flex: 1 0 50%;
+    align-self: flex-start;
+    width: fit-content;
+    margin: 0;
+    max-width: 50%;
+  }
+
+  /* PAGE 9*/
+  #equipmentform {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  #equipmentform .div-equipment {
+    flex: 1 0 30%;
+  }
+
+  #page9,
+  #page10,
+  #page11 {
+    max-width: 1100px;
+    margin: auto;
+  }
+
+  .page9 .navigation {
+    margin-left: auto;
+    width: 50%;
+  }
+
+  /* PAGE 10 */
+  #formpricespace {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    max-width: 700px;
+    margin: auto;
+    margin-top: 10rem;
+  }
+
+  #formpricespace label {
+    flex: 1 0 45%;
+  }
+
+  .page10 .navigation {
+    margin-left: auto;
+    width: 50%;
+    margin-top: 5rem;
+  }
+
+  /* PAGE 11*/
+  #priceform {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  .wrapper-priceform {
+    flex: 1 0 65%;
+    order: 3;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
+    align-content: flex-start;
+  }
+
+  .wrapper-priceform label {
+    flex: 0 0 45%;
+    margin: 0;
+    display: flex;
+  }
+
+  .prices-time-wrapper {
+    order: 2;
+    flex: 1 0 30%;
+  }
+
+  .moreinfo {
+    flex: 1 0 100%;
+    order: 1;
+  }
+
+  .page11 .navigation {
+    margin-left: auto;
+    width: 50%;
+    margin-top: 5rem;
+  }
+
+  /* PAGE 11*/
+  .wrapper-bundle {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 1fr;
+    align-items: baseline;
+    gap: 2rem;
+  }
+
+  .wrapper-bundle img {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .wrapper-bundle .wrapper-text-bundle {
+    grid-column: 2;
+    text-align: left;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  /* PAGE 12*/
+  .page12,
+  .page13 {
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  #reviewform {
+    width: 800px;
+    margin: auto;
+  }
+
+  .page12 .navigation,
+  .page13 .navigation {
+    width: 800px;
+    margin: auto;
+    display: flex;
+    flex-flow: row-reverse wrap;
+  }
+
+  .page12 .navigation *,
+  .page13 .navigation * {
+    flex: 1 0 45%;
+  }
+  .wrap-img-page12 {
+    height: 30rem;
+  }
+}
 /**************************************/
 /* View Port Size= Small */
 /**************************************/
