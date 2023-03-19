@@ -1,4 +1,7 @@
 import "/styles/profile.css";
 import "/styles/standard-styles.css";
 
-("use strict");
+// modules
+import { addOfflineSupport } from "../modules/offline";
+
+addOfflineSupport();

@@ -4,12 +4,16 @@ import "/styles/my-bookings.css";
 // import queries
 import { getMyBookings, getBookingInfo} from "../query/booking";
 
+// modules
+import { addOfflineSupport } from "../modules/offline";
 
 init();
 
 
 // =========================================== Functions and parsers
 async function init() {
+
+    addOfflineSupport();
 
     // get all booking ids of the user
     const bookingIds = await getAllBookingIds();

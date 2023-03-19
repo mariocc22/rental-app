@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>List my Space</title>
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>List my Space</title>
+</head>
+
+<body>
+  <main>
     <div class="wrap-main-content page" id="page1">
       <div class="list-space-wrapper page1">
         <!-- main content of the page -->
@@ -39,55 +42,29 @@
         </div>
         <div class="list-space-footer">
           <h2>What kind of space do you offer?</h2>
-          <div
-            class="list-space-categories-buttons-wrapper div-buttons"
-          >
+          <div class="list-space-categories-buttons-wrapper div-buttons">
             <button id="indoorButton" class="button indoorButton">
-              <img
-                class="filter-white"
-                src="/assets/svg-icons/Indoor.svg"
-                alt="Indoor icon"
-              />
+              <img class="filter-white" src="/assets/svg-icons/Indoor.svg" alt="Indoor icon" />
               Indoor
             </button>
             <button id="outdoorButton" class="button">
-              <img
-                class="filter-white"
-                src="/assets/svg-icons/Outdoor.svg"
-                alt="Outdoor icon"
-              />
+              <img class="filter-white" src="/assets/svg-icons/Outdoor.svg" alt="Outdoor icon" />
               Outdoor
             </button>
             <button id="houseButton" class="button">
-              <img
-                class="filter-white"
-                src="/assets/svg-icons/House.svg"
-                alt="House icon"
-              />
+              <img class="filter-white" src="/assets/svg-icons/House.svg" alt="House icon" />
               House
             </button>
             <button id="studioButton" class="button">
-              <img
-                class="filter-white"
-                src="/assets/svg-icons/Studio.svg"
-                alt="Studio icon"
-              />
+              <img class="filter-white" src="/assets/svg-icons/Studio.svg" alt="Studio icon" />
               Studio
             </button>
             <button id="beachButton" class="button">
-              <img
-                class="filter-white"
-                src="/assets/svg-icons/House.svg"
-                alt="House icon"
-              />
+              <img class="filter-white" src="/assets/svg-icons/House.svg" alt="House icon" />
               Beach House
             </button>
             <button id="otherButton" class="button">
-              <img
-                class="filter-white"
-                src="/assets/svg-icons/Other.svg"
-                alt="Other icon"
-              />
+              <img class="filter-white" src="/assets/svg-icons/Other.svg" alt="Other icon" />
               Other
             </button>
           </div>
@@ -149,72 +126,34 @@
           <form id="formAddress">
             <label>
               <!-- Street: -->
-              <input
-                type="text"
-                id="street"
-                name="street"
-                placeholder="Street"
-                required
-              />
+              <input type="text" id="street" name="street" placeholder="Street" required />
             </label>
             <label>
-              <input
-                type="number"
-                pattern="[0-9]*"
-                id="flatroom"
-                placeholder="Plot/apartment no."
-              />
+              <input type="number" pattern="[0-9]*" id="flatroom" placeholder="Plot/apartment no." />
             </label>
             <label>
               <!-- City: -->
-              <input
-                type="text"
-                id="city"
-                name="city"
-                placeholder="City"
-                required
-              />
+              <input type="text" id="city" name="city" placeholder="City" required />
             </label>
             <label>
               <!-- State: -->
-              <input
-                type="text"
-                id="state"
-                name="state"
-                placeholder="State"
-                required
-              />
+              <input type="text" id="state" name="state" placeholder="State" required />
             </label>
             <label>
               <!-- Postal Code: -->
-              <input
-                type="text"
-                id="postalcode"
-                name="postalcode"
-                placeholder="Postal Code"
-                required
-              />
+              <input type="text" id="postalcode" name="postalcode" placeholder="Postal Code" required />
             </label>
             <label>
               <!-- Country: -->
-              <input
-                type="text"
-                id="country"
-                name="country"
-                placeholder="Country"
-                required
-              />
+              <input type="text" id="country" name="country" placeholder="Country" required />
             </label>
           </form>
-          <div
-            id="map"
-            style="
+          <div id="map" style="
               width: 100%;
               height: 15rem;
               background: transparent;
               border-radius: 0.5rem;
-            "
-          ></div>
+            "></div>
         </div>
         <div class="navigation">
           <a id="addressvalidation" href="#page4" class="yellowbutton">Next</a>
@@ -231,21 +170,13 @@
           <div class="div-buttons">
             <button id="addphoto" class="button addPhotoButton button-photos">
               <a href="#page6" class="yellowbutton">
-                <img
-                  class="filter-white"
-                  src="../assets/svg-icons/browselm.svg"
-                  alt="camera icon"
-                />
+                <img class="filter-white" src="../assets/svg-icons/browselm.svg" alt="camera icon" />
                 Select Photos
               </a>
             </button>
             <button id="takephoto" class="button takePhotoButton button-photos">
               <a href="#page5" class="blackbutton">
-                <img
-                  class="filter-white"
-                  src="../assets/svg-icons/Camera.svg"
-                  alt=""
-                />
+                <img class="filter-white" src="../assets/svg-icons/Camera.svg" alt="" />
                 Take Photos
               </a>
             </button>
@@ -292,11 +223,7 @@
           <h2>Select your photos and featured image</h2>
           <div class="div-image">
             <div class="image-container" id="imageSelect"></div>
-            <img
-              class="filter-white add-image-icon"
-              src="../assets/svg-icons/browsedm.svg"
-              alt="camera icon"
-            />
+            <img class="filter-white add-image-icon" src="../assets/svg-icons/browsedm.svg" alt="camera icon" />
             <label id="upprogess"></label>
           </div>
         </div>
@@ -316,39 +243,20 @@
         <div class="inner-wrapper-7">
           <h2>Specify your space's amenities</h2>
           <div class="tags-wrapper">
-            <button
-              class="tag-amenity-wrapper"
-              data-tagname="photography-amenities-washroom"
-              id="washroombtn"
-            >
+            <button class="tag-amenity-wrapper" data-tagname="photography-amenities-washroom" id="washroombtn">
               Washroom
             </button>
-            <button
-              class="tag-amenity-wrapper"
-              data-tagname="photography-amenities-wifi"
-              id="wifibtn"
-            >
+            <button class="tag-amenity-wrapper" data-tagname="photography-amenities-wifi" id="wifibtn">
               WiFi
             </button>
-            <button
-              class="tag-amenity-wrapper"
-              data-tagname="photography-amenities-elevator"
-              id="elevatorbtn"
-            >
+            <button class="tag-amenity-wrapper" data-tagname="photography-amenities-elevator" id="elevatorbtn">
               Elevator
             </button>
-            <button
-              class="tag-amenity-wrapper"
-              data-tagname="photography-amenities-parking"
-              id="parkingbtn"
-            >
+            <button class="tag-amenity-wrapper" data-tagname="photography-amenities-parking" id="parkingbtn">
               Parking
             </button>
-            <button
-              class="tag-amenity-wrapper"
-              data-tagname="photography-amenities-air-conditoner"
-              id="airconditionerbtn"
-            >
+            <button class="tag-amenity-wrapper" data-tagname="photography-amenities-air-conditoner"
+              id="airconditionerbtn">
               Air-conditioner
             </button>
             <!-- ///////////////// PENDING TO ADD VARIABLE!!! -->
@@ -373,23 +281,12 @@
           <form id="descriptionform">
             <label>
               <!-- Title: -->
-              <input
-                type="text"
-                id="propertytitle"
-                placeholder="Title"
-                required
-              />
+              <input type="text" id="propertytitle" placeholder="Title" required />
             </label>
             <label>
               <!-- Description: -->
-              <textarea
-                class="textarea-description"
-                cols="30"
-                rows="5"
-                type="text"
-                id="propertydescription"
-                placeholder="Description"
-              ></textarea>
+              <textarea class="textarea-description" cols="30" rows="5" type="text" id="propertydescription"
+                placeholder="Description"></textarea>
             </label>
           </form>
         </div>
@@ -423,24 +320,14 @@
               <label>
                 Set the price per session
                 <fieldset data-quantity>
-                  <input
-                    type="number"
-                    data-tagname="photography-equipments-camera"
-                    name="photography-equipments-camera"
-                    pattern="[0-9]+"
-                    id="cameravalue"
-                    min="0"
-                    value="1"
-                  />
+                  <input type="number" data-tagname="photography-equipments-camera" name="photography-equipments-camera"
+                    pattern="[0-9]+" id="cameravalue" min="0" value="1" />
                 </fieldset>
               </label>
               <details>
                 <summary>Add description</summary>
-                <textarea
-                  placeholder="Insert text"
-                  name="photography-equipments-camera-desc"
-                  id="cameradesc"
-                ></textarea>
+                <textarea placeholder="Insert text" name="photography-equipments-camera-desc"
+                  id="cameradesc"></textarea>
               </details>
             </div>
             <div class="div-equipment">
@@ -451,24 +338,13 @@
               <label>
                 Set the price per session
                 <fieldset data-quantity>
-                  <input
-                    type="number"
-                    data-tagname="photography-equipments-lens"
-                    name="photography-equipments-lens"
-                    pattern="[0-9]+"
-                    id="lensvalue"
-                    min="0"
-                    value="1"
-                  />
+                  <input type="number" data-tagname="photography-equipments-lens" name="photography-equipments-lens"
+                    pattern="[0-9]+" id="lensvalue" min="0" value="1" />
                 </fieldset>
               </label>
               <details>
                 <summary>Add description</summary>
-                <textarea
-                  placeholder="Insert text"
-                  name="photography-equipments-lens-desc"
-                  id="lensdesc"
-                ></textarea>
+                <textarea placeholder="Insert text" name="photography-equipments-lens-desc" id="lensdesc"></textarea>
               </details>
             </div>
             <div class="div-equipment">
@@ -479,55 +355,32 @@
               <label>
                 Set the price per session
                 <fieldset data-quantity>
-                  <input
-                    type="number"
-                    data-tagname="photography-equipments-backdrop"
-                    name="photography-equipments-backdrop"
-                    pattern="[0-9]+"
-                    id="backdropvalue"
-                    min="0"
-                    value="1"
-                  />
+                  <input type="number" data-tagname="photography-equipments-backdrop"
+                    name="photography-equipments-backdrop" pattern="[0-9]+" id="backdropvalue" min="0" value="1" />
                 </fieldset>
               </label>
               <details>
                 <summary>Add description</summary>
-                <textarea
-                  placeholder="Insert text"
-                  name="photography-equipments-backdrop-desc"
-                  id="backdropdesc"
-                ></textarea>
+                <textarea placeholder="Insert text" name="photography-equipments-backdrop-desc"
+                  id="backdropdesc"></textarea>
               </details>
             </div>
             <div class="div-equipment">
               <div class="wrap-title">
-                <img
-                  src="/assets/svg-icons/Ceiling Mount.svg"
-                  alt="Flash Lens"
-                />
+                <img src="/assets/svg-icons/Ceiling Mount.svg" alt="Flash Lens" />
                 <p>Flash Light</p>
               </div>
               <label>
                 Set the price per session
                 <fieldset data-quantity>
-                  <input
-                    type="number"
-                    data-tagname="photography-equipments-flashlight"
-                    name="photography-equipments-flashlight"
-                    pattern="[0-9]+"
-                    id="flashlightvalue"
-                    min="0"
-                    value="1"
-                  />
+                  <input type="number" data-tagname="photography-equipments-flashlight"
+                    name="photography-equipments-flashlight" pattern="[0-9]+" id="flashlightvalue" min="0" value="1" />
                 </fieldset>
               </label>
               <details>
                 <summary>Add description</summary>
-                <textarea
-                  placeholder="Insert text"
-                  name="photography-equipments-flashlight-desc"
-                  id="flashlightdesc"
-                ></textarea>
+                <textarea placeholder="Insert text" name="photography-equipments-flashlight-desc"
+                  id="flashlightdesc"></textarea>
               </details>
             </div>
             <div class="div-equipment">
@@ -538,32 +391,20 @@
               <label>
                 Set the price per session
                 <fieldset data-quantity>
-                  <input
-                    type="number"
-                    data-tagname="photography-equipments-tripods"
-                    name="photography-equipments-tripods"
-                    pattern="[0-9]+"
-                    id="tripodsvalue"
-                    min="0"
-                    value="1"
-                  />
+                  <input type="number" data-tagname="photography-equipments-tripods"
+                    name="photography-equipments-tripods" pattern="[0-9]+" id="tripodsvalue" min="0" value="1" />
                 </fieldset>
               </label>
               <details>
                 <summary>Add description</summary>
-                <textarea
-                  placeholder="Insert text"
-                  name="photography-equipments-tripods-desc"
-                  id="tripodsdesc"
-                ></textarea>
+                <textarea placeholder="Insert text" name="photography-equipments-tripods-desc"
+                  id="tripodsdesc"></textarea>
               </details>
             </div>
           </form>
         </div>
         <div class="navigation">
-          <a href="#page10" id="equipmentnextbutton" class="yellowbutton"
-            >Next</a
-          >
+          <a href="#page10" id="equipmentnextbutton" class="yellowbutton">Next</a>
           <a href="#page7" class="blackbutton">Back</a>
         </div>
       </div>
@@ -581,18 +422,11 @@
                 for your space
               </h2>
               <fieldset data-quantity>
-                <input
-                  type="number"
-                  name="quantity"
-                  pattern="[0-9]+"
-                  id="pricevalue"
-                  min="0"
-                  value="0"
-                />
+                <input type="number" name="quantity" pattern="[0-9]+" id="pricevalue" min="0" value="0" />
               </fieldset>
             </label>
-            <label
-              ><h2>
+            <label>
+              <h2>
                 Select the <br />
                 availability Dates
               </h2>
@@ -614,131 +448,89 @@
         <h2>Choose to offer custom BUNDLES to the artist!</h2>
 
         <form id="priceform" class=">
-          <div class="priceform-top-wrapper">
-            <div class="moreinfo">
-              <details>
-                <summary>
-                  <p>What are BUNDLES?</p>
-                </summary>
-                <img src="../assets/svg-icons/bundleA1dm.svg" alt="" />
-                <p>
-                  Bundles are custom packages that you can offer to Artists!
-                </p>
-                <p>
-                  Artist can either choose to pay for the equipment individually
-                </p>
-                <p>OR</p>
-                <p>choose a bundle for a better deal!</p>
-                <p>
-                  With Bundles, you can earn more by combining offers and
-                  allowing the artists to book the space for a longer period of
-                  days.
-                </p>
-                <p>You always have an option to skip this process.</p>
-              </details>
+          <div class=" priceform-top-wrapper">
+          <div class="moreinfo">
+            <details>
+              <summary>
+                <p>What are BUNDLES?</p>
+              </summary>
+              <img src="../assets/svg-icons/bundleA1dm.svg" alt="" />
+              <p>
+                Bundles are custom packages that you can offer to Artists!
+              </p>
+              <p>
+                Artist can either choose to pay for the equipment individually
+              </p>
+              <p>OR</p>
+              <p>choose a bundle for a better deal!</p>
+              <p>
+                With Bundles, you can earn more by combining offers and
+                allowing the artists to book the space for a longer period of
+                days.
+              </p>
+              <p>You always have an option to skip this process.</p>
+            </details>
+          </div>
+          <label>
+            <div class="dropdown-equipment">
+              <img src="/assets/svg-icons/Camera.svg" alt="Camera" />
+              <p>Camera</p>
+              <input class="checkbox" type="checkbox" name="checkbox" id="cameracheckboxvalue" />
             </div>
-            <label>
-              <div class="dropdown-equipment">
-                <img src="/assets/svg-icons/Camera.svg" alt="Camera" />
-                <p>Camera</p>
-                <input
-                  class="checkbox"
-                  type="checkbox"
-                  name="checkbox"
-                  id="cameracheckboxvalue"
-                />
-              </div>
-            </label>
-            <label>
-              <div class="dropdown-equipment">
-                <img src="/assets/svg-icons/Lens.svg" alt="Lens" />
-                <p>Lens</p>
-                <input
-                  class="checkbox"
-                  type="checkbox"
-                  name="checkbox"
-                  id="lenscheckboxvalue"
-                />
-              </div>
-            </label>
-            <label>
-              <div class="dropdown-equipment">
-                <img src="/assets/svg-icons/Umbrella.svg" alt="Backdrop" />
-                <p>Light Shapers</p>
-                <input
-                  class="checkbox"
-                  type="checkbox"
-                  name="checkbox"
-                  id="backdropcheckboxvalue"
-                />
-              </div>
-            </label>
-            <label>
-              <div class="dropdown-equipment">
-                <img
-                  src="/assets/svg-icons/Ceiling Mount.svg"
-                  alt="Flash Light"
-                />
-                <p>Flash Lights</p>
-                <input
-                  class="checkbox"
-                  type="checkbox"
-                  name="checkbox"
-                  id="flashlightcheckboxvalue"
-                />
-              </div>
-            </label>
-            <label>
-              <div class="dropdown-equipment">
-                <img src="/assets/svg-icons/Tripod.svg" alt="Tripods" />
-                <p>Tripods</p>
-                <input
-                  class="checkbox"
-                  type="checkbox"
-                  name="checkbox"
-                  id="tripodscheckboxvalue"
-                />
-              </div>
-            </label>
-          </div>
-          <div class="prices-time-wrapper">
-            <label id="availableBundle">
-              <div class="bundles-setters">
-                Set time available for the bundle
-                <fieldset data-quantity>
-                  <input
-                    type="number"
-                    name="quantity"
-                    pattern="[0-9]+"
-                    id="bundlevalue"
-                    min="0"
-                    value="0"
-                  />
-                </fieldset>
-              </div>
-            </label>
-            <label id="pricelabel">
-              <div class="bundles-setters">
-                Set the price per session
-                <fieldset data-quantity>
-                  <input
-                    type="number"
-                    name="quantity"
-                    pattern="[0-9]+"
-                    id="bundlevalue"
-                    min="0"
-                    value="0"
-                  />
-                </fieldset>
-              </div>
-            </label>
-          </div>
-        </form>
-        <div class="navigation">
-          <a href="#page12" id="reviewfields" class="yellowbutton">Next</a>
-          <a href="#page10" class="blackbutton">Back</a>
-        </div>
+          </label>
+          <label>
+            <div class="dropdown-equipment">
+              <img src="/assets/svg-icons/Lens.svg" alt="Lens" />
+              <p>Lens</p>
+              <input class="checkbox" type="checkbox" name="checkbox" id="lenscheckboxvalue" />
+            </div>
+          </label>
+          <label>
+            <div class="dropdown-equipment">
+              <img src="/assets/svg-icons/Umbrella.svg" alt="Backdrop" />
+              <p>Light Shapers</p>
+              <input class="checkbox" type="checkbox" name="checkbox" id="backdropcheckboxvalue" />
+            </div>
+          </label>
+          <label>
+            <div class="dropdown-equipment">
+              <img src="/assets/svg-icons/Ceiling Mount.svg" alt="Flash Light" />
+              <p>Flash Lights</p>
+              <input class="checkbox" type="checkbox" name="checkbox" id="flashlightcheckboxvalue" />
+            </div>
+          </label>
+          <label>
+            <div class="dropdown-equipment">
+              <img src="/assets/svg-icons/Tripod.svg" alt="Tripods" />
+              <p>Tripods</p>
+              <input class="checkbox" type="checkbox" name="checkbox" id="tripodscheckboxvalue" />
+            </div>
+          </label>
       </div>
+      <div class="prices-time-wrapper">
+        <label id="availableBundle">
+          <div class="bundles-setters">
+            Set time available for the bundle
+            <fieldset data-quantity>
+              <input type="number" name="quantity" pattern="[0-9]+" id="bundlevalue" min="0" value="0" />
+            </fieldset>
+          </div>
+        </label>
+        <label id="pricelabel">
+          <div class="bundles-setters">
+            Set the price per session
+            <fieldset data-quantity>
+              <input type="number" name="quantity" pattern="[0-9]+" id="bundlevalue" min="0" value="0" />
+            </fieldset>
+          </div>
+        </label>
+      </div>
+      </form>
+      <div class="navigation">
+        <a href="#page12" id="reviewfields" class="yellowbutton">Next</a>
+        <a href="#page10" class="blackbutton">Back</a>
+      </div>
+    </div>
     </div>
 
     <div class="page" id="page12">
@@ -748,13 +540,7 @@
           <h2>Review your listing</h2>
           <div class="wrap-img-page12-container">
             <div class="wrap-img-page12">
-              <img
-                src=""
-                id="photolistmyspace"
-                alt="Space"
-                width="500"
-                height="600"
-              />
+              <img src="" id="photolistmyspace" alt="Space" width="500" height="600" />
             </div>
           </div>
           <form id="reviewform">
@@ -768,11 +554,7 @@
               <div class="header-textarea">
                 <label for="textarea">Description</label>
               </div>
-              <textarea
-                name="add name"
-                id="descriptionreview"
-                disable
-              ></textarea>
+              <textarea name="add name" id="descriptionreview" disable></textarea>
             </div>
             <div class="list-space-summary-text-wrapper">
               <div class="header-textarea">
@@ -802,11 +584,7 @@
               <div class="header-textarea">
                 <label for="textarea">Availability</label>
               </div>
-              <textarea
-                name="add name"
-                id="availabilityreview"
-                disable
-              ></textarea>
+              <textarea name="add name" id="availabilityreview" disable></textarea>
             </div>
             <div class="list-space-summary-text-wrapper">
               <div class="header-textarea">
@@ -833,5 +611,7 @@
         </div>
       </div>
     </div>
-  </body>
+  </main>
+</body>
+
 </html>

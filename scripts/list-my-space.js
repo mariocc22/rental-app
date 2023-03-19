@@ -24,6 +24,10 @@ import QuantityInput from "../utility/quantity.js";
 import { calendarBook } from "../utility/datePicker.js";
 import * as L from "../node_modules/leaflet/dist/leaflet.js";
 
+// modules
+import { addOfflineSupport } from "../modules/offline";
+addOfflineSupport();
+
 // Geolocation
 import { whereAmI, getPosition } from "../modules/geolocation.js";
 
