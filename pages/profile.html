@@ -11,116 +11,42 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <script src="script.js" defer></script>
-    <title>My Profile</title>
+    <title>Profile</title>
   </head>
   <body>
-    <div class="page profile-wrapper" id="page1">
-      <h1>My Profile</h1>
-      <div class="user-card">
-        <div class="user-picture">
-          <img
-            src="https://picsum.photos/1200/600/?random14"
-            alt="user profile picture"
-          />
-        </div>
-        <div class="user-card-info">
-          <h2>Vaibhav Malhotra</h2>
-          <p>on STAGE since 2023-01-01</p>
-          <p><a href="#page2">Edit profile</a></p>
-        </div>
-      </div>
-
-      <div class="user-links">
-        <div class="links-list">
+    <div class="profile-wrapper">
+      <div class="profile-header">
+        <nav class="profile-nav">
           <ul>
+            <!-- <li>
+              <button onclick="history.back()">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+            </li> -->
             <li>
-              <i class="fa-solid fa-cube"></i>
-              <span>Personal Information</span>
+              <button>
+                <i class="fa-solid fa-xmark"></i>
+              </button>
             </li>
           </ul>
-        </div>
-        <div class="links-list">
-          <ul>
-            <li><i class="fa-solid fa-cube"></i> <span>My Bookings</span></li>
-            <li><i class="fa-solid fa-cube"></i> <span>Saved Spaces</span></li>
-            <li><i class="fa-solid fa-cube"></i> <span>My Showcases</span></li>
-            <li><i class="fa-solid fa-cube"></i> <span>My Payments</span></li>
-          </ul>
-        </div>
-        <div class="links-list">
-          <ul>
-            <li><i class="fa-solid fa-cube"></i> <span>My Listings</span></li>
-            <li><i class="fa-solid fa-cube"></i> <span>My Hostings</span></li>
-            <li><i class="fa-solid fa-cube"></i> <span>My Revenue</span></li>
-          </ul>
-        </div>
-        <a class="logout" href="#">Log Out</a>
+        </nav>
       </div>
-    </div>
-    <div class="page personalInfo-wrapper" id="page2">
-      <div class="page2-wrapper">
-        <h1>Personal Information</h1>
-        <div class="fields-wrapper">
-          <div class="field-wrapper">
-            <div class="field-text">
-              <p>Legal Name</p>
-              <p>Vaibhav Malhotra</p>
-            </div>
-            <div class="field-edit">
-              <a href="#">Edit</a>
-            </div>
-          </div>
-          <div class="field-wrapper">
-            <div class="field-text">
-              <p>User Name</p>
-              <p>hotterwater</p>
-            </div>
-            <div class="field-edit">
-              <a href="#">Edit</a>
-            </div>
-          </div>
-          <div class="field-wrapper">
-            <div class="field-text">
-              <p>About</p>
-              <p>graphic designer</p>
-            </div>
-            <div class="field-edit">
-              <a href="#">Edit</a>
-            </div>
-          </div>
-          <div class="field-wrapper">
-            <div class="field-text">
-              <p>Verified Email Address</p>
-              <p>vaibhavmalhotr383@gmail.com</p>
-            </div>
-            <div class="field-edit">
-              <a href="#">Edit</a>
-            </div>
-          </div>
-          <div class="field-wrapper">
-            <div class="field-text">
-              <p>Address & Postal Code</p>
-              <p>
-                74229 ELWELL street, burnaby, <br />
-                british columbia, v5e 1l6
-              </p>
-            </div>
-            <div class="field-edit">
-              <a href="#">Edit</a>
-            </div>
-          </div>
-          <div class="field-wrapper">
-            <div class="field-text">
-              <p>Verified Cell Phone</p>
-              <p>+16040297580</p>
-            </div>
-            <div class="field-edit">
-              <a href="#">Edit</a>
-            </div>
-          </div>
+      <div class="profile-main">
+        <div class="top-main">
+          <h1>Vaibhav Malhotra</h1>
+          <p>Personal Information</p>
+          <p>My Bookings</p>
         </div>
-        <button class="update"><a href="#page1">Update</a></button>
+        <div class="middle-main">
+          <ul>
+            <li><a href="#">Explore Spaces</a></li>
+            <li><a href="#">List My Space</a></li>
+            <li><a href="#">Showcase</a></li>
+          </ul>
+        </div>
+        <div class="bottom-main">
+          <button id="logOutBtn">Log Out</button>
+        </div>
       </div>
     </div>
   </body>

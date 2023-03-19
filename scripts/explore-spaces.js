@@ -9,6 +9,9 @@ import { getCurrentPosition } from "../utility/getCurrentPosition.js";
 import { filterPlaces } from "../query/neo4jQueries.js";
 import { propertyFuncion } from "../query/propertylist.js";
 
+// modules
+import { addOfflineSupport } from "../modules/offline";
+
 // global variables for the file
 const params = new URLSearchParams(document.location.search);
 const activity = params.get("activity");
@@ -32,6 +35,8 @@ function init() {
 
   // ask user to turn on his coordinates
   allowLocationSharing();
+
+  addOfflineSupport();
 
   // register event listerners on the page
   registerFilterToggle();

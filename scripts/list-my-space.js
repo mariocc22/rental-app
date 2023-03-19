@@ -5,6 +5,7 @@ import "../node_modules/leaflet/dist/leaflet.css";
 import "/styles/common-styles.css";
 import { createProperty } from "/query/propertycreate.js";
 import { equipmentFormParser } from "../utility/equipmentFormParser.js";
+import { rightslide, leftslide, counter } from "../utility/imageSlider";
 import {
   input,
   UploadProcess,
@@ -23,8 +24,14 @@ import QuantityInput from "../utility/quantity.js";
 import { calendarBook } from "../utility/datePicker.js";
 import * as L from "../node_modules/leaflet/dist/leaflet.js";
 
+// modules
+import { addOfflineSupport } from "../modules/offline";
+addOfflineSupport();
+
 // Geolocation
 import { whereAmI, getPosition } from "../modules/geolocation.js";
+
+// General Listeners
 
 const allPages = document.querySelectorAll("div.page");
 allPages[0].style.display = "block";
@@ -288,6 +295,10 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
       // Capture the picture when the button is clicked
       captureButton.addEventListener("click", () => {
+        // const closeimg = document.getElementById("closeimg");
+        closeimg.style.display = "flex";
+        upvideobtn.style.display = "block";
+
         // Create a canvas element to capture the image
         const canvas = document.createElement("canvas");
         canvas.width = video.videoWidth;
@@ -318,7 +329,6 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         randomNumber = Math.floor(Math.random() * 100) + 1;
 
         const imgtaken = document.getElementById("imgtaken");
-        const closeimg = document.getElementById("closeimg");
 
         // imgtaken.classList.toggle('imageactive');
         imgtaken.classList.add("imageactive");
@@ -331,6 +341,8 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
         closeimg.addEventListener("click", () => {
           imgtaken.style.display = "none";
+          upvideobtn.style.display = "none";
+          nextvideo.classList.add("hide");
         });
       });
     })
@@ -351,6 +363,7 @@ const nextcamera = document.getElementById("nextcamera");
 const nextvideo = document.getElementById("nextvideo");
 const takephoto = document.getElementById("takephoto");
 const containerSelectedImg = document.querySelector(".image-container");
+const containerImagePreview = document.querySelector("wrap-img-page12");
 const addphoto2 = document.getElementById("imageSelect");
 const imageContainer = document.querySelectorAll(".select-img");
 let photosCamera = true;
@@ -372,15 +385,12 @@ nextvideo.addEventListener("click", (e) => {
 
 containerSelectedImg.addEventListener("click", (e) => {
   const target = e.target;
-  console.log(target.tagName);
   if (target.tagName === "SPAN" || target.tagName === "I") {
     let attr = target.closest(".img").getAttribute("data-set");
-
     containerSelectedImg.removeChild(target.closest(".img"));
 
     files.forEach((file) => {
       if (file.name === attr) {
-        // filesToRemove.push(files.indexOf(file));
         console.log("Index", files.indexOf(file));
         files.splice(files.indexOf(file), 1);
       }
@@ -405,8 +415,8 @@ nextcamera.addEventListener("click", (e) => {
 
 takephoto.addEventListener("click", () => {
   nextvideo.classList.add("hide");
-  UpBtn.classList.add("hide");
   nextcamera.classList.add("hide");
+  upvideobtn.style.display = "none";
 });
 
 addphoto.addEventListener("click", () => {
@@ -439,6 +449,8 @@ upvideobtn.addEventListener("click", () => {
   camera = true;
   cameraUpload(file, randomNumber);
   nextvideo.style.visibility = "visible";
+  nextvideo.classList.remove("hide");
+  upvideobtn.style.display = "none";
 });
 
 // Getting values from UI
@@ -478,8 +490,12 @@ geobtn.addEventListener("click", async function (event) {
           attribution:
             '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(map);
-        let marker = L.marker([_lat, _long]).addTo(map);
-        marker.bindPopup("<h3> I'm here! </h3>").openPopup();
+        let stage = L.icon({
+          iconUrl: "../assets/svg-icons/Logo-Black.svg",
+          iconSize: [40, 40],
+          iconAnchor: [31, 38],
+        });
+        L.marker([_lat, _long], { icon: stage }).addTo(map);
         //LOCATION IQ API
         var xhr = new XMLHttpRequest();
         var _url = `https://us1.locationiq.com/v1/reverse?key=pk.bacaddd84141d8123622e2937d0b47b0&lat=${_lat}&lon=${_long}&format=json`;
@@ -555,6 +571,28 @@ const wifibtn = document.getElementById("wifibtn");
 const elevatorbtn = document.getElementById("elevatorbtn");
 const parkingbtn = document.getElementById("parkingbtn");
 const airconditionerbtn = document.getElementById("airconditionerbtn");
+// const naturalLight = document.getElementById("naturalLight");
+// const heater = document.getElementById("heater");
+/////// PENDING!!!!
+// naturalLight.addEventListener("click", () => {
+//   if (naturalLight.classList.contains("selected")) {
+//     naturalLight.classList.remove("selected");
+//     // _washroom = false;
+//   } else {
+//     naturalLight.classList.add("selected");
+//     // _washroom = true;
+//   }
+// });
+
+// heater.addEventListener("click", () => {
+//   if (heater.classList.contains("selected")) {
+//     heater.classList.remove("selected");
+//     // _washroom = false;
+//   } else {
+//     heater.classList.add("selected");
+//     // _washroom = true;
+//   }
+// });
 
 washroombtn.addEventListener("click", () => {
   if (washroombtn.classList.contains("selected")) {
@@ -653,6 +691,17 @@ const flashlightcheckboxvalue = document.getElementById(
 );
 const tripodscheckboxvalue = document.getElementById("tripodscheckboxvalue");
 const bundlevalue = document.getElementById("bundlevalue");
+const bundleCheckboxes = document.querySelectorAll(".dropdown-equipment");
+
+bundleCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener("click", () => {
+    const childCheckbox = checkbox.querySelector('input[type="checkbox"');
+    if (childCheckbox.checked) {
+      console.log("Checkbox checked!!");
+      checkbox.classList.toggle("selected");
+    }
+  });
+});
 
 // Values to create property
 let _uid;
@@ -685,6 +734,33 @@ const amenitiesreview = document.getElementById("amenitiesreview");
 // Equipment Description
 const cellingflashdesc = document.getElementById("cellingflashdesc");
 const floorflashdesc = document.getElementById("floorflashdesc");
+
+// Image Container
+const carouselSlide = document.querySelector(".wrap-img-page12");
+
+document.addEventListener("keydown", (e) => {
+  if (e.code === "ArrowRight") {
+    if (!camera) {
+      const carouselImages = document.querySelectorAll(".wrap-img-page12 img");
+      rightslide(carouselSlide, carouselImages);
+    }
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.code === "ArrowLeft") {
+    if (!camera) {
+      const carouselImages = document.querySelectorAll(".wrap-img-page12 img");
+      leftslide(carouselSlide, carouselImages);
+    }
+  }
+});
+
+window.addEventListener("resize", () => {
+  carouselSlide.style.transition = "none";
+  let size = carouselImages[0].clientWidth;
+  carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
+});
 
 // Review info and setting values to create a property
 reviewfieldsbtn.addEventListener("click", () => {
@@ -749,6 +825,7 @@ reviewfieldsbtn.addEventListener("click", () => {
 
   if (cameracheckboxvalue.checked) {
     _dealtext += "Camera \n";
+    console.log("CHecked Input!");
   }
   if (lenscheckboxvalue.checked) {
     _dealtext += "Lens \n";
@@ -796,8 +873,8 @@ reviewfieldsbtn.addEventListener("click", () => {
   // _media.push(urlString);
 
   if (!camera) {
-    const container = document.querySelector(".wrap-img-page12");
-    container.innerHTML = containerSelectedImg.innerHTML;
+    // container.innerHTML = containerSelectedImg.innerHTML;
+    console.log("Number of Files: ", files.length);
   } else {
     photolistmyspace.src = photoList;
     _media.push(urlString[0]);
@@ -805,17 +882,17 @@ reviewfieldsbtn.addEventListener("click", () => {
 });
 
 // Select featured image!
-let featureImageNum;
-const imageContainerSelected = document.querySelector(".wrap-img-page12");
+// let featureImageNum;
+// const imageContainerSelected = document.querySelector(".wrap-img-page12");
 
-imageContainerSelected.addEventListener("click", (e) => {
-  console.log(e.target);
-  e.target.classList.toggle("selectImage");
-  featureImageNum = Array.from(imageContainerSelected.children).indexOf(
-    e.target
-  );
-  console.log(featureImageNum);
-});
+// imageContainerSelected.addEventListener("click", (e) => {
+//   console.log(e.target);
+//   e.target.classList.toggle("selectImage");
+//   featureImageNum = Array.from(imageContainerSelected.children).indexOf(
+//     e.target
+//   );
+//   console.log(featureImageNum);
+// });
 
 // Create a property function
 let propertyInfo;
@@ -867,5 +944,19 @@ createPropertybtn.addEventListener("click", async (event) => {
     // await SaveURLtoFirestore(urlString, propertyInfo);
   }
   await property();
-  window.location.href = window.location.origin;
+  window.location.href = "http://localhost:3000/list-my-space.html#page13";
 });
+
+// Page 13 Buttons
+const btnListings = document.getElementById("myListings");
+const btnhomeBtn = document.getElementById("homeBtn");
+
+btnhomeBtn.addEventListener(
+  "click",
+  () => (window.location.href = window.origin)
+);
+
+btnListings.addEventListener(
+  "click",
+  () => (window.location.href = window.origin)
+);

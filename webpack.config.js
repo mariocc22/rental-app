@@ -2,6 +2,82 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const { GenerateSW } = require('workbox-webpack-plugin');
+
+const extendPlugins = [];
+ 
+if( process.env.NODE_ENV === 'production') {
+  extendPlugins.push( new GenerateSW({
+    skipWaiting: true,
+    maximumFileSizeToCacheInBytes: 15 * 1024 * 1024, // Increase limit to 15MB
+  }));
+
+  extendPlugins.push(
+    new WebpackPwaManifest({
+      filename: 'manifest.json',
+      inject: true,
+      fingerprints: true,
+      name: 'Stage',
+      short_name: 'Stage',
+      theme_color: '#ffffff',
+      background_color: '#ffffff',
+      display: 'standalone',
+      scope: '/',
+      start_url: '/',
+      icons: [
+        {
+          "src": "assets/icons/icon-72x72.png",
+          "sizes": "72x72",
+          "type": "image/png",
+          "purpose": "maskable any"
+        },
+        {
+          "src": "assets/icons/icon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png",
+          "purpose": "maskable any"
+        },
+        {
+          "src": "assets/icons/icon-128x128.png",
+          "sizes": "128x128",
+          "type": "image/png",
+          "purpose": "maskable any"
+        },
+        {
+          "src": "assets/icons/icon-144x144.png",
+          "sizes": "144x144",
+          "type": "image/png",
+          "purpose": "maskable any"
+        },
+        {
+          "src": "assets/icons/icon-152x152.png",
+          "sizes": "152x152",
+          "type": "image/png",
+          "purpose": "maskable any"
+        },
+        {
+          "src": "assets/icons/icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "purpose": "maskable any"
+        },
+        {
+          "src": "assets/icons/icon-384x384.png",
+          "sizes": "384x384",
+          "type": "image/png",
+          "purpose": "maskable any"
+        },
+        {
+          "src": "assets/icons/icon-512x512.png",
+          "sizes": "512x512",
+          "type": "image/png",
+          "purpose": "maskable any"
+        }
+      ],
+    })
+  );
+}
 
 module.exports = {
   entry: {
@@ -24,19 +100,9 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].bundle.js",
     publicPath: "/",
-    // assetModuleFilename: "assets/img/[name][ext]",
   },
   module: {
     rules: [
-      // {
-      //   test: /\.css$/,
-      //   use: [
-      //     {
-      //       loader: process.env.NODE_ENV !== "production" ? "style-loader" : MiniCssExtractPlugin.loader
-      //     },
-      //     "css-loader"
-      //   ]
-      // }
       {
         test: /\.css$/,
         use: [
@@ -44,13 +110,10 @@ module.exports = {
           "css-loader",
         ],
       },
-      // {
-      //   test: /\.(png|jpeg|jpg|gif|svg|eot|ttf|woff)$/,
-      //   type: "asset/resource",
-      // },
     ],
   },
   plugins: [
+    ...extendPlugins,
     new CopyWebpackPlugin({
       patterns: [{ from: "assets", to: "assets" }],
     }),
@@ -132,10 +195,7 @@ module.exports = {
       template: "./pages/components-ui-kit.html",
       filename: "components-ui-kit.html",
       chunks: ["components"],
-    }),
+    })
   ],
-  devServer: {
-    port: 5000,
-  },
   devtool: "source-map",
 };

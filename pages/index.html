@@ -4,10 +4,154 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Stage</title>
   </head>
   <body>
-    <header>
+    <header class="site-header">
+      <div class="logo">
+        <img src="../assets/svg-icons/Logo-White.svg" />
+      </div>
+      <nav class="mobile-nav">
+        <ul>
+          <li>
+            <a href="./login-modal.html"><i class="fa-solid fa-bars"></i></a>
+          </li>
+        </ul>
+      </nav>
+      <nav class="desktop-nav">
+        <ul>
+          <li><button class="explore link-btn">Explore</button></li>
+          <li><button class="showcase link-btn">Showcase</button></li>
+          <li><button class="list-space link-btn">List My Space</button></li>
+          <li><button class="btn-contact link-btn">Contact Us</button></li>
+          <!-- <li><a href="./explore.html">Explore</a></li>
+          <li><a href="./showcase.html">Showcase</a></li>
+          <li><a href="./list-my-space.html">List My Space</a></li>
+          <li><a href="#">Contact Us</a></li> -->
+          <li class="btn-profile">
+            <img
+              src="/assets/svg-icons//Profile White.svg"
+              alt="Profile Icon"
+            />
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main-index">
+      <div class="carousel-container">
+        <div class="carousel-slide">
+          <div class="video-container" id="lastClone">
+            <div class="text-wrapper">
+              <h1 class="link-btn showcase">
+                <a href="./showcase.html">SHOWCASE</a>
+              </h1>
+              <p>Share your projects and inspire others</p>
+            </div>
+            <!-- <video autoplay loop muted="muted">
+              <source src="assets/videos/showcase-video.mp4" type="video/mp4" />
+            </video> -->
+            <img src="../assets/img/performance.jpg" alt="artist" />
+          </div>
+          <div class="video-container">
+            <div class="text-wrapper">
+              <h1 class="link-btn explore">
+                <a href="./explore.html">EXPLORE SPACES</a>
+              </h1>
+              <p>For your next creative project</p>
+            </div>
+            <!-- <video autoplay loop muted="muted">
+              <source src="assets/videos/list-video.mp4" type="video/mp4" />
+            </video> -->
+            <img src="../assets/img/musician.jpg" alt="musician" />
+          </div>
+          <div class="video-container">
+            <div class="text-wrapper">
+              <h1 class="link-btn list-space">
+                <a href="./list-my-space.html">LIST MY SPACE</a>
+              </h1>
+              <p>Start creating your listing</p>
+            </div>
+            <!-- <video autoplay loop muted="muted">
+              <source
+                src="assets/videos/photography-video.mp4"
+                type="video/mp4"
+              />
+            </video> -->
+            <img src="../assets/img/photographer.jpg" alt="photographer" />
+          </div>
+          <div class="video-container">
+            <div class="text-wrapper">
+              <h1 class="link-btn showcase">
+                <a href="./showcase.html">SHOWCASE</a>
+              </h1>
+              <p>Share your projects and inspire others</p>
+            </div>
+            <!-- <video autoplay loop muted="muted">
+              <source src="assets/videos/showcase-video.mp4" type="video/mp4" />
+            </video> -->
+            <img src="../assets/img/performance.jpg" alt="artist" />
+          </div>
+          <div class="video-container" id="firstClone">
+            <div class="text-wrapper">
+              <h1 class="link-btn explore">
+                <a href="./explore.html">EXPLORE SPACES</a>
+              </h1>
+              <p>For your next creative project</p>
+            </div>
+            <!-- <video autoplay loop muted="muted">
+              <source src="assets/videos/list-video.mp4" type="video/mp4" />
+            </video> -->
+            <img src="../assets/img/musician.jpg" alt="musician" />
+          </div>
+        </div>
+        <!-- Tabs ===================== -->
+        <div class="tabs">
+          <button class="tab-1 active tab">Explore Spaces</button>
+          <button class="tab-2 tab">List My Space</button>
+          <button class="tab-3 tab">Showcase</button>
+        </div>
+      </div>
+      <!-- DON'T REMOVE IT, IM STILL WORKING ON IT! -->
+      <!-- <div class="profile-wrapper">
+        <div class="profile-header">
+          <nav class="profile-nav">
+            <ul>
+              <li>
+                <button>
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="profile-main">
+          <div class="top-main">
+            <h1>Vaibhav Malhotra</h1>
+            <p>Personal Information</p>
+            <p>My Bookings</p>
+          </div>
+          <div class="middle-main">
+            <ul>
+              <li><a href="#">Explore Spaces</a></li>
+              <li><a href="#">List My Space</a></li>
+              <li><a href="#">Showcase</a></li>
+            </ul>
+          </div>
+          <div class="bottom-main">
+            <button id="logOutBtn">Log Out</button>
+          </div>
+        </div>
+      </div> -->
+    </main>
+
+    <!-- <header>
       <nav class="index-nav">
         <ul>
           <li>
@@ -17,12 +161,12 @@
           </li>
         </ul>
       </nav>
-    </header>
+    </header> -->
 
-    <main>
+    <!-- <main>
       <section class="primary-section">
         <div class="section-title">
-          <h1>Explore Spaces</h1>
+          <h1 class=" link-btn explore">Explore Spaces</h1>
           <p>For your next creative project</p>
         </div>
         <div>
@@ -34,9 +178,9 @@
           >
         </div>
       </section>
-    </main>
+    </main> -->
 
-    <footer>
+    <!-- <footer>
       <section class="secondary-section">
         <div>
           <h2>List My Space</h2>
@@ -46,6 +190,6 @@
           <a class="btn-list-space" href="./list-my-space.html">List Space</a>
         </div>
       </section>
-    </footer>
+    </footer> -->
   </body>
 </html>

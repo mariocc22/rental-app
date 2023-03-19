@@ -54,10 +54,15 @@ function handleFiles() {
       <img class="select-img" src="${reader.result}" alt="image" />
       <span class="remove-img"><i class="fa-solid fa-xmark"></i></span>
     </div>`;
+      let previewContent = `
+    <img class="preview-img" src="${reader.result}" alt="image" />`;
       console.log("Image created: ", imgContent);
       document
         .querySelector(".image-container")
         .insertAdjacentHTML("afterbegin", imgContent);
+      document
+        .querySelector(".wrap-img-page12")
+        .insertAdjacentHTML("afterbegin", previewContent);
     };
 
     reader.readAsDataURL(file);
@@ -139,6 +144,15 @@ async function uploadFiles2(filesToUpload) {
   }
 }
 
+// ////////////////// REFACTOR CODE FROM 128 TO 134
+// const snapshots = await Promise.all(uploadPromises);
+// const downloadUrls = await Promise.all(
+//   snapshots.map(async (snapshot) => {
+//     const url = await getDownloadURL(snapshot.ref);
+//     console.log("This is the url: ", url);
+//     return url;
+//   })
+// );
 //////////////////////// PICTURE UPLOAD CAMERA
 async function cameraUpload(img, name) {
   console.log(img);

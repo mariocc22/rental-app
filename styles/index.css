@@ -1,4 +1,207 @@
-/* Import fontawesome styles */
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Fira+Sans:wght@400;700&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Anton", sans-serif;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h1 a {
+  color: white;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  font-family: "Fira Sans", sans-serif;
+  background-color: #101010;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+/* Header */
+header.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1rem 2%;
+}
+
+header > .logo {
+  width: 2rem;
+  height: 2rem;
+  display: block;
+}
+
+.mobile-nav a {
+  display: inline-block;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.desktop-nav {
+  display: none;
+}
+
+nav.desktop-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+nav.desktop-nav button {
+  font-family: "Fira Sans", sans-serif;
+  font-size: 1rem;
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  appearance: none;
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+nav.desktop-nav img {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+nav.desktop-nav li {
+  position: relative;
+  transition: all 0.25s ease-in-out;
+}
+
+nav.desktop-nav li:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: all 0.25s ease-in-out;
+}
+
+nav.desktop-nav li:hover::before {
+  width: 100%;
+}
+
+@media screen and (min-width: 650px) {
+  .desktop-nav {
+    display: unset;
+  }
+  .mobile-nav {
+    display: none;
+  }
+}
+
+/* Main Index */
+
+/* Image Slider Carrousel */
+.carousel-container {
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.carousel-slide {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  height: 92vh;
+}
+
+.video-container {
+  position: relative;
+  min-width: 100%;
+  width: 100vw;
+}
+
+.video-container .text-wrapper {
+  position: absolute;
+  color: white;
+  z-index: 10;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+
+.video-container img {
+  width: 100%;
+  display: block;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-container::before {
+  content: "";
+  inset: 0 0 0 0;
+  position: absolute;
+  background-color: hsla(0, 0%, 0%, 0.7);
+  z-index: 1;
+}
+
+/* Buttons Tabs */
+.tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 95%;
+
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  transform: translate(50%, -3rem);
+}
+
+.tab {
+  font-size: 0.75rem;
+  font-family: "Fira Sans", sans-serif;
+  padding: 0.5rem;
+  flex: 1 0 30%;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  max-width: 10rem;
+  transition: all 0.25s ease-in-out;
+
+  color: white;
+  background-color: rgba(255, 255, 255, 0.16);
+}
+
+.active {
+  color: #101010;
+  background-color: white;
+}
+
+/* Import fontawesome styles
 @import url("../node_modules/font-awesome/css/font-awesome.min.css");
 
 * {
@@ -89,4 +292,4 @@ a {
 }
 .index-nav:hover {
   transform: translateY(-5px);
-}
+} */
