@@ -108,3 +108,8 @@ dist
 
 # remove package lock
 package-lock.json
+
+# remove firebase hosting files
+.firebaserc
+firebase.json
+.firebase/

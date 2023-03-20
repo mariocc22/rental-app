@@ -15,7 +15,7 @@ import { addOfflineSupport } from "../modules/offline";
 // global variables for the file
 const params = new URLSearchParams(document.location.search);
 const activity = params.get("activity");
-const validateActivities = ["music", "performance", "photography"];
+const validateActivities = ["musician", "performance", "photography"];
 // used for properties filteration
 const MY_COORDINATES = { lat: undefined, lng: undefined };
 let SEARCHED_STRING = "";
@@ -70,56 +70,10 @@ function validateActivity() {
   var url = window.location.href.split("?")[0];
   if (!validateActivities.includes(activity)) {
     window.location = `${url}?activity=photography`;
+  } else {
+    localStorage.setItem("activity-type", activity);
   }
 }
-
-// register listeners on page
-// range distance overlay
-
-// const rangeOverlay = document.querySelector('#range-overlay');
-// const rangeInput = document.getElementById("distance");
-// rangeOverlay.addEventListener('click', () => {
-
-//     // ask user to enable if he disabled it
-//     getLocation();
-
-//     // geolocation starts
-//     if ('geolocation' in navigator) {
-//         // Prompt the user for permission to access their location
-//         navigator.geolocation.getCurrentPosition(
-//           // If the user allows access, store the coordinates in a variable
-//           (position) => {
-//             const latitude = position.coords.latitude;
-//             const longitude = position.coords.longitude;
-
-//              // hide overlay and enable range input
-//             rangeOverlay.classList.add("hide");
-//             rangeInput.removeAttribute('disabled');
-
-//             console.log(latitude)
-//             console.log(longitude)
-
-//           },
-//         );
-//       }
-// });
-
-// function getLocation() {
-//     navigator.permissions.query({name:'geolocation'}).then(permissionStatus => {
-//     if (permissionStatus.state === 'denied') {
-//         // User has denied permission
-//         alert('Please enable location services in your browser or device settings.');
-//       }
-//     });
-//   }
-
-// function registerDistanceSelector() {
-//     const distance = document.getElementById("distance-wrapper");
-//     console.log(distance)
-//     distance.addEventListener("click", (event) => {
-//         console.log(event)
-//     }, true)
-// }
 
 let searchTimeout = null;
 function registerSearchInput() {
@@ -159,6 +113,9 @@ function registerAdditionalFilterBtns() {
   // apply filter
   const applyFilterBtn = document.getElementById("applyFilters");
 
+  // toggle class to mark filter on
+  const filterIcon = document.getElementById("additional-filters-on");
+
   applyFilterBtn.addEventListener("click", () => {
     // hide it using same toggle logic
     const priceValue = document.getElementById("price").value;
@@ -171,6 +128,8 @@ function registerAdditionalFilterBtns() {
     // TODO change the list now
 
     displayProperties();
+
+    filterIcon.classList.add("dot");
   });
 
   // close filter
@@ -184,6 +143,8 @@ function registerAdditionalFilterBtns() {
       "additional-filter-form"
     );
     addtionalFilterForm.reset();
+
+    filterIcon.classList.remove("dot");
   });
 }
 
@@ -293,7 +254,7 @@ function loadAllTags(activity) {
             <input type="checkbox" id="${tagInfo.tagname}" name="props" value="${tagInfo.name}">
             <label for="${tagInfo.tagname}">
                 <span>
-                    <i class="fa fa-camera"></i>
+                    <img src='../assets/svg-icons/${tagInfo.svg}'>
                     ${tagInfo.name}
                 </span>
             </label>
@@ -313,7 +274,6 @@ function loadAllTags(activity) {
             <input type="checkbox" id="${tagInfo.tagname}" name="props" value="${tagInfo.name}">
             <label for="${tagInfo.tagname}">
                 <span>
-                    <i class="fa fa-camera"></i>
                     ${tagInfo.name}
                 </span>
             </label>
@@ -404,33 +364,32 @@ function populateList(listContainer, propertyObj) {
   });
 
   const string = `<li>
+      <a href='/property.html?propertyId=${propertyObj.propertyId}#customize'>
         <section class="cards">
           <div class="suggested-space">
-
             <div class="img-container">
               ${imgsString}
-              <div class="price">
-                <p>CAD ${propertyObj.price} / Day</p>
-              </div>
             </div>
-
-            <div class="title-rating-wrapper">
-              <p class="space-title">
-                <a href="/property.html?propertyId=${propertyObj.propertyId}">
-                  <div class="space-name">${propertyObj.title}</div>
-                </a>
-              </p>
-
-              <div class="space-rating">
-                <i class="fa-solid fa-star"></i>
-                <p class="rating">4.5</p>
-              </div>
+            <div class="price">
+              <p>CAD ${propertyObj.price} / Day</p>
             </div>
-            <p class="space-location">
-              ${propertyObj.location}
-            </p>
           </div>
+
+          <div class="title-rating-wrapper">
+            <p class="space-name">${propertyObj.title}</p>
+
+            <div class="space-rating">
+              <p class="rating">4.5</p>
+            </div>
+          </div>
+          
+          <p class="space-location">
+            ${propertyObj.location}
+          </p>
+
         </section>
+      </a>  
+
     </li>`;
 
   listContainer.innerHTML += string;

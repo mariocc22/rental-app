@@ -626,10 +626,10 @@ addressvalidation.addEventListener("click", (e) => {
   console.log(validatepage);
   if (validatepage) {
     e.preventDefault();
-    window.location.href = "http://localhost:3000/list-my-space.html#page4";
+    window.location.href = `${window.location.origin}/list-my-space.html#page4`;
   } else {
     e.preventDefault();
-    window.location.href = "http://localhost:3000/list-my-space.html#page3";
+    window.location.href = `${window.location.origin}/list-my-space.html#page3`;
   }
 });
 
@@ -744,10 +744,10 @@ const backCameraBtn = document.getElementById("backToPhotos");
 
 backCameraBtn.addEventListener("click", (e) => {
   if (!photosCamera) {
-    window.location.href = "http://localhost:3000/list-my-space.html#page6";
+    window.location.href = `${window.location.origin}/list-my-space.html#page6`;
     e.preventDefault();
   } else {
-    window.location.href = "http://localhost:3000/list-my-space.html#page5";
+    window.location.href = `${window.location.origin}/list-my-space.html#page5`;
     e.preventDefault();
   }
 });
@@ -776,11 +776,11 @@ containerSelectedImg.addEventListener("click", (e) => {
 nextcamera.addEventListener("click", (e) => {
   photosCamera = false;
   if (containerSelectedImg.hasChildNodes()) {
-    window.location.href = "http://localhost:3000/list-my-space.html#page7";
+    window.location.href = `${window.location.origin}/list-my-space.html#page7`;
 
     e.preventDefault();
   } else {
-    window.location.href = "http://localhost:3000/list-my-space.html#page6";
+    window.location.href = `${window.location.origin}/list-my-space.html#page6`;
     e.preventDefault();
   }
   console.log("These are the files!", files);
@@ -1352,7 +1352,7 @@ createPropertybtn.addEventListener("click", async (event) => {
     // await SaveURLtoFirestore(urlString, propertyInfo);
   }
   await property();
-  window.location.href = "http://localhost:3000/list-my-space.html#page13";
+  window.location.href = `${window.location.origin}/list-my-space.html#page13`;
 });
 
 // Page 13 Buttons

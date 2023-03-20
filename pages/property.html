@@ -13,8 +13,8 @@
     <nav class="index-nav">
       <ul>
         <li>
-          <button onclick="history.back()">
-            <i class="fa fa-caret-left"></i>
+          <button onclick="window.location.href = `${window.location.origin}/explore-spaces.html?activity=${localStorage.getItem('activity-type')}`">
+            <i class="fa fa-chevron-left"></i>
           </button>
         </li>
         <li>
@@ -30,9 +30,9 @@
   <main>
     <!-- Property Details -->
     <section class="property-details" id="property-details">
-      <h1 id="propery-name" class="property-name">
+      <h2 id="propery-name" class="property-name">
         {{ Name of the property }}
-      </h1>
+      </h2>
       <div id="property-images-carousel">
         <!-- Slider container -->
         <div class="slider" id="slider">
@@ -65,13 +65,13 @@
       <!-- Property info -->
       <div id="property-info" class="property-info">
         <div class="menu-tabs" data-value="customize">
-          <a href="#customize"> Customize </a>
+          <a class="customize" href="#customize"> Customize </a>
         </div>
         <div class="menu-tabs" data-value="details">
-          <a href="#details"> Details </a>
+          <a class="details" href="#details"> Details </a>
         </div>
         <div class="menu-tabs" data-value="showcases">
-          <a href="#showcases"> Showcases </a>
+          <a class="showcases" href="#showcases"> Showcases </a>
         </div>
       </div>
       <div class="property-menu-info-wrapper">
