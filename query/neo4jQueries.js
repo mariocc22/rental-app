@@ -49,7 +49,7 @@ function filterPlacesPrepQuery(distance, coords) {
         WITH p, COUNT(DISTINCT t) AS tagCount
         WHERE tagCount = $tagsLength
         WITH p
-        ORDER BY p.created
+        ORDER BY p.created desc
         RETURN COLLECT(p.id) as propertyIds;`;
   } else {
     query = `
@@ -58,7 +58,7 @@ function filterPlacesPrepQuery(distance, coords) {
         WITH p, COUNT(DISTINCT t) AS tagCount
         WHERE tagCount = $tagsLength
         WITH p
-        ORDER BY p.created
+        ORDER BY p.created desc
         RETURN COLLECT(p.id) as propertyIds;`;
   }
 
@@ -149,7 +149,7 @@ async function addPlace(
   // givenTagNames.push(`activity-${activityName}`);
 
   const session = driver.session({ database: "neo4j" });
-  const timestamp = Math.floor(new Date.now() / 1000);
+  const timestamp = Math.floor(Date.now() / 1000);
 
   try {
     const writeQuery = `
