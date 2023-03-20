@@ -35,7 +35,9 @@ async function userStatus() {
   uid = await userState();
   console.log("This is the uid!", uid);
 }
-userStatus();
+
+window.addEventListener("reload", userStatus());
+
 /////////////////////////////////////////////
 
 // Menu
