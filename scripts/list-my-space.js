@@ -53,6 +53,26 @@ import { whereAmI, getPosition } from "../modules/geolocation.js";
 
 //init handler for hash navigation
 
+// Header
+const btn_links = document.querySelectorAll(".link-btn");
+const moveTo = function (link) {
+  window.location.href = `/${link}.html`;
+};
+btn_links.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (btn.classList.contains("explore")) {
+      moveTo("explore");
+    }
+    if (btn.classList.contains("showcase")) {
+      moveTo("showcase");
+    }
+    if (btn.classList.contains("list-space")) {
+      moveTo("list-my-space");
+    }
+  });
+});
+
 // DESKTOP VERSION
 let desktopVIew = false;
 const allPages = document.querySelectorAll("div.page");
@@ -62,7 +82,6 @@ function navigateToPage(event) {
   let pagecontinue = true;
   const pageId = location.hash ? location.hash : "#page1";
   let x = window.matchMedia("(max-width: 800px)");
-  console.log("Valor de X: ", x);
   const page1 = document.getElementById("page1");
   const page2 = document.getElementById("page2");
   const page3 = document.getElementById("page3");
@@ -94,7 +113,6 @@ function navigateToPage(event) {
     });
     progressPageDesktop13.style.display = "none";
     progressPageDesktop456.style.display = "none";
-    console.log("Valor de X adentro del primer If");
     backButtonAddress.forEach((back) => {
       back.style.display = "block";
     });
@@ -381,25 +399,6 @@ function navigateToPage(event) {
 navigateToPage();
 window.addEventListener("hashchange", navigateToPage);
 window.addEventListener("resize", navigateToPage);
-
-// function navigateToPage() {
-
-// }
-// const pageId = location.hash ? location.hash : "#page1";
-// const pageId3 = "#page3";
-// if (pageId === "#page2") {
-//   page.style.display = "block";
-//   pageId3.style.display = "block";
-// } else {
-//   page.style.display = "none";
-// }
-// for (let page of allPages) {
-//   if (pageId === "#" + page.id) {
-//     page.style.display = "block";
-//   } else {
-//     page.style.display = "none";
-//   }
-// }
 
 // Activity
 let _activity;
@@ -740,7 +739,6 @@ const containerImagePreview = document.querySelector(
   ".wrap-img-page12-container"
 );
 const addphoto2 = document.getElementById("imageSelect");
-const imageContainer = document.querySelectorAll(".select-img");
 let photosCamera = true;
 const backCameraBtn = document.getElementById("backToPhotos");
 
@@ -757,15 +755,24 @@ backCameraBtn.addEventListener("click", (e) => {
 nextvideo.addEventListener("click", (e) => {
   photosCamera = true;
 });
-// containerImagePreview.addEventListener("click", (e) => {
-//   const target = e.target;
-//   if (target.closest(".left") || target.closest(".right")) {
-//     console.log(target);
-//   }
-// });
+
+let featureImage = "";
 
 containerSelectedImg.addEventListener("click", (e) => {
-  const target = e.target;
+  const imageContainer = document.querySelectorAll(".img");
+  let target = e.target;
+  // Store the feature Image
+
+  featureImage = target.closest(".img").getAttribute("data-set");
+  console.log("Feature Image is!", featureImage);
+
+  // Remove all the feature image effect selection
+  imageContainer.forEach((img) => {
+    img.classList.remove("featureImg");
+  });
+  // Add the feature image effect to the target
+  target.closest(".img").classList.add("featureImg");
+
   if (target.tagName === "SPAN" || target.tagName === "I") {
     let attr = target.closest(".img").getAttribute("data-set");
     containerSelectedImg.removeChild(target.closest(".img"));
@@ -791,7 +798,14 @@ nextcamera.addEventListener("click", (e) => {
     window.location.href = `${window.location.origin}/list-my-space.html#page6`;
     e.preventDefault();
   }
-  console.log("These are the files!", files);
+  console.log("Files before sorting: ", files);
+  files.forEach((file) => {
+    console.log("File name: ", file.name);
+  });
+
+  let featureImageIndex = files.findIndex((file) => file.name === featureImage);
+  [files[0], files[featureImageIndex]] = [files[featureImageIndex], files[0]];
+  console.log("Files after sorting!", files);
 });
 
 takephoto.addEventListener("click", () => {
@@ -1152,8 +1166,24 @@ nextpage10to11.addEventListener("click", () => {
 });
 let carouselImages = document.querySelectorAll(".wrap-img-page12 .imgCar");
 // Review info and setting values to create a property
+
 reviewfieldsbtn.addEventListener("click", () => {
+  const carouselSlide = document.querySelector(".wrap-img-page12");
   carouselImages = document.querySelectorAll(".wrap-img-page12 .imgCar");
+  if (!camera) {
+    console.log("Number of Files: ", files.length);
+  } else {
+    carouselSlide.innerHTML = `<img
+    src="${photoList}"
+    id="photolistmyspace"
+    alt="Space"
+    width="100%"
+    height="100%"
+  />`;
+    // photolistmyspace.src = photoList;
+    _media.push(urlString[0]);
+  }
+
   titlereview.value = propertytitle.value;
   descriptionreview.value = propertydescription.value;
   addressreview.value =
@@ -1262,13 +1292,13 @@ reviewfieldsbtn.addEventListener("click", () => {
   _uid = localStorage.getItem("uid");
   // _media.push(urlString);
 
-  if (!camera) {
-    // container.innerHTML = containerSelectedImg.innerHTML;
-    console.log("Number of Files: ", files.length);
-  } else {
-    photolistmyspace.src = photoList;
-    _media.push(urlString[0]);
-  }
+  // if (!camera) {
+  //   // container.innerHTML = containerSelectedImg.innerHTML;
+  //   console.log("Number of Files: ", files.length);
+  // } else {
+  //   photolistmyspace.src = photoList;
+  //   _media.push(urlString[0]);
+  // }
 });
 // Image Container
 const carouselSlide = document.querySelector(".wrap-img-page12");
@@ -1287,9 +1317,14 @@ leftBtn.addEventListener("click", (e) => {
 });
 
 window.addEventListener("resize", () => {
-  carouselSlide.style.transition = "none";
-  let size = carouselImages[0].clientWidth;
-  carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
+  let x = window.matchMedia("(min-width: 800px)");
+  if (x.matches) {
+    carouselSlide.style.transform = "translateX(0)";
+  } else {
+    carouselSlide.style.transition = "none";
+    let size = carouselImages[0].clientWidth;
+    carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
+  }
 });
 
 // Select featured image!
@@ -1308,9 +1343,6 @@ window.addEventListener("resize", () => {
 // Create a property function
 let propertyInfo;
 const createPropertybtn = document.getElementById("createPropertybtn");
-console.log("Array before sorting: ", files);
-/////////////////////////////////////////
-console.log("Array AFTER sorting: ", files);
 
 createPropertybtn.addEventListener("click", async (event) => {
   console.log("Files: ", files);
