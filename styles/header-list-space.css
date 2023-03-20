@@ -4,13 +4,18 @@
   align-items: center;
   justify-content: space-between;
 
-  padding: 1rem 2%;
+  padding: 1rem;
 }
 
-.site-header > .logo {
+.site-header>.logo {
   width: 2rem;
   height: 2rem;
   display: block;
+}
+
+.site-header .logo a {
+  display: block;
+  padding: 0;
 }
 
 .mobile-nav a {
@@ -48,6 +53,7 @@ nav.desktop-nav img {
   height: 2rem;
   cursor: pointer;
 }
+
 nav.desktop-nav li {
   position: relative;
   transition: all 0.25s ease-in-out;
@@ -68,10 +74,16 @@ nav.desktop-nav li:hover::before {
   width: 100%;
 }
 
+/* Header */
+.site-header {
+  display: none;
+}
+
 @media screen and (min-width: 650px) {
   .desktop-nav {
     display: unset;
   }
+
   .mobile-nav {
     display: none;
   }
