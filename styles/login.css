@@ -29,7 +29,7 @@ header nav a:hover {
 }
 
 .logo-site {
-  padding: 2rem;
+  padding: 4rem;
 }
 
 .login-dialog-header {
@@ -48,9 +48,16 @@ header nav a:hover {
 #login-form {
   display: flex;
   flex-flow: column nowrap;
-  gap: 1rem;
+  justify-content: space-between;
+  transition: all 0.25s ease;
+  height: 0;
+  overflow: hidden;
 
   margin-bottom: var(--margin-4);
+}
+
+#login-form.hideLogin {
+  height: 15rem;
 }
 
 #login-email,
@@ -81,19 +88,7 @@ header nav a:hover {
   padding: var(--padding-4);
   cursor: pointer;
   background-color: var(--accent-explore-space-dm);
-  /* max-width: fit-content; */
-
-  transition: all 0.25s ease-in-out;
-}
-
-.button-wrapper > .btn-logout {
-  padding: var(--padding-4);
-  cursor: pointer;
-  color: var(--accent-explore-space-dm);
-  background-color: var(--primary-black);
-  border: 1px solid var(--accent-explore-space-dm);
-  /* max-width: fit-content; */
-
+  margin-top: 1rem;
   transition: all 0.25s ease-in-out;
 }
 
