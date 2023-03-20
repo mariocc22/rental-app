@@ -3,19 +3,6 @@ import { addProfile } from "../query/userProfile.js";
 
 let uid;
 
-// LOGGING OUT
-async function loggingOut() {
-  signOut(auth)
-    .then(() => {
-      // Sign-out successful.
-      console.log("User Logged out!");
-      window.location.reload();
-    })
-    .catch((error) => {
-      console.log(error.message);
-    });
-}
-
 // USER STATE
 async function userState() {
   try {
@@ -33,6 +20,19 @@ async function userState() {
     console.error(error);
     throw new Error("An error bro");
   }
+}
+
+// LOGGING OUT
+async function loggingOut() {
+  signOut(auth)
+    .then(() => {
+      // Sign-out successful.
+      console.log("User Logged out!");
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
 }
 
 export { loggingOut, userState };

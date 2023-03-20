@@ -47,6 +47,8 @@ input.addEventListener("change", handleFiles);
 function handleFiles() {
   files = [];
   files = [...this.files];
+  const previewContainer = document.querySelector(".wrap-img-page12");
+  previewContainer.innerHTML = "";
   files.forEach((file) => {
     const reader = new FileReader();
     reader.onload = function () {
@@ -55,14 +57,15 @@ function handleFiles() {
       <span class="remove-img"><i class="fa-solid fa-xmark"></i></span>
     </div>`;
       let previewContent = `
-    <img class="preview-img" src="${reader.result}" alt="image" />`;
+    <img class="preview-img imgCar" src="${reader.result}" alt="image" />`;
+
       console.log("Image created: ", imgContent);
+
       document
         .querySelector(".image-container")
         .insertAdjacentHTML("afterbegin", imgContent);
-      document
-        .querySelector(".wrap-img-page12")
-        .insertAdjacentHTML("afterbegin", previewContent);
+
+      previewContainer.insertAdjacentHTML("afterbegin", previewContent);
     };
 
     reader.readAsDataURL(file);
