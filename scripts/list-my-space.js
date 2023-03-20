@@ -736,7 +736,9 @@ let takePhotoDesktop = false;
 const nextcamera = document.getElementById("nextcamera");
 const nextvideo = document.getElementById("nextvideo");
 const containerSelectedImg = document.querySelector(".image-container");
-const containerImagePreview = document.querySelector("wrap-img-page12");
+const containerImagePreview = document.querySelector(
+  ".wrap-img-page12-container"
+);
 const addphoto2 = document.getElementById("imageSelect");
 const imageContainer = document.querySelectorAll(".select-img");
 let photosCamera = true;
@@ -755,6 +757,12 @@ backCameraBtn.addEventListener("click", (e) => {
 nextvideo.addEventListener("click", (e) => {
   photosCamera = true;
 });
+// containerImagePreview.addEventListener("click", (e) => {
+//   const target = e.target;
+//   if (target.closest(".left") || target.closest(".right")) {
+//     console.log(target);
+//   }
+// });
 
 containerSelectedImg.addEventListener("click", (e) => {
   const target = e.target;
@@ -1142,36 +1150,10 @@ nextpage10to11.addEventListener("click", () => {
     window.location.href = "/list-my-space.html#page11";
   }
 });
-
-// Image Container
-const carouselSlide = document.querySelector(".wrap-img-page12");
-
-document.addEventListener("keydown", (e) => {
-  if (e.code === "ArrowRight") {
-    if (!camera) {
-      const carouselImages = document.querySelectorAll(".wrap-img-page12 img");
-      rightslide(carouselSlide, carouselImages);
-    }
-  }
-});
-
-document.addEventListener("keydown", (e) => {
-  if (e.code === "ArrowLeft") {
-    if (!camera) {
-      const carouselImages = document.querySelectorAll(".wrap-img-page12 img");
-      leftslide(carouselSlide, carouselImages);
-    }
-  }
-});
-
-// window.addEventListener("resize", () => {
-//   carouselSlide.style.transition = "none";
-//   let size = carouselImages[0].clientWidth;
-//   carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
-// });
-
+let carouselImages = document.querySelectorAll(".wrap-img-page12 .imgCar");
 // Review info and setting values to create a property
 reviewfieldsbtn.addEventListener("click", () => {
+  carouselImages = document.querySelectorAll(".wrap-img-page12 .imgCar");
   titlereview.value = propertytitle.value;
   descriptionreview.value = propertydescription.value;
   addressreview.value =
@@ -1288,6 +1270,27 @@ reviewfieldsbtn.addEventListener("click", () => {
     _media.push(urlString[0]);
   }
 });
+// Image Container
+const carouselSlide = document.querySelector(".wrap-img-page12");
+const leftBtn = document.querySelector(".selectorImg.left");
+const rightBtn = document.querySelector(".selectorImg.right");
+rightBtn.addEventListener("click", (e) => {
+  if (!camera) {
+    rightslide(carouselSlide, carouselImages);
+  }
+});
+
+leftBtn.addEventListener("click", (e) => {
+  if (!camera) {
+    leftslide(carouselSlide, carouselImages);
+  }
+});
+
+window.addEventListener("resize", () => {
+  carouselSlide.style.transition = "none";
+  let size = carouselImages[0].clientWidth;
+  carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
+});
 
 // Select featured image!
 // let featureImageNum;
@@ -1305,6 +1308,9 @@ reviewfieldsbtn.addEventListener("click", () => {
 // Create a property function
 let propertyInfo;
 const createPropertybtn = document.getElementById("createPropertybtn");
+console.log("Array before sorting: ", files);
+/////////////////////////////////////////
+console.log("Array AFTER sorting: ", files);
 
 createPropertybtn.addEventListener("click", async (event) => {
   console.log("Files: ", files);

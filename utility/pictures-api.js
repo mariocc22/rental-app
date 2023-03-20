@@ -55,7 +55,7 @@ function handleFiles() {
       <span class="remove-img"><i class="fa-solid fa-xmark"></i></span>
     </div>`;
       let previewContent = `
-    <img class="preview-img" src="${reader.result}" alt="image" />`;
+    <img class="preview-img imgCar" src="${reader.result}" alt="image" />`;
       console.log("Image created: ", imgContent);
       document
         .querySelector(".image-container")
