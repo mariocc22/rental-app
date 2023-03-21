@@ -1,4 +1,5 @@
 import "/styles/common-styles.css";
+import '/styles/offline-page.css';
 import "/styles/property.css";
 // import { DateRangePicker } from "vanillajs-datepicker";
 // import "vanillajs-datepicker/css/datepicker.css";

@@ -1,4 +1,5 @@
 import "/styles/common-styles.css";
+import '/styles/offline-page.css';
 import "/styles/explore-spaces.css";
 
 // import utility functions

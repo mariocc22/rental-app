@@ -6,6 +6,7 @@ body {
     padding: 1rem;
 }
 
+<<<<<<< HEAD
 main {
     padding: var(--top-elements-padding);
     min-height: calc(100vh - var(--header-height) - 2rem);
@@ -21,6 +22,12 @@ main {
   }
 
 
+=======
+.booking-space-card {
+
+}
+
+>>>>>>> fe83167 (XYZ-260 Offline Styles were not being applied.)
 .booking-space-card img {
     border-radius: var(--img-border-radius);
 }
@@ -71,3 +78,10 @@ main {
     grid-template-columns: 1fr;
     gap: .4rem;
 } */
+
+@media screen and (min-width: 900px) {
+.bookings-wrapper{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+ }
+}

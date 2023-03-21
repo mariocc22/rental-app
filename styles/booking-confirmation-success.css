@@ -38,3 +38,14 @@
     font-size: 1rem;
     cursor: pointer;
 }
+
+@media screen and (min-width: 900px) {
+    .confirmation-page {
+        justify-content: center;
+        gap: 4rem;
+    }
+
+    .confirmation-page button {
+        max-width: 20rem;
+    }
+}
