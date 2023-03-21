@@ -30,6 +30,11 @@
                 "name": "Cottage",
                 "svg": "Cottage.svg",
                 "tagname": "photography-type-cottage"
+            },
+            {
+                "name": "Other",
+                "svg": "Other.svg",
+                "tagname": "photography-type-other"
             }
         ],
         "equipments": [
@@ -49,7 +54,7 @@
                 "tagname": "photography-equipments-light-shapers"
             },
             {
-                "name": "Flashlight and Mount",
+                "name": "Flashlight",
                 "svg": "Ceiling Mount.svg",
                 "tagname": "photography-equipments-flashlight"
             },

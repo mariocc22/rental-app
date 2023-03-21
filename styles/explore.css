@@ -11,18 +11,17 @@
 main {
     display: flex;
     flex-flow: column nowrap;
-}
+    justify-content: center;
 
-.main-menu-activity {
-    flex-grow: 1;
-    display: grid;
+    gap: 2rem;
 }
 
 
 main .main-menu-activity ul {
     list-style-type: none;
     display: grid;
-    align-content: space-evenly;
+
+    gap: 1rem;
 }
 
 main .main-menu-activity a {
@@ -98,5 +97,13 @@ main .main-menu-activity li {
     
     position: absolute;
     z-index: 10;
+
+}
+
+@media screen and (min-width: 900px) {
+    .main-menu-activity ul {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
 
 }
