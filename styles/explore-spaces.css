@@ -466,7 +466,7 @@ main.explore-space-main {
 
      }
 
-    .additional-filters.hide {
+    .filter-wrapper-desktop {
         display: unset !important;
      }
 

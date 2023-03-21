@@ -1,5 +1,9 @@
 function addOfflineSupport () {
 
+    // for explore space page
+    const additionalFiltersWrapper = document.querySelector("body .additional-filters.hide");
+
+    // common for all pages
     const mainElement = document.getElementsByTagName("main")[0];
     const offlineElement = document.createElement("div");
     offlineElement.innerHTML =
@@ -14,11 +18,23 @@ function addOfflineSupport () {
     parentElement.insertBefore(offlineElement, mainElement);
 
     window.addEventListener("online", () => {
+
+        // for explore space page
+        if(!!additionalFiltersWrapper) {
+            additionalFiltersWrapper.classList.add("filter-wrapper-desktop")
+        }
+
         mainElement.classList.remove("hide");
         offlineElement.classList.add("hide")
     });
     
     window.addEventListener("offline", () => {
+        
+        // for explore space page
+        if(!!additionalFiltersWrapper) {
+            additionalFiltersWrapper.classList.remove("filter-wrapper-desktop")
+        }
+
         mainElement.classList.add("hide");
         offlineElement.classList.remove("hide")
         console.log('offline');
