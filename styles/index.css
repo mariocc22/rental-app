@@ -32,6 +32,7 @@ img {
 body {
   font-family: "Fira Sans", sans-serif;
   background-color: #101010;
+  overflow: hidden;
 }
 
 ul {
@@ -133,7 +134,7 @@ nav.desktop-nav li:hover::before {
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
-  height: 92vh;
+  height: 100vh;
 }
 
 .video-container {
@@ -177,7 +178,7 @@ nav.desktop-nav li:hover::before {
   width: 95%;
 
   position: absolute;
-  bottom: 0;
+  bottom: 5rem;
   right: 50%;
   transform: translate(50%, -3rem);
 }
