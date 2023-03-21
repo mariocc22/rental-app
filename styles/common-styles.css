@@ -9,6 +9,7 @@
 :root {
   /* Colors */
   --primary-white: #f8f8f8;
+  --white-opacity: hsla(0, 0%, 97%, 0.8);
   --text-input-color: #9e9e9e;
   --tertiary-text-dm: #9E9E9E;
   --primary-black: #101010;
@@ -39,6 +40,7 @@
   --base-size: 1rem;
 
   --padding-0: 0;
+  --padding-1: 0.25rem;
   --padding-2: 0.5rem;
   --padding-3: 0.75rem;
 
@@ -66,6 +68,13 @@ body {
   background-color: var(--body-background-color);
   font-family: "Fira Sans", sans-serif;
   line-height: 1.5;
+}
+
+@media screen and (min-width: 1400px) {
+  body {
+    max-width: 75% !important;
+    margin: 0 auto;
+ }
 }
 
 h1 {

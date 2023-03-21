@@ -114,7 +114,7 @@ function registerAdditionalFilterBtns() {
   const applyFilterBtn = document.getElementById("applyFilters");
 
   // toggle class to mark filter on
-  const filterIcon = document.getElementById("additional-filters-on");
+  const filterIcon = document.getElementById("selected-fitlers-icon");
 
   applyFilterBtn.addEventListener("click", () => {
     // hide it using same toggle logic
