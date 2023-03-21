@@ -1,4 +1,5 @@
 import "/styles/common-styles.css";
+import '/styles/offline-page.css';
 import "/styles/explore-spaces.css";
 
 // import utility functions
@@ -309,8 +310,12 @@ function prepareTags() {
 // Update List of Spaces
 
 async function displayProperties() {
-  // todo use the tags and properties
-  // todo use the string search
+
+  // display loader initially
+  const stageLoader = document.getElementById("stage-loader");
+  const noResultsFound = document.getElementById("no-results-found");
+  noResultsFound.classList.add("hide");
+  stageLoader.classList.remove("hide");
 
   // await to get the list from the database
 
@@ -328,11 +333,21 @@ async function displayProperties() {
     MY_COORDINATES.lat && MY_COORDINATES.lng ? MY_COORDINATES : undefined;
 
   const propertyIds = await filterPlaces(tags, price, string, distance, coords);
-
+  let foundProperty = false;
   // TODO add limit
 
   for (let propertyId of propertyIds) {
     const propertyInfo = await propertyFuncion(propertyId);
+
+    // hide loader
+    stageLoader.classList.add("hide")
+    // hide no results
+    noResultsFound.classList.add("hide");
+    // display list container
+    listContainer.classList.remove("hide")
+    foundProperty = true;
+
+
     if (propertyInfo) {
       const propertyObject = {
         imgs: propertyInfo?.media,
@@ -348,6 +363,14 @@ async function displayProperties() {
       populateList(listContainer, propertyObject);
     }
   }
+
+  if(!foundProperty) {
+    // hide loader
+    stageLoader.classList.add("hide")
+    // show no results 
+    noResultsFound.classList.remove("hide");
+  }
+
 }
 
 // function to populate list inside html script

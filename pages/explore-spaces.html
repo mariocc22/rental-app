@@ -51,7 +51,7 @@
     </header>
 
     <!-- additional ilters -->
-    <div class="additional-filters hide">
+    <div class="additional-filters hide filter-wrapper-desktop">
         <form action="#" class="additional-filters" id="additional-filter-form">
         <div class="additional-title">
             More Filters
@@ -297,7 +297,11 @@
             <!-- Cards for Places -->
             <div class="places-cards-wrapper">
                 <h2>Suggested Spaces</h2>
-                <ul class="suggested-spaces-list">
+                <div class="state-wrapper">
+                    <img src="../assets/loader.gif" id="stage-loader" alt="loading spaces" />
+                    <h3 id="no-results-found" class="hide">No Results Found</h3>
+                </div>
+                <ul class="suggested-spaces-list hide">
                     <li>
                         <!-- Not Needed -->
                         <!-- <section>

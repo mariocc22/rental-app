@@ -1,4 +1,4 @@
-main {
+main .booking-info-wrapper {
     display: grid;
     gap: 1rem;
 }
@@ -21,6 +21,13 @@ main ul {
     font-size: 1.7rem;
     margin-bottom: 1rem;
 }
+
+.state-wrapper {
+    min-height: calc(100vh - var(--header-height) - calc(var(--top-elements-padding) * 2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
 section h2 {
     font-size: var(--tagline-font-size);
