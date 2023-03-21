@@ -115,7 +115,10 @@ async function showPropertyDetails() {
   const bundleEquipment = bundleInfo.equipment.filter((val) => val != "");
 
   const bundlePriceElem = document.getElementsByClassName("bundle-title")[0];
-  bundlePriceElem.innerHTML = `Reduced Base Price CAD ${bundlePrice}`;
+  bundlePriceElem.innerHTML = `CAD ${bundlePrice} per day`;
+
+  const bundleText = document.querySelector(".bundle-text");
+  bundleText.innerHTML = `Booking these items with the space and save CAD ${Number(propertyInfo.price) - Number(bundlePrice) }!`;
 
   const bundleEquipWrapper = document.querySelector(".bundle-equipments ul");
   bundleEquipWrapper.innerHTML = "";

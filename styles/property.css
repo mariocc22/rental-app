@@ -160,6 +160,17 @@ main ul {
   font-size: 1.25rem;
 }
 
+.bundle-equipments-title {
+  font-weight: bold;
+}
+
+.bundle-equipments ul {
+  list-style-type: disc;
+  padding-left: 1rem;
+}
+
+
+
 .bundle-details input[type="button"] {
   background-color: var(--explore-text-color);
   border: 1px solid var(--explore-text-color);
