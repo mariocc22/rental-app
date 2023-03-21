@@ -123,6 +123,57 @@ nav.desktop-nav li:hover::before {
 /* Main Index */
 
 /* Image Slider Carrousel */
+@media screen and (min-width: 650px){
+  .carousel-slide {
+    /* display: grid;
+    grid-template-columns: repeat(3,1fr); */
+    height: 92vh;
+    transform: translateX(0);
+    overflow: auto;
+    box-sizing: border-box;
+  }
+
+  .carousel-container{
+    box-sizing: border-box;
+  }
+
+  .video-container{
+    border: 1px solid white;
+    flex-basis: 33.33%;
+  }
+
+  #firstClone{
+    display: none;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  #lastClone{
+    display: none;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  .carousel-container{
+    overflow: visible;
+  }
+
+  div.tabs{
+    display: none;
+  }
+}
+
+
 .carousel-container {
   width: 100%;
   margin: auto;
