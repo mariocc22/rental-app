@@ -27,6 +27,9 @@ async function init() {
     // parse url and store variable
     BOOKING_OBJ = parseBase64(bookingInfoBase64)
 
+    const stateWrapper = document.getElementsByClassName("state-wrapper")[0];
+    const stageLoader = document.getElementById("stage-loader");
+    const bookingInfoWrapper = document.getElementsByClassName("booking-info-wrapper")[0];
 
     // will book or already booked
     // when it comes from my bookigns page the object should look like -> bookingInfo=base64String({bookingId: 'somebookingid'})
@@ -39,6 +42,11 @@ async function init() {
         toBook = false;
         BOOKING_INFO = await readBookingInfo(BOOKING_OBJ.bookingId);
     };
+
+    // Manage state
+    stageLoader.classList.add("hide");
+    stateWrapper.classList.add("hide");
+    bookingInfoWrapper.classList.remove("hide");
 
     
     addOfflineSupport();
