@@ -7,7 +7,7 @@
   padding: 1rem;
 }
 
-.site-header>.logo {
+.site-header > .logo {
   width: 2rem;
   height: 2rem;
   display: block;
@@ -75,9 +75,9 @@ nav.desktop-nav li:hover::before {
 }
 
 /* Header */
-.site-header {
+/* .site-header {
   display: none;
-}
+} */
 
 @media screen and (min-width: 650px) {
   .desktop-nav {
