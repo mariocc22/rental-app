@@ -15,11 +15,27 @@ async function init() {
 
     addOfflineSupport();
 
+    // Manage state elements
+    const stateWrapper = document.getElementsByClassName("state-wrapper")[0];
+    const stageLoader = document.getElementById("stage-loader");
+    const noResults = document.getElementById("no-results-found");
+    const bookingWrapper = document.getElementsByClassName("bookings-wrapper")[0];
+
+
     // get all booking ids of the user
     const bookingIds = await getAllBookingIds();
 
     // get all booking information of the user ids
     const allBookingInfo = await getAllBookingInfo(bookingIds)
+
+    // bookings exist
+    if(Object.keys(allBookingInfo).length) {
+        stateWrapper.classList.add("hide")
+        bookingWrapper.classList.remove("hide")
+    } else {
+        stageLoader.classList.add("hide");
+        noResults.classList.remove("hide");
+    }
 
     updateBookingDetails(allBookingInfo)
 
