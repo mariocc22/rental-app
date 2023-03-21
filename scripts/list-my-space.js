@@ -804,7 +804,11 @@ nextcamera.addEventListener("click", (e) => {
   });
 
   let featureImageIndex = files.findIndex((file) => file.name === featureImage);
-  [files[0], files[featureImageIndex]] = [files[featureImageIndex], files[0]];
+
+  if (featureImageIndex >= 0) {
+    [files[0], files[featureImageIndex]] = [files[featureImageIndex], files[0]];
+  }
+
   console.log("Files after sorting!", files);
 });
 
@@ -892,7 +896,7 @@ geobtn.addEventListener("click", async function (event) {
             '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(map);
         let stage = L.icon({
-          iconUrl: "../assets/svg-icons/Logo-Black.svg",
+          iconUrl: "../assets/svg-icons/locationdm.svg",
           iconSize: [40, 40],
           iconAnchor: [31, 38],
         });
@@ -1343,7 +1347,6 @@ window.addEventListener("resize", () => {
 // Create a property function
 let propertyInfo;
 const createPropertybtn = document.getElementById("createPropertybtn");
-
 createPropertybtn.addEventListener("click", async (event) => {
   console.log("Files: ", files);
   if (!camera) {
