@@ -7,6 +7,7 @@ import "/styles/header-list-space.css";
 import { createProperty } from "/query/propertycreate.js";
 import { equipmentFormParser } from "../utility/equipmentFormParser.js";
 import { rightslide, leftslide, counter } from "../utility/imageSlider";
+import { userState } from "../modules/user.js";
 import {
   input,
   UploadProcess,
@@ -1126,7 +1127,7 @@ bundleCheckboxes.forEach((checkbox) => {
 });
 
 // Values to create property
-let _uid;
+let _uid = undefined;
 let _propertytitle;
 let _propertydescription;
 let _price; // property pricereview
@@ -1293,7 +1294,8 @@ reviewfieldsbtn.addEventListener("click", () => {
   else if (_beach) _typeofspace = "photography-type-beach-house";
   else if (_others) _typeofspace = "photography-type-cottage";
 
-  _uid = localStorage.getItem("uid");
+  // _uid = localStorage.getItem("uid");
+
   // _media.push(urlString);
 
   // if (!camera) {
@@ -1349,12 +1351,14 @@ let propertyInfo;
 const createPropertybtn = document.getElementById("createPropertybtn");
 createPropertybtn.addEventListener("click", async (event) => {
   console.log("Files: ", files);
+
   if (!camera) {
     const urlStringArray = await uploadFiles2(files);
     _media = [...urlStringArray];
   }
 
   async function property() {
+    _uid = await userState();
     // Return the array as a Promise
     console.log("Inside Property Now");
     propertyInfo = await createProperty(
