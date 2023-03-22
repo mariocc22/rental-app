@@ -16,12 +16,12 @@ body {
   font-family: "Fira Sans", sans-serif;
 }
 
-.main-index {
+/* .main-index {
   position: relative;
-}
+} */
 
 .profile-wrapper {
-  position: absolute;
+  position: fixed;
   width: 100%;
   top: 0;
   right: 0;
