@@ -1,9 +1,18 @@
 @import url("../node_modules/font-awesome/css/font-awesome.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
+<<<<<<< Updated upstream
 .site-header .logo img {
+=======
+/* Header */
+/* .site-header {
+  display: none;
+} */
+
+/* .site-header .logo img {
+>>>>>>> Stashed changes
   display: inline;
-}
+} */
 
 .site-header {
   flex: 1 0 100%;
@@ -279,7 +288,7 @@ ul {
 
 a {
   text-decoration: none;
-  color: var(--body-background-color);
+  /* color: var(--body-background-color); */
   /* background-color: var(--listmyspace-button-color); */
   padding: 0.5rem;
   border-radius: 0.5rem;
@@ -781,7 +790,7 @@ details > summary {
   width: 100%;
   resize: vertical;
   min-height: 5rem;
-  border-top: 1px solid var(--primary-white);
+  border-top: 1px solid var(--tertiary-text-dm);
 }
 
 /* PAGE 10 LAYOUT===================================== */
@@ -989,9 +998,11 @@ details > summary {
 .wrap-img-page12-container .selectorImg i {
   color: white;
 }
+
 .wrap-img-page12-container .right {
   right: 1.25rem;
 }
+
 .wrap-img-page12-container .left {
   left: 1.25rem;
 }
@@ -1002,7 +1013,22 @@ details > summary {
   height: 16.5rem;
 }
 
+<<<<<<< Updated upstream
 .wrap-img-page12 img {
+=======
+<<<<<<< Updated upstream=======
+
+/* .wrap-img-page12 {
+  position: relative;
+  border: 1px solid var(--text-color);
+  padding: var(--padding-2) var(--padding-3);
+  border-radius: var(--border-radius-base);
+  margin-bottom: 0.5rem;
+  min-height: 16.5rem;
+  overflow: hidden;
+} */
+>>>>>>>Stashed changes .wrap-img-page12 img {
+>>>>>>> Stashed changes
   display: block;
   width: 2000px;
   max-width: 100%;
@@ -1010,7 +1036,26 @@ details > summary {
   object-fit: cover;
 }
 
+<<<<<<< Updated upstream
 .list-space-summary-text-wrapper label {
+=======
+<<<<<<< Updated upstream=======
+
+/* .wrap-img-page12 img {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+} */
+/* .wrap-img-page12 > img {
+  transition: all 0.25s ease;
+} */
+/* .wrap-img-page12 > img:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+} */
+>>>>>>>Stashed changes .list-space-summary-text-wrapper label {
+>>>>>>> Stashed changes
   color: var(--tertiary-text-dm);
 }
 
@@ -1240,7 +1285,11 @@ fieldset {
   /* PAGE 4 - 5 - 6 */
   .wrapper-page-4-5-6 {
     display: grid;
+<<<<<<< Updated upstream
     grid-template-columns: 4.5fr 5.55fr;
+=======
+    grid-template-columns: 4.5fr 5.5fr;
+>>>>>>> Stashed changes
     column-gap: 2rem;
     max-width: 1100px;
     margin: auto;
@@ -1493,7 +1542,7 @@ fieldset {
 
   .margin-bottom {
     z-index: 1;
-    margin-bottom: 9rem;
+    margin-bottom: 4rem;
   }
 
   .page10 .navigation {

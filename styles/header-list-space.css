@@ -1,5 +1,6 @@
 /* Header */
-.site-header {
+
+/* .site-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -74,10 +75,13 @@ nav.desktop-nav li:hover::before {
   width: 100%;
 }
 
+<<<<<<< Updated upstream
 /* Header */
 /* .site-header {
   display: none;
 } */
+=======
+>>>>>>> Stashed changes
 
 @media screen and (min-width: 650px) {
   .desktop-nav {
@@ -87,4 +91,8 @@ nav.desktop-nav li:hover::before {
   .mobile-nav {
     display: none;
   }
+<<<<<<< Updated upstream
 }
+=======
+} */
+>>>>>>> Stashed changes
