@@ -3,7 +3,6 @@ import "/styles/list-my-space.css";
 import "/styles/standard-styles.css";
 import "../node_modules/leaflet/dist/leaflet.css";
 import "/styles/common-styles.css";
-import "/styles/header-list-space.css";
 import { createProperty } from "/query/propertycreate.js";
 import { equipmentFormParser } from "../utility/equipmentFormParser.js";
 import { rightslide, leftslide, counter } from "../utility/imageSlider";
