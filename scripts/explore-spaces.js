@@ -1,4 +1,5 @@
 import "/styles/common-styles.css";
+import '/styles/offline-page.css';
 import "/styles/explore-spaces.css";
 
 // import utility functions
@@ -114,9 +115,10 @@ function registerAdditionalFilterBtns() {
   const applyFilterBtn = document.getElementById("applyFilters");
 
   // toggle class to mark filter on
-  const filterIcon = document.getElementById("additional-filters-on");
+  const filterIcon = document.getElementById("selected-fitlers-icon");
 
   applyFilterBtn.addEventListener("click", () => {
+
     // hide it using same toggle logic
     const priceValue = document.getElementById("price").value;
     const distanceValue = document.getElementById("distance").value;
@@ -204,9 +206,16 @@ function registerAmenitiesSelection() {
 // toggle additional filters
 
 function toggleAdditionalFilter() {
+
+  // if desktops is on
+  if(window.innerWidth >= 900) {
+    return
+  }
+
   const filterOff = document.getElementsByClassName(
     "additional-filters-off"
   )[0];
+
   filterOff.classList.toggle("hide");
 
   const mainNav = document.getElementsByClassName("index-nav")[0];
@@ -218,6 +227,7 @@ function toggleAdditionalFilter() {
 
   const exploreMain = document.getElementsByClassName("explore-space-main")[0];
   exploreMain.classList.toggle("hide");
+
 }
 
 // load all tags in the html page
@@ -309,8 +319,11 @@ function prepareTags() {
 // Update List of Spaces
 
 async function displayProperties() {
-  // todo use the tags and properties
-  // todo use the string search
+  // display loader initially
+  const stageLoader = document.getElementById("stage-loader");
+  const noResultsFound = document.getElementById("no-results-found");
+  noResultsFound.classList.add("hide");
+  stageLoader.classList.remove("hide");
 
   // await to get the list from the database
 
@@ -329,10 +342,21 @@ async function displayProperties() {
 
   const propertyIds = await filterPlaces(tags, price, string, distance, coords);
 
+  let foundProperty = false;
   // TODO add limit
 
   for (let propertyId of propertyIds) {
     const propertyInfo = await propertyFuncion(propertyId);
+
+    // hide loader
+    stageLoader.classList.add("hide")
+    // hide no results
+    noResultsFound.classList.add("hide");
+    // display list container
+    listContainer.classList.remove("hide")
+    foundProperty = true;
+
+
     if (propertyInfo) {
       const propertyObject = {
         imgs: propertyInfo?.media,
@@ -348,6 +372,14 @@ async function displayProperties() {
       populateList(listContainer, propertyObject);
     }
   }
+
+  if(!foundProperty) {
+    // hide loader
+    stageLoader.classList.add("hide")
+    // show no results 
+    noResultsFound.classList.remove("hide");
+  }
+
 }
 
 // function to populate list inside html script
@@ -393,12 +425,4 @@ function populateList(listContainer, propertyObj) {
     </li>`;
 
   listContainer.innerHTML += string;
-
-
-
-
-
-
-
-
 }

@@ -28,8 +28,12 @@
 
   <!-- Space Details -->
   <main>
+    <div class="state-wrapper">
+      <img src="../assets/loader.gif" id="stage-loader" alt="loading property" />
+      <h3 id="no-results-found" class="hide">No Results Found</h3>
+    </div>
     <!-- Property Details -->
-    <section class="property-details" id="property-details">
+    <section class="property-details hide" id="property-details">
       <h2 id="propery-name" class="property-name">
         {{ Name of the property }}
       </h2>
@@ -91,7 +95,11 @@
               <img src="../assets/svg-icons/bundleA2dm.svg" />
               <div class="bundle-details-props">
                 <p class="bundle-title">Reduced Base Price $300 / day</p>
+                <p class="bundle-text">Booking these items with the space and save CAD 50! </p>
                 <div class="bundle-equipments">
+                  <div class="bundle-equipments-title">
+                    Equipments:
+                  </div>
                   <ul>
                     <li>
                       <span class="bundle-prop">
@@ -234,9 +242,9 @@
         </div>
       </div>
       <div class="property-booking-details">
-        <!-- Price Details -->
+        <!-- Price Details P-->
+        <h2>Price Details</h2>
         <div>
-          <h2>Price Details</h2>
           <div id="property-price-breakdown" class="property-price-breakdown">
             <!-- Base price -->
             <div class="price-detail-wrapper detail-base">

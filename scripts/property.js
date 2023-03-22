@@ -1,4 +1,5 @@
 import "/styles/common-styles.css";
+import '/styles/offline-page.css';
 import "/styles/property.css";
 // import { DateRangePicker } from "vanillajs-datepicker";
 // import "vanillajs-datepicker/css/datepicker.css";
@@ -44,8 +45,24 @@ async function init() {
 
   addOfflineSupport();
 
+  // Manage State
+
   // load data in the website from database
   const propertyInfo = await showPropertyDetails();
+
+  // Manage State
+  const stateWrapper = document.getElementsByClassName("state-wrapper")[0];
+  const stageLoader = document.getElementById("stage-loader");
+  const noResults = document.getElementById("no-results-found");
+  const propertyInfoWrapper = document.getElementById("property-details");
+  stageLoader.classList.add("hide");
+  if(!Object.keys(propertyInfo).length) {
+    noResults.classList.remove("hide");
+    return;
+  } else {
+    stateWrapper.classList.add("hide");
+    propertyInfoWrapper.classList.remove("hide")
+  }
 
   // Update Variables and Load the Price Dtails Section
   loadPriceDetails(propertyInfo);
@@ -62,6 +79,7 @@ async function init() {
 
 async function showPropertyDetails() {
   const propertyInfo = await propertyFuncion(propertyId);
+  if(!propertyInfo) return {}
 
   // add name
   const propertyName = document.getElementById("propery-name");
@@ -97,7 +115,10 @@ async function showPropertyDetails() {
   const bundleEquipment = bundleInfo.equipment.filter((val) => val != "");
 
   const bundlePriceElem = document.getElementsByClassName("bundle-title")[0];
-  bundlePriceElem.innerHTML = `Reduced Base Price CAD ${bundlePrice}`;
+  bundlePriceElem.innerHTML = `CAD ${bundlePrice} per day`;
+
+  const bundleText = document.querySelector(".bundle-text");
+  bundleText.innerHTML = `Booking these items with the space and save CAD ${Number(propertyInfo.price) - Number(bundlePrice) }!`;
 
   const bundleEquipWrapper = document.querySelector(".bundle-equipments ul");
   bundleEquipWrapper.innerHTML = "";
@@ -293,11 +314,20 @@ function registerBookButton() {
 }
 
 function registerPropsSelection() {
+  const bundleSelectBtn = document.querySelector(
+    ".bundle-details-props input[type='button']"
+  );
+
+
   const propsElements = document.querySelectorAll(
     ".property-equipments input[type='checkbox']"
   );
   propsElements.forEach((propElement) => {
     propElement.addEventListener("change", (event) => {
+      
+      bundleSelectBtn.value = "Choose Bundle";
+      bundleSelectBtn.classList.remove("bundle-selected");
+
       if (event.target.checked) {
         const tagInfo = tagnameToInfo(event.target.id);
         const tag = tagInfo.name;
@@ -369,6 +399,9 @@ function registerBundleSelection() {
     updateBasePrice(price);
     updateProps(props);
     updateTotalPrice();
+
+    bundleSelectBtn.value = "Bundle Selected!"
+    bundleSelectBtn.classList.add("bundle-selected");
   });
 }
 

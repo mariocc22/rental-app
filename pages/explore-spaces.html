@@ -10,6 +10,11 @@
 
 <body>
     <header>
+        <div class="logo">
+            <a href="./index.html"
+              ><img src="../assets/svg-icons/Logo-White.svg"
+            /></a>
+        </div>
         <nav class="index-nav">
             <ul>
                 <li>
@@ -29,10 +34,24 @@
                 <li><i class="fa fa-xmark"></i></li>
             </ul>
         </nav>
+        <nav class="desktop-nav">
+            <ul>
+              <li><button class="explore link-btn">Explore</button></li>
+              <li><button class="showcase link-btn">Showcase</button></li>
+              <li><button class="list-space link-btn">List My Space</button></li>
+              <li><button class="btn-contact link-btn">Contact Us</button></li>
+              <li class="btn-profile">
+                <img
+                  src="/assets/svg-icons//Profile White.svg"
+                  alt="Profile Icon"
+                />
+              </li>
+            </ul>
+          </nav>
     </header>
 
     <!-- additional ilters -->
-    <div class="additional-filters hide">
+    <div class="additional-filters hide filter-wrapper-desktop">
         <form action="#" class="additional-filters" id="additional-filter-form">
         <div class="additional-title">
             More Filters
@@ -214,6 +233,7 @@
                     <label for="search-places" class="visually-hidden">Search</label>
                     <input type="search" placeholder="Photoshoot" name="search-places" id="search-places">
                     <i id="additional-filters-on" class="fa-solid fa-sliders"></i>
+                    <div id="selected-fitlers-icon"></div>
                 </div>
 
                 <!-- Types of spaces filter -->
@@ -277,7 +297,11 @@
             <!-- Cards for Places -->
             <div class="places-cards-wrapper">
                 <h2>Suggested Spaces</h2>
-                <ul class="suggested-spaces-list">
+                <div class="state-wrapper">
+                    <img src="../assets/loader.gif" id="stage-loader" alt="loading spaces" />
+                    <h3 id="no-results-found" class="hide">No Results Found</h3>
+                </div>
+                <ul class="suggested-spaces-list hide">
                     <li>
                         <!-- Not Needed -->
                         <!-- <section>

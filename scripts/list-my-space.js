@@ -7,6 +7,7 @@ import "/styles/header-list-space.css";
 import { createProperty } from "/query/propertycreate.js";
 import { equipmentFormParser } from "../utility/equipmentFormParser.js";
 import { rightslide, leftslide, counter } from "../utility/imageSlider";
+import { userState } from "../modules/user.js";
 import {
   input,
   UploadProcess,
@@ -81,7 +82,7 @@ allPages[0].style.display = "block";
 function navigateToPage(event) {
   let pagecontinue = true;
   const pageId = location.hash ? location.hash : "#page1";
-  let x = window.matchMedia("(max-width: 800px)");
+  let x = window.matchMedia("(max-width: 891px)");
   const page1 = document.getElementById("page1");
   const page2 = document.getElementById("page2");
   const page3 = document.getElementById("page3");
@@ -98,13 +99,18 @@ function navigateToPage(event) {
 
   // Navigations page
   const navigationPage1 = document.querySelector("#page1 .navigation");
-  const progressPageMobile = document.querySelectorAll(".page .progress");
+  const progressPageMobile = document.querySelectorAll(".progressMobile");
   const progressPageDesktop13 = document.querySelector(".progressDesktop-1-3");
   const progressPageDesktop456 = document.querySelector(
     ".progressDesktop-4-5-6"
   );
+  const progressDesktop7 = document.querySelector(".progressDesktop-7");
+  const progressDesktop9 = document.querySelector(".progressDesktop-9");
+  const progressDesktop10 = document.querySelector(".progressDesktop-10");
+  const progressDesktop11 = document.querySelector(".progressDesktop-11");
+  const progressDesktop12 = document.querySelector(".progressDesktop-12");
   const backButtonAddress = document.querySelectorAll(".backButtonAddress");
-
+  const pageTitle = document.querySelector(".list-space-title");
   // Mobile
   if (x.matches) {
     desktopVIew = false;
@@ -113,10 +119,18 @@ function navigateToPage(event) {
     });
     progressPageDesktop13.style.display = "none";
     progressPageDesktop456.style.display = "none";
+    progressDesktop7.style.display = "none";
+    progressDesktop9.style.display = "none";
+    progressDesktop10.style.display = "none";
+    progressDesktop11.style.display = "none";
+    progressDesktop12.style.display = "none";
+
     backButtonAddress.forEach((back) => {
       back.style.display = "block";
     });
+    pageTitle.style.display = "none";
     if (pageId === "#page1") {
+      pageTitle.style.display = "block";
       navigationPage1.style.display = "flex";
       page1.style.display = "block";
       page3.style.display = "none";
@@ -129,7 +143,6 @@ function navigateToPage(event) {
       page11.style.display = "none";
       page12.style.display = "none";
       page13.style.display = "none";
-      console.log("Esta es Pagina 1");
     } else if (pageId === "#page3") {
       page1.style.display = "none";
       page3.style.display = "block";
@@ -255,24 +268,30 @@ function navigateToPage(event) {
   } else {
     progressPageDesktop13.style.display = "none";
     progressPageDesktop456.style.display = "none";
+    progressDesktop7.style.display = "block";
+    progressDesktop9.style.display = "block";
+    progressDesktop10.style.display = "block";
+    progressDesktop11.style.display = "block";
+    progressDesktop12.style.display = "block";
     desktopVIew = true;
     backButtonAddress.forEach((back) => {
       back.style.display = "none";
     });
     progressPageMobile.forEach((progress) => {
       progress.style.display = "none";
-      if (
-        pageId === "#page7" ||
-        pageId === "#page9" ||
-        pageId === "#page10" ||
-        pageId === "#page11" ||
-        pageId === "#page12"
-      ) {
-        progress.style.display = "block";
-      }
+      // if (
+      //   pageId === "#page7" ||
+      //   pageId === "#page9" ||
+      //   pageId === "#page10" ||
+      //   pageId === "#page11" ||
+      //   pageId === "#page12"
+      // ) {
+      //   progress.style.display = "block";
+      // }
     });
-
+    pageTitle.style.display = "none";
     if (pageId === "#page1" || pageId === "#page3") {
+      pageTitle.style.display = "block";
       navigationPage1.style.display = "none";
       page1.style.display = "block";
       page3.style.display = "block";
@@ -804,7 +823,11 @@ nextcamera.addEventListener("click", (e) => {
   });
 
   let featureImageIndex = files.findIndex((file) => file.name === featureImage);
-  [files[0], files[featureImageIndex]] = [files[featureImageIndex], files[0]];
+
+  if (featureImageIndex >= 0) {
+    [files[0], files[featureImageIndex]] = [files[featureImageIndex], files[0]];
+  }
+
   console.log("Files after sorting!", files);
 });
 
@@ -868,6 +891,7 @@ const propertydescription = document.getElementById("propertydescription");
 
 // Geolocation
 const geobtn = document.getElementById("geobtn");
+
 geobtn.addEventListener("click", async function (event) {
   // const test = await getPosition();
   if (navigator.geolocation) {
@@ -880,8 +904,25 @@ geobtn.addEventListener("click", async function (event) {
         _long = position.coords.longitude; //test2.longt;
         // console.log(_lat);
         // console.log(_long);
+        //LOCATION IQ API
+        var xhr = new XMLHttpRequest();
+        var _url = `https://us1.locationiq.com/v1/reverse?key=pk.bacaddd84141d8123622e2937d0b47b0&lat=${_lat}&lon=${_long}&format=json`;
+        console.log(_url);
+        const userAction = async () => {
+          const response = await fetch(_url);
+          const myJson = await response.json(); //extract JSON from the http response
+          console.log(myJson);
+
+          street.value = myJson.address.road;
+          city.value = myJson.address.city; //response.address.city;//dataGeo.city;
+          state.value = myJson.address.state;
+          postalcode.value = myJson.address.postcode;
+          country.value = myJson.address.country;
+        };
+        userAction();
         // Map
         const _map = document.getElementById("map");
+        _map.style.display = "block";
         let map = L.map(_map, {
           renderer: L.canvas(),
         }).setView([_lat, _long], 13);
@@ -892,26 +933,11 @@ geobtn.addEventListener("click", async function (event) {
             '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(map);
         let stage = L.icon({
-          iconUrl: "../assets/svg-icons/Logo-Black.svg",
+          iconUrl: "../assets/svg-icons/locationdm.svg",
           iconSize: [40, 40],
           iconAnchor: [31, 38],
         });
         L.marker([_lat, _long], { icon: stage }).addTo(map);
-        //LOCATION IQ API
-        var xhr = new XMLHttpRequest();
-        var _url = `https://us1.locationiq.com/v1/reverse?key=pk.bacaddd84141d8123622e2937d0b47b0&lat=${_lat}&lon=${_long}&format=json`;
-        console.log(_url);
-        const userAction = async () => {
-          const response = await fetch(_url);
-          const myJson = await response.json(); //extract JSON from the http response
-          console.log(myJson);
-          street.value = myJson.address.road;
-          city.value = myJson.address.city; //response.address.city;//dataGeo.city;
-          state.value = myJson.address.state;
-          postalcode.value = myJson.address.postcode;
-          country.value = myJson.address.country;
-        };
-        userAction();
       },
       (error) => {
         // failure callback is called w. error object
@@ -1122,7 +1148,7 @@ bundleCheckboxes.forEach((checkbox) => {
 });
 
 // Values to create property
-let _uid;
+let _uid = undefined;
 let _propertytitle;
 let _propertydescription;
 let _price; // property pricereview
@@ -1289,7 +1315,8 @@ reviewfieldsbtn.addEventListener("click", () => {
   else if (_beach) _typeofspace = "photography-type-beach-house";
   else if (_others) _typeofspace = "photography-type-cottage";
 
-  _uid = localStorage.getItem("uid");
+  // _uid = localStorage.getItem("uid");
+
   // _media.push(urlString);
 
   // if (!camera) {
@@ -1317,7 +1344,7 @@ leftBtn.addEventListener("click", (e) => {
 });
 
 window.addEventListener("resize", () => {
-  let x = window.matchMedia("(min-width: 800px)");
+  let x = window.matchMedia("(min-width: 891px)");
   if (x.matches) {
     carouselSlide.style.transform = "translateX(0)";
   } else {
@@ -1343,15 +1370,16 @@ window.addEventListener("resize", () => {
 // Create a property function
 let propertyInfo;
 const createPropertybtn = document.getElementById("createPropertybtn");
-
 createPropertybtn.addEventListener("click", async (event) => {
   console.log("Files: ", files);
+
   if (!camera) {
     const urlStringArray = await uploadFiles2(files);
     _media = [...urlStringArray];
   }
 
   async function property() {
+    _uid = await userState();
     // Return the array as a Promise
     console.log("Inside Property Now");
     propertyInfo = await createProperty(

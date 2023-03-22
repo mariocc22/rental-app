@@ -1,6 +1,6 @@
 /* conformation page */
 .confirmation-page {
-    height: 100vh;
+    min-height: calc(100vh - var(--header-height));
     /* margin: 1rem 0; */
     padding: 1rem;
     text-align: center;
@@ -37,4 +37,15 @@
     font-weight: bold;
     font-size: 1rem;
     cursor: pointer;
+}
+
+@media screen and (min-width: 900px) {
+    .confirmation-page {
+        justify-content: center;
+        gap: 4rem;
+    }
+
+    .confirmation-page button {
+        max-width: 20rem;
+    }
 }
