@@ -123,55 +123,45 @@ nav.desktop-nav li:hover::before {
 /* Main Index */
 
 /* Image Slider Carrousel */
-@media screen and (min-width: 650px){
-  .carousel-slide {
-    /* display: grid;
-    grid-template-columns: repeat(3,1fr); */
-    height: 92vh;
-    transform: translateX(0);
-    overflow: auto;
-    box-sizing: border-box;
+/* @media screen and (min-width: 1000px){
+
+  .carousel-slide{
+    transform: translateX(none);
   }
 
-  .carousel-container{
-    box-sizing: border-box;
+  div.video-container{
+    width: fit-content;
+    min-width: 1%;
+    flex: 1 0;
   }
 
-  .video-container{
-    border: 1px solid white;
-    flex-basis: 33.33%;
+  div.video-container:hover{
+    border-top: 10px solid white;
+    border-bottom: 10px solid white;
+    flex: 2 0 0;
+    padding: 1rem;
+  }
+
+  div.video-container img {
+    display: none;
+  }
+
+  div.video-container:hover img {
+    display: block;
   }
 
   #firstClone{
     display: none;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
   }
 
   #lastClone{
     display: none;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-  }
-
-  .carousel-container{
-    overflow: visible;
   }
 
   div.tabs{
     display: none;
   }
-}
+} */
 
 
 .carousel-container {
