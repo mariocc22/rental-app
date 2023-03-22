@@ -160,6 +160,16 @@ main ul {
   font-size: 1.25rem;
 }
 
+.bundle-equipments-title {
+  font-weight: bold;
+}
+
+.bundle-equipments ul {
+  list-style-type: disc;
+  padding-left: 1rem;
+}
+
+
 .bundle-details input[type="button"] {
   background-color: var(--explore-text-color);
   border: 1px solid var(--explore-text-color);
@@ -168,6 +178,14 @@ main ul {
   color: var(--primary-black);
   font-weight: 700;
   font-size: 1rem;
+}
+
+
+
+.bundle-details input[type="button"].bundle-selected {
+  border: 1px solid var(--explore-text-color);
+  background-color: var(--primary-black);
+  color: var(--explore-text-color);
 }
 
 .bundle-details img {
