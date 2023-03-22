@@ -13,15 +13,28 @@ main {
     flex-flow: column nowrap;
     justify-content: center;
 
+    /* display: grid;
+    grid-template-rows: auto;
+    align-items: center; */
+
     gap: 2rem;
 }
 
-
 main .main-menu-activity ul {
     list-style-type: none;
-    display: grid;
 
+    display: flex;
+    flex-flow: column nowrap;
     gap: 1rem;
+}
+
+main .main-menu-activity ul li {
+    /* border-radius: 0.5rem; */
+
+    height: 150px;
+    overflow: hidden;
+
+    position: relative;
 }
 
 main .main-menu-activity a {
@@ -30,35 +43,37 @@ main .main-menu-activity a {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
+    align-content: center;
+
     color: var(--text-color);
-    border-radius: var(--img-border-radius);
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0,0,0,0.65) 100%);
+    /* border-radius: var(--img-border-radius); */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0,0,0,1) 100%);
+
+
 
     overflow: hidden;
 }
 
-main .main-menu-activity a:hover img {
-    transform: scale(1.1);
-}
-
 main .main-menu-activity a img {
-    height: 10rem;
     width: 100%;
-    object-fit: cover;
+    /* object-fit: cover; */
     grid-column: 1/-1;
     grid-row: 1/-1;
-    border-radius: var(--img-border-radius);
+    /* border-radius: var(--img-border-radius); */
     z-index: -1;
 
-    transition: all 200ms ease-in-out;
+    transform: translate(0, -20%);
+    align-self: center;
 }
 
 main .main-menu-activity a h2 {
     grid-column: 1/-1;
     grid-row: 1/-1;
     z-index: 4;
-    position: relative;
-    top: 35%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 
@@ -84,26 +99,95 @@ main .main-menu-activity li {
     background-image: url("../assets/img/explore/musician.jpg");
 } */
 
-/* IMAGES OVERLAY */
-.main-menu-activity li a > img {
-    position: relative;
-}
-
-.main-menu-activity li a > img::before {
-    content: '';
-    width: 10px;
-    height: 10px;
-    background-color: red;
-    
-    position: absolute;
-    z-index: 10;
-
-}
-
 @media screen and (min-width: 900px) {
-    .main-menu-activity ul {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
+    main {
+        display: flex;
+        justify-content: center;
     }
 
+    main .page-title {
+        text-align: center;
+        display: inline-block;
+
+        width: fit-content;
+        margin: 0 auto;
+
+    }
+
+    main .page-title > p {
+        text-align-last: left;
+    }
+
+    main .main-menu-activity ul {
+        list-style-type: none;
+
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+
+        height: 384px;
+    }
+
+    main .main-menu-activity ul li {
+        flex: 1 0 20%;
+
+        height: 256px;
+        overflow: hidden;
+        position: relative;
+        transition: all 500ms ease-in-out;
+
+    }
+    
+
+    main .main-menu-activity ul li:hover {
+        height: 384px;
+    }
+
+    main .main-menu-activity ul li img {
+        transition: all 2s ease;
+    }
+
+    main .main-menu-activity ul li:hover img {
+        /* transform: translateY(0.25%); */
+    }
+
+    /* main .main-menu-activity li:hover h2 {
+        animation: titleAnimation 2s infinite;
+    } */
+
+    @keyframes titleAnimation {
+        0% {
+            color: white;
+        }
+
+        50% {
+            color: var(--accent-explore-space-dm);
+        }
+
+        100% {
+            color: white;
+        }
+    }
+
+    /* main .main-menu-activity li:hover a {
+        animation: overlayAnimation 2000ms infinite;
+    }  */
+
+    @keyframes overlayAnimation {
+        0% {
+            opacity: 0.2;
+        }
+
+        50% {
+            opacity: 0.3;
+        }
+
+        100% {
+            opacity: 0.2;
+        }
+    }
+
+    main .main-menu-activity ul li:nth-child(1) img, main .main-menu-activity ul li:nth-child(3) img {
+        min-width: 40rem;
+    }
 }
