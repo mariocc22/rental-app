@@ -17,21 +17,25 @@ h3 {
 }
 
 h1 {
-  font-size: 3rem;
+  margin: 0;
+  font-family: "Anton", sans-serif;
+  letter-spacing: 2px;
+  font-size: var(--h1-font-size);
 }
 
 h1 a {
   color: white;
 }
 
-img {
+/* img {
   max-width: 100%;
   height: auto;
-}
+} */
 
 body {
   font-family: "Fira Sans", sans-serif;
   background-color: #101010;
+  overflow: hidden;
 }
 
 ul {
@@ -41,128 +45,106 @@ ul {
 a {
   text-decoration: none;
 }
-/* Header */
-header.site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 
-  padding: 1rem 2%;
+/* header styles ====================== 
+=======================================*/
+/* Header-mobile view */
+.desktop-nav {
+  display: none;
 }
 
-header > .logo {
-  width: 2rem;
-  height: 2rem;
+.site-header {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.logo img {
+  width: 1.5rem;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.site-header .logo a {
   display: block;
+  padding: 0;
 }
 
 .mobile-nav a {
   display: inline-block;
   font-size: 1.5rem;
-  color: white;
+  color: var(--primary-white);
+  padding: 0;
 }
 
-.desktop-nav {
-  display: none;
-}
-
-nav.desktop-nav ul {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-nav.desktop-nav button {
-  font-family: "Fira Sans", sans-serif;
-  font-size: 1rem;
-  text-decoration: none;
-  color: white;
-  display: inline-block;
-  appearance: none;
-  background: none;
-  outline: none;
-  border: none;
-  cursor: pointer;
-}
-
-nav.desktop-nav img {
-  display: block;
-  width: 2rem;
-  height: 2rem;
-  cursor: pointer;
-}
-nav.desktop-nav li {
-  position: relative;
-  transition: all 0.25s ease-in-out;
-}
-
-nav.desktop-nav li:not(:last-child)::before {
-  content: "";
-  position: absolute;
-  bottom: -0.5rem;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: white;
-  transition: all 0.25s ease-in-out;
-}
-
-nav.desktop-nav li:hover::before {
-  width: 100%;
-}
-
-@media screen and (min-width: 650px) {
+/* Header-desktop view */
+@media screen and (min-width: 900px) {
   .desktop-nav {
     display: unset;
   }
+
   .mobile-nav {
     display: none;
   }
-}
 
-/* Main Index */
-
-/* Image Slider Carrousel */
-/* @media screen and (min-width: 1000px){
-
-  .carousel-slide{
-    transform: translateX(none);
+  .site-header {
+    padding: 1.25rem 2rem;
   }
 
-  div.video-container{
-    width: fit-content;
-    min-width: 1%;
-    flex: 1 0;
+  .logo img {
+    width: 2.5rem;
   }
 
-  div.video-container:hover{
-    border-top: 10px solid white;
-    border-bottom: 10px solid white;
-    flex: 2 0 0;
-    padding: 1rem;
+  nav.desktop-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
   }
 
-  div.video-container img {
-    display: none;
+  nav.desktop-nav button {
+    font-family: "Fira Sans", sans-serif;
+    font-size: var(--base-size);
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--primary-white);
+    display: inline-block;
+    appearance: none;
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
   }
 
-  div.video-container:hover img {
+  nav.desktop-nav img {
     display: block;
+    width: 2rem;
+    height: auto;
+    cursor: pointer;
   }
 
-  #firstClone{
-    display: none;
+  nav.desktop-nav li {
+    position: relative;
+    transition: all 0.25s ease-in-out;
   }
 
-  #lastClone{
-    display: none;
+  nav.desktop-nav li:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: all 0.25s ease-in-out;
   }
 
-  div.tabs{
-    display: none;
+  nav.desktop-nav li:hover::before {
+    width: 100%;
   }
-} */
-
+}
 
 .carousel-container {
   width: 100%;
@@ -174,7 +156,7 @@ nav.desktop-nav li:hover::before {
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
-  height: 92vh;
+  height: 100vh;
 }
 
 .video-container {
@@ -218,7 +200,7 @@ nav.desktop-nav li:hover::before {
   width: 95%;
 
   position: absolute;
-  bottom: 0;
+  bottom: 5rem;
   right: 50%;
   transform: translate(50%, -3rem);
 }

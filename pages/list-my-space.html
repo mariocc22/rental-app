@@ -7,48 +7,113 @@
     <title>List my Space</title>
   </head>
   <body>
-    <main>
-      <div class="site-header">
-        <div class="logo">
-          <a href="./index.html"
-            ><img src="../assets/svg-icons/Logo-White.svg"
-          /></a>
-        </div>
-        <nav class="mobile-nav">
-          <ul>
-            <li>
-              <a href="#"><i class="fa-solid fa-bars"></i></a>
-            </li>
-          </ul>
-        </nav>
-        <nav class="desktop-nav">
-          <ul>
-            <li><button class="explore link-btn">Explore</button></li>
-            <li><button class="showcase link-btn">Showcase</button></li>
-            <li><button class="list-space link-btn">List My Space</button></li>
-            <li><button class="btn-contact link-btn">Contact Us</button></li>
-            <li class="btn-profile">
-              <img
-                src="/assets/svg-icons//Profile White.svg"
-                alt="Profile Icon"
-              />
-            </li>
-          </ul>
-        </nav>
+    <header class="site-header">
+      <div class="logo">
+        <a href="./index.html"
+          ><img src="../assets/svg-icons/Logo-White.svg"
+        /></a>
       </div>
+      <nav class="mobile-nav">
+        <ul>
+          <li>
+            <button class="menu-button">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <nav class="desktop-nav">
+        <ul>
+          <li><a class="explore link-btn" href="#">Explore</a></li>
+          <li><a class="showcase link-btn" href="#">Showcase</a></li>
+          <li><a class="list-space link-btn" href="#">List My Space</a></li>
+          <li><a class="btn-contact link-btn" href="#">Contact Us</a></li>
 
+          <li class="btn-profile">
+            <img
+              src="/assets/svg-icons//Profile White.svg"
+              alt="Profile Icon"
+            />
+          </li>
+        </ul>
+      </nav>
+      <div class="profile-wrapper">
+        <div class="profile-header">
+          <nav class="profile-nav">
+            <ul>
+              <li>
+                <button class="menu-button">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="profile-main">
+          <div class="top-main">
+            <h1>Vaibhav Malhotra</h1>
+            <p>Personal Information</p>
+            <p><a href="./my-bookings.html">My Bookings</a></p>
+          </div>
+          <div class="middle-main">
+            <ul>
+              <li><a href="./explore.html">Explore Spaces</a></li>
+              <li><a href="./list-my-space.html">List My Space</a></li>
+              <li><a href="./showcase.html">Showcase</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="bottom-main">
+          <button class="logOutBtn">Log Out</button>
+        </div>
+      </div>
+      <div class="desktop-profile">
+        <ul>
+          <li>
+            <img src="../assets/svg-icons/blackProfile.svg" alt="profile" /><a
+              href="#"
+              >Personal Information</a
+            >
+          </li>
+          <li>
+            <img src="../assets/svg-icons/List My Place.svg" alt="profile" /><a
+              href="./my-bookings.html"
+              >My Bookings</a
+            >
+          </li>
+          <li>
+            <img
+              src="../assets/svg-icons/blackShowcase-Get Inspired.svg"
+              alt="profile"
+            /><a href="./showcase.html">My Showcases</a>
+          </li>
+          <li>
+            <img
+              src="../assets/svg-icons/Save & Exit.svg"
+              alt="profile"
+            /><button class="logOutBtn">Log Out</button>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
       <div class="wrapper-page-1-3">
+        <h1 class="list-space-title">List My space</h1>
+
         <progress
           class="progress progressDesktop-1-3"
           value="10"
           max="70"
         ></progress>
-        <h1 class="list-space-desktop">List My space</h1>
         <div class="wrap-main-content page" id="page1">
           <div class="list-space-wrapper page1">
             <!-- main content of the page -->
-            <progress class="progress" value="10" max="90"></progress>
-            <h1 class="list-space-mobile">List My space</h1>
+            <progress
+              class="progress progressMobile"
+              value="10"
+              max="90"
+            ></progress>
             <div class="list-space-main">
               <!-- page title -->
 
@@ -139,7 +204,11 @@
         </div>
         <div class="page" id="page3">
           <div class="list-space-wrapper page2">
-            <progress class="progress" value="20" max="90"></progress>
+            <progress
+              class="progress progressMobile"
+              value="20"
+              max="90"
+            ></progress>
             <div class="divform margin-bottom">
               <h2>Fill in your address</h2>
               <button id="geobtn" class="specialbuttons users-loc">
@@ -229,7 +298,11 @@
         ></progress>
         <div class="page" id="page4">
           <div class="list-space-wrapper page4">
-            <progress class="progress" value="30" max="90"></progress>
+            <progress
+              class="progress progressMobile"
+              value="30"
+              max="90"
+            ></progress>
             <div class="inner-wrapper-4">
               <h2>Add photos of your space</h2>
               <div class="div-buttons">
@@ -268,7 +341,11 @@
         </div>
         <div class="page" id="page5">
           <div class="list-space-wrapper page5">
-            <progress class="progress" value="40" max="90"></progress>
+            <progress
+              class="progress progressMobile"
+              value="40"
+              max="90"
+            ></progress>
             <div class="wrap-content-page margin-bottom">
               <h2>Take photos of your space</h2>
               <div class="gridcamera">
@@ -299,14 +376,18 @@
         </div>
         <div class="page" id="page6">
           <div class="list-space-wrapper page6">
-            <progress class="progress" value="40" max="90"></progress>
+            <progress
+              class="progress progressMobile"
+              value="40"
+              max="90"
+            ></progress>
             <div class="wrap-content-page margin-bottom">
               <h2>Select your photos and featured image</h2>
               <div class="div-image">
                 <div class="image-container" id="imageSelect"></div>
                 <img
                   class="filter-white add-image-icon"
-                  src="../assets/svg-icons/browseDM.svg"
+                  src="../assets/svg-icons/browsedm.svg"
                   alt="camera icon"
                 />
                 <!-- <label id="upprogess"></label> -->
@@ -330,7 +411,11 @@
             value="30"
             max="70"
           ></progress>
-          <progress class="progress" value="50" max="90"></progress>
+          <progress
+            class="progress progressMobile"
+            value="50"
+            max="90"
+          ></progress>
           <div class="inner-wrapper-7 wrappertags">
             <h2>Specify your space's amenities</h2>
             <div class="tags-wrapper">
@@ -411,7 +496,11 @@
             value="40"
             max="70"
           ></progress>
-          <progress class="progress" value="60" max="90"></progress>
+          <progress
+            class="progress progressMobile"
+            value="60"
+            max="90"
+          ></progress>
           <div class="prices-wrapper margin-bottom">
             <h2>
               Specify the equipment that you provide along with your space
@@ -578,7 +667,11 @@
             value="50"
             max="70"
           ></progress>
-          <progress class="progress" value="70" max="90"></progress>
+          <progress
+            class="progress progressMobile"
+            value="70"
+            max="90"
+          ></progress>
 
           <div class="wrap-content-page margin-bottom">
             <form id="formpricespace">
@@ -622,7 +715,11 @@
             value="60"
             max="70"
           ></progress>
-          <progress class="progress" value="80" max="90"></progress>
+          <progress
+            class="progress progressMobile"
+            value="80"
+            max="90"
+          ></progress>
 
           <h2>Choose to offer custom BUNDLES to the artist!</h2>
 
@@ -768,7 +865,11 @@
             value="70"
             max="70"
           ></progress>
-          <progress class="progress" value="90" max="90"></progress>
+          <progress
+            class="progress progressMobile"
+            value="90"
+            max="90"
+          ></progress>
           <div class="review-content-wrapper margin-bottom">
             <h2>Review your listing</h2>
             <div class="wrap-img-page12-container">
@@ -880,14 +981,13 @@
           </div>
         </div>
       </div>
-
-      <div class="divfooter">
-        <div class="wrapimgfooter">
-          <img src="../assets/svg-icons/Logo-White.svg" alt="Astra Logo" />
-          <h2>STAGE</h2>
-        </div>
-        <p>&copy; Stage Canada, Inc. All rights reserved.</p>
-      </div>
     </main>
+    <footer class="divfooter">
+      <div class="wrapimgfooter">
+        <img src="../assets/svg-icons/Logo-White.svg" alt="Astra Logo" />
+        <h2>STAGE</h2>
+      </div>
+      <p>&copy; Stage Canada, Inc. All rights reserved.</p>
+    </footer>
   </body>
 </html>

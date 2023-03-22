@@ -118,6 +118,7 @@ function registerAdditionalFilterBtns() {
   const filterIcon = document.getElementById("selected-fitlers-icon");
 
   applyFilterBtn.addEventListener("click", () => {
+
     // hide it using same toggle logic
     const priceValue = document.getElementById("price").value;
     const distanceValue = document.getElementById("distance").value;
@@ -205,9 +206,16 @@ function registerAmenitiesSelection() {
 // toggle additional filters
 
 function toggleAdditionalFilter() {
+
+  // if desktops is on
+  if(window.innerWidth >= 900) {
+    return
+  }
+
   const filterOff = document.getElementsByClassName(
     "additional-filters-off"
   )[0];
+
   filterOff.classList.toggle("hide");
 
   const mainNav = document.getElementsByClassName("index-nav")[0];
@@ -219,6 +227,7 @@ function toggleAdditionalFilter() {
 
   const exploreMain = document.getElementsByClassName("explore-space-main")[0];
   exploreMain.classList.toggle("hide");
+
 }
 
 // load all tags in the html page
@@ -310,7 +319,6 @@ function prepareTags() {
 // Update List of Spaces
 
 async function displayProperties() {
-
   // display loader initially
   const stageLoader = document.getElementById("stage-loader");
   const noResultsFound = document.getElementById("no-results-found");
@@ -333,6 +341,7 @@ async function displayProperties() {
     MY_COORDINATES.lat && MY_COORDINATES.lng ? MY_COORDINATES : undefined;
 
   const propertyIds = await filterPlaces(tags, price, string, distance, coords);
+
   let foundProperty = false;
   // TODO add limit
 
@@ -416,12 +425,4 @@ function populateList(listContainer, propertyObj) {
     </li>`;
 
   listContainer.innerHTML += string;
-
-
-
-
-
-
-
-
 }

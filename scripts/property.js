@@ -115,7 +115,10 @@ async function showPropertyDetails() {
   const bundleEquipment = bundleInfo.equipment.filter((val) => val != "");
 
   const bundlePriceElem = document.getElementsByClassName("bundle-title")[0];
-  bundlePriceElem.innerHTML = `Reduced Base Price CAD ${bundlePrice}`;
+  bundlePriceElem.innerHTML = `CAD ${bundlePrice} per day`;
+
+  const bundleText = document.querySelector(".bundle-text");
+  bundleText.innerHTML = `Booking these items with the space and save CAD ${Number(propertyInfo.price) - Number(bundlePrice) }!`;
 
   const bundleEquipWrapper = document.querySelector(".bundle-equipments ul");
   bundleEquipWrapper.innerHTML = "";
@@ -311,11 +314,20 @@ function registerBookButton() {
 }
 
 function registerPropsSelection() {
+  const bundleSelectBtn = document.querySelector(
+    ".bundle-details-props input[type='button']"
+  );
+
+
   const propsElements = document.querySelectorAll(
     ".property-equipments input[type='checkbox']"
   );
   propsElements.forEach((propElement) => {
     propElement.addEventListener("change", (event) => {
+      
+      bundleSelectBtn.value = "Choose Bundle";
+      bundleSelectBtn.classList.remove("bundle-selected");
+
       if (event.target.checked) {
         const tagInfo = tagnameToInfo(event.target.id);
         const tag = tagInfo.name;
@@ -387,6 +399,9 @@ function registerBundleSelection() {
     updateBasePrice(price);
     updateProps(props);
     updateTotalPrice();
+
+    bundleSelectBtn.value = "Bundle Selected!"
+    bundleSelectBtn.classList.add("bundle-selected");
   });
 }
 

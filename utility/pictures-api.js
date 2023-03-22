@@ -45,6 +45,7 @@ input.setAttribute("multiple", "");
 input.addEventListener("change", handleFiles);
 
 function handleFiles() {
+  let counter = 0;
   files = [];
   files = [...this.files];
   const previewContainer = document.querySelector(".wrap-img-page12");
@@ -56,6 +57,14 @@ function handleFiles() {
       <img class="select-img" src="${reader.result}" alt="image" />
       <span class="remove-img"><i class="fa-solid fa-xmark"></i></span>
     </div>`;
+      if (counter === 0) {
+        imgContent = `<div class="img featureImg" data-set="${file.name}">
+      <img class="select-img" src="${reader.result}" alt="image" />
+      <span class="remove-img"><i class="fa-solid fa-xmark"></i></span>
+    </div>`;
+      }
+      counter++;
+
       let previewContent = `
     <img class="preview-img imgCar" src="${reader.result}" alt="image" />`;
 
