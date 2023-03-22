@@ -12,6 +12,10 @@ a {
   color: var(--text-input-color);
 }
 
+ul {
+  list-style-type: none;
+}
+
 body {
   font-family: "Fira Sans", sans-serif;
 }
@@ -74,7 +78,7 @@ body {
 }
 
 /* Top Content User Name */
-.top-main h1 {
+.profile-main .top-main h1 {
   font-family: "Fira Sans";
   font-style: normal;
   font-weight: 700;
@@ -85,19 +89,20 @@ body {
   text-transform: none;
 }
 
-.top-main p {
+.profile-main .top-main p {
   font-size: 1.25rem;
   line-height: 1.5;
 }
 
 /* Middle Content */
-.middle-main ul {
+.profile-main .middle-main ul {
   display: flex;
   flex-flow: column nowrap;
   gap: 1.75rem;
+  align-items: flex-start;
 }
 
-.middle-main ul li {
+.profile-main .middle-main ul li {
   font-size: 1.25rem;
 }
 
@@ -110,8 +115,8 @@ body {
   cursor: pointer;
 }
 
-.profile-main,
-.bottom-main {
+.profile-main .profile-main,
+.profile-main .bottom-main {
   padding: 1rem;
 }
 
@@ -161,4 +166,10 @@ body {
   height: 2rem;
   filter: invert(100%) sepia(98%) saturate(4%) hue-rotate(231deg)
     brightness(120%) contrast(95%);
+}
+
+@media screen and (min-width: 900px) {
+  .hideMenu {
+    transform: translateX(100%);
+  }
 }
